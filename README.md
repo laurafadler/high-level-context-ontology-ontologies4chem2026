@@ -1,14 +1,15 @@
-# high-level-context-ontology-ontologies4chem2026
+# A high-level Context ontology
 
+**A context ontology for chemical experiments, with SHACL shapes and a generator that describes
+experiments as RO-Crates.**
 
-**Describing chemical experiments as RO-Crates, with the context they need to be reusable.**
-
-This repository is a snapshot of an ongoing master thesis project (Laura Fadler, RWTH Aachen, SVT & University of Cambridge,
+This repository accompanies the talk "A high-level Context ontology". It is a snapshot of an ongoing
+master thesis project (Laura Fadler, University of Cambridge,
 Department of Chemical Engineering and Biotechnology). It is shared so that people can look at the approach
 and **comment on it** - the ontologies, the SHACL shapes, the libraries and the generator are all open for
 feedback.
 
-In short: a generator turns an ELN export (or lab files) plus a short setup/answer sheet into an RO-Crate
+In short: a generator turns an ELN export (or lab files) plus a short setup sheet into an RO-Crate
 (`ro-crate-metadata.json`, JSON-LD). It is built on two ontologies of its own:
 
 - **HLO** (Higher Level Ontology): levels (library entry / series / experiment), evidence and reference,
@@ -61,14 +62,15 @@ Questions I would particularly like opinions on:
 | `projects/amidation_ai4green_ai4_001/` | amide coupling from the public AI4Green example export of the ELN Consortium | public example |
 | `projects/chemotion_example/` | two Chemotion records: reductive catalytic fractionation of spruce wood | example export from a colleague |
 
-Each folder holds the crate (`crate/` or `crate_completed/`), the setup sheet (`setup.yaml`), the answer
-file (`answers.txt`), curation files and reports. The raw input files (`input/`: ELN exports, lab files)
-are not included, except for the public AI4Green export.
+Each folder holds the input files (`input/`: ELN export, lab files), the crate (`crate/` or
+`crate_completed/`), the setup sheet (`setup.yaml`), the answer file (`answers.txt`), curation files and
+reports - so every value in a crate can be traced back to where it came from.
 
 ## Layout
 
 ```
 projects/<crate_identifier>/ one folder per series (the identifier is the crate's short name)
+  input/                     ELN export and lab files the crate is built from
   core/                      core files of the ELN records (neutral JSON)
   curation/                  PubChem answers, curation decisions, rule files of this series
   setup.yaml                 setup sheet: what only a person knows about the setup
@@ -108,10 +110,8 @@ python generator/workflow/check_context_requirements_consistency.py
 python generator/workflow/new_project.py <crate_identifier> [--eln <export.eln> | --experiments <n>]
 ```
 
-Rebuilding the example crates needs their input files, which are not part of this repository (except for
-the AI4Green example); for the same reason the tests `content_history`, `field` and `inventory_end`
-fail in a fresh clone. Several tests and checks need internet access (the RO-Crate JSON-LD context,
-PubChem, QUDT). The generator commits the libraries to Git at the end of a real run, so run it in
+Several tests and checks need internet access (the RO-Crate JSON-LD context, PubChem, QUDT). The
+generator commits the libraries to Git at the end of a real run, so run it in
 a clone of this repository, not in a downloaded ZIP.
 
 ## Notes on this snapshot

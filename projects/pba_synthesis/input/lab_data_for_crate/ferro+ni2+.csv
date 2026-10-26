@@ -1,0 +1,56 @@
+Reaction ID:,ferro+ni
+Operator Name:,cl2114
+Reagent A Name:,ferro
+Reagent B Name:,ni2+
+
+Elapsed Reaction Time (seconds),Air Mass Flow Rate (L/min),Pump A Flow Rate Setpoint (L/min),Pump B Flow Rate Setpoint (L/min),Pump A Pressure (bar),Pump B Pressure (bar),Air Temperature (deg C),System Status
+0,0.0,0.0,0.0,0.0,0.0,24.4,Reaction started.
+8.231748819351196,0.0,0.0,0.0,0.0,0.0,24.4,Reaction running: 8.2/120 seconds
+8.75251293182373,0.42,3.0,3.0,3.0,0.0,24.6,Reaction running: 8.8/120 seconds
+10.687247037887573,0.42,3.0,3.0,4.0,0.0,24.4,Reaction running: 10.7/120 seconds
+13.11478590965271,0.42,3.0,3.0,4.0,0.0,24.6,Reaction running: 13.1/120 seconds
+15.534875869750977,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 15.5/120 seconds
+17.961707830429077,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 18.0/120 seconds
+20.4066219329834,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 20.4/120 seconds
+22.850769996643066,0.68,3.0,3.0,4.0,0.0,24.6,Reaction running: 22.9/120 seconds
+25.295696020126343,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 25.3/120 seconds
+27.765071868896484,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 27.8/120 seconds
+30.19049882888794,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 30.2/120 seconds
+32.63856101036072,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 32.6/120 seconds
+35.10076189041138,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 35.1/120 seconds
+37.55041694641113,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 37.6/120 seconds
+39.9869019985199,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 40.0/120 seconds
+42.432559967041016,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 42.4/120 seconds
+44.89353680610657,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 44.9/120 seconds
+47.32319092750549,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 47.3/120 seconds
+49.74207401275635,0.4,3.0,3.0,4.0,0.0,24.6,Reaction running: 49.7/120 seconds
+52.16440391540527,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 52.2/120 seconds
+54.57506585121155,0.4,3.0,3.0,4.0,0.0,24.6,Reaction running: 54.6/120 seconds
+57.01669383049011,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 57.0/120 seconds
+59.433274030685425,0.41,3.0,3.0,4.0,0.0,24.6,Reaction running: 59.4/120 seconds
+61.89019298553467,0.4,3.0,3.0,4.0,0.0,24.6,Reaction running: 61.9/120 seconds
+64.32847094535828,0.4,3.0,3.0,4.0,0.0,24.6,Reaction running: 64.3/120 seconds
+66.75236296653748,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 66.8/120 seconds
+69.18541884422302,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 69.2/120 seconds
+71.62816596031189,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 71.6/120 seconds
+74.07200288772583,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 74.1/120 seconds
+76.48678183555603,0.39,3.0,3.0,4.0,0.0,24.8,Reaction running: 76.5/120 seconds
+78.93248891830444,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 78.9/120 seconds
+81.34904289245605,0.39,3.0,3.0,4.0,0.0,24.8,Reaction running: 81.3/120 seconds
+83.77716302871704,0.4,3.0,3.0,4.0,0.0,24.9,Reaction running: 83.8/120 seconds
+86.23358201980591,0.39,3.0,3.0,4.0,0.0,24.9,Reaction running: 86.2/120 seconds
+88.6832799911499,0.39,3.0,3.0,4.0,0.0,24.8,Reaction running: 88.7/120 seconds
+91.10692596435547,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 91.1/120 seconds
+93.58089590072632,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 93.6/120 seconds
+96.03113389015198,0.4,3.0,3.0,4.0,0.0,24.8,Reaction running: 96.0/120 seconds
+98.4581458568573,0.39,3.0,3.0,4.0,0.0,24.9,Reaction running: 98.5/120 seconds
+100.91824793815613,0.39,3.0,3.0,4.0,0.0,24.9,Reaction running: 100.9/120 seconds
+103.34010100364685,0.39,3.0,3.0,4.0,0.0,25.0,Reaction running: 103.3/120 seconds
+105.77081990242004,0.39,3.0,3.0,4.0,0.0,24.9,Reaction running: 105.8/120 seconds
+108.21245884895325,0.4,3.0,3.0,4.0,0.0,24.9,Reaction running: 108.2/120 seconds
+110.67210102081299,0.39,3.0,3.0,4.0,0.0,25.0,Reaction running: 110.7/120 seconds
+113.13578796386719,0.4,3.0,3.0,4.0,0.0,25.0,Reaction running: 113.1/120 seconds
+115.56121587753296,0.39,3.0,3.0,4.0,0.0,25.0,Reaction running: 115.6/120 seconds
+117.99703598022461,0.39,3.0,3.0,4.0,0.0,25.0,Reaction running: 118.0/120 seconds
+120.43657803535461,0.39,3.0,3.0,4.0,0.0,25.1,Reaction running: 120.4/120 seconds
+120.43657803535461,0.39,3.0,3.0,4.0,0.0,25.1,Reaction stopped and flow rates set to zero.

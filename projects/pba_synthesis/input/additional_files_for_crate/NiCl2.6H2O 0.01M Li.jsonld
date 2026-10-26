@@ -1,0 +1,99 @@
+{
+    "@context": {
+        "@vocab": "",
+        "qudt": "http://qudt.org/vocab/unit/",
+        "unit": {
+            "@id": "qudt:hasUnit",
+            "@type": "@id"
+        },
+        "mr": "modular_reagent_"
+    },
+    "template_type": "modular_reagent_preparation",
+    "linker": {
+        "modular_reagent_storage_glassware_label": ""
+    },
+    "static": {
+        "modular_reagent_preparation_lab_location": "CEB L2.08",
+        "modular_reagent_preparation_containment": "safety cabinet",
+        "modular_reagent_target_concentration": 0.01,
+        "modular_reagent_preparation_relative_humidity": 0.0,
+        "modular_reagent_preparation_temperature": 0.0,
+        "modular_reagent_preparation_pressure": 0.0,
+        "modular_reagent_preparation_operator_PPE": "lab coat, glasses, gloves",
+        "modular_reagent_solvent_CAS_number": "7732-18-5",
+        "modular_reagent_solvent_supplier": "CEB",
+        "modular_reagent_solvent_production_date": "",
+        "modular_reagent_solvent_volume_error": 2.0,
+        "modular_reagent_solute_CAS_number": "7791-20-0",
+        "modular_reagent_solute_molecular_weight": 237.69,
+        "modular_reagent_solute_supplier": "Sigma-Aldrich",
+        "modular_reagent_solute_production_lot": "0000540605",
+        "modular_reagent_solute_mass_measurement_apparatus": "spatula x, weighing boat, Fischer Scientific scale x",
+        "modular_reagent_solute_measurement_tare_mass": 0.0,
+        "modular_reagent_solute_mass_measurement_error": 0.001,
+        "modular_reagent_mixing_glassware_label": "bottle NiCl2.6H2O 0.01M Li",
+        "modular_reagent_mixing_method": "hand shake",
+        "modular_reagent_transfer_glassware_label": ""
+    },
+    "dynamic": {
+        "modular_reagent_storage_glassware_label": "NiCl2.6H2O 0.01M Li",
+        "modular_reagent_preparation_designer_id": "cl2114",
+        "modular_reagent_ preparation_operator_id": "cl2114",
+        "modular_reagent_target_volume": 200.0,
+        "modular_reagent_preparation_start_date": "07/04/2026",
+        "modular_reagent_preparation_start_time": "13:39",
+        "modular_reagent_solvent_volumetric_measurement_glassware_label": "50 ml gradulated cylindar x",
+        "modular_reagent_solvent_volume": 200.0,
+        "modular_reagent_solute_total_mass": 0.476,
+        "modular_reagent_solute_mass": 0.476,
+        "modular_reagent_preparation_end_date": "07/04/2026",
+        "modular_reagent_preparation_end_time": "13:50",
+        "modular_reagent_actual_volume": 200.0,
+        "modular_reagent_calculated_concentration": 0.0023799999999999997
+    },
+    "units": {
+        "linker": {},
+        "static": {
+            "modular_reagent_target_concentration": "M",
+            "modular_reagent_preparation_relative_humidity": "%",
+            "modular_reagent_preparation_temperature": "degree C",
+            "modular_reagent_preparation_pressure": "barg",
+            "modular_reagent_solvent_volume_error": "ml",
+            "modular_reagent_solute_molecular_weight": "g/mol",
+            "modular_reagent_solute_measurement_tare_mass": "g",
+            "modular_reagent_solute_mass_measurement_error": "g",
+            "modular_reagent_preparation_lab_location": "",
+            "modular_reagent_preparation_containment": "",
+            "modular_reagent_preparation_operator_PPE": "",
+            "modular_reagent_solvent_CAS_number": "",
+            "modular_reagent_solvent_supplier": "",
+            "modular_reagent_solute_CAS_number": "",
+            "modular_reagent_solute_supplier": "",
+            "modular_reagent_solute_production_lot": "",
+            "modular_reagent_solute_mass_measurement_apparatus": "",
+            "modular_reagent_mixing_glassware_label": "",
+            "modular_reagent_mixing_method": ""
+        },
+        "dynamic": {
+            "modular_reagent_target_volume": "ml",
+            "modular_reagent_solvent_volume": "ml",
+            "modular_reagent_solute_total_mass": "g",
+            "modular_reagent_solute_mass": "g",
+            "modular_reagent_actual_volume": "ml",
+            "modular_reagent_storage_glassware_label": "",
+            "modular_reagent_preparation_designer_id": "",
+            "modular_reagent_ preparation_operator_id": "",
+            "modular_reagent_preparation_start_date": "datetime",
+            "modular_reagent_preparation_start_time": "datetime",
+            "modular_reagent_solvent_volumetric_measurement_glassware_label": "",
+            "modular_reagent_preparation_end_date": "datetime",
+            "modular_reagent_preparation_end_time": "datetime",
+            "modular_reagent_calculated_concentration": "M"
+        }
+    },
+    "warning": {
+        "linker": {},
+        "static": {},
+        "dynamic": {}
+    }
+}

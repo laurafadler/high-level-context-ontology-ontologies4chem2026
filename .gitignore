@@ -18,12 +18,8 @@ cache/
 # Report of the answer driver (generator/workflow/answer_driver.py) - written anew in every run
 driver_report.json
 
-# Input data of the projects (ELN exports, lab files) are not versioned: they can be large
-# or confidential (decision of 30.09.2026). They lie only in the working copy.
-projects/*/input/
-# Exception: the public example export of the ELN Consortium (AI4Green), so that the demo
-# can be followed.
-!projects/amidation_ai4green_ai4_001/input/
+# The input data of the example series (ELN exports, lab files) are part of this repository,
+# so that every crate can be traced back to its sources.
 # The overviews a run writes into the data folders are generated (a copy stands in the
 # crate under file_metadata/).
 projects/*/input/**/*_collected_file_metadata.xlsx
