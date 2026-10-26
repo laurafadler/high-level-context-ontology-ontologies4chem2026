@@ -1,0 +1,9 @@
+RO-Crate validator (roc-validator 0.12.1), profile RO-Crate 1.3, severity 'required', availability
+checks skipped - run on 14.10.2026 by Claude Code. Passed: False. Issues: 1.
+
+count  severity     check                     example message
+
+    1  REQUIRED     ro-crate-1.3_13.3         The Root Data Entity MUST have a `license` property (as specified by schema.org).
+
+The missing licence is known: it is entered by hand before a publication
+(docs/things_to_implement_after_me.md).

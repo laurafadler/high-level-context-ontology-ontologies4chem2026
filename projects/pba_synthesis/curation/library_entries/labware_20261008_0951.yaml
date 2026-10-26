@@ -1,0 +1,62 @@
+# Library entry: labware -> libraries/device_library.jsonld
+# PBA series (08.10.2026, Laura Fadler, rule 3b.4): the caps of the feed bottles written again -
+# a screw cap is one object, a cup upside down whose cavity takes in the neck of its bottle (before: a ring without a
+# cavity, labware_20261007_cap.yaml, taken out by remove_pba_ring_caps.py). Sizes assumed (typical catalogue sizes).
+
+format: library-entry-v1
+type: labware
+entered_by: Laura Fadler
+source: Decided by Laura Fadler on 07.10.2026 and 08.10.2026 for the PBA series (a screw cap as a cup upside down); sizes assumed by Claude Code (typical catalogue sizes).
+
+entries:
+  - name: GL45 screw cap with two ports
+    id: device:gl45_cap_two_ports
+    device_class: lid
+    body: polypropylene
+    outer_diameter:
+      value: 0.055
+      unit: M
+      kind: assumed
+      source: a typical GL45 screw cap, about 55 mm across
+    outer_height:
+      value: 0.025
+      unit: M
+      kind: assumed
+      source: a typical GL45 screw cap, about 25 mm high
+    wall:
+      value: 0.0025
+      unit: M
+      kind: assumed
+      source: a typical polypropylene screw cap, wall and top about 2.5 mm thick (inside 50 mm across, taking in the GL45 neck)
+    openings:
+      - name: tube_port
+        note: the suction tube is led through it into the bottle
+      - name: vent_port
+        note: left open - air flows into the headspace while the pump draws off the solution
+    exemplars:
+      - name: GL45 cap with two ports no. 1
+        id: device:gl45_cap_two_ports_01
+        location: lab:L208
+        commissioned:
+          value: 2025-06-16T16:00:00Z
+          kind: assumed
+          source: taken as the commissioning of the K1 Start (mid-June 2025), with which it came
+      - name: GL45 cap with two ports no. 2
+        id: device:gl45_cap_two_ports_02
+        location: lab:L208
+        commissioned:
+          value: 2025-06-16T16:00:00Z
+          kind: assumed
+          source: taken as the commissioning of the K1 Start (mid-June 2025), with which it came
+    note: The cap of the feed bottles of the K1 Start - not airtight, one port for the suction tube and one left open (Laura Fadler, 07.10.2026).
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-08T08:51:51Z'
+    by: person:LauraFadler
+    entries: ['device:gl45_cap_two_ports', 'port:gl45_cap_two_ports_tube_port', 'port:gl45_cap_two_ports_vent_port', 'device:gl45_cap_two_ports_Form', 'device:gl45_cap_two_ports_Cavity', 'device:gl45_cap_two_ports_Form_HeightToDiameterRatio', 'device:gl45_cap_two_ports_Form_DiameterRatio', 'device:gl45_cap_two_ports_Cavity_HeightToDiameterRatio', 'device:gl45_cap_two_ports_OuterDiameter', 'device:gl45_cap_two_ports_OuterDiameter_Reference_1', 'device:gl45_cap_two_ports_OuterHeight', 'device:gl45_cap_two_ports_OuterHeight_Reference_1', 'device:gl45_cap_two_ports_WallThickness', 'device:gl45_cap_two_ports_WallThickness_Reference_1', 'device:gl45_cap_two_ports_InnerDiameter', 'device:gl45_cap_two_ports_InnerDiameter_Evidence_1', 'task:calculating_gl45_cap_two_ports_InnerDiameter', 'task:calculating_gl45_cap_two_ports_InnerDiameter_StartTime', 'task:calculating_gl45_cap_two_ports_InnerDiameter_StartTime_Reference_1', 'task:calculating_gl45_cap_two_ports_InnerDiameter_EndTime', 'task:calculating_gl45_cap_two_ports_InnerDiameter_Duration',
+      'device:gl45_cap_two_ports_InnerHeight', 'device:gl45_cap_two_ports_InnerHeight_Evidence_1', 'task:calculating_gl45_cap_two_ports_InnerHeight', 'task:calculating_gl45_cap_two_ports_InnerHeight_StartTime', 'task:calculating_gl45_cap_two_ports_InnerHeight_StartTime_Reference_1', 'task:calculating_gl45_cap_two_ports_InnerHeight_EndTime', 'task:calculating_gl45_cap_two_ports_InnerHeight_Duration', 'device:gl45_cap_two_ports_InnerVolume', 'device:gl45_cap_two_ports_InnerVolume_Evidence_1', 'task:calculating_gl45_cap_two_ports_InnerVolume', 'task:calculating_gl45_cap_two_ports_InnerVolume_StartTime', 'task:calculating_gl45_cap_two_ports_InnerVolume_StartTime_Reference_1', 'task:calculating_gl45_cap_two_ports_InnerVolume_EndTime', 'task:calculating_gl45_cap_two_ports_InnerVolume_Duration', 'device:gl45_cap_two_ports_OuterVolume', 'device:gl45_cap_two_ports_OuterVolume_Evidence_1', 'task:calculating_gl45_cap_two_ports_OuterVolume', 'task:calculating_gl45_cap_two_ports_OuterVolume_StartTime',
+      'task:calculating_gl45_cap_two_ports_OuterVolume_StartTime_Reference_1', 'task:calculating_gl45_cap_two_ports_OuterVolume_EndTime', 'task:calculating_gl45_cap_two_ports_OuterVolume_Duration', 'material:gl45_cap_two_ports_Body_SolidPhase_Volume', 'material:gl45_cap_two_ports_Body_SolidPhase_Volume_Evidence_1', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Volume', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Volume_StartTime', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Volume_StartTime_Reference_1', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Volume_EndTime', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Volume_Duration', 'material:gl45_cap_two_ports_Body_SolidPhase_Mass', 'material:gl45_cap_two_ports_Body_SolidPhase_Mass_Evidence_1', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Mass', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Mass_StartTime', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Mass_StartTime_Reference_1', 'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Mass_EndTime',
+      'task:calculating_gl45_cap_two_ports_Body_SolidPhase_Mass_Duration', 'task:calculating_gl45_cap_two_ports_geometry', 'task:calculating_gl45_cap_two_ports_geometry_StartTime', 'task:calculating_gl45_cap_two_ports_geometry_StartTime_Reference_1', 'task:calculating_gl45_cap_two_ports_geometry_EndTime', 'task:calculating_gl45_cap_two_ports_geometry_Duration', 'material:gl45_cap_two_ports_Body_SolidPhase_Density', 'material:gl45_cap_two_ports_Body_SolidPhase_Density_Reference_1', 'material:gl45_cap_two_ports_Body', 'material:gl45_cap_two_ports_Body_SolidPhase', 'device:gl45_cap_two_ports_01', 'task:commissioning_gl45_cap_two_ports_01', 'task:commissioning_gl45_cap_two_ports_01_StartTime', 'task:commissioning_gl45_cap_two_ports_01_StartTime_Reference_1', 'task:commissioning_gl45_cap_two_ports_01_EndTime', 'task:commissioning_gl45_cap_two_ports_01_EndTime_Reference_1', 'task:commissioning_gl45_cap_two_ports_01_Duration', 'device:gl45_cap_two_ports_02', 'task:commissioning_gl45_cap_two_ports_02',
+      'task:commissioning_gl45_cap_two_ports_02_StartTime', 'task:commissioning_gl45_cap_two_ports_02_StartTime_Reference_1', 'task:commissioning_gl45_cap_two_ports_02_EndTime', 'task:commissioning_gl45_cap_two_ports_02_EndTime_Reference_1', 'task:commissioning_gl45_cap_two_ports_02_Duration', 'task:assuming_labware_20261008_0951', 'task:assuming_labware_20261008_0951_StartTime', 'task:assuming_labware_20261008_0951_StartTime_Reference_1', 'task:assuming_labware_20261008_0951_EndTime', 'task:assuming_labware_20261008_0951_Duration']
+    libraries: [device_library.jsonld]

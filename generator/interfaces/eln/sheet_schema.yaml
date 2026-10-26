@@ -1,0 +1,263 @@
+# Schema of the setup sheet: what a complete sheet contains, one module per
+# kind of thing. Read by check_sheet.py.
+#
+# Per field:
+#   required: true        must be filled in
+#   when: {field: value}  needed only under this condition ("if y is not no")
+#   none: <category>      counts as answered too if the sheet explicitly denies this category under "none"
+#                         (today's format; in future "none" at the field)
+#   one_of: [...]         allowed values
+#   ref: <kind>           must name something that exists: device (Device Library), person (People
+#                         Library), species (Chemical Entity Library), reaction (Reaction Library),
+#                         function (ontology, selectable), task (task of the sheet or of the generator),
+#                         phase (phase of the sheet), unit (QUDT unit of the table)
+#   list_of: <module>     a list, the module per entry
+#   list: true            a list of simple values
+#   doc: ...              what the field is for (appears in the check report)
+#   property: ...         what it becomes in the crate, for the overview of properties per class
+#                         (workflow/property_overview; as in the library entry schema): a
+#                         property, a hint in brackets where it lands on another entity ("(device)",
+#                         "(inverse)"), "(quantity)" for the quantity of a value, "-" for a field that
+#                         becomes no property of its own (it selects, structures or steers); several effects
+#                         separated by ";". Not read by check_sheet.py.
+#
+# Interfaces, transfers and ports have no module: the generator derives them. What is
+# known about their occurrence stands in the section "occurrences"; times of tasks
+# and occurrences stand under "values" (at: task:<name>, or an occurrence with occurrence: k).
+#
+# The schema checks only what can be decided on the sheet itself. Whether the generator needs anything
+# beyond that (such as the functions of a task - it often derives them itself) is only shown by the
+# exploratory run; rebuilding that here would mean having the same logic twice.
+#
+# Conditions (when): a field of the same entry with this value, or one of the named situations:
+#   missing: <field>         the field is missing
+#   number: <field>          the field is a number
+#   given: <field>           the field has a value (also an empty one: '')
+#   missing_all: [fields]    none of these fields has a value
+#   any_filled: [fields]     at least one of these fields has a non-empty value
+# allow_empty: true          '' is an answer (none on purpose); only a missing value is missing
+# in_options: true           the answer must be one of the options of the entry (except with several)
+
+format: setup-sheet-schema-v1
+
+sheet:
+  fields:
+    format:     {required: true, one_of: [setup-sheet-v1], doc: "identifier of the format", property: "-"}
+    source:     {required: true, doc: "source of everything that names none of its own (rule 2.10)", property: "-"}
+    series:     {required: true, module: series, property: "-"}
+    people:     {required: true, module: people, property: "-"}
+    none:       {module: none, property: "-"}
+    devices:    {required: true, list: true, ref: device, doc: "devices of the Device Library that are used", property: "hlo:specializationOf (device)"}
+    devices_source: {doc: "source of the device list, when it is not the sheet's", property: "-"}
+    empty_cavities: {list: true, ref: device, doc: "devices whose cavity holds nothing but the gas around it in this series - no content of their own (a cap on its bottle)", property: "-"}
+    empty_cavities_source: {doc: "source of empty_cavities, when it is not the sheet's", property: "-"}
+    materials:  {required: true, list_of: material, doc: "what is in the devices (their content)", property: "cpo:containsMaterial (device)"}
+    uncontained_streams: {list_of: uncontained_stream, none: further_values, doc: "what goes in or out: streams whose way lies in no device (no location, rule 'Streams across the system boundary'); a stream inside a device is a material with kind: stream", property: "-"}
+    occupation_states: {list_of: occupation_state, none: interfaces, doc: "what can sit on the interface of a phase - adsorbed species, free sites (questions occupation_state_names and the ones of each state;)", property: "-"}
+    reactions:  {list_of: reaction, doc: "reactions of the Reaction Library that can take place", property: "hlo:specializationOf (reaction)"}
+    species_per_experiment: {ref: species_per_experiment, doc: "a substance that occurs only in some experiments: <name>: [experiments] - not named: in every experiment", property: "dcterms:hasPart (phase, experiment)"}
+    tasks:      {required: true, list_of: task, doc: "the procedure", property: "-"}
+    device_settings: {list_of: device_setting, doc: "how devices were set: operation mode; a set profile is a value with steps", property: "-"}
+    files:      {list_of: file, doc: "the files of the series and where each comes from", property: "-"}
+    occurrences: {list_of: occurrence, doc: "what is known about whether and how often things occurred - one statement per entry", property: "-"}
+    values:     {list_of: value, doc: "known values - pre-filled from the ELN (workflow/prefill_sheet.py) and by hand", property: "-"}
+    open:       {list_of: open_question, doc: "questions an exploratory run could not answer from the sheet (workflow/open_questions.py --write-sheet)", property: "-"}
+    unknown:    {list_of: unknown, doc: "per place and experiment the quantities nothing is known of - written by workflow/close_sheet.py", property: "-"}
+
+series:
+  fields:
+    short_name:          {required: true, doc: "identifier of the crate", property: "@id"}
+    planned_experiments: {doc: "experiments planned in total; empty = not known", property: "cpo:hasNumberOfPlannedExperiments"}
+    completed:           {required: true, one_of: [true, false], doc: "completed - no further experiment?", property: "cpo:isCompleted"}
+    eln_records:         {list: true, doc: "one core file per conducted experiment - or 'none': the series has no ELN record", property: "schema:subjectOf (experiment)"}
+    description:         {doc: "what the series is about and where its record comes from - otherwise built from the core files (title, record), or asked", property: "schema:description"}
+    conducted_experiments: {required: true, when: {missing_or_none: eln_records}, doc: "experiments conducted so far - without an ELN record per experiment", property: "dcterms:hasPart"}
+
+people:
+  fields:
+    creator:      {required: true, list: true, ref: person, doc: "who planned the series", property: "cpo:hasCreator"}
+    experimenter: {required: true, list: true, ref: person, doc: "who performed the experiments", property: "cpo:hasExperimenter"}
+
+none:
+  fields:
+    categories: {list: true, one_of: [further_values, samples, interfaces, energy_fields, air_species, occurrences, experiment_tasks, profiles, task_details, emptied, reference_sources], property: "-"}
+    sources:    {doc: "a source of its own per category ({reference_sources: ...}) - otherwise 'source'", property: "-"}
+
+material:
+  fields:
+    name:       {required: true, property: "schema:name"}
+    content_of: {ref: device, doc: "device whose content the material is (otherwise a further material)", property: "cpo:materialContainedIn"}
+    kind:       {one_of: [stream], doc: "stream: the content flows through the device (a jacket, a sparger), from its inlet to its outlet", property: "@type (stream)"}
+    from:       {required: true, when: {kind: stream}, ref: port_end, property: "cpo:flowsFrom (stream)"}
+    to:         {required: true, when: {kind: stream}, ref: port_end, property: "cpo:flowsTo (stream)"}
+    phases:     {required: true, list_of: phase, property: "dcterms:hasPart"}
+    sample_of:  {ref: material, doc: "the material this one is a sample of (and stands in for)", property: "sosa:isSampleOf"}
+    from_phase: {doc: "the phase inside the device at the start of the stream it leaves (questions device_side_phase / opens_into_phase of the port crossing) - a phase of the sheet or the label of a library content's phase; for a stream of several phases per stream phase: {Outlet_Solid_Phase: Product_Solid_Phase}", property: "cpo:removesFromPhase (port crossing)"}
+    to_phase:   {doc: "the phase inside the device at the end of the stream it enters (device_side_phase / opens_into_phase) - as from_phase", property: "cpo:addsToPhase (port crossing)"}
+    from_opens_into: {doc: "a port that opens into the content of another device: the phase there (question opens_into_phase) - needed only when device_side_phase is asked at the same port as well; otherwise from_phase answers both", property: "cpo:removesFromPhase (port crossing)"}
+    to_opens_into:   {doc: "as from_opens_into, at the end of the stream", property: "cpo:addsToPhase (port crossing)"}
+    crossing_phases: {list: true, ref: phase, doc: "a stream of several phases: the ones that cross at its ends, each with transfers of its own (question crossing_stream_phases)", property: "cpo:removesFromPhase, cpo:addsToPhase (port crossing)"}
+
+uncontained_stream:
+  fields:
+    name:   {required: true, property: "schema:name"}
+    from:   {required: true, ref: port_end, doc: "outside, or a device or port", property: "cpo:flowsFrom"}
+    to:     {required: true, ref: port_end, property: "cpo:flowsTo"}
+    phases: {required: true, list_of: phase, property: "dcterms:hasPart"}
+    from_phase: {doc: "the phase inside the device at the start of the stream it leaves (questions device_side_phase / opens_into_phase of the port crossing) - a phase of the sheet or the label of a library content's phase; for a stream of several phases per stream phase: {Outlet_Solid_Phase: Product_Solid_Phase}", property: "cpo:removesFromPhase (port crossing)"}
+    to_phase:   {doc: "the phase inside the device at the end of the stream it enters (device_side_phase / opens_into_phase) - as from_phase", property: "cpo:addsToPhase (port crossing)"}
+    from_opens_into: {doc: "a port that opens into the content of another device: the phase there (question opens_into_phase) - needed only when device_side_phase is asked at the same port as well; otherwise from_phase answers both", property: "cpo:removesFromPhase (port crossing)"}
+    to_opens_into:   {doc: "as from_opens_into, at the end of the stream", property: "cpo:addsToPhase (port crossing)"}
+    crossing_phases: {list: true, ref: phase, doc: "a stream of several phases: the ones that cross at its ends, each with transfers of its own (question crossing_stream_phases)", property: "cpo:removesFromPhase, cpo:addsToPhase (port crossing)"}
+
+phase:
+  fields:
+    name:          {required: true, property: "schema:name"}
+    state:         {required: true, one_of: [solid, liquid, gaseous, gas], property: "@type"}
+    species:       {required: true, list: true, ref: species, doc: "substances of the phase, named as in the Chemical Entity Library", property: "dcterms:hasPart"}
+    dispersion:    {required: true, one_of: [continuous, dispersed], property: "cpo:hasDispersionState"}
+    structure:     {required: true, when: {state: solid}, one_of: [crystalline, amorphous, polycrystalline, semicrystalline], property: "cpo:hasSolidStructure"}
+    solvents:      {list: true, ref: species, doc: "which species of a liquid mixture act as its solvent (cpo:hasSolvent); empty list: not known", property: "cpo:hasSolvent"}
+    energy_fields: {none: energy_fields, doc: "does the phase generate an energy field (radioactive, magnetic ...)?", property: "cpo:canCreateEnergyField"}
+    values:        {none: further_values, doc: "known values besides those of the ELN (temperature, volume ...)", property: "-"}
+    form:          {doc: "shape of a solid phase no device holds (SolidCylinderForm, CuboidForm ...) - it decides its dimensions", property: "cpo:definesForm"}
+
+reaction:
+  fields:
+    name:         {required: true, ref: reaction, doc: "its name in the Reaction Library or its ID (PBA_Ferrocyanide_Ni)", property: "hlo:specializationOf"}
+    in_phase:     {ref: phase, required: true, when: {missing: at_interface}, doc: "phase the reaction takes place in (or at_interface)", property: "cpo:occursInPhase"}
+    at_interface: {list: true, ref: phase, property: "cpo:occursAtInterface"}
+    transfers:    {list_of: participant_transfer, doc: "a reaction at an interface: per participant the phase it leaves or enters and how (questions phase / transfer_type of its participant transfers) - otherwise asked", property: "-"}
+    elementary:   {list_of: elementary_reaction, doc: "the elementary reactions of its mechanism, where each takes place and its transfers - otherwise asked", property: "-"}
+
+occupation_state:
+  fields:
+    name:        {required: true, doc: "as the reactions of the Reaction Library call it (cat-H, cat(X))", property: "schema:name"}
+    interface:   {required: true, ref: phase, doc: "the phase whose interface it is on (the generator's PhaseInterface of this phase)", property: "cpo:belongsToInterface"}
+    pair:        {list: true, ref: phase, doc: "only at the interface of these two phases (question target_interface) - otherwise the whole interface", property: "cpo:belongsToInterface (pair)"}
+    occupied_by: {required: true, allow_empty: true, ref: species, doc: "the species that occupies it; '' a free site (is_free_site)", property: "cpo:occupiedBy"}
+    bound_to:    {required: true, allow_empty: true, doc: "the site, group or substance it is bound to (an active site, as the Chemical Entity Library names it); '' none (has_bound_to)", property: "cpo:boundTo"}
+    sorption:    {required: true, when: {any_filled: [occupied_by]}, one_of: [Chemisorption, Physisorption], property: "cpo:hasSorptionType"}
+    library:     {list: true, doc: "the occupation states of the Reaction Library it is (question occupation_state of a reaction placeholder)", property: "-"}
+
+participant_transfer:
+  fields:
+    participant: {required: true, doc: "the species of the participant (or the end of its ID: Propylguaiacol)", property: "-"}
+    phase:       {required: true, ref: phase, doc: "the phase at the interface it leaves or enters", property: "cpo:addsToPhase, cpo:removesFromPhase (reaction transfer)"}
+    type:        {required: true, doc: "the kind of transfer, a cpo:TransferType: Adsorption, Desorption, Absorption ...", property: "cpo:hasTransferType (reaction transfer)"}
+
+elementary_reaction:
+  fields:
+    name:         {required: true, doc: "its name or ID in the Reaction Library", property: "-"}
+    in_phase:     {ref: phase, required: true, when: {missing: at_interface}, doc: "phase it takes place in (or at_interface)", property: "cpo:occursInPhase (elementary reaction)"}
+    at_interface: {list: true, ref: phase, doc: "the two phases of the interface it takes place at", property: "cpo:occursAtInterface (elementary reaction)"}
+    transfers:    {list_of: participant_transfer, property: "-"}
+
+task:
+  fields:
+    name:        {required: true, property: "schema:name"}
+    type:        {one_of: [task, operation, measurement, observation, calculation, assumption, planning, setting, control, recording, sampling, transfer, commissioning, service, calibration], doc: "kind of task (asked by the generator when missing)", property: "@type"}
+    part_of:     {ref: task, doc: "task this one is part of", property: "dcterms:isPartOf; dcterms:hasPart (parent task)"}
+    functions:   {list: true, ref: function, doc: "what the task achieves - whether the generator needs them, the exploratory run shows", property: "cpo:realizesFunction"}
+    equipment:   {list: true, ref: device, none: task_details, property: "cpo:usedEquipment"}
+    performers:  {list: true, ref: person, property: "cpo:performedBy"}
+    description: {none: task_details, required: true, when: {type: assumption}, property: "schema:description"}
+    determines:  {list: true, doc: "values the task determines (a group of eln_values, <material>/<phase>/<quantity> or <task>/times)", property: "cpo:determines"}
+    inputs:      {list: true, ref: input, required: true, when: {type: calculation}, doc: "input values of a calculation, '<quantity> <place>' - each a value of the sheet", property: "cpo:hasInputValue"}
+    times:       {required: true, when: {name: Experimental procedure}, doc: "start (required, rule 5.6) and end: {start, end, kind}", property: "cpo:hasStartTime, cpo:hasEndTime"}
+    varies:      {list: true, one_of: [parts, performers], doc: "what differs between the experiments (otherwise what the series says holds in each)", property: "-"}
+    experiments: {list: true, doc: "a task that occurred only in these experiments, e.g. [2] (question extra_task_names of the experiment) - without it the task is part of every experiment; its section needs varies: [parts]", property: "dcterms:hasPart (experiment procedure)"}
+    aims_at:     {list: true, none: task_details, doc: "transfers or reactions the task aims at; [] none", property: "cpo:aimsAt"}
+    software:    {list: true, none: task_details, doc: "software of the Software Library the task used; [] none", property: "cpo:usedSoftware"}
+    time_source: {list: true, doc: "where the times a task reads come from (rule 4.7): Wall clock, Mobile phone ... - or {source, detail}", property: "schema:description (time source)"}
+    time_source_detail: {doc: "which clock, phone or computer exactly", property: "schema:description (time source)"}
+    on_sample:   {ref: material, allow_empty: true, doc: "the sample the task worked on; '' the material itself", property: "cpo:actsOn"}
+    observes:    {list: true, ref: observable, none: task_details, doc: "an observation task: the phases, materials (streams) or devices it looked at (sosa:hasFeatureOfInterest) - the result goes into its description", property: "sosa:hasFeatureOfInterest"}
+    created_from_file: {one_of: [true, false], doc: "the task exists because of its file (transcribing, recording) - the generator creates it from the first file in files that names it", property: "cpo:generatedMediaObject"}
+    empties:     {list_of: empty_mark, doc: "containers of the inventory whose content the task used up or disposed of, per experiment; without it, and without none: emptied, the generator asks", property: "cpo:hasEndTime (content occurrence); cpo:containsMaterial (ended, library container); cpo:materialContainedIn (ended, library content)"}
+
+empty_mark:
+  fields:
+    experiment:  {required: true, doc: "number of the experiment in which the content was used up", property: "-"}
+    containers:  {list: true, ref: device, required: true, property: "-"}
+
+device_setting:
+  fields:
+    device:         {required: true, ref: device, property: "-"}
+    operation_mode: {doc: "Batch, FedBatch, Flow - for the series, or per experiment {1: Batch, 2: Flow}", property: "cpo:hasModeOfOperation"}
+    content:        {doc: "the content of the Material Library this series drew from, when the device has held several one after the other and the start of the first experiment does not decide (question library_content, rule 2.15) - its ID, with or without 'material:'", property: "hlo:specializationOf (series content)"}
+
+profile_step:
+  fields:
+    kind:     {required: true, one_of: [transition, hold], property: "@type"}
+    from:     {doc: "start value of a transition", property: "cpo:startValue"}
+    to:       {doc: "end value of a transition", property: "cpo:endValue"}
+    value:    {doc: "value of a hold", property: "cpo:holdValue"}
+    duration: {doc: "e.g. '10 min' - empty: not known", property: "cpo:hasDuration"}
+    change_rate:      {doc: "change per time of a transition", property: "cpo:changeRate"}
+    change_rate_unit: {required: true, when: {given: change_rate}, ref: unit, property: "qudt:hasUnit (change rate)"}
+
+file:
+  fields:
+    name:             {required: true, doc: "the file name as in the series' files", property: "schema:name"}
+    experiment:       {doc: "the experiment the file belongs to - none: the whole series", property: "-"}
+    from:             {required: true, allow_empty: true, ref: task, doc: "the task that produced the file; '' none - the file is not the result of a task", property: "cpo:generatedBy"}
+    reference_column: {doc: "column a data file's other columns refer to (usually time)", property: "cpo:hasReferenceColumn (column)"}
+    type:             {one_of: [File, Image, Video], doc: "what kind of media object (question media_object_type) - otherwise asked", property: "@type"}
+    creator:          {ref: person, allow_empty: true, doc: "the person who made the file; '' none or not known (questions creator_kind, creator_person)", property: "cpo:hasCreator"}
+
+value:
+  fields:
+    at:         {required: true, ref: place, doc: "<material>, <material>/<phase>, a device, or the name of a reaction", property: "-"}
+    of:         {ref: substance_of_sheet, doc: "a substance in that phase, or the reaction participant", property: "-"}
+    experiment: {doc: "the experiment the value belongs to (1, 2 ...) - none: the whole series", property: "-"}
+    quantity:   {required: true, doc: "as the generator names it: mass, volume, amountofsubstance, temperature, yield ...", property: "(quantity)"}
+    value:      {required: true, when: {missing_all: [column, lower, upper, steps], not_none: kind}, doc: "a number - or column, or lower/upper, or steps; 'kind: none' if nothing is known", property: "qudt:value, rdf:value; @type (value record)"}
+    unit:       {required: true, when: {number: value}, doc: "a unit symbol of the ELN (mg) or a QUDT unit (DEG_C)", property: "qudt:hasUnit"}
+    quantity_kind: {doc: "the QUDT quantity kind of the value when the quantity allows several (concentration: MassFraction, MoleFraction ...; rule 4.4) - asked otherwise", property: "qudt:hasQuantityKind"}
+    steps:      {list_of: profile_step, doc: "a profile instead of a single value: its steps in order - e.g. the set course of a stirring speed, kind set", property: "dcterms:hasPart (profile); @type (value record)"}
+    executed_by: {list: true, ref: task, doc: "the tasks that execute this profile (cpo:executesProfile; Stirring) - only with steps", property: "cpo:executesProfile (inverse)"}
+    column:     {doc: "a column of a data file, as '<file>: <column>' - a series of values", property: "cpo:hasDataReference (evidence); @type (value record)"}
+    lower:      {doc: "lower bound (instead of value)", property: "hlo:hasLowerBound"}
+    upper:      {doc: "upper bound (instead of value)", property: "hlo:hasUpperBound"}
+    determined_by: {ref: task, doc: "the task that determined the value", property: "cpo:hasDeterminationTask"}
+    document:   {doc: "planned or literature value: the document it comes from (a DOI) - hlo:hasSource; without it, none: reference_sources", property: "hlo:hasSource (reference)"}
+    kind:       {required: true, one_of: [measured, calculated, observed, planned, assumed, controlled, set, literature, none], doc: "how the value is to be read - set by a person; none: nothing known of this quantity here", property: "hlo:hasEvidenceType, hlo:hasReferenceType"}
+    exact:      {one_of: [true, false], doc: "an exact value (true) - limits are asked", property: "-"}
+    group:      {doc: "group of the ELN record (reaction_table, conditions, product_mass, yield, selectivity) - what a task's determines can name", property: "-"}
+    occurrence: {doc: "a time of occurrence k of the thing at 'at' (transfer:<name>, interface:<A / B>, reaction:<name>, phase:<name>, energy_field:<name>) - quantity start_time, end_time or duration", property: "-"}
+    place:      {doc: "the place of a transfer at 'at' (a port or 'A / B')", property: "-"}
+
+unknown:
+  fields:
+    at:         {required: true, ref: place, doc: "a place of a value, or a task (its times)", property: "-"}
+    of:         {ref: substance_of_sheet, property: "-"}
+    experiment: {doc: "none: the whole series", property: "-"}
+    none:       {required: true, list: true, doc: "the quantities nothing is known of here - move one to 'values' when something is known after all", property: "(quantity, nothing known)"}
+    occurrence: {doc: "the times of occurrence k of the thing at 'at' (as in 'values')", property: "-"}
+    place:      {doc: "the place of a transfer at 'at'", property: "-"}
+
+open_question:
+  fields:
+    key:      {required: true, doc: "the answer key the generator asks", property: "-"}
+    about:    {doc: "the thing the question is about, as in the sheet", property: "-"}
+    question: {doc: "the question of the generator", property: "-"}
+    options:  {list: true, property: "-"}
+    several:  {one_of: [true, false], doc: "several options, separated by ';'", property: "-"}
+    required: {one_of: [true, false], doc: "a list that must name at least one - close_sheet.py leaves it open", property: "-"}
+    answer:   {required: true, allow_empty: true, in_options: true, doc: "still open - give an answer, or '' for none", property: "-"}
+
+occurrence:
+  fields:
+    phases:        {list: true, doc: "phases (their crate names) - [] nothing known of phases", property: "cpo:hasOccurrence (phase)"}
+    interfaces:    {list: true, doc: "phase interfaces as 'A / B' (or the generator's name) - [] nothing known", property: "cpo:hasOccurrence (interface)"}
+    reactions:     {list: true, doc: "reactions by their name in the Reaction Library - [] nothing known", property: "cpo:hasOccurrence (reaction)"}
+    energy_fields: {list: true, doc: "energy fields (their crate names) - [] nothing known", property: "cpo:hasOccurrence (energy field)"}
+    transfers:     {ref: transfers_by_place, doc: "per place (a port, or an interface 'A / B') the transfers, '<species> from <phase> to <phase>' or the generator's name", property: "cpo:hasOccurrence (transfer)"}
+    experiment:    {doc: "all (the experiments the series has at the time of the run), a number or a list", property: "-"}
+    count:         {required: true, when: {any_filled: [phases, interfaces, reactions, energy_fields, transfers]}, doc: "how often it occurred in each of these experiments - 0: it did not occur", property: "cpo:hasOccurrence (number of)"}
+    kind:          {required: true, when: {any_filled: [phases, interfaces, reactions, energy_fields, transfers]}, one_of: [measured, calculated, observed, planned, assumed, controlled, set, literature], doc: "how one knows: evidence (measured, observed, calculated) or reference (assumed ...)", property: "cpo:hasOccurrenceStatus; hlo:hasEvidenceType, hlo:hasReferenceType (occurrence status)"}
+    determined_by: {ref: task, doc: "the task that found it out", property: "cpo:hasDeterminationTask (occurrence status)"}
+    document:      {doc: "a planned or literature statement: the document it comes from (a DOI; question reference_source) - without it, none: reference_sources", property: "hlo:hasSource (occurrence status)"}
+    offered:       {list: true, doc: "what the generator offered (written by open_questions.py) - to choose from, not read by the adapter", property: "-"}
+    places:        {doc: "only as a source (source: {places: ...}): where the list of places of the transfers comes from", property: "-"}

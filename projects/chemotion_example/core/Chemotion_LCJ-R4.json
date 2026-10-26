@@ -1,0 +1,306 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R4",
+    "record_url": null,
+    "record_uuid": "a92d59ea-b290-46b1-ad3b-f766908e35de"
+  },
+  "experiment": {
+    "title": "RCF of Spruce Wood Pellets",
+    "status": "done",
+    "completed": true,
+    "entry_created": "2026-04-17T06:47:03.967Z",
+    "entry_modified": "2026-06-04T06:55:08.765Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "Reductive Catalytic Fractionation (RCF) of spruce wood pellets.\nFeed: 5g air-dry biomass (Sample C, SPRUCE-2025-03 lot).\nCatalyst: 5 wt% Pd/C (100 mg).\nSolvent: MeOH (20 mL).\nConditions: 50 bar H2, 200°C, 3h, autoclave.\nProducts: liquid phenolic fraction (4-propylguaiacol) + solid cellulose pulp.\n",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": "RCF of Spruce Wood Pellets",
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S//d+/u1-2-0",
+    "rinchi_long_key": "Long-RInChIKey=SA-FUHFF-MOSFIJXAXDLOML-UHFFFAOYSA-N--MOSFIJXAXDLOML-UHFFFAOYSA-N-MOSFIJXAXDLOML-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "Spruce Wood — RCF Feed",
+      "sample_label": "LCJ-32-1",
+      "sample_id": "9570836d-8cdd-40a7-9037-15fb2133b5b3",
+      "split_from": "LCJ-32",
+      "description": "5g aliquot from SPRUCE-2025-03 stock (Sample A). Weighed for RCF autoclave experiment.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": true,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "equivalents": {
+        "value": 1.0,
+        "unit": null
+      },
+      "mass": {
+        "value": 5.0,
+        "unit": "g"
+      }
+    },
+    {
+      "role": "product",
+      "name": "4-Propylguaiacol",
+      "sample_label": "LCJ-33",
+      "sample_id": "5031939a-c816-4e2d-8ad8-c161b1926309",
+      "split_from": null,
+      "description": "Main lignin-derived liquid product from RCF of spruce wood. Guaiacyl-type monophenol from G-unit depolymerisation. Collected from MeOH liquid phase after Pd/C hydrogenolysis.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null
+    },
+    {
+      "role": "product",
+      "name": "Cellulose Pulp",
+      "sample_label": "LCJ-34",
+      "sample_id": "6768c9cf-8da9-44cd-bf5d-3b7f9e068dc2",
+      "split_from": null,
+      "description": "Carbohydrate-enriched solid residue from RCF of spruce wood. Cellulose and residual hemicellulose. Recovered by filtration after reaction.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null
+    }
+  ],
+  "conditions": [
+    {
+      "property": "temperature",
+      "value": {
+        "value": 200.0,
+        "unit": "°C"
+      },
+      "text": "temperature.userText"
+    },
+    {
+      "property": "duration",
+      "value": {
+        "value": 3.0,
+        "unit": null
+      },
+      "text": "duration (no unit in the export)"
+    },
+    {
+      "property": "conditions_text",
+      "value": "50 bar H2, MeOH solvent, 5 wt% Pd/C catalyst",
+      "text": "conditions"
+    }
+  ],
+  "results": [],
+  "procedure": {
+    "text": "Reductive Catalytic Fractionation (RCF) of spruce wood pellets.\nFeed: 5g air-dry biomass (Sample C, SPRUCE-2025-03 lot).\nCatalyst: 5 wt% Pd/C (100 mg).\nSolvent: MeOH (20 mL).\nConditions: 50 bar H2, 200°C, 3h, autoclave.\nProducts: liquid phenolic fraction (4-propylguaiacol) + solid cellulose pulp.\n",
+    "steps": []
+  },
+  "notes": [
+    {
+      "text": "3123123\n",
+      "time": null,
+      "author": null,
+      "kind": "observation"
+    }
+  ],
+  "files": [
+    {
+      "path": "attachments/04508100-23c7-47f1-b5bb-20ba01696286.zip",
+      "name": "archive.zip",
+      "encoding_format": "application/zip",
+      "size": 15575973,
+      "md5": "3f8f19188275ddedf432f13b949f76db",
+      "created": "2026-06-09T07:41:09.875Z",
+      "of": "LCJ-34",
+      "analysis": "File: archive.zip",
+      "analysis_kind": null,
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": null
+    },
+    {
+      "path": "attachments/67059fd2-b1c1-44be-a834-adc4b45f34ca.jpg",
+      "name": "1.jpg",
+      "encoding_format": "image/jpeg",
+      "size": 1242069,
+      "md5": "8b967dab9e112c25a9dccc26af94c436",
+      "created": "2026-06-09T07:41:07.523Z",
+      "of": "LCJ-34",
+      "analysis": "new",
+      "analysis_kind": null,
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": null
+    },
+    {
+      "path": "attachments/96a91669-7434-4327-832f-894b1e2ce3f1.jpg",
+      "name": "2.jpg",
+      "encoding_format": "image/jpeg",
+      "size": 1875755,
+      "md5": "c35b5d782861132549df7fe144401533",
+      "created": "2026-06-09T07:41:08.422Z",
+      "of": "LCJ-34",
+      "analysis": "new",
+      "analysis_kind": null,
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": null
+    },
+    {
+      "path": "attachments/9d259814-bf19-4e04-83ff-88468a506640.jpg",
+      "name": "3.jpg",
+      "encoding_format": "image/jpeg",
+      "size": 2378259,
+      "md5": "90c191245861c9dec76ac6a537ea37fe",
+      "created": "2026-06-09T07:41:08.075Z",
+      "of": "LCJ-34",
+      "analysis": "new",
+      "analysis_kind": null,
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": null
+    },
+    {
+      "path": "attachments/85b7293d-fcbd-4414-adf5-0959d5dd8667.jpg",
+      "name": "4.jpg",
+      "encoding_format": "image/jpeg",
+      "size": 2608492,
+      "md5": "d275b16fe24363043bfe653a3cc33d7c",
+      "created": "2026-06-09T07:41:08.406Z",
+      "of": "LCJ-34",
+      "analysis": "new",
+      "analysis_kind": null,
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": null
+    },
+    {
+      "path": "attachments/7a937a28-89d8-4461-9cf1-4045458a7b50.jpg",
+      "name": "5.jpg",
+      "encoding_format": "image/jpeg",
+      "size": 2433247,
+      "md5": "0fd1052a027adb7a5e956e32b4103e83",
+      "created": "2026-06-09T07:41:08.377Z",
+      "of": "LCJ-34",
+      "analysis": "new",
+      "analysis_kind": null,
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": null
+    },
+    {
+      "path": "attachments/8918ff85-b8a4-485b-bce4-b5a384e78e6d.png",
+      "name": "Pasted image 20260410124016.png",
+      "encoding_format": "image/png",
+      "size": 264346,
+      "md5": "b3cd1ea07b94c9e4d63753c952d490eb",
+      "created": "2026-06-09T07:33:37.385Z",
+      "of": "LCJ-34",
+      "analysis": "new",
+      "analysis_kind": "CHMO:0000156 | X-ray diffraction (XRD)",
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": null
+    },
+    {
+      "path": "attachments/42c071e1-5d50-4979-9039-61edb9f5002f.md",
+      "name": "sortspec.md",
+      "encoding_format": "text/markdown",
+      "size": 147,
+      "md5": "799d35eb8f8e9fb79d1927b7e641eb9f",
+      "created": "2026-06-09T07:36:16.055Z",
+      "of": "LCJ-34",
+      "analysis": "new",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "Test on 09/06/2026",
+      "dataset": "new",
+      "dataset_creator": null
+    }
+  ],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": [
+      {
+        "of": "LCJ-R4",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_role",
+        "label": "Reaction Role in Workflow (Required)",
+        "type": "select",
+        "value": "fractionation",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R4",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "reactor_type",
+        "label": "Reactor Type (Required)",
+        "type": "select",
+        "value": "autoclave",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R4",
+        "segment": "Reaction Details",
+        "layer": "[Conditions] Reaction Conditions",
+        "field": "atmosphere",
+        "label": "Reaction Atmosphere (Required)",
+        "type": "select",
+        "value": "H2",
+        "unit": null
+      }
+    ]
+  }
+}

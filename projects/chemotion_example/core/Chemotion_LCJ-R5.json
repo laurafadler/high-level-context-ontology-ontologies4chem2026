@@ -1,0 +1,371 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R5",
+    "record_url": null,
+    "record_uuid": "63a1c4a3-3564-46ea-8c51-1ae7f16e81cf"
+  },
+  "experiment": {
+    "title": "RCF of Spruce Wood Pellets",
+    "status": "done",
+    "completed": true,
+    "entry_created": "2026-04-17T06:51:36.089Z",
+    "entry_modified": "2026-06-04T07:15:55.762Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "Reductive Catalytic Fractionation (RCF) of spruce wood pellets.\nFeed: 5g air-dry biomass (Sample C, SPRUCE-2025-03 lot).\nCatalyst: 5 wt% Pd/C (100 mg).\nSolvent: MeOH (20 mL).\nConditions: 50 bar H2, 200°C, 3h, autoclave.\nProducts: liquid phenolic fraction (4-propylguaiacol) + solid cellulose pulp.\n\nsdadadada\n",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": "RCF of Spruce Wood Pellets",
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S//d+/u1-2-0",
+    "rinchi_long_key": "Long-RInChIKey=SA-FUHFF-MOSFIJXAXDLOML-UHFFFAOYSA-N--MOSFIJXAXDLOML-UHFFFAOYSA-N-MOSFIJXAXDLOML-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "Spruce Wood — RCF Feed",
+      "sample_label": "LCJ-35-1",
+      "sample_id": "109400fc-3546-4df5-8879-aee6b580ea18",
+      "split_from": "LCJ-35",
+      "description": "5g aliquot from SPRUCE-2025-03 stock (Sample A). Weighed for RCF autoclave experiment.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": true,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "equivalents": {
+        "value": 1.0,
+        "unit": null
+      },
+      "mass": {
+        "value": 5.0,
+        "unit": "g"
+      }
+    },
+    {
+      "role": "product",
+      "name": "LCJ-R5-A",
+      "sample_label": "LCJ-36",
+      "sample_id": "32baaf6d-69e6-4b65-818a-9c22cd09437a",
+      "split_from": null,
+      "description": "Main lignin-derived liquid product from RCF of spruce wood. Guaiacyl-type monophenol from G-unit depolymerisation. Collected from MeOH liquid phase after Pd/C hydrogenolysis.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null
+    },
+    {
+      "role": "product",
+      "name": "LCJ-R5-B",
+      "sample_label": "LCJ-37",
+      "sample_id": "d47c139f-bfa5-454a-80e5-28aaec54bbfe",
+      "split_from": null,
+      "description": "Carbohydrate-enriched solid residue from RCF of spruce wood. Cellulose and residual hemicellulose. Recovered by filtration after reaction.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null
+    }
+  ],
+  "conditions": [
+    {
+      "property": "temperature",
+      "value": {
+        "value": 151.0,
+        "unit": "°C"
+      },
+      "text": "temperature.userText"
+    },
+    {
+      "property": "duration",
+      "value": {
+        "value": 3.0,
+        "unit": null
+      },
+      "text": "duration (no unit in the export)"
+    },
+    {
+      "property": "conditions_text",
+      "value": "50 bar H2, MeOH solvent, 5 wt% Pd/C catalyst",
+      "text": "conditions"
+    }
+  ],
+  "results": [],
+  "procedure": {
+    "text": "Reductive Catalytic Fractionation (RCF) of spruce wood pellets.\nFeed: 5g air-dry biomass (Sample C, SPRUCE-2025-03 lot).\nCatalyst: 5 wt% Pd/C (100 mg).\nSolvent: MeOH (20 mL).\nConditions: 50 bar H2, 200°C, 3h, autoclave.\nProducts: liquid phenolic fraction (4-propylguaiacol) + solid cellulose pulp.\n\nsdadadada\n",
+    "steps": []
+  },
+  "notes": [
+    {
+      "text": "3131dsadasdasdasd d's'd大11112我31\n",
+      "time": null,
+      "author": null,
+      "kind": "observation"
+    }
+  ],
+  "files": [
+    {
+      "path": "attachments/95cb1d14-06af-4d50-8c68-cfd69ec1d4e2.jdx",
+      "name": "5.peak.jdx",
+      "encoding_format": "application/octet-stream",
+      "size": 63122,
+      "md5": "6b288671c2da79aa20e301cf6b4cc5f6",
+      "created": "2026-06-19T10:00:36.656Z",
+      "of": "LCJ-36",
+      "analysis": "NMR",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": "Congjian Lin"
+    },
+    {
+      "path": "attachments/994b7a6c-ad2a-4b91-ba45-16d8c16a860c.png",
+      "name": "5.peak.png",
+      "encoding_format": "image/png",
+      "size": 111593,
+      "md5": "66a79e86cd7f9f30e1eaa1a76e77b654",
+      "created": "2026-06-19T10:00:37.192Z",
+      "of": "LCJ-36",
+      "analysis": "NMR",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": "Congjian Lin"
+    },
+    {
+      "path": "attachments/f1f681f0-3819-441c-af67-6be088aa4a35.jdx",
+      "name": "5.processed_1.jdx",
+      "encoding_format": "application/octet-stream",
+      "size": 163762,
+      "md5": "d8808725b6fc47f852df626de55a6fb7",
+      "created": "2026-06-19T10:00:37.573Z",
+      "of": "LCJ-36",
+      "analysis": "NMR",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": "Congjian Lin"
+    },
+    {
+      "path": "attachments/d7e07cc1-db85-46ba-83dd-690821ddb22c.jdx",
+      "name": "5.processed_1.peak.jdx",
+      "encoding_format": "application/octet-stream",
+      "size": 151770,
+      "md5": "2053189238d558108b70141aafc8e50b",
+      "created": "2026-06-19T10:00:38.165Z",
+      "of": "LCJ-36",
+      "analysis": "NMR",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": "Congjian Lin"
+    },
+    {
+      "path": "attachments/91f9f964-2548-48b6-ab02-bffef5720ded.png",
+      "name": "5.processed_1.peak.png",
+      "encoding_format": "image/png",
+      "size": 103692,
+      "md5": "cd80aa39cf065b15f5fff0463649401b",
+      "created": "2026-06-19T10:00:38.360Z",
+      "of": "LCJ-36",
+      "analysis": "NMR",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": "Congjian Lin"
+    },
+    {
+      "path": "attachments/b6fa1b7f-156b-49f4-9e5f-b03333deef4c.png",
+      "name": "5.processed_1.png",
+      "encoding_format": "image/png",
+      "size": 106901,
+      "md5": "9046c8ce85f1e147e664ab0940d42b8f",
+      "created": "2026-06-19T10:00:38.760Z",
+      "of": "LCJ-36",
+      "analysis": "NMR",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": "Congjian Lin"
+    },
+    {
+      "path": "attachments/59b9ab8d-53ce-41c5-8bac-8ffb450d8986.zip",
+      "name": "5.zip",
+      "encoding_format": "application/zip",
+      "size": 605459,
+      "md5": "fee13c215f49448e38ea42f49733da99",
+      "created": "2026-06-19T10:00:36.079Z",
+      "of": "LCJ-36",
+      "analysis": "NMR",
+      "analysis_kind": "CHMO:0000593 | 1H nuclear magnetic resonance spectroscopy (1H NMR)",
+      "analysis_status": "Confirmed",
+      "analysis_text": "",
+      "dataset": "new",
+      "dataset_creator": "Congjian Lin"
+    }
+  ],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": [
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Outcomes] Reaction Outcome",
+        "field": "reaction_outcome",
+        "label": "Overall Reaction Outcome (Required)",
+        "type": "select",
+        "value": "successful",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Outcomes] Reaction Outcome",
+        "field": "yield_type",
+        "label": "Yield Determination Method",
+        "type": "select",
+        "value": "isolated",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_role",
+        "label": "Reaction Role in Workflow (Required)",
+        "type": "select",
+        "value": "preparative",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_class",
+        "label": "Reaction Class (Required)",
+        "type": "select",
+        "value": "biomass_fractionation",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "reactor_type",
+        "label": "Reactor Type (Required)",
+        "type": "select",
+        "value": "stainless_autoclave",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "gas_supply",
+        "label": "Gas Supply Source",
+        "type": "select",
+        "value": "h2_cylinder",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "setup_notes",
+        "label": "Equipment Notes",
+        "type": "text",
+        "value": "5 wt% Pd/C catalyst (100 mg). MeOH solvent (20 mL).",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Workup] Workup Procedure",
+        "field": "gas_vented_before_opening",
+        "label": "Gas / Pressure Vented Before Opening Reactor",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Workup] Workup Procedure",
+        "field": "product_separation_method",
+        "label": "Primary Product Separation Method",
+        "type": "select",
+        "value": "filtration",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Workup] Workup Procedure",
+        "field": "workup_notes",
+        "label": "Workup Notes",
+        "type": "text",
+        "value": "Filter to separate solid cellulose pulp. Evaporate MeOH to recover liquid phenolic fraction.",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R5",
+        "segment": "Reaction Details",
+        "layer": "[Conditions] Reaction Conditions",
+        "field": "atmosphere",
+        "label": "Reaction Atmosphere (Required)",
+        "type": "select",
+        "value": "h2",
+        "unit": null
+      }
+    ]
+  }
+}

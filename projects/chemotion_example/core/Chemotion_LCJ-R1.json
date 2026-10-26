@@ -1,0 +1,98 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R1",
+    "record_url": null,
+    "record_uuid": "83ee6027-0380-4989-8d21-33719b395f2f"
+  },
+  "experiment": {
+    "title": null,
+    "status": null,
+    "completed": null,
+    "entry_created": "2026-04-16T02:37:11.883Z",
+    "entry_modified": "2026-04-16T02:37:12.039Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": null,
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S//d+/u1-1-0",
+    "rinchi_long_key": "Long-RInChIKey=SA-FUHFF-MOSFIJXAXDLOML-UHFFFAOYSA-N--MOSFIJXAXDLOML-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "sample 1",
+      "sample_label": "LCJ-8",
+      "sample_id": "2cb2fe0e-0875-425e-9dad-3acf4b99b058",
+      "split_from": null,
+      "description": null,
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": true,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "equivalents": null
+    },
+    {
+      "role": "product",
+      "name": "sample 2",
+      "sample_label": "LCJ-9",
+      "sample_id": "ca182768-0d31-4cdd-ad70-e17f872244d3",
+      "split_from": null,
+      "description": null,
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null
+    }
+  ],
+  "conditions": [],
+  "results": [],
+  "procedure": {
+    "text": "",
+    "steps": []
+  },
+  "notes": [],
+  "files": [],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": []
+  }
+}

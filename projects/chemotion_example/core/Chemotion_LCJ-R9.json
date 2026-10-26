@@ -1,0 +1,120 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R9",
+    "record_url": null,
+    "record_uuid": "56b402bc-f174-4039-8442-bd4600acaf83"
+  },
+  "experiment": {
+    "title": "RCF of Sugarcane Bagasse",
+    "status": "done",
+    "completed": true,
+    "entry_created": "2026-09-17T22:16:01.555Z",
+    "entry_modified": "2026-09-17T22:16:01.686Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "Reductive Catalytic Fractionation (RCF) of sugarcane bagasse.\nConditions: 50 bar H2, 150C, 3h, autoclave.\nProducts: liquid phenolic fraction (4-propylguaiacol).\n",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": "RCF of Sugarcane Bagasse",
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S//d+/u1-1-0",
+    "rinchi_long_key": "Long-RInChIKey=SA-FUHFF-MOSFIJXAXDLOML-UHFFFAOYSA-N--MOSFIJXAXDLOML-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "Sugarcane Bagasse — Raw Biomass",
+      "sample_label": "LCJ-163-1",
+      "sample_id": "829fca4e-ff52-419d-9646-1e3e3b4c0a9a",
+      "split_from": "LCJ-163",
+      "description": null,
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": true,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "equivalents": null
+    },
+    {
+      "role": "product",
+      "name": "4-Propylguaiacol",
+      "sample_label": "LCJ-164",
+      "sample_id": "3f22bdf8-f561-4bfd-807f-9e77e8b5fd9c",
+      "split_from": null,
+      "description": "Lignin-derived liquid monophenol from RCF of sugarcane bagasse. Guaiacyl-type monomer from G-unit depolymerisation (bagasse lignin contains both G- and S-type units, unlike near-pure-G softwood lignin). Ref: literature-reported RCF of sugarcane bagasse over Ru/C yields phenolic monomers mainly as 4-n-propylguaiacol and 4-n-propylsyringol.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null
+    }
+  ],
+  "conditions": [
+    {
+      "property": "temperature",
+      "value": {
+        "value": 150.0,
+        "unit": "°C"
+      },
+      "text": "temperature.userText"
+    },
+    {
+      "property": "duration",
+      "value": {
+        "value": 3.0,
+        "unit": null
+      },
+      "text": "duration (no unit in the export)"
+    },
+    {
+      "property": "conditions_text",
+      "value": "50 bar H2, MeOH solvent, 5 wt% Pd/C catalyst",
+      "text": "conditions"
+    }
+  ],
+  "results": [],
+  "procedure": {
+    "text": "Reductive Catalytic Fractionation (RCF) of sugarcane bagasse.\nConditions: 50 bar H2, 150C, 3h, autoclave.\nProducts: liquid phenolic fraction (4-propylguaiacol).\n",
+    "steps": []
+  },
+  "notes": [],
+  "files": [],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": []
+  }
+}

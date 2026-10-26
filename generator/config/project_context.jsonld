@@ -1,0 +1,66 @@
+{
+  "_readme": [
+    "The prefix table of the crate made. It goes unchanged into the second part of the",
+    "@context of crate/ro-crate-metadata.json, right after the URL of the RO-Crate context.",
+    "Loaded by helpers/file_handling.py (PROJECT_CONTEXT), path in path_definitions.py.",
+    "",
+    "The table stands here and not in the Python code, so that a new namespace is a change",
+    "of data and not of code - as for every other library.",
+    "",
+    "WHATEVER IS MISSING HERE STAYS AN UNRESOLVABLE IRI IN THE CRATE. That is silent: the file",
+    "stays valid JSON-LD, the entity stays, it only means nothing any more. On 23.09.2026 that",
+    "concerned three prefixes (xsd, task, reaction) and was noticed only when the finished",
+    "crate was parsed with rdflib. Since then verify_context_completeness checks at the end of",
+    "every run whether the table still fits what stands in the crate.",
+    "",
+    "schema, rdf and rdfs are brought by the RO-Crate 1.3 context as well (with the same IRIs),",
+    "but since 27.09.2026 they stand here all the same: helpers/context_links.py reads the",
+    "crate with this table alone, without fetching the RO-Crate URL from the net. So every",
+    "prefix stands in one place. Words WITHOUT a prefix from the RO-Crate context (about,",
+    "conformsTo, dateCreated, ... at the root and the descriptor) are not seen by this step.",
+    "The RO-Crate context does not bring xsd, dcterms, owl, time, sosa and qudt.",
+    "",
+    "The values must agree with the @context of every libraries/*.jsonld AND with",
+    "cpo:hasNamespace in ontology_library.jsonld; check_library_consistency.py compares",
+    "all three and reports every difference."
+  ],
+
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "time": "http://www.w3.org/2006/time#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "org": "http://www.w3.org/ns/org#",
+    "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "unit": "http://qudt.org/vocab/unit/",
+
+    "chem": "https://example.org/chemical_entity/",
+    "device": "https://example.org/device/",
+    "port": "https://example.org/port/",
+    "lab": "https://example.org/laboratory/",
+    "material": "https://example.org/material/",
+    "ontology": "https://example.org/ontology/",
+    "organization": "https://example.org/organization/",
+    "person": "https://example.org/person/",
+    "identifier": "https://example.org/identifier/",
+    "site": "https://example.org/site/",
+    "energyfield": "https://example.org/energyfield/",
+    "environment": "https://example.org/environment/",
+    "task": "https://example.org/task/",
+    "reaction": "https://example.org/reaction/",
+    "software": "https://example.org/software/",
+    "placeholder": "https://example.org/placeholder/",
+    "document": "https://example.org/document/",
+
+    "crate": "https://example.org/crate/"
+  }
+}

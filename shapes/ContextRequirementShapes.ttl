@@ -1,0 +1,2810 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hlo: <http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#> .
+@prefix cpo: <http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix chebi: <http://purl.obolibrary.org/obo/chebi.owl#> .
+
+#################################################################
+#
+# Context requirement shapes
+#
+#################################################################
+#
+# This file holds the SHACL shapes of the context requirements defined in the Higher Level Ontology
+# (HLO). Every requirement (an individual such as hlo:Device_Energy_R1) is linked to its shapes through
+# hlo:hasShape; every shape points back through hlo:isShapeOfRequirement. The shapes are grouped by
+# context level (Device, Phase, Molecule) and category (Information, Energy, Time, Space, Structure,
+# Substance); a requirement starts from its context object, the device, phase or molecule it is about.
+#
+# Naming: ..._MainShape is the shape of a requirement that targets the context object; ..._CoreShape
+# describes the value it asks for; ..._ContextPathShape is the collecting path of a surroundings
+# requirement; the dimension and aspect ratio requirements have one shape per form class
+# (..._CuboidShape), with helpers for the form it reaches (..._Form) and the values it asks for
+# (..._Demand).
+#
+# Severities: sh:Warning means a piece of context is missing; sh:Info marks collecting paths, which
+# never report a gap. An assignment carries sh:Warning but asks for no minimum count, so it never
+# reports either. Nothing here is a sh:Violation: missing context leaves the data valid but less
+# complete. Checks that hold for every value regardless of context stand in DataQualityShapes.ttl.
+#
+# Words used in the comments:
+#   - level: the level of description - a library entry (hlo:Fixed), a series record
+#     (hlo:SeriesSpecific) or an experiment record (hlo:ExperimentSpecific), each pointing to the one
+#     above through hlo:specializationOf (the chain). Formally these are the scopes (hlo:Scope). Not to
+#     be confused with the context level (Device, Phase, Molecule).
+#   - exemplar: a device, phase or molecule on one level.
+#   - the crate rules: docs/rules_crate.md. The rules below are the shape side of its section 7.
+#   - the consistency check: generator/workflow/check_context_requirements_consistency.py, which
+#     compares the requirements in the HLO with the shapes in this file.
+#   - the generator: the code in generator/ that builds the crates and links the contexts.
+
+#################################################################
+#
+# Rules for all shapes of this file
+#
+#################################################################
+#
+# 1. Existence directly at the exemplar. A quantity (hlo:Actual) hangs directly at its exemplar on
+#    every level on which the exemplar exists - also when it is empty and only inherits its value
+#    from the level above (rule 3.4 of the crate rules). The existence check therefore runs WITHOUT
+#    [ sh:zeroOrMorePath hlo:specializationOf ]: a value on another level does not fulfil the
+#    requirement. The same holds for the structure (hasForm, madeOfMaterial, ...), because every
+#    level has its own copies (rules 3.1 and 3.5).
+#
+#    This includes the location (cpo:location and subproperties): it points at the device of the
+#    same level or at the room air (cpo:Environment) of the same level.
+#    Boundary: exemplars have levels, places do not - site, building and room exist only as Fixed
+#    entries; what has a state of its own per experiment (room air, measured field) gets levels.
+#
+# 2. Literals, concepts and flags via the chain. isCompositeDevice, isSingleUse, CAS, SMILES,
+#    hasDispersionState, ... stand once at the Fixed entry (or on the level on which they are
+#    asked) and are not repeated per level (rule 3.6). They are read via
+#    [ sh:zeroOrMorePath hlo:specializationOf ] - the existence check thus collects by itself, a
+#    collecting path of its own is not needed.
+#    A concept that can change per experiment stands at the exemplar it holds for: the operation
+#    mode (cpo:hasModeOfOperation, an individual like cpo:Batch) stands at the series, and an
+#    experiment reads it via hlo:specializationOf, as long as the series names exactly one
+#    (Device_Information_R2; rule 3.6).
+#
+# 3. Level collecting path along the chain of the thing asked for. Every requirement that asks for
+#    something directly at the exemplar that is chained across the levels via hlo:specializationOf
+#    - an actual, a form, a body material or an energy field - carries in THE SAME MainShape an
+#    additional sh:property: existence path, then [ sh:zeroOrMorePath hlo:specializationOf ], end
+#    node the main class (hlo:Actual, cpo:Form, cpo:MaterialVolume, cpo:EnergyField,
+#    chebi:ChemicalEntity), sh:severity sh:Info, NO minCount. It never reports "missing", only when
+#    the chain hangs at something that is not of this class. It always stands OUTSIDE sh:or - a
+#    property without minCount is always fulfilled and would silently fulfil the whole requirement
+#    there (checked by the consistency check). Only this one way: not in addition via the chain of
+#    the owner (device/phase up via specializationOf, then the property). With consistent data both
+#    give the same actuals, with inconsistent data an either-or would cover the error.
+#    Not only for actuals, because statements on exactly one level hang at a form or a field too
+#    (e.g. an assumed reference), which are to be found from the other levels via the chain.
+#    Evidences and references themselves are never chained via specializationOf and are thus never
+#    collected.
+#
+# 4. Surroundings collecting path as a requirement of its own. Where not the same quantity on other
+#    levels, but OTHER entities around it are collected (room, site, device above), that is a
+#    statement of its own and a requirement of its own with a ContextPathShape
+#    (Device_Energy_R6/R7/R8, Phase_Energy_R5-R9, Molecule_Energy_R2-R4). They too stay sh:Info
+#    without minCount; that the chain does not break is ensured by the requirements of the single
+#    links (rule 5) and by the DataQualityShapes (room -> site -> gravitational field).
+#
+# 5. Follow-up reports stay silent. The requirement for which the missing thing is the end of its
+#    path speaks up. If a link further ahead is missing, it stays silent, provided a requirement of
+#    its own asks for exactly this link (example: if the form is missing, only Device_Structure_R1
+#    reports, not Device_Space_R1). A principle for building the paths, not a ban on several
+#    reports: if each shows something missing, several for one gap are fine (rule 7.4). The phase
+#    at the body material therefore gets no requirement of its own - if it is missing,
+#    Device_Energy_R1/R2 and Device_Substance_R2/R3 report.
+#
+# 6. Dimensions are ProcessVariables (rule 3.7). cpo:Parameter means "constant of a definition"
+#    (substance, reaction); every quantity of an exemplar, also every dimension of a form, is a
+#    cpo:ProcessVariable.
+#
+# 7. Assignment (rule 7.16): what belongs to a context if it exists, without it being possible to
+#    ask for it (the transfers, occupation states and reactions of a phase).
+#    sh:qualifiedValueShape [ sh:class ... ] with sh:qualifiedMinCount 0: never reports anything;
+#    the class filters what the context linking of the generator (helpers/context_links.py) takes
+#    over of it.
+#
+# 8. The ontologies belong in the data graph. All shapes assume that CPO and HLO are part of the
+#    data graph (or that RDFS inference runs over them). sh:targetClass and sh:class find a subclass
+#    only through rdfs:subClassOf in the data graph: a cpo:Vessel is a cpo:Device, a form typed only
+#    as its leaf class (cpo:CupForm) a cpo:Form, a cpo:GasPhase a cpo:Phase. Without the ontologies
+#    there are no focus nodes and therefore silently no reports. run_shacl.py loads them; in GraphDB
+#    they have to be loaded into the repository (rule 7.6).
+#
+# 9. Existence via sh:qualifiedValueShape. A requirement that something of a class exists asks with
+#    sh:qualifiedValueShape [ sh:class ... ] and sh:qualifiedMinCount, not with a direct sh:class:
+#    sh:class holds for EVERY value the path reaches, so a second, different value (another level of
+#    the chain, a scope type in rdf:type) would break it. A condition that only has to hold for some
+#    value stays an sh:hasValue.
+
+#################################################################
+#
+# Device - Energy
+#
+#################################################################
+
+# Wall temperature/pressure: devices carry no cpo:hasTemperature/hasPressure directly - instead
+# every SeriesSpecific/ExperimentSpecific device gets via cpo:madeOfMaterial a MaterialVolume copy
+# OF ITS OWN from the generator, whose phase(s) carry temperature/pressure as usual. No zeroOrMorePath specializationOf in the path: like every structural link
+# (rule 1), it hangs at every exemplar itself, not only at the Fixed entry.
+# Composite exception analogous to Device_Structure_R1/Device_Substance_R1 (isCompositeDevice): a
+# reactor has no madeOfMaterial of its own, only its parts have (vessel/jacket/stirrer/sparger) -
+# without the exception the requirement fails at every reactor exemplar.
+hlo:Device_Energy_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R1 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every non-composite Device in use should have an Actual ProcessVariable for hasTemperature with QuantityKind Temperature on a phase of its own body material (cpo:madeOfMaterial/dcterms:hasPart) - the temperature of the device's wall. The temperature of the body material as a whole is collected separately (Device_Energy_R7). Fixed (library) devices are excluded, since a generic library entry isn't 'at' any temperature. Composite devices (isCompositeDevice=true, e.g. a reactor) are excluded, since they have no body of their own - only their parts do." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isCompositeDevice ) ; sh:hasValue true ] ]
+        [ sh:property [ sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasTemperature ) ; sh:qualifiedValueShape hlo:Device_Energy_R1_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasTemperature [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the wall temperature of the Device on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Energy_R1_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Temperature ;
+    ] .
+
+# Composite exception analogous to Device_Structure_R1/Device_Substance_R1/Device_Energy_R1.
+hlo:Device_Energy_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R2 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every non-composite Device in use should have an Actual ProcessVariable for hasPressure with QuantityKind Pressure on a phase of its own body material (cpo:madeOfMaterial/dcterms:hasPart) - the pressure of the device's wall. The pressure of the body material as a whole is collected separately (Device_Energy_R8). For a solid wall phase this means the hydrostatic part of the stress state (the mean normal stress); shear stress and directional dependence are not modeled. Fixed (library) devices are excluded, since a generic library entry isn't 'at' any pressure. Composite devices (isCompositeDevice=true, e.g. a reactor) are excluded, since they have no body of their own - only their parts do." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isCompositeDevice ) ; sh:hasValue true ] ]
+        [ sh:property [ sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasPressure ) ; sh:qualifiedValueShape hlo:Device_Energy_R2_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasPressure [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the wall pressure of the Device on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Energy_R2_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Pressure ;
+    ] .
+
+# The temperature and pressure of the CONTENT are not asked for at the device: the content does not
+# belong to the device, it only stays in it. Phase_Energy_R1/R2 ask for them at every phase.
+
+# An energy field of its own (required with canCreateEnergyField=true). The same pattern as
+# Phase_Energy_R4 and Molecule_Energy_R1. The collecting path of all fields the device is exposed
+# to is a requirement of its own (Device_Energy_R6).
+# The field belongs to the exemplar like its form: it exists on every level on which it is asked for
+# and is chained across the levels by the generator. The level collecting path (rule 3) therefore runs
+# along the chain of the FIELD, not that of the device.
+# Fixed devices are excluded (rule 7.7), like in Phase_Energy_R4 and Molecule_Energy_R1: the library
+# entry carries the flag and need not carry a field of its own; the device in use, which reads the flag
+# through the chain, must. This includes templates (a kind of object creates no field), which are always
+# also hlo:Fixed.
+hlo:Device_Energy_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R5 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "A Device in use whose library entry has cpo:canCreateEnergyField = true should have at least one cpo:hasEnergyField value of its own, on the series and on every experiment. All other devices are not affected. The flag is read through hlo:specializationOf. Fixed (library) devices, templates included, are excluded: the library entry need not carry a field of its own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:canCreateEnergyField ) ; sh:hasValue true ] ] ]
+        [ sh:property [ sh:path cpo:hasEnergyField ; sh:class cpo:EnergyField ; sh:minCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasEnergyField [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class cpo:EnergyField ;
+        sh:severity sh:Info ;
+        sh:message "Collects the Device's own energy fields on every level, following the chain of the field (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+# Collecting path (sh:Info, no minCount): all fields the device is exposed to.
+#
+# A sequence of three steps:
+#   1. UP (PARENT_PROPERTIES in helpers/energy_fields.py), any number of times: everything that
+#      holds the device - device above it, room air of its level, room, site. From a phase first to
+#      the material and from there to the device that contains it (materialContainedIn) or whose
+#      body it is (isBodyMaterialOf).
+#   2. DOWN (CHILD_PROPERTIES there), any number of times, from EVERY node reached in the ascent:
+#      parts, content, body material, their phases and molecules. That way the vessel also sees
+#      jacket, sparger and stirrer (via the reactor), the liquid phase also the gas phase in the
+#      same vessel (via the material).
+#   3. At every node reached the fields, with their chain ([ sh:zeroOrMorePath
+#      hlo:specializationOf ]) - so what stands on higher levels of a field appears too.
+# The descent runs from the room air into every device of the room
+# (cpo:isLocationOf): every field in the room acts everywhere in it, also a weak one - how strong is
+# the value of the field, not a question of structure. The balance thus collects the field of the
+# stirrer. It deliberately does not go via surfaces (contacts): whoever reaches the room air in the
+# ascent gets its fields, however deeply nested. The path stays on its own level, because the
+# generator sets cpo:isLocationOf only in the crate between entities of the same level; the Fixed
+# room never carries it (data quality shape hlo:LocationInverse_SameLevel_Shape). An sh:inversePath
+# on a location stays forbidden (check 7 of the consistency check): from the Fixed room it would run
+# into every level.
+# No hlo:specializationOf in the ascent: the location stands on every level (rule 1), so the path
+# stays on the level of the exemplar. Via the Fixed entry it would collect the surroundings the device
+# stands in TODAY, not those of the experiment.
+# Streams that no device contains: a stream BETWEEN devices (addition,
+# withdrawal, sample) or from a cpo:Source / into a cpo:Sink climbs over its ends (cpo:flowsFrom,
+# cpo:flowsTo) to the ports, over cpo:isPortOf to their devices and from there into the room - every such
+# stream touches at least one device of the set-up. A stream IN a device (coolant in the jacket) gets there
+# via materialContainedIn.
+# Deliberate limit:
+#   - No way leads down from the Fixed room: the library room air points with
+#     cpo:locatedInsideOf at its room, not the room with dcterms:hasPart at it. A field at the
+#     library room air would therefore not be collected - permanent fields belong at room or site,
+#     measured ones at the room air of the level.
+# The gravitational field hangs at the site, not at the room (in the organization library) -
+# hence cpo:isRoomOf as the last climbing step. cpo:locatedOutsideOf is deliberately missing: used
+# in no library, it would fake a climbing path that does not exist.
+hlo:Device_Energy_R6_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R6 ;
+    sh:targetClass cpo:Device ;
+    sh:property [
+        sh:path (
+            [ sh:zeroOrMorePath [ sh:alternativePath (
+                cpo:location cpo:locatedAt cpo:locatedInsideOf cpo:isPortOf
+                cpo:flowsFrom cpo:flowsTo
+                dcterms:isPartOf
+                cpo:isContainedIn cpo:materialContainedIn cpo:isBodyMaterialOf
+                cpo:isRoomOf
+            ) ] ]
+            [ sh:zeroOrMorePath [ sh:alternativePath (
+                dcterms:hasPart
+                cpo:contains cpo:containsMaterial
+                cpo:madeOfMaterial
+                cpo:isLocationOf
+            ) ] ]
+            cpo:hasEnergyField
+            [ sh:zeroOrMorePath hlo:specializationOf ]
+        ) ;
+        sh:class cpo:EnergyField ;
+        sh:severity sh:Info ;
+        sh:message "Collects every EnergyField a Device is exposed to: first up to whatever holds it (the composite Device it is part of, the ambient air of its level, the Room, the Site), then down from each of these into their parts, contents, body materials, phases and molecules - so a vessel also collects the fields of the jacket, sparger and stirrer of its reactor. From the ambient air the path goes into every device standing in it (cpo:isLocationOf), since a field in the room acts everywhere in it. Each field comes with what its higher levels record (hlo:specializationOf). Nothing is required: a device need not sit in any field." ;
+    ] .
+
+# Surroundings collecting paths (rule 4): temperature and pressure of the body material as a whole -
+# a different statement from the wall temperature at its phase (Device_Energy_R1/R2), built like
+# Phase_Energy_R6/R7. With a single-phase material mostly an empty actual; the path covers a material
+# with several phases (coated) or several materials. Composite devices have no madeOfMaterial and
+# supply nothing.
+hlo:Device_Energy_R7_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R7 ;
+    sh:targetClass cpo:Device ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial cpo:hasTemperature [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the temperature of the Device's body material as a whole (cpo:madeOfMaterial/cpo:hasTemperature) on every level, following the Actual chain (hlo:specializationOf) upwards. A different statement from the wall temperature on a phase of that material (Device_Energy_R1). No minimum count." ;
+    ] .
+
+hlo:Device_Energy_R8_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R8 ;
+    sh:targetClass cpo:Device ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial cpo:hasPressure [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the pressure of the Device's body material as a whole (cpo:madeOfMaterial/cpo:hasPressure) on every level, following the Actual chain (hlo:specializationOf) upwards. A different statement from the wall pressure on a phase of that material (Device_Energy_R2). No minimum count." ;
+    ] .
+
+
+# Power input: every device whose library entry carries cpo:canReceivePower = true has an actual
+# cpo:hasPowerInput of its own on the series and on every experiment. Pattern as Device_Energy_R5
+# (flag via the chain), with the Fixed exclusion: the power input holds per use (rule 7.7).
+hlo:Device_Energy_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R3 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every Device in use whose library entry has cpo:canReceivePower = true (read through hlo:specializationOf) should have its own Actual ProcessVariable for hasPowerInput with QuantityKind ElectricPower, on the series and on every experiment - the power put into the device to operate it. All other devices are not affected. Fixed (library) devices are excluded, since the power input is a per-use fact." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:canReceivePower ) ; sh:hasValue true ] ] ]
+        [ sh:property [ sh:path cpo:hasPowerInput ; sh:qualifiedValueShape hlo:Device_Energy_R3_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasPowerInput [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the power input of the Device on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Energy_R3_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:ElectricPower ;
+    ] .
+
+# Rotational speed (like Device_Energy_R3): a device with canRotate true (library flag, read via the
+# chain) has its own actual hasRotationalSpeed on every level except Fixed. A set course is a reference
+# of type Set (a profile) on that actual, not a property of the device.
+hlo:Device_Energy_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Energy_R4 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every Device in use whose library entry has cpo:canRotate = true (read through hlo:specializationOf) should have its own Actual ProcessVariable for hasRotationalSpeed with QuantityKind RotationalVelocity, on the series and on every experiment - the speed of its rotating part. A set course of the speed is a reference of type hlo:Set (a profile). All other devices are not affected. Fixed (library) devices are excluded, since the speed is a per-use fact." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:canRotate ) ; sh:hasValue true ] ] ]
+        [ sh:property [ sh:path cpo:hasRotationalSpeed ; sh:qualifiedValueShape hlo:Device_Energy_R4_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasRotationalSpeed [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the rotational speed of the Device on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Energy_R4_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:RotationalVelocity ;
+    ] .
+
+
+#################################################################
+#
+# Device - Time
+#
+#################################################################
+
+# lastUsedTime stands on EVERY level, as a state of its own of this level (rule 1): the Fixed
+# library entry holds the current state, the series device the state before the start of the
+# series (last task of the previous procedure or cleaning), every experiment device the state
+# before exactly this experiment (last task of the previous experiment).
+# Hence WITHOUT specializationOf: the value of another level is another point in time and must not
+# fulfil the requirement. Which level the value points at is not checked by the shape (a task of
+# the code).
+#
+# Single-use items are excluded: their Fixed entry stands for a KIND of object, not for a
+# recognizable object (cpo:isSingleUse in the device library) - there is nothing whose use
+# could be continued. The flag itself is read via the chain (rule 2).
+hlo:Device_Time_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Time_R1 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every Device should have its own lastUsedTime value on every level - the Fixed library entry the current state, a SeriesSpecific record the state before the series, an ExperimentSpecific record the state before this experiment. A value on another level does not count. Single-use devices (cpo:isSingleUse = true, read through hlo:specializationOf) are excluded - a fresh specimen each time has no usage to carry forward. Templates (hlo:Template) are excluded as well: a kind of object is never used itself." ;
+    sh:or (
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isSingleUse ) ; sh:hasValue true ] ]
+        [ sh:class hlo:Template ]
+        [ sh:property [
+            sh:path cpo:lastUsedTime ;
+            sh:class time:Instant ;
+            sh:minCount 1 ;
+        ] ]
+    ) .
+
+# Holds for every device whose Fixed entry carries a cpo:hasServiceHistory. Single-use items
+# (cpo:isSingleUse) need no exception of their own here as in Device_Time_R1 and
+# Device_Information_R3: they carry no service history at all and drop out by this precondition.
+# lastServicedTime like lastUsedTime (Device_Time_R1): every level carries its own state, directly,
+# without specializationOf. On the experiment level that is the same point in time as on the series
+# level, unless service was done between two experiments - then the newer one. Both levels then
+# point at the same time:Instant, that is no copying. The Fixed entry holds the current state and
+# is therefore not excluded. Whether the value is the newer one is not checked by the shape (a task
+# of the generator).
+hlo:Device_Time_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Time_R2 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "A Device whose Fixed library entry carries a cpo:hasServiceHistory (read through hlo:specializationOf) should have its own lastServicedTime value on every level - the Fixed library entry the current state, a SeriesSpecific or ExperimentSpecific record the state before the series or before this experiment. A value on another level does not count." ;
+    sh:or (
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasServiceHistory ) ; sh:minCount 1 ] ] ]
+        [ sh:property [ sh:path cpo:lastServicedTime ; sh:class time:Instant ; sh:minCount 1 ] ]
+    ) .
+
+# Calibration like service (Device_Time_R2): whoever has a calibration history in
+# the library (sensors, controllers, GC) carries its own lastCalibratedTime on every level, directly,
+# without specializationOf. Single-use items have no history and drop out at the precondition.
+hlo:Device_Time_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Time_R3 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "A Device whose Fixed library entry carries a cpo:hasCalibrationHistory (read through hlo:specializationOf) should have its own lastCalibratedTime value on every level - the Fixed library entry the current state, a SeriesSpecific or ExperimentSpecific record the state before the series or before this experiment. A value on another level does not count." ;
+    sh:or (
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasCalibrationHistory ) ; sh:minCount 1 ] ] ]
+        [ sh:property [ sh:path cpo:lastCalibratedTime ; sh:class time:Instant ; sh:minCount 1 ] ]
+    ) .
+
+
+#################################################################
+#
+# Device - Space
+#
+#################################################################
+
+# Forms by class. Which dimensions and aspect ratios a form needs is set by its class: as
+# restrictions at the class in the CPO (owl:someValuesFrom cpo:ProcessVariable). One shape per class
+# that asks for exactly these properties; the consistency check compares both sides (check 9).
+#
+# Every form requirement starts from its context object (rule 7.11): the target is the device (or the
+# phase), and one downward path finds its forms - its form (cpo:definesForm) and its envelope form
+# (cpo:hasEnvelopeForm), and below them every cavity (cpo:hasCavityForm), part (dcterms:hasPart, the
+# blade at the stirrer shaft) and layer (cpo:hasLayerForm), however deep. The path finds only forms,
+# never a dimension. At each form found a node shape of its own (..._Form) says "not this class" as an
+# exclusion, otherwise the properties asked for (..._Demand) - so every rule holds for every form of the
+# device alike. The form is an intermediate link: only its dimensions are linked (rule 6.4); the forms
+# themselves belong to the structure context (Device_Structure_R4, same path). Whoever only shares a form
+# (cpo:fillsForm: material, content) changes nothing about that: every form is checked under the one that
+# defines it. The price: SHACL reports the device, not which form and which dimension is missing - the
+# message therefore lists all the dimensions asked for. hlo:targetFormClass/hlo:targetFormDefinedBy name
+# class and context object readably, for the consistency check (check 9) and the overview.
+#
+# Directly at the form, on every level (rule 1): every level has its own copy of the form with its
+# own actuals (made by the generator). The cavity has no dimensions of its own, it shares the actuals of
+# its hollow form. If the form is missing entirely, there is no target, and only Device_Structure_R1
+# reports (rule 5). The form of the room itself (Fixed) is defined by no device and no phase and is
+# not checked; its copies on the series and experiment level are defined by the room air (phase shapes).
+#
+# Space: R1 dimensions, one shape per form class (cuboid, solid cylinder, tube, cup, closed hollow
+# cylinder, ring, sphere, annular shell, layer). Structure: R1 form, R2 envelope form, R3 aspect
+# ratios, R4 the forms themselves (assignment), R5 ports. That a hollow form has its cavity is a data quality
+# check (hlo:Cavity_*_Shape in DataQualityShapes.ttl). A class without restrictions
+# (cpo:IndeterminateForm) is asked for nothing; its parts are checked as usual.
+
+hlo:Device_Space_R1_CuboidShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:CuboidForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_CuboidShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its cuboid forms (cpo:CuboidForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasLength, cpo:hasWidth, cpo:hasHeight, cpo:hasOuterVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] ;
+    # One collecting path for every form class of Device_Space_R1 (they are not told apart
+    # on the way, so one path per class collected the same): the dimensions of every form of the
+    # device, along the chain of each value (rule 3).
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] [ sh:alternativePath ( cpo:hasLength cpo:hasWidth cpo:hasHeight cpo:hasOuterVolume cpo:hasWallThickness cpo:hasDiameter cpo:hasInnerDiameter cpo:hasOuterDiameter cpo:hasInnerVolume cpo:hasInnerHeight cpo:hasOuterHeight cpo:hasBoreDiameter cpo:hasInnerShellOuterDiameter cpo:hasOuterShellInnerDiameter ) ] [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the dimensions of every form of the Device on every level, following the chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Space_R1_CuboidShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:CuboidForm ] ]
+        [ sh:node hlo:Device_Space_R1_CuboidShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_CuboidShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasLength ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasWidth ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+# Thickness of a layer of the wall (rule 3.8a): the layer belongs to the device, it hangs below its forms
+# (cpo:hasLayerForm); the layer phase only fills it. A layer is a form class like the others, so its
+# shape belongs to Device_Space_R1.
+hlo:Device_Space_R1_LayerShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:LayerForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_LayerShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each layer of its wall (cpo:LayerForm - a coating or a lining - anywhere below its form or envelope form), have its own Actual ProcessVariable for cpo:hasWallThickness, on every level. Which layer is missing its thickness is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_LayerShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:LayerForm ] ]
+        [ sh:node hlo:Device_Space_R1_LayerShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_LayerShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasWallThickness ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Space_R1_SolidCylinderShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:SolidCylinderForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_SolidCylinderShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its solid cylinder forms (cpo:SolidCylinderForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasDiameter, cpo:hasHeight, cpo:hasOuterVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_SolidCylinderShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:SolidCylinderForm ] ]
+        [ sh:node hlo:Device_Space_R1_SolidCylinderShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_SolidCylinderShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Space_R1_TubeShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:TubeForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_TubeShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its tube forms (cpo:TubeForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasInnerDiameter, cpo:hasOuterDiameter, cpo:hasHeight, cpo:hasOuterVolume, cpo:hasInnerVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_TubeShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:TubeForm ] ]
+        [ sh:node hlo:Device_Space_R1_TubeShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_TubeShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasInnerDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Space_R1_CupShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:CupForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_CupShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its cup forms (cpo:CupForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasInnerDiameter, cpo:hasOuterDiameter, cpo:hasInnerHeight, cpo:hasOuterHeight, cpo:hasOuterVolume, cpo:hasInnerVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_CupShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:CupForm ] ]
+        [ sh:node hlo:Device_Space_R1_CupShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_CupShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasInnerDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Space_R1_ClosedHollowCylinderShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:ClosedHollowCylinderForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_ClosedHollowCylinderShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its closed hollow cylinder forms (cpo:ClosedHollowCylinderForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasInnerDiameter, cpo:hasOuterDiameter, cpo:hasInnerHeight, cpo:hasOuterHeight, cpo:hasOuterVolume, cpo:hasInnerVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_ClosedHollowCylinderShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:ClosedHollowCylinderForm ] ]
+        [ sh:node hlo:Device_Space_R1_ClosedHollowCylinderShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_ClosedHollowCylinderShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasInnerDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Space_R1_AnnulusShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:AnnulusForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_AnnulusShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its ring forms (cpo:AnnulusForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasInnerDiameter, cpo:hasOuterDiameter, cpo:hasHeight, cpo:hasOuterVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_AnnulusShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:AnnulusForm ] ]
+        [ sh:node hlo:Device_Space_R1_AnnulusShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_AnnulusShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasInnerDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Space_R1_SphericalShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:SphericalForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_SphericalShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its sphere forms (cpo:SphericalForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasDiameter, cpo:hasOuterVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_SphericalShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:SphericalForm ] ]
+        [ sh:node hlo:Device_Space_R1_SphericalShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_SphericalShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Space_R1_AnnularShellShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R1 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:AnnularShellForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Space_R1_AnnularShellShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its annular shell forms (cpo:AnnularShellForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasBoreDiameter, cpo:hasInnerShellOuterDiameter, cpo:hasOuterShellInnerDiameter, cpo:hasOuterDiameter, cpo:hasInnerHeight, cpo:hasOuterHeight, cpo:hasOuterVolume, cpo:hasInnerVolume, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Space_R1_AnnularShellShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:AnnularShellForm ] ]
+        [ sh:node hlo:Device_Space_R1_AnnularShellShape_Demand ]
+    ) .
+
+hlo:Device_Space_R1_AnnularShellShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasBoreDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerShellOuterDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterShellInnerDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasInnerVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+
+# Location: without it the energy field collecting chain (Device_Energy_R6_ContextPathShape) breaks
+# off before it reaches the surroundings. Directly on every level (rule 1): the
+# location is a structural link like hasForm or materialContainedIn, not a concept. It points at the
+# device of THE SAME level (the series stirrer sits in the series vessel) or, for the topmost device,
+# at the room air (cpo:Environment) of the same level; the Fixed entry holds today's location in the
+# library (device or room). Read only at the Fixed entry via the chain, an experiment of yesterday
+# would see where the device stands TODAY.
+hlo:Device_Space_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Space_R2 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every Device should have a location of its own on every level, via cpo:location or one of its subproperties (locatedAt, locatedInsideOf): a SeriesSpecific or ExperimentSpecific record points to the device of the same level it sits in, or - for a device standing on its own - to the ambient air (cpo:Environment) of the same level; the Fixed library entry records where the device stands today. A location on another level does not count. A template (hlo:Template) is excluded: it stands for a kind of object and stands nowhere." ;
+    # A template (hlo:Template) is a kind of object and stands nowhere.
+    sh:or (
+        [ sh:class hlo:Template ]
+        [ sh:property [
+            sh:path [ sh:alternativePath ( cpo:location cpo:locatedAt cpo:locatedInsideOf ) ] ;
+            sh:minCount 1 ;
+        ] ]
+    ) .
+
+
+
+
+#################################################################
+#
+# Device - Structure
+#
+#################################################################
+
+# Rule 9: the hasForm existence check runs via sh:qualifiedValueShape/qualifiedMinCount, not via a
+# direct sh:class - sh:class holds universally for EVERY node reached via the zeroOrMorePath and would
+# break as soon as an intermediate link carries a second, different value. The isCompositeDevice check
+# stays a direct sh:hasValue (existential, see Molecule_Energy_R1 - no violation of rule 9).
+# Directly at the exemplar (rule 1): every level has its own copy of the form, shared by device and
+# body material (rule 3a.11). cpo:hasEnvelopeForm is a property of its own beside cpo:definesForm (both
+# below cpo:hasForm), so a differing envelope (stirrer, jacket, syringe) cannot stand in for a missing
+# own form, with or without RDFS inference. The form is the end of the path and is linked to Device
+# Structure (rule 6.4); the forms below it are linked by Device_Structure_R4.
+hlo:Device_Structure_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R1 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every non-composite Device should have its own Form (cpo:definesForm) on every level - the Fixed library entry, the SeriesSpecific and the ExperimentSpecific record each their own copy, which the device's body material on that level fills (cpo:fillsForm). The envelope form (cpo:hasEnvelopeForm) is a property of its own and does not count. A Form on another level does not count. The forms of the device begin here: the dimension and aspect ratio requirements check this form and everything below it, so they have nothing to check while it is missing. A body that no geometric class describes defines a cpo:IndeterminateForm. Composite devices (isCompositeDevice=true, e.g. a reactor) are excluded, since their shape is derived from their parts. A library exemplar of a template (hlo:Fixed specializing an hlo:Template) is excluded: it takes the form over from the template, which is checked itself." ;
+    sh:or (
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isCompositeDevice ) ; sh:hasValue true ] ]
+        # An exemplar of a template (hlo:Template) takes over the form from it.
+        [ sh:and ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path hlo:specializationOf ; sh:qualifiedValueShape [ sh:class hlo:Template ] ; sh:qualifiedMinCount 1 ] ] ) ]
+        [ sh:property [ sh:path cpo:definesForm ; sh:qualifiedValueShape [ sh:class cpo:Form ] ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:definesForm [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class cpo:Form ;
+        sh:severity sh:Info ;
+        sh:message "Collects the Form of the Device on every level, following the chain of the form (hlo:specializationOf) from this level upwards - together with what is recorded on it, such as an assumption on one level. The envelope and cavity forms hang on their own properties (cpo:hasEnvelopeForm, cpo:hasCavityForm) and are not collected here. No minimum count." ;
+    ] .
+
+# Envelope form (a form, hence Structure): the simplified shape of the
+# space the device takes up where it stands. Deliberately holds ALSO for
+# composite devices (reactor) - they have no cpo:definesForm of their own (see Device_Structure_R1),
+# but take up space all the same, and their envelope cannot be summed up from the parts, because the
+# parts sit inside one another. No Fixed exclusion: the Fixed entry carries its own envelope form,
+# series and experiment each their own copy (rule 1).
+# R2 only asks THAT there is an envelope form. Its dimensions, the outer volume included, are checked
+# by the shape of its class (Device_Space_R1) - otherwise a missing outer volume would be reported
+# twice (rule 5).
+hlo:Device_Structure_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R2 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every Device should have its own envelope form (cpo:hasEnvelopeForm) on every level - the space it takes up where it stands, including voids that belong to no part. Applies to composite devices too, whose envelope cannot be summed from their nested parts. Its dimensions are checked by Device_Space_R1. A form on another level does not count. A library exemplar of a template (hlo:Fixed specializing an hlo:Template) is excluded: it takes the envelope over from the template, which is checked itself." ;
+    # An exemplar of a template (hlo:Template) takes over the envelope from it and is
+    # excluded; the template is checked. Only in the library (hlo:Fixed): a crate copy of a single-use
+    # template specializes the template directly and must have its own copy.
+    sh:or (
+        [ sh:and ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path hlo:specializationOf ; sh:qualifiedValueShape [ sh:class hlo:Template ] ; sh:qualifiedMinCount 1 ] ] ) ]
+        [ sh:property [ sh:path cpo:hasEnvelopeForm ; sh:qualifiedValueShape [ sh:class cpo:Form ] ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasEnvelopeForm [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class cpo:Form ;
+        sh:severity sh:Info ;
+        sh:message "Collects the envelope form of the Device on every level, following the chain of the form (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+
+
+# Aspect ratios (cpo:hasAspectRatio): the shape of a form independent of its size, hence Structure and
+# not Space. Per class the ratios from its restrictions; the sphere has none.
+hlo:Device_Structure_R3_CuboidShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R3 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:CuboidForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Structure_R3_CuboidShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its cuboid forms (cpo:CuboidForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasWidthToLengthRatio, cpo:hasHeightToLengthRatio, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] ;
+    # One collecting path for every form class of Device_Structure_R3 (they are not told apart
+    # on the way, so one path per class collected the same): the aspect ratios of every form of the
+    # device, along the chain of each value (rule 3).
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] [ sh:alternativePath ( cpo:hasWidthToLengthRatio cpo:hasHeightToLengthRatio cpo:hasHeightToDiameterRatio cpo:hasDiameterRatio cpo:hasBoreToOuterDiameterRatio ) ] [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the aspect ratios of every form of the Device on every level, following the chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Structure_R3_CuboidShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:CuboidForm ] ]
+        [ sh:node hlo:Device_Structure_R3_CuboidShape_Demand ]
+    ) .
+
+hlo:Device_Structure_R3_CuboidShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasWidthToLengthRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeightToLengthRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Structure_R3_SolidCylinderShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R3 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:SolidCylinderForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Structure_R3_SolidCylinderShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its solid cylinder forms (cpo:SolidCylinderForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasHeightToDiameterRatio, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Structure_R3_SolidCylinderShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:SolidCylinderForm ] ]
+        [ sh:node hlo:Device_Structure_R3_SolidCylinderShape_Demand ]
+    ) .
+
+hlo:Device_Structure_R3_SolidCylinderShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Structure_R3_TubeShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R3 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:TubeForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Structure_R3_TubeShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its tube forms (cpo:TubeForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasHeightToDiameterRatio, cpo:hasDiameterRatio, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Structure_R3_TubeShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:TubeForm ] ]
+        [ sh:node hlo:Device_Structure_R3_TubeShape_Demand ]
+    ) .
+
+hlo:Device_Structure_R3_TubeShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Structure_R3_CupShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R3 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:CupForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Structure_R3_CupShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its cup forms (cpo:CupForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasHeightToDiameterRatio, cpo:hasDiameterRatio, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Structure_R3_CupShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:CupForm ] ]
+        [ sh:node hlo:Device_Structure_R3_CupShape_Demand ]
+    ) .
+
+hlo:Device_Structure_R3_CupShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Structure_R3_ClosedHollowCylinderShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R3 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:ClosedHollowCylinderForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Structure_R3_ClosedHollowCylinderShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its closed hollow cylinder forms (cpo:ClosedHollowCylinderForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasHeightToDiameterRatio, cpo:hasDiameterRatio, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Structure_R3_ClosedHollowCylinderShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:ClosedHollowCylinderForm ] ]
+        [ sh:node hlo:Device_Structure_R3_ClosedHollowCylinderShape_Demand ]
+    ) .
+
+hlo:Device_Structure_R3_ClosedHollowCylinderShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Structure_R3_AnnulusShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R3 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:AnnulusForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Structure_R3_AnnulusShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its ring forms (cpo:AnnulusForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasHeightToDiameterRatio, cpo:hasDiameterRatio, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Structure_R3_AnnulusShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:AnnulusForm ] ]
+        [ sh:node hlo:Device_Structure_R3_AnnulusShape_Demand ]
+    ) .
+
+hlo:Device_Structure_R3_AnnulusShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Device_Structure_R3_AnnularShellShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R3 ;
+    sh:targetClass cpo:Device ;
+    hlo:targetFormClass cpo:AnnularShellForm ;
+    hlo:targetFormDefinedBy cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:node hlo:Device_Structure_R3_AnnularShellShape_Form ;
+        sh:severity sh:Warning ;
+        sh:message "Every Device should, for each of its annular shell forms (cpo:AnnularShellForm - its form or envelope form, or any cavity, part or layer below them), have its own Actual ProcessVariable for each of cpo:hasHeightToDiameterRatio, cpo:hasBoreToOuterDiameterRatio, on every level. Which of them is missing is not named by the report - look at the forms of the device." ;
+    ] .
+
+hlo:Device_Structure_R3_AnnularShellShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:AnnularShellForm ] ]
+        [ sh:node hlo:Device_Structure_R3_AnnularShellShape_Demand ]
+    ) .
+
+hlo:Device_Structure_R3_AnnularShellShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasBoreToOuterDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+
+# Ports of a device (assignment, rule 7.16): openings and connections belong to the
+# setup. Nothing asked for - a sensor has no port. Every level has its own ports (rule 3.1); a level
+# collecting path exists only for actuals (rule 7.3), a port is none.
+hlo:Device_Structure_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R5 ;
+    sh:targetClass cpo:Device ;
+    sh:property [
+        sh:path cpo:hasPort ;
+        sh:qualifiedValueShape [ sh:class cpo:Port ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the ports of the Device (cpo:hasPort - openings and connections) to its structure context. Nothing is required: a device need not have a port." ;
+    ] .
+
+# The forms of a device (assignment, rule 7.16): every form the downward path of the form requirements
+# finds - the form, the envelope form and every cavity, part and layer below them - belongs to the
+# structure of the device, while the form requirements link only their dimensions and ratios (rule 6.4).
+# Nothing asked for: the form itself is required by Device_Structure_R1, the envelope by
+# Device_Structure_R2, a cavity by the data quality check hlo:Cavity_*_Shape; parts and layers are
+# optional. Without this assignment the form of a part (the blade at a stirrer shaft) would belong to
+# no context.
+hlo:Device_Structure_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Structure_R4 ;
+    sh:targetClass cpo:Device ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:hasEnvelopeForm ) ] [ sh:zeroOrMorePath [ sh:alternativePath ( cpo:hasCavityForm dcterms:hasPart cpo:hasLayerForm ) ] ] ) ;
+        sh:qualifiedValueShape [ sh:class cpo:Form ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns every form of the Device - its form (cpo:definesForm), its envelope form (cpo:hasEnvelopeForm) and every cavity, part and layer below them - to its structure context. Nothing is required." ;
+    ] .
+
+
+#################################################################
+#
+# Device - Substance
+#
+#################################################################
+
+# Composite exception analogous to Device_Structure_R1 (isCompositeDevice): a reactor has no
+# madeOfMaterial of its own, only its parts have (vessel/jacket/stirrer/sparger). Without the exception
+# the requirement fails at every reactor exemplar (Fixed and all scopes).
+# Rule 9: the madeOfMaterial existence check runs via sh:qualifiedValueShape/qualifiedMinCount, not via
+# a direct sh:class (see Device_Structure_R1).
+# Directly at the exemplar (rule 1; rule 3.1 of the crate rules): the body material is a copy of its
+# own on every level, madeOfMaterial points at the copy of the same level.
+hlo:Device_Substance_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Substance_R1 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every non-composite Device should be linked via madeOfMaterial to at least one MaterialVolume of its own level (what it is physically constructed of) - the Fixed library entry, the SeriesSpecific and the ExperimentSpecific record each to their own copy. Composite devices (isCompositeDevice=true, e.g. a reactor) are excluded, since they have no body of their own - only their parts do. A library exemplar of a template (hlo:Fixed specializing an hlo:Template) is excluded: it takes the body over from the template, which is checked itself." ;
+    sh:or (
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isCompositeDevice ) ; sh:hasValue true ] ]
+        # An exemplar of a template (hlo:Template) takes over the body from it.
+        [ sh:and ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path hlo:specializationOf ; sh:qualifiedValueShape [ sh:class hlo:Template ] ; sh:qualifiedMinCount 1 ] ] ) ]
+        [ sh:property [ sh:path cpo:madeOfMaterial ; sh:qualifiedValueShape [ sh:class cpo:MaterialVolume ] ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class cpo:MaterialVolume ;
+        sh:severity sh:Info ;
+        sh:message "Collects the body material of the Device on every level, following the chain of the material (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+
+# Density and mass of the material, at a phase of the own body material - built like
+# Device_Energy_R1/R2 (wall temperature and pressure). Existence, not surroundings, because they
+# describe what the device consists of. A density of
+# the device itself does not exist (a device is no uniform substance); Phase_Substance_R2/R3 asks for
+# the same actual at every phase - if it is missing, both report, as for Device_Energy_R1 and
+# Phase_Energy_R1.
+hlo:Device_Substance_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Substance_R3 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every non-composite Device in use should have an Actual ProcessVariable for cpo:hasDensity with QuantityKind Density on a phase of its own body material (cpo:madeOfMaterial/dcterms:hasPart) - the density of what the device is made of. A device has no density of its own; the value is the one the phase carries (also required there, Phase_Substance_R3). Fixed (library) devices are excluded, since the density of a body in use is a per-use fact. Composite devices (isCompositeDevice=true, e.g. a reactor) are excluded, since they have no body of their own - only their parts do." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isCompositeDevice ) ; sh:hasValue true ] ]
+        [ sh:property [ sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasDensity ) ; sh:qualifiedValueShape hlo:Device_Substance_R3_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasDensity [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the density of the phases of the Device's body material on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Substance_R3_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Density ;
+    ] .
+
+hlo:Device_Substance_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Substance_R2 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every non-composite Device in use should have an Actual ProcessVariable for cpo:hasMass with QuantityKind Mass on a phase of its own body material (cpo:madeOfMaterial/dcterms:hasPart) - the mass of what the device is made of. A device has no mass of its own; the value is the one the phase carries (also required there, Phase_Substance_R2). Fixed (library) devices are excluded, since the mass of a body in use is a per-use fact. Composite devices (isCompositeDevice=true, e.g. a reactor) are excluded, since they have no body of their own - only their parts do." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isCompositeDevice ) ; sh:hasValue true ] ]
+        [ sh:property [ sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasMass ) ; sh:qualifiedValueShape hlo:Device_Substance_R2_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:hasMass [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the mass of the phases of the Device's body material on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Device_Substance_R2_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Mass ;
+    ] .
+
+# The chemical constituents of the body material (assignment, rule 7.16): what the wall is made of
+# chemically (the silica of a glass, the iron of a steel) belongs to the substance of the device. Body
+# material, then its phases, then their constituents (dcterms:hasPart twice); the phases are intermediate
+# links and are not assigned - they are context objects of their own. Nothing asked for: that every phase
+# has constituents is required by Phase_Substance_R1. Composite devices have no body material.
+hlo:Device_Substance_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Substance_R4 ;
+    sh:targetClass cpo:Device ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial dcterms:hasPart dcterms:hasPart ) ;
+        sh:qualifiedValueShape [ sh:class chebi:ChemicalEntity ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the chemical constituents of the Device's body material (cpo:madeOfMaterial, its phases, their constituents) to its substance context. Nothing is required." ;
+    ] .
+
+
+#################################################################
+#
+# Device - Information
+#
+#################################################################
+
+# Pattern: Molecule_Information_R1 - reaches up to a Fixed library entry, over any number of
+# specializationOf steps, via qualifiedValueShape/qualifiedMinCount (rule 9). The value shape names the class
+# (like Phase_Information_R3): a Fixed device.
+hlo:Device_Information_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Information_R1 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every Device in use should reach a Fixed library Device via hlo:specializationOf (one or more steps). Fixed library entries themselves are excluded, they are the end of the chain." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:oneOrMorePath hlo:specializationOf ] ; sh:qualifiedValueShape [ sh:class cpo:Device, hlo:Fixed ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+# The operation mode is a concept (rule 2): cpo:hasModeOfOperation points directly at an individual
+# of type cpo:ModeOfOperation (cpo:Batch, cpo:FedBatch, cpo:Flow). If it is the same in every
+# experiment, it stands once at the series; otherwise it stands at every experiment, and the series
+# carries all modes used (written so by the generator). More precisely:
+#   - The target is every device whose library entry carries cpo:supportsOperatingMode - the same
+#     condition under which the generator asks.
+#   - An exemplar has a mode of its own OR the level above has EXACTLY ONE. Any mode anywhere in the
+#     chain would not be enough: if the series collected different modes, an experiment without a
+#     mode of its own would not stand out. The series always needs one of its own, because the Fixed
+#     entry carries none.
+hlo:Device_Information_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Information_R2 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "Every Device in use whose library entry lists supported operating modes (cpo:supportsOperatingMode, read through hlo:specializationOf) should have a mode of operation (cpo:hasModeOfOperation, e.g. cpo:Batch). The series record always names its own: the one mode, or every mode used if the experiments differ. An experiment record needs its own only if the series names more than one." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:supportsOperatingMode ) ; sh:minCount 1 ] ] ]
+        [ sh:property [ sh:path cpo:hasModeOfOperation ; sh:qualifiedValueShape [ sh:class cpo:ModeOfOperation ] ; sh:qualifiedMinCount 1 ] ]
+        [ sh:property [ sh:path ( hlo:specializationOf cpo:hasModeOfOperation ) ; sh:class cpo:ModeOfOperation ; sh:minCount 1 ; sh:maxCount 1 ] ]
+    ) .
+
+# Usage history: the Fixed library entry keeps the list of all tasks (hasUsageHistory), a device in
+# use gets the last task of it as lastUsedPurpose. The tasks in the library are typed as cpo:Task;
+# since the library is loaded along when validating, sh:class finds the type from the series/
+# experiment crate too.
+# The tasks of the device within the crate (cpo:usedInTask) are assigned by Device_Information_R4.
+#
+# Single-use items are excluded (cpo:isSingleUse): every specialization of such an entry is a fresh
+# exemplar - a vial, a syringe - and none of them has a history that could be continued. The
+# exclusion holds for both sides of the rule, the Fixed entry as well as the exemplar in use, so it
+# stands as the first alternative before the actual condition.
+hlo:Device_Information_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Information_R3 ;
+    sh:targetClass cpo:Device ;
+    sh:severity sh:Warning ;
+    sh:message "A Fixed library Device should have a usage history (cpo:hasUsageHistory). Every other Device should have a lastUsedPurpose pointing to a Task - the last entry of its library entry's usage history. Single-use devices (cpo:isSingleUse = true) are excluded: every specialization of such an entry is a fresh specimen with no history to carry forward. So are templates (hlo:Template): a kind of object has no history, only its exemplars have." ;
+    sh:or (
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isSingleUse ) ; sh:hasValue true ] ]
+        [ sh:class hlo:Template ]
+        [ sh:and (
+            [ sh:class hlo:Fixed ]
+            [ sh:property [ sh:path cpo:hasUsageHistory ; sh:minCount 1 ] ]
+        ) ]
+        [ sh:property [ sh:path cpo:lastUsedPurpose ; sh:class cpo:Task ; sh:minCount 1 ] ]
+    ) .
+
+
+# Tasks of a device (assignment, rule 7.16): in which tasks of this crate the device
+# is used (cpo:usedInTask, the inverse of cpo:usedEquipment). Device_Information_R3 only says what it was
+# last used for before this crate (cpo:lastUsedPurpose, the bridge into the past); this assignment makes
+# the history within the crate visible.
+hlo:Device_Information_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Device_Information_R4 ;
+    sh:targetClass cpo:Device ;
+    sh:property [
+        sh:path cpo:usedInTask ;
+        sh:qualifiedValueShape [ sh:class cpo:Task ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the tasks the Device is used in within this crate (cpo:usedInTask) to its information context - the history of the device inside the crate, while cpo:lastUsedPurpose (Device_Information_R3) is the bridge to its use before. Nothing is required: a device need not be used in a task." ;
+    ] .
+
+
+#################################################################
+#
+# Phase - Energy
+#
+#################################################################
+
+# Fixed exclusion (rule 7.7): temperature is a fact per use - the body material of a
+# device in the library is at no temperature of its own. Where a library entry carries one (the room air,
+# at the assumed conditions of the lab), the phase's own temperature specializes it and the collecting
+# path reaches it along the chain.
+hlo:Phase_Energy_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R1 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have an Actual ProcessVariable for hasTemperature with QuantityKind Temperature. Fixed (library) phases are excluded, since temperature is a per-use fact." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasTemperature ; sh:qualifiedValueShape hlo:Phase_Energy_R1_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasTemperature [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the temperature of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Energy_R1_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Temperature ;
+    ] .
+
+hlo:Phase_Energy_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R2 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have an Actual ProcessVariable for hasPressure with QuantityKind Pressure. Fixed (library) phases are excluded, since pressure is a per-use fact." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasPressure ; sh:qualifiedValueShape hlo:Phase_Energy_R2_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasPressure [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the pressure of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Energy_R2_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Pressure ;
+    ] .
+
+# Fixed exclusion like R1/R2: a flow rate is a per-use fact. No library phase is part of a stream, so
+# the exclusion changes nothing in the data - it keeps the requirement in line with R1/R2.
+hlo:Phase_Energy_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R3 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use that is part of a Stream should, via the Stream, have an Actual ProcessVariable for hasFlowrate. In which kinds its values are given (volume, molar or mass flow rate) is checked on the values themselves (by the quantity kind shapes). Fixed (library) phases are excluded, since a flow rate is a per-use fact; phases not part of a Stream (e.g. in a static MaterialVolume) are not affected - the flow rate is deliberately only ever recorded on the Stream, never duplicated onto the Phase." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path dcterms:isPartOf ; sh:class cpo:Stream ; sh:minCount 1 ] ] ]
+        [ sh:property [
+            sh:path ( dcterms:isPartOf cpo:hasFlowrate ) ;
+            sh:qualifiedValueShape hlo:Phase_Energy_R3_CoreShape ;
+            sh:qualifiedMinCount 1 ;
+        ] ]
+    ) ;
+    sh:property [
+        sh:path ( dcterms:isPartOf cpo:hasFlowrate [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the flow rate of the Stream the Phase is part of on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+# Without a quantity kind: cpo:hasFlowrate allows several, the kind stands at the values and is
+# checked there generally (the generated quantity kind shapes, QuantityKindShapes.ttl; rule 4.4).
+hlo:Phase_Energy_R3_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual .
+
+# Collecting path only (sh:Info, no minCount) - a phase usually creates no field of its own.
+# Exactly the same path (first up, then down) as Device_Energy_R6_ContextPathShape, only another
+# target class; the reasons stand there, also why a stream that no device contains climbs over its ends.
+hlo:Phase_Energy_R5_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R5 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path (
+            [ sh:zeroOrMorePath [ sh:alternativePath (
+                cpo:location cpo:locatedAt cpo:locatedInsideOf cpo:isPortOf
+                cpo:flowsFrom cpo:flowsTo
+                dcterms:isPartOf
+                cpo:isContainedIn cpo:materialContainedIn cpo:isBodyMaterialOf
+                cpo:isRoomOf
+            ) ] ]
+            [ sh:zeroOrMorePath [ sh:alternativePath (
+                dcterms:hasPart
+                cpo:contains cpo:containsMaterial
+                cpo:madeOfMaterial
+                cpo:isLocationOf
+            ) ] ]
+            cpo:hasEnergyField
+            [ sh:zeroOrMorePath hlo:specializationOf ]
+        ) ;
+        sh:class cpo:EnergyField ;
+        sh:severity sh:Info ;
+        sh:message "Collects every EnergyField a Phase is exposed to: first climbing to whatever holds it (the MaterialRepresentation it is part of, the Device containing that material or made of it, the ambient air, the Room, the Site), then going down from each of those - so a liquid phase also collects the fields of the gas phase in the same vessel and of the other parts of the setup. Each field comes with what is recorded on its higher levels. Same path as Device_Energy_R6. A phase of a stream that no device contains climbs over the ends of the stream (cpo:flowsFrom, cpo:flowsTo) to the devices there. From the ambient air the descent goes into every device standing in the room (cpo:isLocationOf), since every field in the room acts everywhere in it. No minimum count, since a Phase does not normally create its own field." ;
+    ] .
+
+# Surroundings collecting path (rule 4): temperature of the material representation the phase belongs to -
+# its MaterialVolume (content of a device, body material, room air) or its Stream; the state
+# of the content as a whole (setpoint, controlled variable, measurement not assigned to a phase), a
+# different statement from the phase's own temperature (Phase_Energy_R1). Only collecting, asking
+# nothing; along the actual chain of the material, so that values of higher levels appear too.
+hlo:Phase_Energy_R6_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R6 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( dcterms:isPartOf cpo:hasTemperature [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the temperature of the MaterialRepresentation the Phase is part of (its cpo:MaterialVolume or cpo:Stream) - the state of the contents as a whole (a setpoint, a controlled value, a measurement that cannot be assigned to one phase) - on every level, following the Actual chain (hlo:specializationOf) upwards. A different statement from the Phase's own temperature. No minimum count." ;
+    ] .
+
+# Surroundings collecting path (rule 4): pressure of the material representation the phase belongs to -
+# its MaterialVolume (content of a device, body material, room air) or its Stream; the state
+# of the content as a whole (setpoint, controlled variable, measurement not assigned to a phase), a
+# different statement from the phase's own pressure (Phase_Energy_R2). Only collecting, asking
+# nothing; along the actual chain of the material, so that values of higher levels appear too.
+hlo:Phase_Energy_R7_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R7 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( dcterms:isPartOf cpo:hasPressure [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the pressure of the MaterialRepresentation the Phase is part of (its cpo:MaterialVolume or cpo:Stream) - the state of the contents as a whole (a setpoint, a controlled value, a measurement that cannot be assigned to one phase) - on every level, following the Actual chain (hlo:specializationOf) upwards. A different statement from the Phase's own pressure. No minimum count." ;
+    ] .
+
+# Surroundings collecting paths (rule 4): temperature and pressure of the phases the phase is in
+# contact with. Not the whole up-and-down path of the energy fields: that would bring temperature and
+# pressure of everything in the setup, relevant is what the phase touches.
+# Over hlo:isCoupledWith, the property made for it: the generator couples the temperatures and
+# pressures of the two phases of every pair interface, the vessel wall included, so the coupled values
+# are exactly those of the phases on the other side of its interfaces, without the phase's own value,
+# which R1/R2 require. An interface marked one day as deliberately uncoupled would drop out, as it
+# should.
+hlo:Phase_Energy_R8_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R8 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( cpo:hasTemperature hlo:isCoupledWith [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the temperatures coupled with the Phase's own temperature (hlo:isCoupledWith) - those of the phases it shares a phase pair interface with, the wall of the device included - on every level, following the Actual chain upwards. Its own temperature is required by Phase_Energy_R1. No minimum count." ;
+    ] .
+
+hlo:Phase_Energy_R9_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R9 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( cpo:hasPressure hlo:isCoupledWith [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the pressures coupled with the Phase's own pressure (hlo:isCoupledWith) - those of the phases it shares a phase pair interface with, the wall of the device included - on every level, following the Actual chain upwards. Its own pressure is required by Phase_Energy_R2. No minimum count." ;
+    ] .
+
+# An energy field of the phase itself, the same pattern as Device_Energy_R5/Molecule_Energy_R1.
+# cpo:canCreateEnergyField stands once, where it is first said (rule 3.6): at the library entry of a
+# phase that comes from a library, otherwise at the series phase, where the generator writes the answer
+# to "does this create an energy field?"; the experiments read it through the chain (zeroOrMorePath,
+# zero steps at the series). That is how SHACL tells "deliberately no field" from "forgotten". Fixed
+# phases are excluded (rule 7.7): a library phase need not have a field; the phase in use that reads
+# the flag must.
+hlo:Phase_Energy_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Energy_R4 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "A Phase in use with cpo:canCreateEnergyField = true (set on the Phase itself or read through hlo:specializationOf) should have at least one cpo:hasEnergyField value. All other phases are not affected; Fixed (library) phases are excluded - a phase in the library describes a material in general." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:canCreateEnergyField ) ; sh:hasValue true ] ] ]
+        [ sh:property [ sh:path cpo:hasEnergyField ; sh:class cpo:EnergyField ; sh:minCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasEnergyField [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class cpo:EnergyField ;
+        sh:severity sh:Info ;
+        sh:message "Collects the Phase's own energy fields on every level, following the chain of the field (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+
+#################################################################
+#
+# Phase - Space
+#
+#################################################################
+
+# Volume directly at the phase, on every level (rule 1) - for an ordinary process phase as for a
+# housing phase (body material of a device). The housing phase too has its own, if need be empty,
+# volume actual on the series and experiment level (rule 1); what is known about the value is
+# collected by the info path along the chain up to the Fixed entry.
+# Fixed phases are excluded, like in the other phase requirements (rule 7.7): the library entries keep
+# their volumes, the phases in use reach them through the chain.
+hlo:Phase_Space_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R1 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for hasVolume with QuantityKind Volume on the series and on every experiment - a body-material phase too, even if its value is only known on the Fixed library entry. A value on another level does not count. Fixed (library) phases are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasVolume ; sh:qualifiedValueShape hlo:Phase_Space_R1_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasVolume [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the volume of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Space_R1_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Volume ;
+    ] .
+
+# Split up: R3 holds only IF an interface exists already (instead of asking for it from every phase,
+# which would have made a single isolated phase warn permanently). That the phases of one material border on
+# each other is checked by hlo:Phase_SameMaterial_Interface_Shape (data quality).
+# Fixed phases are excluded (rule 7.7) - the interfaces of the library are not required here.
+# R3 means the TOTAL INTERFACE of a phase (the one aggregating cpo:PhaseInterface,
+# cpo:hasPhaseInterface, qualifiedCardinality 1) - not the contact area to exactly one neighbouring
+# phase, which every single cpo:PhasePairInterface carries instead under Phase_Space_R4.
+# cpo:hasPhaseInterface leads directly to the right interface.
+# Deliberately NO check: the area of the aggregating PhaseInterface (here, R3) and the areas
+# of its PhasePairInterfaces (R4) are independent statements, each supported by evidence/reference of
+# its own. There is no consistency check between them and none is derived from the other - a value
+# with evidence is a documented observation, not a claim about reality, and in practice statements on
+# all pair areas are rarely available anyway. Interpreting how the statements relate to each other is
+# the task of the evaluation of the finished crate, not of the generator or of these shapes.
+hlo:Phase_Space_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R3 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use that has an aggregating PhaseInterface (cpo:hasPhaseInterface) should have an Actual ProcessVariable for hasArea with QuantityKind Area, describing the phase's total interfacial area. Phases without any interface and Fixed (library) phases are not affected. This is the aggregate area, independent of and not checked against any area recorded on the phase's individual PhasePairInterfaces - see Phase_Space_R4." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path cpo:hasPhaseInterface ; sh:minCount 1 ] ] ]
+        [ sh:property [
+            sh:path ( cpo:hasPhaseInterface cpo:hasArea ) ;
+            sh:qualifiedValueShape hlo:Phase_Space_R3_CoreShape ;
+            sh:qualifiedMinCount 1 ;
+        ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasPhaseInterface cpo:hasArea [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the total interfacial area of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Space_R3_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Area ;
+    ] .
+
+# Area of every pair interface of a phase, asked at the phase: every requirement starts from its context
+# object (rule 7.11),
+# the pair interface is an intermediate link and is not linked, only its area. Every pair interface
+# separates two phases - if its area is missing, both report. No minimum number of pair interfaces: a
+# phase without neighbours has none (that the phases of one material border on each other is checked by
+# hlo:Phase_SameMaterial_Interface_Shape). Independent of the
+# total area of the phase (Phase_Space_R3).
+hlo:Phase_Space_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R4 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should, for each PhasePairInterface it is separated by (cpo:isSeparatedByInterface - the contact area with exactly one neighbouring phase), reach an Actual ProcessVariable for the interface's hasArea with QuantityKind Area. A missing area is reported at both phases of the pair. Independent of, and not checked against, the aggregate area of the phase (Phase_Space_R3). Fixed (library) phases are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:isSeparatedByInterface ; sh:node hlo:Phase_Space_R4_InterfaceShape ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:isSeparatedByInterface cpo:hasArea [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the area of every PhasePairInterface of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Space_R4_InterfaceShape
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasArea ; sh:qualifiedValueShape hlo:Phase_Space_R4_CoreShape ; sh:qualifiedMinCount 1 ] .
+
+hlo:Phase_Space_R4_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Area ;
+    ] .
+
+
+# Dimensions of the phase forms: built like those of the devices, but for forms a
+# phase defines (or the room air, see above), and only for solid forms - an own phase form is never
+# hollow: a phase defines its form itself only within a device. A gas or liquid phase in a device
+# shares the cross-section with its cavity; its height (the filling level) is its own.
+# The outer volume of the form is the volume of the phase (Phase_Space_R1) - the same actual. A
+# cpo:IndeterminateForm asks for nothing. The path starts from the phase (rule 7.11): its forms are
+# those it defines (cpo:definesForm) and those it fills (cpo:fillsForm) - of those only what a phase or
+# a material defines counts (the room air its room form), not the form of a device that the material
+# and its phase fill.
+# One collecting path for every form class, at the first shape - paths per class would not tell the classes apart
+# on the way and would collect the same. Fixed phases are excluded (rule 7.7): the property for the forms stands in
+# an sh:or after [ sh:class hlo:Fixed ], so the message is the shape's.
+hlo:Phase_Space_R2_CuboidShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R2 ;
+    sh:targetClass cpo:Phase ;
+    hlo:targetFormClass cpo:CuboidForm ;
+    hlo:targetFormDefinedBy cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for each of cpo:hasLength, cpo:hasWidth, cpo:hasHeight and cpo:hasOuterVolume, for each cuboid form it defines (cpo:CuboidForm, cpo:definesForm). The same holds for a form it only fills (cpo:fillsForm) when the room air defines that form: the room exists only in the library, so the room air carries its form on the series and experiment level. Which value is missing is not named by the report - look at the forms of the phase. Fixed (library) phases are excluded: they define no form of their own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:node hlo:Phase_Space_R2_CuboidShape_Form ] ]
+    ) ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] [ sh:alternativePath ( cpo:hasLength cpo:hasWidth cpo:hasHeight cpo:hasDiameter cpo:hasInnerDiameter cpo:hasOuterDiameter cpo:hasOuterVolume ) ] [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the dimensions of every form of the Phase - those it defines and those it fills - on every level, following the chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Space_R2_CuboidShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:CuboidForm ] ]
+        [ sh:not [ sh:property [ sh:path [ sh:inversePath cpo:definesForm ] ; sh:qualifiedValueShape [ sh:or ( [ sh:class cpo:Phase ] [ sh:class cpo:MaterialRepresentation ] ) ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:node hlo:Phase_Space_R2_CuboidShape_Demand ]
+    ) .
+
+hlo:Phase_Space_R2_CuboidShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasLength ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasWidth ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Phase_Space_R2_SolidCylinderShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R2 ;
+    sh:targetClass cpo:Phase ;
+    hlo:targetFormClass cpo:SolidCylinderForm ;
+    hlo:targetFormDefinedBy cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for each of cpo:hasDiameter, cpo:hasHeight and cpo:hasOuterVolume, for each solid cylinder form it defines (cpo:SolidCylinderForm, cpo:definesForm). The same holds for a form it only fills (cpo:fillsForm) when the room air defines that form: the room exists only in the library, so the room air carries its form on the series and experiment level. Which value is missing is not named by the report - look at the forms of the phase. Fixed (library) phases are excluded: they define no form of their own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:node hlo:Phase_Space_R2_SolidCylinderShape_Form ] ]
+    ) .
+
+hlo:Phase_Space_R2_SolidCylinderShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:SolidCylinderForm ] ]
+        [ sh:not [ sh:property [ sh:path [ sh:inversePath cpo:definesForm ] ; sh:qualifiedValueShape [ sh:or ( [ sh:class cpo:Phase ] [ sh:class cpo:MaterialRepresentation ] ) ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:node hlo:Phase_Space_R2_SolidCylinderShape_Demand ]
+    ) .
+
+hlo:Phase_Space_R2_SolidCylinderShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Phase_Space_R2_SphericalShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R2 ;
+    sh:targetClass cpo:Phase ;
+    hlo:targetFormClass cpo:SphericalForm ;
+    hlo:targetFormDefinedBy cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for each of cpo:hasDiameter and cpo:hasOuterVolume, for each sphere form it defines (cpo:SphericalForm, cpo:definesForm). The same holds for a form it only fills (cpo:fillsForm) when the room air defines that form: the room exists only in the library, so the room air carries its form on the series and experiment level. Which value is missing is not named by the report - look at the forms of the phase. Fixed (library) phases are excluded: they define no form of their own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:node hlo:Phase_Space_R2_SphericalShape_Form ] ]
+    ) .
+
+hlo:Phase_Space_R2_SphericalShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:SphericalForm ] ]
+        [ sh:not [ sh:property [ sh:path [ sh:inversePath cpo:definesForm ] ; sh:qualifiedValueShape [ sh:or ( [ sh:class cpo:Phase ] [ sh:class cpo:MaterialRepresentation ] ) ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:node hlo:Phase_Space_R2_SphericalShape_Demand ]
+    ) .
+
+hlo:Phase_Space_R2_SphericalShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Phase_Space_R2_AnnulusShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R2 ;
+    sh:targetClass cpo:Phase ;
+    hlo:targetFormClass cpo:AnnulusForm ;
+    hlo:targetFormDefinedBy cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for each of cpo:hasInnerDiameter, cpo:hasOuterDiameter, cpo:hasHeight and cpo:hasOuterVolume, for each ring form it defines (cpo:AnnulusForm, cpo:definesForm). The same holds for a form it only fills (cpo:fillsForm) when the room air defines that form: the room exists only in the library, so the room air carries its form on the series and experiment level. Which value is missing is not named by the report - look at the forms of the phase. Fixed (library) phases are excluded: they define no form of their own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:node hlo:Phase_Space_R2_AnnulusShape_Form ] ]
+    ) .
+
+hlo:Phase_Space_R2_AnnulusShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:AnnulusForm ] ]
+        [ sh:not [ sh:property [ sh:path [ sh:inversePath cpo:definesForm ] ; sh:qualifiedValueShape [ sh:or ( [ sh:class cpo:Phase ] [ sh:class cpo:MaterialRepresentation ] ) ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:node hlo:Phase_Space_R2_AnnulusShape_Demand ]
+    ) .
+
+hlo:Phase_Space_R2_AnnulusShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasInnerDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterDiameter ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeight ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasOuterVolume ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+
+# Extent of occupation: every occupation state at the interface of a phase has
+# its own actual cpo:hasOccupationExtent - how much of the interface it takes up (area or fraction; the
+# kind stands at the value, rule 4.4). The requirement starts from the phase (rule 7.11); the occupation
+# state is an intermediate link and itself belongs only to phase/substance (Phase_Substance_R6), under
+# phase/space stands only its extent.
+hlo:Phase_Space_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R5 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should, for each OccupationState on its interface (cpo:hasPhaseInterface, cpo:hasOccupationState), reach an Actual ProcessVariable for the state's hasOccupationExtent - how much of the interface it takes up, as a covered area or as a fraction. In which kind its values are given is checked on the values themselves (the quantity kind shapes). Fixed (library) phases are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path ( cpo:hasPhaseInterface cpo:hasOccupationState ) ; sh:node hlo:Phase_Space_R5_StateShape ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasPhaseInterface cpo:hasOccupationState cpo:hasOccupationExtent [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the occupation extent of every OccupationState on the interface of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Space_R5_StateShape
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasOccupationExtent ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+# The interfaces of a phase (assignment, rule 7.16): its own PhaseInterface (the
+# whole boundary, with the total area and the occupation states) and every PhasePairInterface it is separated by -
+# to another phase of its material, to the wall of its device, to the room air. Both are cpo:Interface; the value
+# shape is a class filter only, so the interfaces are the end and are linked (rule 6.4) - for R3, R4 and R5 they are
+# only stages on the way to their areas and occupation extents.
+hlo:Phase_Space_R6_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Space_R6 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path [ sh:alternativePath ( cpo:hasPhaseInterface cpo:isSeparatedByInterface ) ] ;
+        sh:qualifiedValueShape [ sh:class cpo:Interface ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the interfaces of the Phase - its own PhaseInterface (cpo:hasPhaseInterface) and every PhasePairInterface it is separated by (cpo:isSeparatedByInterface) - to its space context. Nothing is required: a phase need not touch anything." ;
+    ] .
+
+
+#################################################################
+#
+# Phase - Time
+#
+#################################################################
+
+# Occurrence of a phase (assignment, rule 7.16): the series creates all possible phases, the
+# occurrence in the experiment says whether it existed and when.
+# The occurrence itself is assigned; status, start, end and duration are reachable from it. That an
+# occurrence that happened has start, end and duration is checked in DataQualityShapes.ttl
+# (hlo:Phase_Occurrence_Times_Shape), because the generator creates the times itself (rule 7.13) and
+# the times would otherwise be linked instead of the occurrence.
+hlo:Phase_Time_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Time_R3 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path cpo:hasOccurrence ;
+        sh:qualifiedValueShape [ sh:class cpo:Occurrence ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the occurrences of the Phase (cpo:hasOccurrence) to its time context: whether and when it existed in an experiment; status, start, end and duration are reached from the occurrence. Not the arrival of a container content at its library entry (Phase_Time_R1, R4). Nothing is required." ;
+    ] .
+
+# Arrival of a container content (the counterpart of Phase_Time_R2, which covers every other phase).
+# Concerned is the content of a chemical container: a phase whose material sits in a
+# cpo:ChemicalContainer (bottle, can, gas cylinder - bought or made in-house). By its class such a content
+# belongs to the container, not to an experiment, and stands in the material library - so every content of a
+# container has a Fixed library entry, and there is no exception for a content filled in an experiment.
+#
+# Arrival (the receipt of rule 7.17) = since when the content exists in the lab: an occurrence of the content
+# phase at its Fixed library entry. Its start is the end of the task that delivered the content (receiving) or
+# made it (preparing, a reaction - not the filling); via this instant the task is reachable
+# (Phase_Information_R5). It is read via hlo:specializationOf: not a state per level, but one event at the
+# entry that describes the content (the entry itself is assigned by Phase_Information_R3). The occurrence of an
+# experiment does not count: it says whether and when the phase existed in that experiment, a different event,
+# not chained with the arrival. Since occurrences are not chained across the levels, R1 has no level
+# collecting path (rule 7.3).
+# A missing arrival is reported once per level and only here: Phase_Time_R2 does not apply to the contents of
+# containers and asks for no time. Molecules share the origin of their
+# phase (dcterms:isPartOf); their assignments (Molecule_Time_R1-R4, Molecule_Information_R5/R6) go one step up
+# to the phase and then its way, without existence requirements of their own.
+hlo:Phase_Time_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Time_R1 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use that is the content of a chemical container (its material is cpo:materialContainedIn a cpo:ChemicalContainer) should have its arrival at its library entry: through hlo:specializationOf, an occurrence at the Fixed library entry with a start time - when the content was delivered or made in the lab. The occurrence of an experiment does not count. A missing arrival is reported once per level, and only here: Phase_Time_R2 does not apply to container contents and asks for no time." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( dcterms:isPartOf cpo:materialContainedIn ) ; sh:qualifiedValueShape [ sh:class cpo:ChemicalContainer ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasOccurrence ) ; sh:qualifiedValueShape hlo:Phase_Time_R1_ArrivalShape ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+hlo:Phase_Time_R1_ArrivalShape
+    a sh:NodeShape ;
+    sh:class hlo:Fixed ;
+    sh:property [ sh:path cpo:hasStartTime ; sh:class time:Instant ; sh:minCount 1 ] .
+
+# Known origin of every other phase (the counterpart of Phase_Time_R1): every phase outside a chemical
+# container reaches - backwards over the transfers and up the chain, in
+# any order, zero steps included (the one walk, see below) - at least one origin: an occurrence at a Fixed entry
+# of a library, i.e. the arrival of a container content or the permanent occurrence of a supply that is always
+# there (the room air, the water of a lab line). Every origin found is linked - the occurrence, like
+# Phase_Time_R4: R2 is the check, R4 the assignment on the same way; one requirement cannot be both (rule
+# 7.16), and the check applies to fewer phases.
+# ONE origin is enough, and its time is not asked for: the arrival time is required once, at the content of the
+# container (Phase_Time_R1), so a missing one is not reported again at every phase downstream (rule 7.4). The
+# origin of each substance cannot be determined in
+# SHACL Core. R2 therefore reports where a phase is fed only from a nameless cpo:Source outside the system or no
+# transfer leads into it (the products of the work-up in the amidation and the Chemotion example) - a real gap:
+# where it came from is not known.
+# No collecting path: the transfers on the way are not chained across the levels (rule 7.3), and the direct
+# ones are assigned by Phase_Substance_R5.
+# Excluded (rule 7.7): Fixed entries, and phases all of whose materials are a device body (cpo:BodyMaterial), an
+# environment (cpo:Environment) or the content of a chemical container. Written as sh:not ("not part of a
+# material that is none of these"), so that it is an exclusion.
+hlo:Phase_Time_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Time_R2 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use outside a chemical container - except the phases of a device body (cpo:BodyMaterial) or of an environment (cpo:Environment) - should reach, on its way back (backwards over the transfers and up the chain, zero or more steps, in any order), at least one origin: an occurrence at a Fixed library entry - the arrival of a container content, or the permanent occurrence of a supply such as the room air. A phase fed only from an unnamed source outside the system, or with no transfer into it, has no known origin. The arrival time is required at the container content (Phase_Time_R1), not here." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path dcterms:isPartOf ; sh:qualifiedValueShape [ sh:not [ sh:or ( [ sh:class cpo:BodyMaterial ] [ sh:class cpo:Environment ] [ sh:property [ sh:path cpo:materialContainedIn ; sh:qualifiedValueShape [ sh:class cpo:ChemicalContainer ] ; sh:qualifiedMinCount 1 ] ] ) ] ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] cpo:hasOccurrence ) ; sh:qualifiedValueShape [ sh:class cpo:Occurrence, hlo:Fixed ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+# Origin via the transfers: assignments (rule 7.16), they never report. Every
+# phase finds where its material can come from - backwards over the transfers of the same level
+# (cpo:addsToPhase inverse, then cpo:removesFromPhase, any number of times; zero steps = the phase
+# itself, so everything holds for the content phase of a container too). Transfers are potential: that
+# is where it CAN have come from. From a reactor on, in which substances can move between the phases in
+# both directions, every phase thus reaches every container upstream; more precisely per substance it
+# cannot be done in SHACL Core (comparing the species along the path would need SPARQL), nor only via
+# transfers that happened (a path does not filter its intermediate nodes). The way also goes up the chain
+# (hlo:specializationOf) and over the transfers of the library: a content of the chemical store filled in the
+# lab (a stock solution) describes there from which bottles it was prepared. That way a reactor phase also
+# reaches the source bottles.
+# Phase_Time_R7 deliberately stays on the transfers of THE SAME level: it assigns the containers of that level.
+#
+# One walk: [ sh:zeroOrMorePath [ sh:alternativePath ( <one transfer back> hlo:specializationOf ) ] ] - every
+# step one transfer back or one step up the chain, in any order. Written as one zero-or-more path and not as a
+# sequence (transfers*, chain*, transfers*) because pyshacl follows a sequence way by way, but visits every node
+# of a zero-or-more path once - on a large crate the difference is minutes against seconds. The same walk in
+# Phase_Time_R2/R4-R6, Phase_Information_R4/R5 and the molecule requirements that take these paths.
+#
+# Opening and expiry: a delivered bottle can stand unopened in the library, and not every substance has an
+# expiry date (a stable one has a retest date instead, cpo:hasRetestTime - R6 takes both, as
+# sh:alternativePath). The opening stands at the container, the expiry at the content. The point in time
+# is linked; material and container lie on the way.
+hlo:Phase_Time_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Time_R5 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] dcterms:isPartOf cpo:materialContainedIn [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasOpeningTime ) ;
+        sh:qualifiedValueShape [ sh:class time:Instant ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Phase the opening time (cpo:hasOpeningTime, read through hlo:specializationOf) of the container its material is in and of every container on its way back (backwards over the transfers and up the chain, in any order). Nothing is required: a delivered container may still be closed." ;
+    ] .
+
+hlo:Phase_Time_R6_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Time_R6 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] dcterms:isPartOf [ sh:zeroOrMorePath hlo:specializationOf ] [ sh:alternativePath ( cpo:hasExpiryTime cpo:hasRetestTime ) ] ) ;
+        sh:qualifiedValueShape [ sh:class time:Instant ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Phase the expiry or re-test time (cpo:hasExpiryTime or cpo:hasRetestTime of the lot, read through hlo:specializationOf) of its material and of every material on its way back (backwards over the transfers and up the chain, in any order). Nothing is required: a stable substance has a re-test date instead of an expiry date, some neither." ;
+    ] .
+
+# Arrivals upstream: every arrival on the way back - the occurrence at the Fixed entry of every content the
+# material can come from (as in Phase_Time_R1) - and the permanent occurrence of a supply. The assignment to the
+# check of Phase_Time_R2 (the same way) and the time counterpart of Phase_Information_R5 (the tasks that
+# delivered or made the contents). The occurrence itself is assigned; the start (delivery or making) and with it
+# the task are reachable from it. The occurrence of an experiment falls through the filter: it only says whether
+# a phase existed in this experiment, and Phase_Time_R3 assigns it to the own phase.
+hlo:Phase_Time_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Time_R4 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] cpo:hasOccurrence ) ;
+        sh:qualifiedValueShape hlo:Phase_Time_R4_ArrivalShape ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Phase every arrival on its way back (backwards over the transfers and up the chain, in any order, the phase itself included): the occurrence at the Fixed library entry of a container content - from its delivery or making in the lab until it was used up - or the permanent occurrence of a supply such as the room air. Occurrences of an experiment are filtered out (Phase_Time_R3). Nothing is required; that at least one origin is reached is checked by Phase_Time_R2." ;
+    ] .
+
+hlo:Phase_Time_R4_ArrivalShape
+    a sh:NodeShape ;
+    sh:class cpo:Occurrence ;
+    sh:class hlo:Fixed .
+
+# Container upstream: the container (cpo:ChemicalContainer) of the same level the material can come from.
+# The container itself is assigned; its use (cpo:lastUsedTime, per level the state before this level,
+# Device_Time_R1), delivery and opening are reachable from it. Other devices (reactor, vial) fall through
+# the filter - their context is Device, not the origin of a phase.
+hlo:Phase_Time_R7_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Time_R7 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) ] dcterms:isPartOf cpo:materialContainedIn ) ;
+        sh:qualifiedValueShape [ sh:class cpo:ChemicalContainer ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Phase every chemical container of its own level its material is in or may have come from (backwards over the transfers of that level only) - not the library entries, nor the bottles a stock solution was prepared from (Phase_Time_R4-R6 follow the whole way). Its use, delivery and opening are reached from the container. Nothing is required." ;
+    ] .
+
+#################################################################
+#
+# Phase - Structure
+#
+#################################################################
+
+# Rule 9: sh:qualifiedValueShape/sh:qualifiedMinCount instead of a direct sh:class, after the same
+# pattern as Device_Structure_R1 - sh:class would hold for EVERY form the path reaches. Form instances
+# are typed only as their concrete subclass (cpo:CuboidForm, cpo:SolidCylinderForm, ...), never
+# additionally as cpo:Form; they are found as forms through rdfs:subClassOf in the ontology (rule 8),
+# which the collecting path below relies on as well.
+# The form hangs at the PHASE, not at the MaterialRepresentation: two phases in a vessel do not both
+# have the form of the vessel. Every phase carries it itself, on every level - hence the direct path is
+# enough here, without hlo:specializationOf. The forms of the levels are connected with each other via
+# hlo:specializationOf (like the ProcessVariables);
+# what is known about them hangs as an hlo:Reference with hlo:hasReferenceType hlo:Assumed at exactly one
+# of these levels and can be found from the others via the chain.
+# A dispersed phase (bubbles, particles) has no single form - what is known about its shape is said by the
+# size distribution (Phase_Structure_R4) - and defines a cpo:IndeterminateForm instead, like a transferred
+# portion: a statement, not a gap. So every phase has a form, without exemption; Fixed phases are excluded
+# (rule 7.7). A continuous gas or liquid phase in a device carries the class of its cavity (set by the
+# generator) and defines its own form - its dimensions are checked by Phase_Space_R2.
+hlo:Phase_Structure_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Structure_R1 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have a Form (cpo:definesForm, or cpo:fillsForm where it takes up exactly the region of something else). A phase that sets the boundary of its region defines its own form (a gas or liquid phase in a device, with its own fill level); one that takes up exactly the region of its material fills the material's form (the phase of a device body, the room air). A phase dispersed in another phase of its material defines a cpo:IndeterminateForm - it has no single region, its size distribution describes it (Phase_Structure_R4). Fixed (library) phases are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:qualifiedValueShape [ sh:class cpo:Form ] ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class cpo:Form ;
+        sh:severity sh:Info ;
+        sh:message "Collects the Form of the Phase on every level, following the chain of the form (hlo:specializationOf) from this level upwards - together with what is recorded on it. No minimum count." ;
+    ] .
+
+# Collecting path via cpo:hasDispersedPhaseSizeDistribution AND all three subproperties declared in the
+# ontology (hasBubbleSizeDistribution, hasDropletSizeDistribution, hasParticleSizeDistribution) - the
+# generator creates the value under the more specific subproperty in each case (e.g.
+# hasBubbleSizeDistribution for a dispersed gas phase), never under the generic name itself. Without RDFS
+# inference (run_shacl.py runs without by default) the subproperty would otherwise not be found.
+# The dispersion state is a concept and is read via the chain (rule 2; rule 3.6 of the crate rules): it
+# stands only on the level on which it is asked, not repeated on every level. The size distribution itself
+# stays direct (rule 1).
+hlo:Phase_Structure_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Structure_R4 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "A dispersed Phase in use (hasDispersionState = Dispersed, read through hlo:specializationOf) should have its own Actual ProcessVariable for hasDispersedPhaseSizeDistribution (or one of its subproperties hasBubbleSizeDistribution/hasDropletSizeDistribution/hasParticleSizeDistribution) with QuantityKind Diameter on the series and on every experiment. Non-dispersed phases and Fixed (library) phases are not affected." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasDispersionState ) ; sh:hasValue cpo:Dispersed ] ] ]
+        [ sh:property [
+            sh:path [ sh:alternativePath ( cpo:hasDispersedPhaseSizeDistribution cpo:hasBubbleSizeDistribution cpo:hasDropletSizeDistribution cpo:hasParticleSizeDistribution ) ] ;
+            sh:qualifiedValueShape hlo:Phase_Structure_R4_CoreShape ;
+            sh:qualifiedMinCount 1 ;
+        ] ]
+    ) ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:hasDispersedPhaseSizeDistribution cpo:hasBubbleSizeDistribution cpo:hasDropletSizeDistribution cpo:hasParticleSizeDistribution ) ] [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the dispersed-phase size distribution of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Structure_R4_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Diameter ;
+    ] .
+
+# The state of matter is typed exclusively as cpo:GasPhase/LiquidPhase/SolidPhase (not additionally
+# as cpo:Phase) - the requirement checks that one of these
+# three subclasses is actually given. rdf:type also supplies the scope types (hlo:Fixed/SeriesSpecific/...),
+# hence qualifiedValueShape/qualifiedMinCount instead of a direct sh:in (rule 9) - otherwise every scope
+# type that is not in the list would itself trigger a violation.
+hlo:Phase_Structure_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Structure_R3 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should be typed as one of cpo:GasPhase, cpo:LiquidPhase or cpo:SolidPhase (rdf:type), not just cpo:Phase - the aggregate state is deliberately modeled as the Phase's own class, not a separate property. Fixed (library) phases are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path rdf:type ; sh:qualifiedValueShape [ sh:in ( cpo:GasPhase cpo:LiquidPhase cpo:SolidPhase ) ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+
+
+# Aspect ratios of the phase forms, as Device_Structure_R3 for the devices. Built like Phase_Space_R2: Fixed
+# phases excluded (rule 7.7; the property for the forms in an sh:or after [ sh:class hlo:Fixed ], the message
+# once at the shape) and one collecting path for every form class at the first shape.
+hlo:Phase_Structure_R2_CuboidShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Structure_R2 ;
+    sh:targetClass cpo:Phase ;
+    hlo:targetFormClass cpo:CuboidForm ;
+    hlo:targetFormDefinedBy cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for each of cpo:hasWidthToLengthRatio and cpo:hasHeightToLengthRatio, for each cuboid form it defines (cpo:CuboidForm, cpo:definesForm). The same holds for a form it only fills (cpo:fillsForm) when the room air defines that form: the room exists only in the library, so the room air carries its form on the series and experiment level. Which value is missing is not named by the report - look at the forms of the phase. Fixed (library) phases are excluded: they define no form of their own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:node hlo:Phase_Structure_R2_CuboidShape_Form ] ]
+    ) ;
+    sh:property [
+        sh:path ( [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] [ sh:alternativePath ( cpo:hasWidthToLengthRatio cpo:hasHeightToLengthRatio cpo:hasHeightToDiameterRatio cpo:hasDiameterRatio ) ] [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the aspect ratios of every form of the Phase - those it defines and those it fills - on every level, following the chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Structure_R2_CuboidShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:CuboidForm ] ]
+        [ sh:not [ sh:property [ sh:path [ sh:inversePath cpo:definesForm ] ; sh:qualifiedValueShape [ sh:or ( [ sh:class cpo:Phase ] [ sh:class cpo:MaterialRepresentation ] ) ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:node hlo:Phase_Structure_R2_CuboidShape_Demand ]
+    ) .
+
+hlo:Phase_Structure_R2_CuboidShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasWidthToLengthRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasHeightToLengthRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Phase_Structure_R2_SolidCylinderShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Structure_R2 ;
+    sh:targetClass cpo:Phase ;
+    hlo:targetFormClass cpo:SolidCylinderForm ;
+    hlo:targetFormDefinedBy cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for cpo:hasHeightToDiameterRatio, for each solid cylinder form it defines (cpo:SolidCylinderForm, cpo:definesForm). The same holds for a form it only fills (cpo:fillsForm) when the room air defines that form: the room exists only in the library, so the room air carries its form on the series and experiment level. Which value is missing is not named by the report - look at the forms of the phase. Fixed (library) phases are excluded: they define no form of their own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:node hlo:Phase_Structure_R2_SolidCylinderShape_Form ] ]
+    ) .
+
+hlo:Phase_Structure_R2_SolidCylinderShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:SolidCylinderForm ] ]
+        [ sh:not [ sh:property [ sh:path [ sh:inversePath cpo:definesForm ] ; sh:qualifiedValueShape [ sh:or ( [ sh:class cpo:Phase ] [ sh:class cpo:MaterialRepresentation ] ) ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:node hlo:Phase_Structure_R2_SolidCylinderShape_Demand ]
+    ) .
+
+hlo:Phase_Structure_R2_SolidCylinderShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+hlo:Phase_Structure_R2_AnnulusShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Structure_R2 ;
+    sh:targetClass cpo:Phase ;
+    hlo:targetFormClass cpo:AnnulusForm ;
+    hlo:targetFormDefinedBy cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have its own Actual ProcessVariable for each of cpo:hasHeightToDiameterRatio and cpo:hasDiameterRatio, for each ring form it defines (cpo:AnnulusForm, cpo:definesForm). The same holds for a form it only fills (cpo:fillsForm) when the room air defines that form: the room exists only in the library, so the room air carries its form on the series and experiment level. Which value is missing is not named by the report - look at the forms of the phase. Fixed (library) phases are excluded: they define no form of their own." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path [ sh:alternativePath ( cpo:definesForm cpo:fillsForm ) ] ; sh:node hlo:Phase_Structure_R2_AnnulusShape_Form ] ]
+    ) .
+
+hlo:Phase_Structure_R2_AnnulusShape_Form
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:class cpo:AnnulusForm ] ]
+        [ sh:not [ sh:property [ sh:path [ sh:inversePath cpo:definesForm ] ; sh:qualifiedValueShape [ sh:or ( [ sh:class cpo:Phase ] [ sh:class cpo:MaterialRepresentation ] ) ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:node hlo:Phase_Structure_R2_AnnulusShape_Demand ]
+    ) .
+
+hlo:Phase_Structure_R2_AnnulusShape_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasHeightToDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasDiameterRatio ; sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+
+# Inner structure of a solid phase: crystalline, amorphous or semicrystalline - a
+# concept (rule 2), asked once or, for the material of a device, in the library, read via the chain.
+# Holds also for dispersed solid phases (the particles of a powder have one).
+hlo:Phase_Structure_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Structure_R5 ;
+    sh:targetClass cpo:SolidPhase ;
+    sh:severity sh:Warning ;
+    sh:message "Every SolidPhase in use should have an internal structure (cpo:hasSolidStructure: cpo:Crystalline, cpo:Amorphous or cpo:SemiCrystalline), read through hlo:specializationOf - asked once for a process phase, recorded in the library for the body material of a device. Fixed (library) phases are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasSolidStructure ) ; sh:qualifiedValueShape [ sh:class cpo:SolidStructure ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+
+#################################################################
+#
+# Phase - Substance
+#
+#################################################################
+
+# Fixed phases are excluded (rule 7.7): the library entries keep their constituents, the phases in use have
+# their own molecule instances on every level.
+hlo:Phase_Substance_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R1 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should be linked via hasPart to at least one ChemicalEntity (its constituent chemical species). For a chebi:Molecule species, dcterms:hasPart points to the phase-specific Molecule instance, not to the Fixed library entry - that instance is what carries this phase's own concentration/partial molar volume. Fixed (library) phases are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path dcterms:hasPart ; sh:class chebi:ChemicalEntity ; sh:minCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( dcterms:hasPart [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class chebi:ChemicalEntity ;
+        sh:severity sh:Info ;
+        sh:message "Collects the constituents of the Phase on every level: its own molecule instances and, following their chain (hlo:specializationOf), those of the higher levels and the library entry. No minimum count." ;
+    ] .
+
+# The concentrations of the molecules of a phase (assignment, rule 7.16): the composition of a phase belongs
+# to its substance context. Not an existence requirement: the molecule asks for its concentration
+# (Molecule_Space_R2), and asked at the phase too a missing one would be reported twice. A class filter only:
+# the concentration is the end and is linked (rule 6.4); the molecule on the way is linked by
+# Phase_Substance_R1. No collecting path, like every assignment - the chain of each concentration is collected
+# at the molecule (Molecule_Space_R2).
+hlo:Phase_Substance_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R4 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( dcterms:hasPart [ sh:alternativePath ( cpo:hasConcentration cpo:hasMass cpo:hasAmountOfSubstance ) ] ) ;
+        sh:qualifiedValueShape [ sh:class cpo:ProcessVariable, hlo:Actual ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the concentration, mass and amount of substance of each molecule of the Phase (dcterms:hasPart, then cpo:hasConcentration, cpo:hasMass or cpo:hasAmountOfSubstance) to its substance context - its composition. Nothing is required: each is required at the molecule (Molecule_Space_R2-R4)." ;
+    ] .
+
+# Mass under Substance, not Energy: it says nothing about the energetic state, but about the amount of
+# substance present.
+hlo:Phase_Substance_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R2 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have an Actual ProcessVariable for hasMass with QuantityKind Mass. Filed under Substance (not Energy): mass says nothing about the phase's energetic state, only about the amount of substance present. Fixed (library) phases are excluded, since mass is a per-use fact." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasMass ; sh:qualifiedValueShape hlo:Phase_Substance_R2_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasMass [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the mass of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Substance_R2_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Mass ;
+    ] .
+
+hlo:Phase_Substance_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R3 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have an Actual ProcessVariable for hasDensity with QuantityKind Density. Fixed (library) phases are excluded, since density is a per-use fact; where a library entry carries one (the body material of a device, the room air), the phase's own density specializes it." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasDensity ; sh:qualifiedValueShape hlo:Phase_Substance_R3_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasDensity [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the density of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Substance_R3_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Density ;
+    ] .
+
+
+# Assignments (rule 7.16): what belongs to the phase if it exists. Without a minimum number
+# (sh:qualifiedMinCount 0) none of these requirements ever reports anything; they settle that these
+# things describe the substance context of the phase (the context linking of the generator links exactly
+# the values that satisfy the value shape - the class filters what the path would otherwise bring along).
+# What hangs at them (flow rate, transferred volume, occurrence and times, rate, partial order) is
+# reachable from them and is not assigned separately.
+hlo:Phase_Substance_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R5 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path [ sh:alternativePath ( [ sh:inversePath cpo:addsToPhase ] [ sh:inversePath cpo:removesFromPhase ] ) ] ;
+        sh:qualifiedValueShape [ sh:class cpo:Transfer ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the transfers into or out of the Phase (cpo:addsToPhase, cpo:removesFromPhase) to its substance context - a transfer says whether, when and what is carried into or out of the phase. Nothing is required: a phase need not have transfers." ;
+    ] .
+
+hlo:Phase_Substance_R6_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R6 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( cpo:hasPhaseInterface cpo:hasOccupationState ) ;
+        sh:qualifiedValueShape [ sh:class cpo:OccupationState ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the occupation states on the interface of the Phase (cpo:hasPhaseInterface, cpo:hasOccupationState) to its substance context - they say what the phase consists of at its interface, free or bound sites. Nothing is required: an interface need not have occupation states. How much of the interface each takes up is required on the state (Phase_Space_R5)." ;
+    ] .
+
+# Reactions of the phase: in it (cpo:occursInPhase) or at one of its interfaces - a pair interface
+# (cpo:isSeparatedByInterface) or its own (cpo:hasPhaseInterface). The inverse path from an interface also
+# brings the transfers there; the class cpo:Reaction filters them out.
+# The reaction rather than its rate: the reaction says more about the context, and its rate, its
+# occurrences and the partial orders of its participants are reachable from it. The partial order
+# (cpo:hasPartialOrder) therefore has no requirement of its own either.
+hlo:Phase_Substance_R7_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R7 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path [ sh:alternativePath ( [ sh:inversePath cpo:occursInPhase ] ( cpo:isSeparatedByInterface [ sh:inversePath cpo:occursAtInterface ] ) ( cpo:hasPhaseInterface [ sh:inversePath cpo:occursAtInterface ] ) ) ] ;
+        sh:qualifiedValueShape [ sh:class cpo:Reaction ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the reactions of the Phase - in it (cpo:occursInPhase) or at one of its interfaces (cpo:isSeparatedByInterface, cpo:hasPhaseInterface; cpo:occursAtInterface) - to its substance context. Their rate, occurrences and the partial orders of their participants are reached from the reaction. Nothing is required: a phase need not have reactions." ;
+    ] .
+
+# The solvent of the phase: one of its own species, which belongs to the substance context via
+# Phase_Substance_R1 (dcterms:hasPart) already. The assignment says that the statement belongs here; the
+# context linking collects the targets per context in a set, so the species is not linked a second time. No minimum number: the solvent is never inferred, and a pure phase has none.
+hlo:Phase_Substance_R8_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Substance_R8 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path cpo:hasSolvent ;
+        sh:qualifiedValueShape [ sh:class chebi:ChemicalEntity ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the solvent(s) of the Phase (cpo:hasSolvent) to its substance context. The solvent is one of the phase's own species and already belongs to this context through Phase_Substance_R1. Nothing is required: a phase need not name a solvent, and none is ever inferred." ;
+    ] .
+
+
+#################################################################
+#
+# Phase - Information
+#
+#################################################################
+
+# Entropy, built like the density (Phase_Substance_R3): Fixed phases are excluded, entropy is a per-use fact.
+hlo:Phase_Information_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Information_R1 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use should have an Actual ProcessVariable for hasEntropy with QuantityKind Entropy. Fixed (library) phases are excluded, since entropy is a per-use fact." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasEntropy ; sh:qualifiedValueShape hlo:Phase_Information_R1_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasEntropy [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the entropy of the Phase on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Phase_Information_R1_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual ;
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:hasValue quantitykind:Entropy ;
+    ] .
+
+# Lot of the content of a container: bought, the lot number of the manufacturer; made in-house, the own
+# batch or sample number (e.g. the short label of the sample in the electronic lab notebook). A literal -
+# checked, not linked (rule 6.4) - and read via the chain (rule 2). The manufacturer is deliberately not
+# asked for: the lot is enough.
+hlo:Phase_Information_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Information_R2 ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Warning ;
+    sh:message "Every Phase in use that belongs to the content of a chemical container (dcterms:isPartOf a material that cpo:materialContainedIn a cpo:ChemicalContainer) should reach the lot of that content (cpo:hasLotNumber, read through hlo:specializationOf) - the manufacturer's lot number, or the own batch or sample number of a substance produced in the lab. A missing lot in the library is reported once per level." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( dcterms:isPartOf cpo:materialContainedIn ) ; sh:qualifiedValueShape [ sh:class cpo:ChemicalContainer ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:property [ sh:path ( dcterms:isPartOf [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasLotNumber ) ; sh:minCount 1 ] ]
+    ) .
+
+# Lot upstream (assignment): the material of every content the material of the phase can
+# come from, with its lot - the same way as Phase_Time_R6 (expiry), only up to the material. The material
+# that carries the lot is linked: cpo:hasLotNumber is a text, and no context links a text.
+# Phase_Information_R2 asks for the lot only at the own container (existence); without R4 the information
+# context of a reactor phase would lack the lots of the bottles its time context has via Phase_Time_R4-R7.
+# The filter "has a lot" stands in sh:not, so that the linking ends at the material (rule 6.3: sh:not is
+# not followed) - the room air and the intermediate links of the chain drop out that way. The classes say what
+# is linked, a Fixed material (the path reaches nothing else).
+hlo:Phase_Information_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Information_R4 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] dcterms:isPartOf [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:qualifiedValueShape hlo:Phase_Information_R4_LotShape ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the information context of the Phase the material that carries the lot (cpo:hasLotNumber, at the Fixed library entry reached through hlo:specializationOf) of its own content and of every content its material may have come from: backwards over the transfers and up the chain, in any order - so also over the transfers of the library (a content prepared in the lab from other bottles). Nothing is required: the lot of the own content is required by Phase_Information_R2." ;
+    ] .
+
+hlo:Phase_Information_R4_LotShape
+    a sh:NodeShape ;
+    sh:class cpo:MaterialRepresentation, hlo:Fixed ;
+    sh:not [ sh:path cpo:hasLotNumber ; sh:maxCount 0 ] .
+
+# Origin task upstream (assignment): the task that brought a content (receipt) or made it
+# in the lab (preparation in the library). It ends in the same time:Instant the receipt occurrence starts
+# with (rule 7.17): the way of Phase_Time_R4 up to the occurrence, then via its start backwards
+# cpo:hasEndTime. The task is linked, not the time (Phase_Time_R4 assigns that via the occurrence).
+# Information instead of Time: the task says how and from where - who delivered or prepared it and from
+# which bottles. A path does not filter its intermediate nodes; therefore the task filters itself: Fixed
+# keeps out the tasks of an experiment that end when an occurrence of the experiment starts, cpo:Task an
+# occurrence that ends at this moment (a bottle that was used up in the preparation).
+hlo:Phase_Information_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Information_R5 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] cpo:hasOccurrence cpo:hasStartTime [ sh:inversePath cpo:hasEndTime ] ) ;
+        sh:qualifiedValueShape hlo:Phase_Information_R5_TaskShape ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the information context of the Phase the task that delivered or produced its own content and every content its material may have come from (backwards over the transfers and up the chain, in any order). That task is the library task that ends when the arrival of the content begins. Nothing is required." ;
+    ] .
+
+hlo:Phase_Information_R5_TaskShape
+    a sh:NodeShape ;
+    sh:class cpo:Task ;
+    sh:class hlo:Fixed .
+
+# Library entry of a phase (assignment, rule 7.16): the Fixed phase a phase specializes, if
+# it has one - the room air (organization library), the body material of a device (device library), the content of
+# a chemical container or of a supply line (material library). A phase that arises in the experiment (a process
+# phase, the phase of a stream) has none - hence an assignment, not an existence requirement. The value shape is a
+# class filter only (a Fixed phase - the path reaches nothing else, the class says what is linked), so the library
+# phase itself is the end and is linked (rule 6.4). That the room air has its library entry is not asked for:
+# the generator builds that link itself, so a check of it would belong to the data quality shapes (rule 7.13).
+hlo:Phase_Information_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Phase_Information_R3 ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path [ sh:oneOrMorePath hlo:specializationOf ] ;
+        sh:qualifiedValueShape [ sh:class cpo:Phase, hlo:Fixed ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns the library entry of the Phase - the Fixed phase it specializes (hlo:specializationOf, one or more steps) - to its information context. Nothing is required: a phase that arises in the experiment has none." ;
+    ] .
+
+
+#################################################################
+#
+# Molecule - Time
+#
+#################################################################
+
+# Origin and age of a molecule (rule 7.17): a molecule shares the origin of its phase (dcterms:isPartOf) -
+# more precisely it cannot be done in SHACL Core, comparing the species along the path would need SPARQL
+# (a known limitation). R1-R4 therefore go one step up to the phase and then the way of
+# Phase_Time_R4-R7: the molecule has arrival, opening, expiry and container in its own context.
+# Only assignments: the arrival of a container content and a known origin are asked for at the phase
+# (Phase_Time_R1, R2) - reported again at every molecule, the same gap would come several times.
+hlo:Molecule_Time_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Time_R2 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] dcterms:isPartOf cpo:materialContainedIn [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasOpeningTime ) ;
+        sh:qualifiedValueShape [ sh:class time:Instant ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Molecule the opening times of the containers its phase's material is in or may have come from - the counterpart of Phase_Time_R5: the same path with one step in front, from the molecule up to its phase (dcterms:isPartOf). Traced per phase, not per substance - a known limitation. Nothing is required." ;
+    ] .
+
+hlo:Molecule_Time_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Time_R3 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] dcterms:isPartOf [ sh:zeroOrMorePath hlo:specializationOf ] [ sh:alternativePath ( cpo:hasExpiryTime cpo:hasRetestTime ) ] ) ;
+        sh:qualifiedValueShape [ sh:class time:Instant ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Molecule the expiry or re-test times of the material of its phase and of every material it may have come from - the counterpart of Phase_Time_R6: the same path with one step in front, from the molecule up to its phase (dcterms:isPartOf). Traced per phase, not per substance - a known limitation. Nothing is required." ;
+    ] .
+
+hlo:Molecule_Time_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Time_R1 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] cpo:hasOccurrence ) ;
+        sh:qualifiedValueShape hlo:Phase_Time_R4_ArrivalShape ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Molecule the arrival of every content and supply its phase's material may have come from - the counterpart of Phase_Time_R4: the same path with one step in front, from the molecule up to its phase (dcterms:isPartOf). Traced per phase, not per substance - a known limitation. Nothing is required." ;
+    ] .
+
+hlo:Molecule_Time_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Time_R4 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf [ sh:zeroOrMorePath ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) ] dcterms:isPartOf cpo:materialContainedIn ) ;
+        sh:qualifiedValueShape [ sh:class cpo:ChemicalContainer ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the time context of the Molecule every chemical container of the same level its phase's material is in or may have come from - the counterpart of Phase_Time_R7: the same path with one step in front, from the molecule up to its phase (dcterms:isPartOf). Traced per phase, not per substance - a known limitation. Nothing is required." ;
+    ] .
+
+
+#################################################################
+#
+# Molecule - Information
+#
+#################################################################
+
+# InChIKey: the key under which databases find a molecule. The InChI itself describes the structure and
+# stands under Structure/Substance (Molecule_Structure_Substance_R1). The formats of the identifiers are
+# checked in DataQualityShapes.ttl (hlo:ChemicalEntity_Format_Shape, rule 2.8), the requirements ask only
+# that they exist.
+hlo:Molecule_Information_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Information_R4 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasInChIKey ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Every Molecule should have an InChIKey (cpo:hasInChIKey, e.g. XLYOFNOQVPJJNP-UHFFFAOYSA-N). Resolved through hlo:specializationOf, so a SeriesSpecific/ExperimentSpecific molecule record inherits it from its Fixed library entry." ;
+    ] .
+
+# Required with an explicit exception: species without a CAS number (radicals, intermediates, new
+# compounds) are marked in the library entry with cpo:hasNoCASNumber true. That way a forgotten CAS
+# number stands out, a non-existent one does not.
+hlo:Molecule_Information_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Information_R2 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule should have a CAS number (cpo:hasCAS), unless its Fixed library entry states that none exists (cpo:hasNoCASNumber = true). Both are read through hlo:specializationOf." ;
+    sh:or (
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasNoCASNumber ) ; sh:hasValue true ] ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasCAS ) ; sh:minCount 1 ] ]
+    ) .
+
+# PubChem CID after the same pattern as the CAS number: required with the explicit exception
+# cpo:hasNoPubChemCID in the library entry.
+hlo:Molecule_Information_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Information_R3 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule should have a PubChem CID (cpo:hasPubChemCID), unless its Fixed library entry states that PubChem has none (cpo:hasNoPubChemCID = true). Both are read through hlo:specializationOf." ;
+    sh:or (
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasNoPubChemCID ) ; sh:hasValue true ] ]
+        [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasPubChemCID ) ; sh:minCount 1 ] ]
+    ) .
+
+hlo:Molecule_Information_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Information_R1 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule in use should reach a Fixed library Molecule via hlo:specializationOf (one or more steps). Fixed library entries themselves are excluded, they are the end of the chain." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        # sh:oneOrMorePath supplies ALL nodes reached (for ExperimentSpecific thus both the SeriesSpecific
+        # intermediate link and the Fixed entry) - a simple sh:class hlo:Fixed would therefore fail at the
+        # intermediate link, because sh:class holds for EVERY value reached. sh:qualifiedValueShape with
+        # qualifiedMinCount 1, however, asks only that AT LEAST one of the nodes reached is hlo:Fixed -
+        # exactly what is meant.
+        [ sh:property [ sh:path [ sh:oneOrMorePath hlo:specializationOf ] ; sh:qualifiedValueShape [ sh:class chebi:Molecule, hlo:Fixed ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+
+# Lot and origin task of a molecule (assignments, rule 7.17): one step up to the phase
+# (dcterms:isPartOf), then the way of Phase_Information_R4 and R5 - as for Molecule Time.
+hlo:Molecule_Information_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Information_R5 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] dcterms:isPartOf [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:qualifiedValueShape hlo:Phase_Information_R4_LotShape ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the information context of the Molecule the material that carries the lot of every content its phase's material may have come from - the counterpart of Phase_Information_R4: the same path with one step in front, from the molecule up to its phase (dcterms:isPartOf). Traced per phase, not per substance - a known limitation. Nothing is required." ;
+    ] .
+
+hlo:Molecule_Information_R6_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Information_R6 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf [ sh:zeroOrMorePath [ sh:alternativePath ( ( [ sh:inversePath cpo:addsToPhase ] cpo:removesFromPhase ) hlo:specializationOf ) ] ] cpo:hasOccurrence cpo:hasStartTime [ sh:inversePath cpo:hasEndTime ] ) ;
+        sh:qualifiedValueShape hlo:Phase_Information_R5_TaskShape ;
+        sh:qualifiedMinCount 0 ;
+        sh:severity sh:Warning ;
+        sh:message "Assigns to the information context of the Molecule the task that delivered or produced every content its phase's material may have come from - the counterpart of Phase_Information_R5: the same path with one step in front, from the molecule up to its phase (dcterms:isPartOf). Traced per phase, not per substance - a known limitation. Nothing is required." ;
+    ] .
+
+
+#################################################################
+#
+# Molecule - Structure and Substance
+#
+#################################################################
+
+# InChI: describes connectivity and composition, hence Structure and Substance; the key for databases is
+# the InChIKey (Molecule_Information_R4). That InChI, SMILES and formula are texts, and the form of the
+# InChI, are checked in DataQualityShapes.ttl (hlo:ChemicalEntity_Format_Shape, rule 2.8).
+hlo:Molecule_Structure_Substance_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Structure_Substance_R1 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasInChI ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Every Molecule should have an InChI (cpo:hasInChI). Resolved through hlo:specializationOf, so a SeriesSpecific/ExperimentSpecific molecule record inherits it from its Fixed library entry." ;
+    ] .
+
+hlo:Molecule_Structure_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Structure_R2 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasSMILES ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Every Molecule should have a SMILES string (cpo:hasSMILES). Resolved through hlo:specializationOf, so a SeriesSpecific/ExperimentSpecific molecule record inherits it from its Fixed library entry." ;
+    ] .
+
+hlo:Molecule_Substance_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Substance_R2 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasMolecularFormula ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Every Molecule should have a molecular formula (cpo:hasMolecularFormula). Resolved through hlo:specializationOf, so a SeriesSpecific/ExperimentSpecific molecule record inherits it from its Fixed library entry." ;
+    ] .
+
+hlo:Molecule_Substance_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Substance_R3 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasMolarMass ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Every Molecule should have a molar mass (cpo:hasMolarMass). Resolved through hlo:specializationOf, so a SeriesSpecific/ExperimentSpecific molecule record inherits it from its Fixed library entry." ;
+    ] .
+
+
+#################################################################
+#
+# Molecule - Energy
+#
+#################################################################
+
+hlo:Molecule_Energy_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Energy_R1 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "A Molecule in use whose library entry has cpo:isRadioactive = true (read through hlo:specializationOf) should have at least one cpo:hasEnergyField value. All other molecules are not affected; Fixed (library) molecules are excluded - a library entry describes a species in general." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:isRadioactive ) ; sh:hasValue true ] ] ]
+        [ sh:property [ sh:path cpo:hasEnergyField ; sh:class cpo:EnergyField ; sh:minCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasEnergyField [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class cpo:EnergyField ;
+        sh:severity sh:Info ;
+        sh:message "Collects the Molecule's own energy fields on every level, following the chain of the field (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+# Collecting path (Molecule_Energy_R2): exactly the same path (first up, then down) as
+# Device_Energy_R6_ContextPathShape, only another target class; the reasons stand there. Because the path
+# does not string the properties together one by one, it need not be updated when a level of nesting is
+# added - only when PARENT_PROPERTIES or CHILD_PROPERTIES themselves get a new entry.
+hlo:Molecule_Energy_R2_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Energy_R2 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path (
+            [ sh:zeroOrMorePath [ sh:alternativePath (
+                cpo:location cpo:locatedAt cpo:locatedInsideOf cpo:isPortOf
+                cpo:flowsFrom cpo:flowsTo
+                dcterms:isPartOf
+                cpo:isContainedIn cpo:materialContainedIn cpo:isBodyMaterialOf
+                cpo:isRoomOf
+            ) ] ]
+            [ sh:zeroOrMorePath [ sh:alternativePath (
+                dcterms:hasPart
+                cpo:contains cpo:containsMaterial
+                cpo:madeOfMaterial
+                cpo:isLocationOf
+            ) ] ]
+            cpo:hasEnergyField
+            [ sh:zeroOrMorePath hlo:specializationOf ]
+        ) ;
+        sh:class cpo:EnergyField ;
+        sh:severity sh:Info ;
+        sh:message "Collects every EnergyField a Molecule is exposed to: first climbing to whatever holds it (the Phase it is part of, the MaterialRepresentation, the Device containing that material - for a stream that no device contains the devices at its ends -, the ambient air, the Room, the Site), then going down from each of those into the rest of the setup - each field together with what is recorded on its higher levels. Same path as Device_Energy_R6. From the ambient air the descent goes into every device standing in the room (cpo:isLocationOf), since every field in the room acts everywhere in it. No minimum count, since a molecule is not required to sit in any field." ;
+    ] .
+
+
+# Temperature and pressure of the own phase: a molecule has no temperature and no pressure of its own, it
+# experiences those of its phase. Collecting path only (rule 7.16), nothing asked for - the phase itself asks
+# for the values (Phase_Energy_R1/R2), and what holds and touches it is collected by Phase_Energy_R6/R7 and
+# R8/R9.
+hlo:Molecule_Energy_R3_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Energy_R3 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf cpo:hasTemperature [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the temperature of the Phase this Molecule is part of (dcterms:isPartOf), on every level, following the Actual chain upwards. No minimum count." ;
+    ] .
+
+hlo:Molecule_Energy_R4_ContextPathShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Energy_R4 ;
+    sh:targetClass chebi:Molecule ;
+    sh:property [
+        sh:path ( dcterms:isPartOf cpo:hasPressure [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the pressure of the Phase this Molecule is part of (dcterms:isPartOf), on every level, following the Actual chain upwards. No minimum count." ;
+    ] .
+
+
+#################################################################
+#
+# Molecule - Space
+#
+#################################################################
+
+hlo:Molecule_Space_R1_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Space_R1 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule in use should be part of exactly one Phase (dcterms:isPartOf) - molecules are only created per phase; the same species in different phases is linked through hlo:specializationOf to one Fixed library entry. Fixed molecules (library entries) are excluded." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path dcterms:isPartOf ; sh:class cpo:Phase ; sh:minCount 1 ; sh:maxCount 1 ] ]
+    ) .
+
+hlo:Molecule_Space_R5_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Space_R5 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule in use should have an Actual ProcessVariable for its partial molar volume (cpo:hasPartialMolarVolume). Only the existence of the Actual entity is checked, not its value or QuantityKind." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasPartialMolarVolume ; sh:qualifiedValueShape hlo:Molecule_Space_R5_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasPartialMolarVolume [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the partial molar volume of the Molecule on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Molecule_Space_R5_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual .
+
+hlo:Molecule_Space_R2_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Space_R2 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule in use should have an Actual ProcessVariable for its concentration (cpo:hasConcentration). In which kinds its values are given (a fraction or an absolute amount) is checked on the values themselves (by the quantity kind shapes)." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [
+            sh:path cpo:hasConcentration ;
+            sh:qualifiedValueShape hlo:Molecule_Space_R2_CoreShape ;
+            sh:qualifiedMinCount 1 ;
+        ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasConcentration [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the concentrations of the Molecule on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+# Without a quantity kind: cpo:hasConcentration allows several, the kind stands at the values and is
+# checked there generally (the generated quantity kind shapes, QuantityKindShapes.ttl; rule 4.4).
+hlo:Molecule_Space_R2_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual .
+
+# Mass and amount of substance of the species in its phase: how much of it is where - a statement about the
+# surroundings, hence Space like the concentration. In a pure phase the mass of the species is the same
+# actual as the mass of the phase; the amount of substance is always one of its own.
+hlo:Molecule_Space_R3_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Space_R3 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule in use should have an Actual ProcessVariable for the mass of its species in its phase (cpo:hasMass). In a pure phase it is the very Actual of the phase's mass. Only the existence of the Actual entity is checked." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasMass ; sh:qualifiedValueShape hlo:Molecule_Space_R3_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasMass [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the mass of the Molecule on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Molecule_Space_R3_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual .
+
+hlo:Molecule_Space_R4_MainShape
+    a sh:NodeShape ;
+    hlo:isShapeOfRequirement hlo:Molecule_Space_R4 ;
+    sh:targetClass chebi:Molecule ;
+    sh:severity sh:Warning ;
+    sh:message "Every Molecule in use should have an Actual ProcessVariable for the amount of substance of its species in its phase (cpo:hasAmountOfSubstance). Only the existence of the Actual entity is checked." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:property [ sh:path cpo:hasAmountOfSubstance ; sh:qualifiedValueShape hlo:Molecule_Space_R4_CoreShape ; sh:qualifiedMinCount 1 ] ]
+    ) ;
+    sh:property [
+        sh:path ( cpo:hasAmountOfSubstance [ sh:zeroOrMorePath hlo:specializationOf ] ) ;
+        sh:class hlo:Actual ;
+        sh:severity sh:Info ;
+        sh:message "Collects the amount of substance of the Molecule on every level, following the Actual chain (hlo:specializationOf) from this level upwards. No minimum count." ;
+    ] .
+
+hlo:Molecule_Space_R4_CoreShape
+    a sh:NodeShape ;
+    sh:class cpo:ProcessVariable, hlo:Actual .
+

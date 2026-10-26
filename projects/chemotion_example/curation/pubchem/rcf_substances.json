@@ -1,0 +1,55 @@
+[
+ {
+  "name": "Methanol",
+  "query_smiles": "CO",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 887,
+  "MolecularFormula": "CH4O",
+  "MolecularWeight": "32.042",
+  "ConnectivitySMILES": "CO",
+  "InChI": "InChI=1S/CH4O/c1-2/h2H,1H3",
+  "InChIKey": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+  "IUPACName": "methanol",
+  "Title": "Methanol",
+  "cas_candidates": [
+   "67-56-1",
+   "40431-63-8",
+   "77810-22-1"
+  ]
+ },
+ {
+  "name": "Palladium",
+  "query_smiles": "[Pd]",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 23938,
+  "MolecularFormula": "Pd",
+  "MolecularWeight": "106.42",
+  "ConnectivitySMILES": "[Pd]",
+  "InChI": "InChI=1S/Pd",
+  "InChIKey": "KDLHZDBZIXYQEI-UHFFFAOYSA-N",
+  "IUPACName": "palladium",
+  "Title": "Palladium",
+  "cas_candidates": [
+   "7440-05-3"
+  ]
+ },
+ {
+  "name": "4-Propylguaiacol",
+  "query_smiles": "CCCC1=CC(=C(C=C1)O)OC",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 17739,
+  "MolecularFormula": "C10H14O2",
+  "MolecularWeight": "166.22",
+  "ConnectivitySMILES": "CCCC1=CC(=C(C=C1)O)OC",
+  "InChI": "InChI=1S/C10H14O2/c1-3-4-8-5-6-9(11)10(7-8)12-2/h5-7,11H,3-4H2,1-2H3",
+  "InChIKey": "PXIKRTCSSLJURC-UHFFFAOYSA-N",
+  "IUPACName": "2-methoxy-4-propylphenol",
+  "Title": "4-Propylguaiacol",
+  "cas_candidates": [
+   "2785-87-7"
+  ]
+ }
+]

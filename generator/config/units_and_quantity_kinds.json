@@ -1,0 +1,112 @@
+{
+  "_comment": "Units of the questionnaire (which quantity kinds a property allows - including the choices for a concentration or a coverage - is stated in the ontology, cpo:valueHasQuantityKind), read by helpers/units.py. Moved out of the code on 25.09.2026: adding a unit is a data change, not a code change. Checked against the QUDT version named in ontology_library.jsonld by check_library_consistency.py. Keys starting with '_' are comments. CAUTION: every list here has answers in answers/*.txt behind it - keep the order and spelling of existing entries, only append.",
+  "units_by_quantity_kind": {
+    "_comment": "Units offered per quantity kind. The unit hangs on EVERY value, not once on the series quantity: evidence and reference of the same quantity may come in different units, and a value added later would otherwise silently inherit another value's unit. Which quantity kind a property has is stated in the ontology (cpo:valueHasQuantityKind), not here.",
+    "quantitykind:Volume": ["unit:M3", "unit:L", "unit:MilliL", "unit:MicroL"],
+    "quantitykind:Temperature": ["unit:DEG_C", "unit:K"],
+    "quantitykind:Pressure": ["unit:BAR", "unit:PA", "unit:KiloPA"],
+    "quantitykind:Mass": ["unit:MilliGM", "unit:GM", "unit:KiloGM"],
+    "quantitykind:Density": ["unit:KiloGM-PER-M3", "unit:GM-PER-L"],
+    "quantitykind:VolumeFlowRate": ["unit:L-PER-MIN", "unit:M3-PER-SEC"],
+    "quantitykind:MolarFlowRate": ["unit:MOL-PER-MIN", "unit:MOL-PER-SEC"],
+    "quantitykind:MassFlowRate": ["unit:KiloGM-PER-HR", "unit:GM-PER-MIN", "unit:KiloGM-PER-SEC"],
+    "quantitykind:AmountOfSubstance": ["unit:MOL", "unit:MilliMOL"],
+    "quantitykind:AngularVelocity": ["unit:RAD-PER-SEC"],
+    "_comment_RotationalVelocity": "Stirrer speeds (25.09.2026: moved from AngularVelocity, which QUDT does not give rpm for).",
+    "quantitykind:RotationalVelocity": ["unit:REV-PER-MIN", "unit:REV-PER-SEC"],
+    "quantitykind:Power": ["unit:W", "unit:KiloW"],
+    "quantitykind:ElectricPower": ["unit:W", "unit:KiloW"],
+    "quantitykind:Time": ["unit:SEC", "unit:MIN", "unit:HR"],
+    "quantitykind:Area": ["unit:M2", "unit:CentiM2", "unit:MilliM2"],
+    "_comment_Entropy": "Entropy of the whole phase (cpo:hasEntropy), not molar.",
+    "quantitykind:Entropy": ["unit:J-PER-K", "unit:KiloJ-PER-K"],
+    "_comment_Diameter": "Device diameters (unit:M throughout the library) and particle sizes of dispersed phases - hence MicroM.",
+    "quantitykind:Diameter": ["unit:M", "unit:CentiM", "unit:MilliM", "unit:MicroM"],
+    "_comment_geometry": "The other device dimensions (cpo:hasHeight, hasLength, hasWidth, hasWallThickness and their inner/outer sub-properties). Added 25.09.2026, when the check against the ontology found that these kinds had no unit choice; the libraries give them in unit:M throughout.",
+    "quantitykind:Height": ["unit:M", "unit:CentiM", "unit:MilliM"],
+    "quantitykind:Length": ["unit:M", "unit:CentiM", "unit:MilliM"],
+    "quantitykind:Width": ["unit:M", "unit:CentiM", "unit:MilliM"],
+    "quantitykind:Thickness": ["unit:M", "unit:CentiM", "unit:MilliM"],
+    "_comment_MolarMass": "cpo:hasMolarMass of a chemical entity; the chemical entity library gives it in unit:GM-PER-MOL.",
+    "quantitykind:MolarMass": ["unit:GM-PER-MOL", "unit:KiloGM-PER-MOL"],
+    "_comment_ReactionRate": "Project's own quantity kind, not a QUDT one (see cpo:ReactionRate in the ontology). Only one unit, asked all the same: a rate may be related to something else, e.g. the catalyst mass.",
+    "cpo:ReactionRate": ["unit:MOL-PER-M3-SEC"],
+    "_comment_concentrations": "The concentration kinds WITH a unit among those the ontology allows for cpo:hasConcentration - the fractions there are in dimensionless_quantity_kinds.",
+    "quantitykind:MassConcentration": ["unit:GM-PER-L", "unit:KiloGM-PER-M3"],
+    "quantitykind:AmountOfSubstanceConcentration": ["unit:MOL-PER-L", "unit:MOL-PER-M3"],
+    "quantitykind:PartialPressure": ["unit:BAR", "unit:PA", "unit:KiloPA"],
+    "_comment_fields": "Field strengths of the energy fields (see field_strength_quantity_kinds); Activity is radioactivity there, not chemical activity.",
+    "quantitykind:ElectricFieldStrength": ["unit:V-PER-M", "unit:KiloV-PER-M"],
+    "quantitykind:MagneticFluxDensity": ["unit:T", "unit:MilliT"],
+    "quantitykind:Activity": ["unit:BQ", "unit:KiloBQ"],
+    "_comment_Acceleration": "Field strength of a gravitational field (maintained by hand in the organization library).",
+    "quantitykind:Acceleration": ["unit:M-PER-SEC2"],
+    "_comment_rates": "Change rates of a ramp (cpo:changeRate of a TransitionStep): the profile quantity per time, see change_rate_quantity_kinds.",
+    "quantitykind:TemperaturePerTime": ["unit:K-PER-MIN", "unit:K-PER-SEC", "unit:K-PER-HR", "unit:DEG_C-PER-MIN"],
+    "quantitykind:AngularAcceleration": ["unit:REV-PER-MIN-SEC", "unit:REV-PER-SEC2", "unit:RAD-PER-SEC2"],
+    "quantitykind:ForcePerAreaTime": ["unit:PA-PER-SEC", "unit:PA-PER-MIN"]
+  },
+  "change_rate_quantity_kinds": {
+    "_comment": "Quantity kind of the change rate of a ramp step, per quantity kind of its profile. The rate is the profile quantity per time and has its own unit (K/min for a temperature ramp), not the unit of the profile. A profile kind that is missing here gets the general question for the kind of the rate. Each rate kind needs units in units_by_quantity_kind.",
+    "quantitykind:Temperature": "quantitykind:TemperaturePerTime",
+    "quantitykind:RotationalVelocity": "quantitykind:AngularAcceleration",
+    "quantitykind:AngularVelocity": "quantitykind:AngularAcceleration",
+    "quantitykind:Pressure": "quantitykind:ForcePerAreaTime"
+  },
+  "volume_unit_to_m3": {
+    "_comment": "Conversion factors for the volume check (helpers/volume_checks.py: contents of a device against its inner volume). Same units as units_by_quantity_kind / quantitykind:Volume; the factors are checked against qudt:conversionMultiplier.",
+    "unit:M3": 1.0,
+    "unit:L": 0.001,
+    "unit:MilliL": 1e-06,
+    "unit:MicroL": 1e-09
+  },
+  "duration_units": {
+    "_comment": "Units of a time:Duration (durations and start offsets of tasks, transfers, ...). A duration has no quantity kind - it is a time:Duration, not a ProcessVariable.",
+    "values": ["unit:SEC", "unit:MIN", "unit:HR"]
+  },
+  "dimensionless_quantity_kinds": {
+    "_comment": "Quantity kinds that have no unit by nature: every evidence/reference value of these kinds carries unit:UNITLESS without a question. ONLY on the value, never on the hlo:Actual. Deliberately separate from the kinds the ontology allows for cpo:hasConcentration, although the fractions overlap: those say WHAT a concentration can be expressed in (including MassConcentration and PartialPressure, both with a unit), this list which kinds have NO unit. Two questions, two lists.",
+    "values": ["quantitykind:Dimensionless", "quantitykind:MassFraction", "quantitykind:MoleFraction", "quantitykind:VolumeFraction", "quantitykind:AreaRatio", "quantitykind:LengthRatio", "quantitykind:DimensionlessRatio"]
+  },
+  "fraction_quantity_kinds": {
+    "_comment": "Real fractions (0..1) and how a percentage is accepted on INPUT: the word for the question text and the suffixes that fit the kind ('25 vol%' -> 0.25). The crate always holds the fraction, never the percentage (unit:PERCENT is deliberately not offered - two spellings of one quantity in one crate would have to be converted by every evaluation). A suffix of ANOTHER kind (wt% for a VolumeFraction) is refused; a bare '%' fits every kind. Not every dimensionless kind: quantitykind:Dimensionless (e.g. the partial order) may exceed 1.",
+    "quantitykind:MassFraction": {
+      "word": "mass fraction",
+      "suffixes": ["wt%", "mass%"]
+    },
+    "quantitykind:MoleFraction": {
+      "word": "mole fraction",
+      "suffixes": ["mol%"]
+    },
+    "quantitykind:VolumeFraction": {
+      "word": "volume fraction",
+      "suffixes": ["vol%"]
+    },
+    "quantitykind:AreaRatio": {
+      "word": "area fraction",
+      "suffixes": ["area%"]
+    },
+    "quantitykind:DimensionlessRatio": {
+      "word": "fraction",
+      "suffixes": ["%"]
+    }
+  },
+  "field_strength_quantity_kinds": {
+    "_comment": "Quantity kind of cpo:hasFieldStrength per field type, for the fields the generator creates itself (helpers/energy_fields.py); each must be one of the kinds the ontology allows for cpo:hasFieldStrength. The gravitational field is listed since 25.09.2026: the site's own field is maintained by hand, but an ambient field measured during a series is created by the generator (creation/environment_functions.py).",
+    "cpo:ElectricField": "quantitykind:ElectricFieldStrength",
+    "cpo:MagneticField": "quantitykind:MagneticFluxDensity",
+    "cpo:ElectromagneticField": "quantitykind:ElectricFieldStrength",
+    "cpo:IonizingRadiation": "quantitykind:Activity",
+    "cpo:GravitationalField": "quantitykind:Acceleration"
+  },
+  "fixed_field_strength_units": {
+    "_comment": "Unit written directly on a Fixed field strength (a field that exists only in a library, e.g. a radioactive substance: its activity in Bq).",
+    "cpo:IonizingRadiation": "unit:BQ"
+  },
+  "accepted_dimension_matches": {
+    "_comment": "Units QUDT does not list for the quantity kind (neither directly nor through skos:broader) although the dimension is the same. check_library_consistency.py reports every such pair unless it is accepted here, with the reason.",
+    "quantitykind:Entropy": {
+      "unit:KiloJ-PER-K": "QUDT attaches KiloJ-PER-K to EnergyPerTemperature only, J-PER-K to Entropy as well; same dimension vector, and the kJ variant is what data sheets give."
+    }
+  }
+}

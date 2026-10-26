@@ -1,0 +1,426 @@
+# Configuration of the property overview (build_property_overview.py): what the script cannot read
+# off the sources themselves. Maintained by hand - a new class, entry type, sheet module or question lands in
+# "not assigned" in the README and shows there.
+
+# ------------------------------------------------------------------------------------------------------------
+# Families: one Markdown file each. A family names its root classes; their subclasses (rdfs:subClassOf of the
+# ontologies) belong to it as well, unless another family names them. Classes of the data or the shapes no
+# family reaches end up in "other".
+# ------------------------------------------------------------------------------------------------------------
+families:
+  - id: devices
+    title: Devices
+    doc: "Devices and their parts - everything a device library entry describes as a thing (rule 3.11)."
+    classes: [cpo:Device]
+  - id: materials_and_phases
+    title: Materials and phases
+    doc: "What fills a region of space: materials (contents, streams, body materials, room air), their phases and energy fields."
+    classes: [cpo:MaterialRepresentation, cpo:Phase, cpo:EnergyField]
+  - id: substances_and_reactions
+    title: Substances and reactions
+    doc: "Chemical entities (library substances and the species of a phase), placeholders, occupation states, reactions, their participants and mechanisms."
+    classes: [chebi:ChemicalEntity, cpo:Placeholder, cpo:OccupationState, cpo:Reaction, cpo:ReactionParticipant, cpo:ReactionMechanism]
+  - id: tasks
+    title: Tasks
+    doc: "Everything that was done or determined: procedures, operations, measurements, assumptions, look-ups."
+    classes: [cpo:Task]
+  - id: values_and_times
+    title: Values and times
+    doc: "Quantities and how they are known (Actual, Evidence, Reference; rule 4.1), profiles, points in time, durations, occurrences."
+    classes: [hlo:Actual, hlo:Evidence, hlo:Reference, cpo:ProcessVariable, cpo:Parameter, cpo:ProfileStep, time:Instant, time:Duration, cpo:Occurrence, cpo:OccurrenceStatus]
+  - id: forms_ports_transfers
+    title: Forms, ports and transfers
+    doc: "The geometry (forms, rule 3a), the openings of devices and the system boundary (ports, sources, sinks), interfaces and what crosses them (transfers, rule 3b)."
+    classes: [cpo:Form, cpo:Port, cpo:Interface, cpo:Transfer]
+  - id: organizations_and_people
+    title: Organizations and people
+    doc: "Who and where: people, organizations, sites, rooms and cabinets (places have no levels, rule 1 of the shapes)."
+    classes: [schema:Person, org:Organization, org:Site, cpo:Room, cpo:StorageCabinet]
+  - id: series_files_datasets
+    title: Series, files and datasets
+    doc: "The crate itself: the series and its experiments, context aspects, files, data columns, datasets, ontologies, software."
+    classes: [cpo:ExperimentEntity, hlo:ContextAspect, schema:MediaObject, cpo:Column, schema:CreativeWork, Dataset, CreativeWork, cpo:Ontology, schema:SoftwareApplication, schema:PropertyValue]
+
+# Classes left out of the tables: level classes and vocabulary terms the data only points at.
+skip_classes: [hlo:Scope, hlo:Fixed, hlo:Template, hlo:SeriesSpecific, hlo:ExperimentSpecific]
+
+# Properties not shown as rows: bookkeeping of the generator on every entity.
+skip_properties: []
+
+# ------------------------------------------------------------------------------------------------------------
+# Library entry schema (generator/workflow/library_entries/entry_schema.yaml): which class and level each type
+# and module describes. A field's property: is read as "<property> (<hint>)"; the hint moves the row to another
+# class (hints below). Form dimensions (form_dimensions) go to the forms the type makes.
+# ------------------------------------------------------------------------------------------------------------
+entry:
+  levels: [Fixed]          # the level of the entries a type makes, unless the type says otherwise
+  types:
+    # adds: what the tool makes itself, without a field (from the "basis" and "doc" of the type) - status derived.
+    person:             {classes: [schema:Person]}
+    organization:       {classes: [org:Organization]}
+    substance:
+      classes: [chebi:ChemicalEntity]
+      adds:
+        - {property: cpo:hasInChI, by: PubChem}
+        - {property: cpo:hasInChIKey, by: PubChem}
+        - {property: cpo:hasPubChemCID, by: PubChem}
+        - {property: cpo:hasMolecularFormula, by: PubChem}
+        - {property: cpo:hasMolarMass, by: PubChem}
+        - {property: cpo:hasCAS, by: PubChem}
+    container:
+      classes: [cpo:ChemicalContainer]
+      adds:
+        - {property: cpo:hasUsageHistory, by: "the receipt"}
+        - {property: cpo:hasContainedMaterialHistory, by: "the content"}
+        - {property: cpo:hasOccurrence, classes: [cpo:Phase], by: "from the delivery"}
+    site:
+      classes: [org:Site]
+      adds:
+        - {property: cpo:hasEnergyField, by: "the gravitational field"}
+    laboratory:
+      classes: [cpo:Laboratory]
+      forms: [cpo:CuboidForm]
+      adds:
+        - {property: cpo:definesForm, by: "a cuboid"}
+        - {property: cpo:hasOuterVolume, classes: [cpo:CuboidForm], by: calculated}
+        - {property: cpo:hasVolume, classes: [cpo:Environment], by: "the room air"}
+    cabinet:            {classes: [cpo:StorageCabinet]}
+    # labware: the fields of the kind make a template, the exemplars Fixed pieces (rule 3.11)
+    labware:
+      classes: [cpo:Vessel, cpo:ChemicalContainer, cpo:Lid, cpo:Septum]
+      levels: [Template]
+      forms: [cpo:CupForm, cpo:AnnulusForm, cpo:SolidCylinderForm]
+      adds:
+        - {property: cpo:definesForm, by: "a cup"}
+        - {property: cpo:hasEnvelopeForm, by: "a cup"}
+        - {property: cpo:hasPort, by: "one opening"}
+        - {property: cpo:hasInnerDiameter, classes: [cpo:CupForm], by: calculated}
+        - {property: cpo:hasInnerHeight, classes: [cpo:CupForm], by: calculated}
+        - {property: cpo:hasInnerVolume, classes: [cpo:CupForm], by: calculated}
+        - {property: cpo:hasOuterVolume, classes: [cpo:CupForm, cpo:AnnulusForm, cpo:SolidCylinderForm], by: calculated}
+        - {property: cpo:hasUsageHistory, levels: [Fixed], by: "the commissioning of an exemplar"}
+    device:
+      classes: [cpo:Device]
+      forms: [cpo:CuboidForm, cpo:SolidCylinderForm]
+      adds:
+        - {property: cpo:definesForm, by: "the envelope"}
+        - {property: cpo:hasOuterVolume, classes: [cpo:CuboidForm, cpo:SolidCylinderForm], by: calculated}
+    prepared_container:
+      classes: [cpo:ChemicalContainer]
+      adds:
+        - {property: cpo:hasContainedMaterialHistory, by: "the content"}
+        - {property: cpo:hasOccurrence, classes: [cpo:Phase], by: "from the end of the preparation"}
+  modules:
+    content:          {classes: [cpo:MaterialVolume]}
+    prepared_content: {classes: [cpo:MaterialVolume]}
+    species:          {classes: [chebi:ChemicalEntity]}
+    prepared_species: {classes: [chebi:ChemicalEntity]}
+    exemplar:         {classes: [cpo:Vessel, cpo:ChemicalContainer, cpo:Lid, cpo:Septum], levels: [Fixed]}
+    source:           {classes: [cpo:Transfer]}
+    preparation:      {classes: [cpo:OperationTask]}
+    opening:          {classes: [cpo:DeviceOpening]}
+    identifier:       {classes: [schema:PropertyValue]}
+    value:            {classes: [hlo:Evidence, hlo:Reference]}
+  # The fields of the module value become properties of the evidence or reference of the value.
+  value_fields:
+    value:  rdf:value, qudt:value
+    unit:   qudt:hasUnit
+    kind:   hlo:hasEvidenceType, hlo:hasReferenceType
+    source: rdfs:comment
+  # The head of every entry file: entered_by becomes the performer of the entry's task.
+  file_fields:
+    entered_by: {classes: [cpo:CommissioningTask, cpo:LiteratureLookupTask, cpo:AssumptionTask]}
+  hints:
+    phase:          {classes: [cpo:Phase]}
+    air:            {classes: [cpo:Environment]}
+    body:           {classes: [cpo:BodyMaterial]}
+    preparation:    {classes: [cpo:OperationTask]}
+    receipt:        {classes: [cpo:CommissioningTask]}
+    transfers:      {classes: [cpo:OperationTask]}
+    first task:     {}
+    inverse:        {inverse: true}
+  # Fields whose property stands at another class than the rest of their type or module ("<type or module>.<field>"):
+  # a dimension at the form it belongs to, a mass or a state at the phase of a body, content or room air.
+  field_classes:
+    "device.length": [cpo:CuboidForm]
+    "device.width": [cpo:CuboidForm]
+    "device.diameter": [cpo:SolidCylinderForm]
+    "device.mass": [cpo:Phase]
+    "labware.wall": [cpo:CupForm]
+    "labware.inner_diameter": [cpo:AnnulusForm]
+    "laboratory.temperature": [cpo:Phase]
+    "laboratory.pressure": [cpo:Phase]
+    "content.solid_structure": [cpo:SolidPhase]
+    "prepared_content.solid_structure": [cpo:SolidPhase]
+  # Fields whose property stands on another level than the rest of their type: the exemplars of a labware
+  # entry specialize the template (they stand at the exemplars, Fixed).
+  field_levels:
+    "labware.template": [Fixed]
+    "labware.exemplars": [Fixed]
+  # Classes the target of an inverse field has (org:hasSite stands at the organization).
+  inverse_targets:
+    "site.organization": [org:Organization]
+    "labware.exemplars": [cpo:Vessel, cpo:ChemicalContainer, cpo:Lid, cpo:Septum]
+
+# Dimensions that stand at a form, not at the device or room that defines it.
+form_dimensions: [cpo:hasLength, cpo:hasWidth, cpo:hasHeight, cpo:hasDiameter, cpo:hasOuterDiameter, cpo:hasOuterHeight,
+                  cpo:hasInnerDiameter, cpo:hasWallThickness, cpo:hasInnerHeight, cpo:hasOuterVolume, cpo:hasInnerVolume]
+
+# ------------------------------------------------------------------------------------------------------------
+# Setup sheet (generator/interfaces/eln/sheet_schema.yaml): which class each module describes. The sheet holds
+# for the series; what can differ per experiment (values with experiment:, occurrences, empties) lands on the
+# experiment level as well.
+# ------------------------------------------------------------------------------------------------------------
+sheet:
+  levels: [Series, Experiment]
+  modules:
+    sheet:              {classes: [cpo:ExperimentalSeries]}
+    series:             {classes: [cpo:ExperimentalSeries]}
+    people:             {classes: [cpo:ExperimentalSeries, cpo:SingleExperiment]}
+    material:           {classes: [cpo:MaterialVolume]}
+    uncontained_stream: {classes: [cpo:Stream]}
+    phase:              {classes: [cpo:Phase]}
+    reaction:           {classes: [cpo:Reaction]}
+    task:               {classes: [cpo:Task]}
+    empty_mark:         {classes: [cpo:Task], levels: [Experiment]}
+    device_setting:     {classes: [cpo:Device]}
+    profile_step:       {classes: [cpo:ProfileStep]}
+    file:               {classes: [schema:MediaObject]}
+    value:              {classes: [hlo:Evidence, hlo:Reference]}
+    unknown:            {classes: [hlo:Actual]}
+    occurrence:         {classes: [cpo:Occurrence], levels: [Experiment]}
+    participant_transfer: {classes: [cpo:Transfer]}
+    occupation_state:     {classes: [cpo:OccupationState]}
+    elementary_reaction:  {classes: [cpo:ElementaryReaction]}
+  hints:
+    device:              {classes: [cpo:Device]}
+    reaction:            {classes: [cpo:Reaction]}
+    experiment:          {classes: [cpo:SingleExperiment], levels: [Experiment]}
+    "phase, experiment": {classes: [cpo:Phase], levels: [Experiment]}
+    # task.experiments: the task becomes part of the procedure of only these experiments
+    experiment procedure: {classes: [cpo:Task], levels: [Experiment]}
+    stream:              {classes: [cpo:Stream]}
+    time source:         {}
+    # task.empties ends a content of the inventory - in the Material and Device Library (rule 2.15)
+    content occurrence:  {classes: [cpo:Occurrence], levels: [Fixed]}
+    "ended, library container": {classes: [cpo:ChemicalContainer], levels: [Fixed]}
+    "ended, library content":   {classes: [cpo:MaterialVolume], levels: [Fixed]}
+    # device_setting.content: which content of the library the series content specializes
+    series content:      {classes: [cpo:MaterialVolume], levels: [Series]}
+    parent task:         {classes: [cpo:Task]}
+    value record:        {classes: [hlo:Evidence, hlo:Reference]}
+    port crossing:       {classes: [cpo:Transfer]}
+    pair:                {classes: [cpo:OccupationState]}
+    reaction transfer:   {classes: [cpo:Transfer]}
+    elementary reaction: {classes: [cpo:ElementaryReaction]}
+    profile:             {classes: [cpo:ProfileVariable]}
+    inverse:             {classes: [cpo:Task]}
+    change rate:         {classes: [cpo:ProfileStep]}
+    column:              {classes: [cpo:Column]}
+    phase:               {classes: [cpo:Phase], levels: [Experiment]}
+    interface:           {classes: [cpo:PhasePairInterface], levels: [Experiment]}
+    evidence:            {classes: [hlo:Evidence]}
+    reference:           {classes: [hlo:Reference]}
+    energy field:        {classes: [cpo:EnergyField], levels: [Experiment]}
+    transfer:            {classes: [cpo:Transfer], levels: [Experiment]}
+    number of:           {classes: [cpo:Phase, cpo:PhasePairInterface, cpo:Reaction, cpo:Transfer], levels: [Experiment]}
+    occurrence status:   {classes: [cpo:OccurrenceStatus], levels: [Experiment]}
+  # The quantity of a value (value.quantity, "(quantity)"): a quantity property of the place the value stands at.
+  quantity_places: [cpo:MaterialRepresentation, cpo:Phase, cpo:Device, cpo:Reaction, chebi:ChemicalEntity,
+                    cpo:ReactionParticipant, cpo:Task, cpo:Occurrence, cpo:Transfer, cpo:Form]
+
+# ------------------------------------------------------------------------------------------------------------
+# Questions of the generator, read from the answer files (projects/*/answers.txt): the segments of a key name
+# the thing (the last one before the question decides the class), the question_id what is asked. Questions
+# about a value (quantities_*, evidence_*, reference_*) are about the quantity they name.
+# ------------------------------------------------------------------------------------------------------------
+questions:
+  segments:
+    setup: cpo:ExperimentalSeries
+    series: cpo:ExperimentalSeries
+    experiment: cpo:SingleExperiment
+    task: cpo:Task
+    material: cpo:MaterialVolume
+    phase: cpo:Phase
+    species: chebi:ChemicalEntity
+    device: cpo:Device
+    body_material: cpo:BodyMaterial
+    environment: cpo:Environment
+    reaction: cpo:Reaction
+    participant: cpo:ReactionParticipant
+    phase_interface: cpo:PhaseInterface
+    phase_pair_interface: cpo:PhasePairInterface
+    cross_material_interface: cpo:PhasePairInterface
+    port_crossing: cpo:Transfer
+    transfer: cpo:Transfer
+    occurrence: cpo:Occurrence
+    status: cpo:OccurrenceStatus
+    media_object: schema:MediaObject
+    stream_port_ends: cpo:Stream
+    evidence: hlo:Evidence
+    reference: hlo:Reference
+    elementary_reaction: cpo:ElementaryReaction
+    occupation_state: cpo:OccupationState
+    participant_transfer: cpo:Transfer
+    profile_step: cpo:ProfileStep
+    interface: cpo:PhasePairInterface
+    bound_to_search: cpo:OccupationState
+    occupied_by_search: cpo:OccupationState
+  # Segments that only group (no thing of their own); "fixed" sets the level Fixed.
+  containers: [occurrences, place, transfer_follow_up, fixed, setup]
+  # question_id -> property ("-": steers the run, no property of its own). A class after "@" moves the row.
+  ids:
+    series_short_name: "@id"
+    number_of_conducted_experiments: dcterms:hasPart
+    number_of_planned_experiments: cpo:hasNumberOfPlannedExperiments
+    series_completed: cpo:isCompleted
+    series_description: schema:description
+    series_creator: cpo:hasCreator
+    series_experimenter: cpo:hasExperimenter
+    creator: cpo:hasCreator
+    experimenter: cpo:hasExperimenter
+    same_creator_for_all_experiments: "-"
+    same_experimenter_for_all_experiments: "-"
+    eln_record: schema:subjectOf
+    devices: "hlo:specializationOf @cpo:Device"
+    reactions: "cpo:hasOccurrence @cpo:Reaction"
+    contained_material_type: cpo:containsMaterial
+    library_content: cpo:containsMaterial
+    material_type: "@type @cpo:Stream"
+    additional_material_names: "-"
+    gaseous_phase_names: dcterms:hasPart
+    liquid_phase_names: dcterms:hasPart
+    solid_phase_names: dcterms:hasPart
+    species_names: dcterms:hasPart
+    absent_species: "dcterms:hasPart @cpo:Phase"
+    dispersion_state: cpo:hasDispersionState
+    solid_structure: cpo:hasSolidStructure
+    solvents: cpo:hasSolvent
+    same_solvent_across_experiments: "-"
+    energy_field_types: cpo:canCreateEnergyField
+    measured_ambient_fields: cpo:hasEnergyField
+    form_class: cpo:definesForm
+    sample_materials: sosa:isSampleOf
+    is_sample_of: sosa:isSampleOf
+    flows_from_port: "cpo:flowsFrom @cpo:Stream"
+    flows_to_port: "cpo:flowsTo @cpo:Stream"
+    crossing_stream_phases: "cpo:removesFromPhase @cpo:Transfer"
+    cross_material_pairs: cpo:hasPhaseInterface
+    occupation_state_names: cpo:hasOccupationState
+    opens_into_phase: cpo:addsToPhase
+    device_side_phase: cpo:removesFromPhase
+    location_kind: cpo:occursInPhase
+    location_phase: cpo:occursInPhase
+    location_interface: cpo:occursAtInterface
+    occurs_in_series: hlo:specializationOf
+    operation_mode: cpo:hasModeOfOperation
+    same_operation_mode_across_experiments: "-"
+    name: schema:name
+    description: schema:description
+    task_type: "@type"
+    functions: cpo:realizesFunction
+    equipment: cpo:usedEquipment
+    performers: cpo:performedBy
+    performed_by_scope: cpo:performedBy
+    software: cpo:usedSoftware
+    aims_at: cpo:aimsAt
+    acts_on: cpo:actsOn
+    executes_profile: cpo:executesProfile
+    input_values: cpo:hasInputValue
+    covered_by_existing: cpo:determines
+    parts: dcterms:hasPart
+    same_parts_in_all_experiments: "-"
+    extra_task_names: "-"
+    grouping_tasks: "-"
+    empties: "cpo:hasEndTime @cpo:Occurrence"
+    feature_of_interest: sosa:hasFeatureOfInterest
+    observed: sosa:hasFeatureOfInterest
+    time_sources: schema:description
+    time_source_specification: schema:description
+    generated_media_objects: cpo:generatedMediaObject
+    creator_kind: cpo:hasCreator
+    creator_person: cpo:hasCreator
+    generated_by_task: cpo:generatedBy
+    which_task: cpo:generatedBy
+    reference_column_header: "cpo:hasReferenceColumn @cpo:Column"
+    media_object_type: "@type"
+    number_of_occurrences: cpo:hasOccurrence
+    status_source: cpo:hasOccurrenceStatus
+    transfer_places: "-"
+    transfers: "cpo:hasOccurrence @cpo:Transfer"
+    phases: "cpo:hasOccurrence @cpo:Phase"
+    interfaces: "cpo:hasOccurrence @cpo:PhasePairInterface"
+    energy_fields: "cpo:hasOccurrence @cpo:EnergyField"
+    which_profile: cpo:executesProfile
+    occupation_state: cpo:hasOccupationState
+    target_interface: cpo:belongsToInterface
+    is_free_site: cpo:occupiedBy
+    has_bound_to: cpo:boundTo
+    bound_to_quick_pick: cpo:boundTo
+    occupied_by_quick_pick: cpo:occupiedBy
+    sorption_type: cpo:hasSorptionType
+    identifier_field: "-"
+    identifier_value: "-"
+    phase: cpo:involvesTransfer
+    transfer_type: cpo:hasTransferType
+  # Questions of a value record (segment evidence:<n> / reference:<n>, or the plain question after a quantity):
+  # they are about the evidence or reference itself.
+  value_ids:
+    exists: "-"
+    type: hlo:hasEvidenceType, hlo:hasReferenceType
+    value_type: "@type"
+    variable_kind: "@type"
+    scalar_value: qudt:value
+    scalar_unit: qudt:hasUnit
+    exactness: hlo:hasLowerBound, hlo:hasUpperBound
+    timestamp: rdf:value
+    duration_value: rdf:value
+    duration_unit: qudt:hasUnit
+    series_column: cpo:hasDataReference
+    source: hlo:hasSource
+    quantity_kind: qudt:hasQuantityKind
+    have_another_evidence: "-"
+    have_another_reference: "-"
+    lower_bound: hlo:hasLowerBound
+    upper_bound: hlo:hasUpperBound
+    bounds_unit: qudt:hasUnit
+    profile_unit: qudt:hasUnit
+    profile_step_kind: "dcterms:hasPart @cpo:ProfileVariable"
+    profile_step_duration: "dcterms:hasPart @cpo:ProfileVariable"
+    profile_start_value_value: "dcterms:hasPart @cpo:ProfileVariable"
+    profile_end_value_value: "dcterms:hasPart @cpo:ProfileVariable"
+    profile_hold_value_value: "dcterms:hasPart @cpo:ProfileVariable"
+    profile_change_rate_value: "dcterms:hasPart @cpo:ProfileVariable"
+    profile_add_another_step: "-"
+  # Quantity names whose property lies elsewhere than "has" + the name (normalized, without "_").
+  quantity_names:
+    status: cpo:hasOccurrenceStatus
+    starttime: cpo:hasStartTime
+    endtime: cpo:hasEndTime
+    times: cpo:hasStartTime
+    form: cpo:definesForm
+
+# ------------------------------------------------------------------------------------------------------------
+# check_library_consistency.py: what its checks ask for, by hand (the checks are code, not data). Level Fixed
+# unless named; "required" = the check reports its absence, "constraint" = it checks the value.
+# ------------------------------------------------------------------------------------------------------------
+checks:
+  - {class: cpo:ChemicalContainer, property: cpo:hasContainedMaterialHistory, kind: required, check: "Containers of the inventory", note: "or cpo:containsMaterial; not for a template"}
+  - {class: cpo:ChemicalContainer, property: cpo:locatedInsideOf, kind: required, check: "Containers of the inventory", note: "a cabinet of the libraries that lies in a room"}
+  - {class: cpo:ChemicalContainer, property: cpo:hasDeliveryTime, kind: constraint, check: "Containers of the inventory", note: "the start of the first content's occurrence, with a value"}
+  - {class: cpo:ChemicalContainer, property: cpo:hasOpeningTime, kind: constraint, check: "Containers of the inventory", note: "with a value"}
+  - {class: cpo:MaterialVolume, property: cpo:hasLotNumber, kind: required, check: "Containers of the inventory", note: "the content of a container of the inventory"}
+  - {class: cpo:Phase, property: cpo:hasOccurrence, kind: required, check: "Containers of the inventory", note: "a phase of the content of a container of the inventory, with a start that has a value"}
+  - {class: cpo:StorageCabinet, property: cpo:locatedInsideOf, kind: required, check: "Containers of the inventory", note: "a room"}
+  - {class: cpo:Device, property: cpo:hasUsageHistory, kind: required, check: "Usage histories (rule 5.5)", note: "starts with a cpo:CommissioningTask; not for a template or a single-use item"}
+  - {class: cpo:Device, property: cpo:hasContainedMaterialHistory, kind: constraint, check: "Contents of a device (rule 2.15)", note: "lists every content; cpo:containsMaterial is its last"}
+  - {class: cpo:Device, property: cpo:containsMaterial, kind: constraint, check: "Contents of a device (rule 2.15)", note: "at most one, the last of the history, not ended"}
+  - {class: cpo:MaterialVolume, property: cpo:materialContainedIn, kind: constraint, check: "Contents of a device (rule 2.15)", note: "only the current content points back"}
+  - {class: cpo:Port, property: cpo:isConnectedTo, kind: constraint, check: "Joints", note: "both ports name each other, of two different devices"}
+  - {class: cpo:LiquidPhase, property: cpo:hasSolvent, kind: constraint, check: "Solvents (rule 3.12)", note: "a dcterms:hasPart of the same phase; only a liquid phase", levels: [Fixed, Series, Experiment]}
+  - {class: chebi:ChemicalEntity, property: cpo:hasCAS, kind: constraint, check: "CAS check digit (rule 2.8)"}
+  - {class: hlo:Actual, property: rdf:value, kind: ban, check: "Rule 4.1", note: "no value on an Actual"}
+  - {class: hlo:Evidence, property: cpo:hasDeterminationTask, kind: required, check: "Rule 4.1", note: "and the task names it back (cpo:determines)"}
+  - {class: hlo:Reference, property: cpo:hasDeterminationTask, kind: required, check: "Rule 4.1", note: "and the task names it back (cpo:determines)"}
+  - {class: cpo:StoichiometricReaction, property: cpo:hasParticipant, kind: constraint, check: "Balance of atoms and charge", note: "also in the crates (Series)", levels: [Template, Fixed, Series]}
+  - {class: cpo:PhasePairInterface, property: cpo:hasTransfer, kind: required, check: "Interfaces without transfers (rule 3b.2)", note: "unless one phase is inert", levels: [Series]}

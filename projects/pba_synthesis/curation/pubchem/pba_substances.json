@@ -1,0 +1,164 @@
+[
+ {
+  "name": "Potassium ferrocyanide",
+  "query_smiles": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[K+].[K+].[K+].[K+].[Fe+2]",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 9929184,
+  "MolecularFormula": "C6FeK4N6",
+  "MolecularWeight": "368.34",
+  "ConnectivitySMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[K+].[K+].[K+].[K+].[Fe+2]",
+  "InChI": "InChI=1S/6CN.Fe.4K/c6*1-2;;;;;/q6*-1;+2;4*+1",
+  "InChIKey": "XOGGUFAVLNCTRS-UHFFFAOYSA-N",
+  "IUPACName": "tetrapotassium;iron(2+);hexacyanide",
+  "Title": "Potassium ferrocyanide [MI]",
+  "cas_candidates": []
+ },
+ {
+  "name": "Potassium ferricyanide",
+  "query_smiles": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[K+].[K+].[K+].[Fe+3]",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 6093276,
+  "MolecularFormula": "C6FeK3N6",
+  "MolecularWeight": "329.24",
+  "ConnectivitySMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[K+].[K+].[K+].[Fe+3]",
+  "InChI": "InChI=1S/6CN.Fe.3K/c6*1-2;;;;/q6*-1;+3;3*+1",
+  "InChIKey": "BYGOPQKDHGXNCD-UHFFFAOYSA-N",
+  "IUPACName": "tripotassium;iron(3+);hexacyanide",
+  "Title": "Tripotassium iron(3+) hexacyanide",
+  "cas_candidates": []
+ },
+ {
+  "name": "Potassium chloride",
+  "query_smiles": "[Cl-].[K+]",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 4873,
+  "MolecularFormula": "ClK",
+  "MolecularWeight": "74.55",
+  "ConnectivitySMILES": "[Cl-].[K+]",
+  "InChI": "InChI=1S/ClH.K/h1H;/q;+1/p-1",
+  "InChIKey": "WCUXLLCKKVVCTQ-UHFFFAOYSA-M",
+  "IUPACName": "potassium chloride",
+  "Title": "Potassium Chloride",
+  "cas_candidates": [
+   "7447-40-7",
+   "14336-88-0"
+  ]
+ },
+ {
+  "name": "Manganese(II) chloride",
+  "query_smiles": "Cl[Mn]Cl",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 24480,
+  "MolecularFormula": "Cl2Mn",
+  "MolecularWeight": "125.84",
+  "ConnectivitySMILES": "Cl[Mn]Cl",
+  "InChI": "InChI=1S/2ClH.Mn/h2*1H;/q;;+2/p-2",
+  "InChIKey": "GLFNIEUTAYBVOC-UHFFFAOYSA-L",
+  "IUPACName": "dichloromanganese",
+  "Title": "Manganese (II) chloride",
+  "cas_candidates": []
+ },
+ {
+  "name": "Iron(II) chloride",
+  "query_smiles": "Cl[Fe]Cl",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 24458,
+  "MolecularFormula": "Cl2Fe",
+  "MolecularWeight": "126.75",
+  "ConnectivitySMILES": "Cl[Fe]Cl",
+  "InChI": "InChI=1S/2ClH.Fe/h2*1H;/q;;+2/p-2",
+  "InChIKey": "NMCUIPGRVMDVDB-UHFFFAOYSA-L",
+  "IUPACName": "dichloroiron",
+  "Title": "Ferrous Chloride",
+  "cas_candidates": [
+   "7758-94-3"
+  ]
+ },
+ {
+  "name": "Cobalt(II) chloride",
+  "query_smiles": "Cl[Co]Cl",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 24288,
+  "MolecularFormula": "Cl2Co",
+  "MolecularWeight": "129.84",
+  "ConnectivitySMILES": "Cl[Co]Cl",
+  "InChI": "InChI=1S/2ClH.Co/h2*1H;/q;;+2/p-2",
+  "InChIKey": "GVPFVAHMJGGAJG-UHFFFAOYSA-L",
+  "IUPACName": "dichlorocobalt",
+  "Title": "Cobaltchloride",
+  "cas_candidates": []
+ },
+ {
+  "name": "Nickel(II) chloride",
+  "query_smiles": "Cl[Ni]Cl",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 24385,
+  "MolecularFormula": "Cl2Ni",
+  "MolecularWeight": "129.60",
+  "ConnectivitySMILES": "Cl[Ni]Cl",
+  "InChI": "InChI=1S/2ClH.Ni/h2*1H;/q;;+2/p-2",
+  "InChIKey": "QMMRZOWCJAIUJA-UHFFFAOYSA-L",
+  "IUPACName": "dichloronickel",
+  "Title": "Nickel Dichloride",
+  "cas_candidates": [
+   "7718-54-9",
+   "37211-05-5"
+  ]
+ },
+ {
+  "name": "Copper(II) chloride",
+  "query_smiles": "Cl[Cu]Cl",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 24014,
+  "MolecularFormula": "Cl2Cu",
+  "MolecularWeight": "134.45",
+  "ConnectivitySMILES": "Cl[Cu]Cl",
+  "InChI": "InChI=1S/2ClH.Cu/h2*1H;/q;;+2/p-2",
+  "InChIKey": "ORTQZVOHEJQUHG-UHFFFAOYSA-L",
+  "IUPACName": "dichlorocopper",
+  "Title": "Cupric Chloride",
+  "cas_candidates": [
+   "7447-39-4"
+  ]
+ },
+ {
+  "name": "Zinc chloride",
+  "query_smiles": "Cl[Zn]Cl",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 5727,
+  "MolecularFormula": "Cl2Zn",
+  "MolecularWeight": "136.3",
+  "ConnectivitySMILES": "Cl[Zn]Cl",
+  "InChI": "InChI=1S/2ClH.Zn/h2*1H;/q;;+2/p-2",
+  "InChIKey": "JIAARYAFYJHUJI-UHFFFAOYSA-L",
+  "IUPACName": "dichlorozinc",
+  "Title": "Zinc Chloride",
+  "cas_candidates": [
+   "7646-85-7"
+  ]
+ },
+ {
+  "name": "Nickel hexacyanoferrate(II)",
+  "query_smiles": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2].[Ni+2].[Ni+2]",
+  "looked_up": "2026-10-05",
+  "found": true,
+  "CID": 6101841,
+  "MolecularFormula": "C6FeN6Ni2",
+  "MolecularWeight": "329.34",
+  "ConnectivitySMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2].[Ni+2].[Ni+2]",
+  "InChI": "InChI=1S/6CN.Fe.2Ni/c6*1-2;;;/q6*-1;3*+2",
+  "InChIKey": "SWODCICMZQPBPU-UHFFFAOYSA-N",
+  "IUPACName": "iron(2+);bis(nickel(2+));hexacyanide",
+  "Title": "Iron(2+) nickel(2+) cyanide (1/2/6)",
+  "cas_candidates": []
+ }
+]

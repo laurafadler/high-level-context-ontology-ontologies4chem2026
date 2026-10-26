@@ -1,0 +1,78 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R2",
+    "record_url": null,
+    "record_uuid": "ccfbabbe-963d-40c0-aba5-29ac2e3b7164"
+  },
+  "experiment": {
+    "title": null,
+    "status": null,
+    "completed": null,
+    "entry_created": "2026-04-17T05:23:53.928Z",
+    "entry_modified": "2026-04-17T05:23:54.042Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": null,
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S//d+/u1-0-0",
+    "rinchi_long_key": "Long-RInChIKey=SA-FUHFF-MOSFIJXAXDLOML-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "Spruce Wood — Analytical Subsample",
+      "sample_label": "LCJ-29-1",
+      "sample_id": "3aa63c24-8174-4bbd-a970-6bfbf3af4532",
+      "split_from": "LCJ-29",
+      "description": "~1 g subsample from SPRUCE-2025-03 for compositional analysis.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": true,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "equivalents": null
+    }
+  ],
+  "conditions": [],
+  "results": [],
+  "procedure": {
+    "text": "",
+    "steps": []
+  },
+  "notes": [],
+  "files": [],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": []
+  }
+}

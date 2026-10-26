@@ -1,0 +1,2799 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "chem": "https://example.org/chemical_entity/",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "task": "https://example.org/task/",
+    "time": "http://www.w3.org/2006/time#",
+    "person": "https://example.org/person/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "reaction": "https://example.org/reaction/"
+  },
+  "@graph": [
+    {
+      "@id": "chem:Molecule_0001_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0001_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0001_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula H2 (2xH) with the IUPAC 2021 standard atomic weights: 2.016 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "2.016",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0002_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0002_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0002_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula Pt (1xPt) with the IUPAC 2021 standard atomic weights: 195.084 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "195.084",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0003_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0003_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0003_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula H2O (2xH + 1xO) with the IUPAC 2021 standard atomic weights: 18.015 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "18.015",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0004_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0004_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0004_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C3H8O (3xC + 8xH + 1xO) with the IUPAC 2021 standard atomic weights: 60.096 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "60.096",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0005_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0005_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0005_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula O2 (2xO) with the IUPAC 2021 standard atomic weights: 31.998 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "31.998",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0006_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0006_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0006_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula N2 (2xN) with the IUPAC 2021 standard atomic weights: 28.014 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "28.014",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0007_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0007_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0007_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C6H16N2 (6xC + 16xH + 2xN) with the IUPAC 2021 standard atomic weights: 116.208 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "116.208",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0008_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0008_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0008_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C6H8N2 (6xC + 8xH + 2xN) with the IUPAC 2021 standard atomic weights: 108.144 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "108.144",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Atom_0001_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Atom_0001_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Atom_0001_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula H (1xH) with the IUPAC 2021 standard atomic weights: 1.008 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "1.008",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0009_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0009_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0009_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C6H10N2 (6xC + 10xH + 2xN) with the IUPAC 2021 standard atomic weights: 110.16 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "110.16",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0010_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0010_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0010_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C6H12N2 (6xC + 12xH + 2xN) with the IUPAC 2021 standard atomic weights: 112.176 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "112.176",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0011_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0011_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0011_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C6H14N2 (6xC + 14xH + 2xN) with the IUPAC 2021 standard atomic weights: 114.192 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "114.192",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0012_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0012_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0012_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C12H23N3 (12xC + 23xH + 3xN) with the IUPAC 2021 standard atomic weights: 209.337 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "209.337",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0013_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:Molecule_0013_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0013_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C12H27N3 (12xC + 27xH + 3xN) with the IUPAC 2021 standard atomic weights: 213.369 g/mol. Not measured - a molar mass follows from the formula, so it is recorded as calculated rather than as a literature value. Recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "213.369",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "task:assuming_chemical_entity_library_task_times",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming when the chemical entity values were worked out",
+      "schema:description": "None of the calculations behind the chemical entity library values was recorded with a time. Their tasks are therefore stamped with the moment the tasks themselves were written into the library - an upper bound, not the moment the work happened. This task's own start time is among them.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_chemical_entity_library_task_times_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_chemical_entity_library_task_times_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_chemical_entity_library_task_times_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "task:assuming_chemical_entity_library_task_times_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_molar_masses_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_ai4green_ai4_001_substances_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_amidation_byproducts_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_ammonia_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_elabftw_7849_substances_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_pba_substances_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_chemotion_rcf_substances_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_pba_ions_and_hydrates_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_substance_20261007_2242_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_substance_20261008_1741_StartTime_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:assuming_chemical_entity_library_task_times_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_chemical_entity_library_task_times_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_chemical_entity_library_task_times_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_chemical_entity_library_task_times_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_chemical_entity_library_task_times_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Stamped with the moment the tasks of this library were written down (2026-09-26T14:06:58Z).",
+      "rdf:value": {
+        "@value": "2026-09-26T14:06:58Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_molar_masses",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Summing the molar masses from the molecular formulas",
+      "schema:description": "Each molar mass summed from the molecular formula with the IUPAC 2021 standard atomic weights.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_molar_masses_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_molar_masses_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_molar_masses_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:Molecule_0001_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0002_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0003_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0004_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0005_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0006_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0007_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0008_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Atom_0001_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0009_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0010_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0011_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0012_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:Molecule_0013_MolarMass_Evidence_1"
+        },
+        {
+          "@id": "chem:NickelManganeseHexacyanoferrateII_MolarMass_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:calculating_molar_masses_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_molar_masses_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_molar_masses_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_molar_masses_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_molar_masses_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. The values were already in the library, their task was only written down later; stamped with that moment (2026-09-26T14:06:58Z) - an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-26T14:06:58Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0014_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Molecule_0014_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0014_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/243",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 243), computed there from the molecular formula C7H6O2.",
+      "qudt:value": {
+        "@value": "122.12",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0015_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Molecule_0015_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0015_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/6341",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 6341), computed there from the molecular formula C2H7N.",
+      "qudt:value": {
+        "@value": "45.08",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0016_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Molecule_0016_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0016_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/7912",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 7912), computed there from the molecular formula C6H15N.",
+      "qudt:value": {
+        "@value": "101.19",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0017_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Molecule_0017_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0017_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/9886157",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 9886157), computed there from the molecular formula C10H15F6N6OP.",
+      "qudt:value": {
+        "@value": "380.23",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0018_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Molecule_0018_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0018_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/6228",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 6228), computed there from the molecular formula C3H7NO.",
+      "qudt:value": {
+        "@value": "73.09",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0019_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Molecule_0019_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0019_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/11959",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 11959), computed there from the molecular formula C9H11NO.",
+      "qudt:value": {
+        "@value": "149.19",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances"
+      }
+    },
+    {
+      "@id": "task:looking_up_ai4green_ai4_001_substances",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the substances of the AI4Green record AI4-001 on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight of the six substances of the amidation AI4-001, looked up on PubChem by the SMILES the ELN gives; CAS numbers from the PubChem synonyms.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:Molecule_0014_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Molecule_0015_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Molecule_0016_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Molecule_0017_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Molecule_0018_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Molecule_0019_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_ai4green_ai4_001_substances_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_ai4green_ai4_001_substances_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_ai4green_ai4_001_substances_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the inventory entries were written down (2026-09-28T21:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-09-28T21:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_ai4green_ai4_001_substances_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_ai4green_ai4_001_substances_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:HOAt_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:HOAt_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:HOAt_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/181649",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 181649), computed there from the molecular formula C5H4N4O.",
+      "qudt:value": {
+        "@value": "136.11",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_amidation_byproducts"
+      }
+    },
+    {
+      "@id": "chem:Tetramethylurea_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Tetramethylurea_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Tetramethylurea_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/12437",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 12437), computed there from the molecular formula C5H12N2O.",
+      "qudt:value": {
+        "@value": "116.16",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_amidation_byproducts"
+      }
+    },
+    {
+      "@id": "chem:Diisopropylammonium_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Diisopropylammonium_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Diisopropylammonium_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/4667801",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 4667801), computed there from the molecular formula C6H16N+.",
+      "qudt:value": {
+        "@value": "102.2",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_amidation_byproducts"
+      }
+    },
+    {
+      "@id": "chem:Hexafluorophosphate_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Hexafluorophosphate_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Hexafluorophosphate_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/9886",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 9886), computed there from the molecular formula F6P-.",
+      "qudt:value": {
+        "@value": "144.964181",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_amidation_byproducts"
+      }
+    },
+    {
+      "@id": "task:looking_up_amidation_byproducts",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the by-products of the amidation AI4-001 on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight of the by-products of the HATU coupling, looked up on PubChem by SMILES written by curation (the ELN does not name them); query run by Claude Code with tools/pubchem_lookup.py. The salt diisopropylammonium hexafluorophosphate is not on PubChem; its two ions were looked up instead. CAS numbers chosen from the PubChem synonyms by a person.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_amidation_byproducts_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_amidation_byproducts_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_amidation_byproducts_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:HOAt_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Tetramethylurea_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Diisopropylammonium_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Hexafluorophosphate_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_amidation_byproducts_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_amidation_byproducts_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_amidation_byproducts_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the inventory entries were written down (2026-09-29T13:59:22Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-09-29T13:59:22Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_amidation_byproducts_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_amidation_byproducts_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:Ammonia_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Ammonia_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Ammonia_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/222",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 222), computed there from the molecular formula H3N.",
+      "qudt:value": {
+        "@value": "17.031",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_ammonia"
+      }
+    },
+    {
+      "@id": "task:looking_up_ammonia",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up ammonia on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight of ammonia, the by-product of the dimerisations of the hydrogenation, looked up on PubChem by its SMILES; query run by Claude Code with tools/pubchem_lookup.py. CAS number chosen from the PubChem synonyms by a person.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_ammonia_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_ammonia_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_ammonia_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:Ammonia_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_ammonia_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_ammonia_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_ammonia_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the inventory entries were written down (2026-09-29T16:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-09-29T16:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_ammonia_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_ammonia_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:FurandicarboxylicAcid_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:FurandicarboxylicAcid_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:FurandicarboxylicAcid_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/76720",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 76720), computed there from the molecular formula C6H4O5.",
+      "qudt:value": {
+        "@value": "156.09",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_elabftw_7849_substances"
+      }
+    },
+    {
+      "@id": "chem:ThionylChloride_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:ThionylChloride_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:ThionylChloride_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/24386",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 24386), computed there from the molecular formula Cl2OS.",
+      "qudt:value": {
+        "@value": "118.97",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_elabftw_7849_substances"
+      }
+    },
+    {
+      "@id": "chem:FurandicarbonylDichloride_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:FurandicarbonylDichloride_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:FurandicarbonylDichloride_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/11480968",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 11480968), computed there from the molecular formula C6H2Cl2O3.",
+      "qudt:value": {
+        "@value": "192.98",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_elabftw_7849_substances"
+      }
+    },
+    {
+      "@id": "chem:HydrogenChloride_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:HydrogenChloride_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:HydrogenChloride_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/313",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 313), computed there from the molecular formula ClH.",
+      "qudt:value": {
+        "@value": "36.46",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_elabftw_7849_substances"
+      }
+    },
+    {
+      "@id": "chem:SulfurDioxide_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:SulfurDioxide_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:SulfurDioxide_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/1119",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 1119), computed there from the molecular formula O2S.",
+      "qudt:value": {
+        "@value": "64.07",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_elabftw_7849_substances"
+      }
+    },
+    {
+      "@id": "chem:Hexane_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Hexane_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Hexane_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/8058",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 8058), computed there from the molecular formula C6H14.",
+      "qudt:value": {
+        "@value": "86.18",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_elabftw_7849_substances"
+      }
+    },
+    {
+      "@id": "task:looking_up_elabftw_7849_substances",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the substances of the eLabFTW record 7849 on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight of the six new substances of the FDCA-Cl2 synthesis (eLabFTW record 7849), looked up on PubChem by SMILES written by curation - the record names the substances only in its free text; query run by Claude Code with generator/interfaces/pubchem/pubchem_lookup.py on 03.10.2026. CAS numbers chosen from the PubChem synonyms.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_elabftw_7849_substances_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_elabftw_7849_substances_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_elabftw_7849_substances_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:FurandicarboxylicAcid_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:ThionylChloride_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:FurandicarbonylDichloride_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:HydrogenChloride_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:SulfurDioxide_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Hexane_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_elabftw_7849_substances_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_elabftw_7849_substances_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_elabftw_7849_substances_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries were written down (2026-10-03T01:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-03T01:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_elabftw_7849_substances_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_elabftw_7849_substances_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:NickelHexacyanoferrateII_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:NickelHexacyanoferrateII_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:NickelHexacyanoferrateII_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/6101841",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 6101841), computed there from the molecular formula C6FeN6Ni2.",
+      "qudt:value": {
+        "@value": "329.34",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_substances"
+      }
+    },
+    {
+      "@id": "chem:NickelManganeseHexacyanoferrateII_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "chem:NickelManganeseHexacyanoferrateII_MolarMass_Evidence_1"
+      }
+    },
+    {
+      "@id": "chem:NickelManganeseHexacyanoferrateII_MolarMass_Evidence_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Summed from the molecular formula C6FeMnN6Ni with the IUPAC 2021 standard atomic weights: 6 x 12.011 + 55.845 + 54.938 + 6 x 14.007 + 58.693 = 325.584 g/mol. Not measured - recompute if cpo:hasMolecularFormula changes.",
+      "qudt:value": {
+        "@value": "325.584",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_molar_masses"
+      }
+    },
+    {
+      "@id": "task:looking_up_pba_substances",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the substances of the PBA series on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight of the hexacyanoferrates, the metal chlorides, potassium chloride and nickel hexacyanoferrate(II), looked up on PubChem by SMILES written by curation (generator/interfaces/pubchem/pubchem_lookup.py, run by Claude Code on 05.10.2026); for four salts the record with the CAS number found by name. The nine anhydrous salts (hexacyanoferrates, metal chlorides, potassium chloride) were removed on 07.10.2026 (projects/pba_synthesis/curation/archive/remove_anhydrous_salts.py): unused since the chemistry became net-ionic - the salts are weighed in as hydrates.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_pba_substances_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_pba_substances_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_pba_substances_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:NickelHexacyanoferrateII_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_pba_substances_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_pba_substances_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_pba_substances_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries were written down (2026-10-05T21:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-05T21:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_pba_substances_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_pba_substances_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:Methanol_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Methanol_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Methanol_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/887",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 887), computed there from the molecular formula CH4O.",
+      "qudt:value": {
+        "@value": "32.042",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_chemotion_rcf_substances"
+      }
+    },
+    {
+      "@id": "chem:Palladium_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Palladium_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Palladium_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/23938",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 23938), computed there from the molecular formula Pd.",
+      "qudt:value": {
+        "@value": "106.42",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_chemotion_rcf_substances"
+      }
+    },
+    {
+      "@id": "chem:Propylguaiacol_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Propylguaiacol_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Propylguaiacol_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/17739",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 17739), computed there from the molecular formula C10H14O2.",
+      "qudt:value": {
+        "@value": "166.22",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_chemotion_rcf_substances"
+      }
+    },
+    {
+      "@id": "task:looking_up_chemotion_rcf_substances",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the substances of the Chemotion records LCJ-R5 and LCJ-R8 on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight of methanol, palladium and 4-propylguaiacol, looked up on PubChem by SMILES written by curation - the records name methanol and the catalyst only in their free text; query run by Claude Code with generator/interfaces/pubchem/pubchem_lookup.py on 05.10.2026.",
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_chemotion_rcf_substances_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_chemotion_rcf_substances_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_chemotion_rcf_substances_Duration"
+      },
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:determines": [
+        {
+          "@id": "chem:Methanol_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Palladium_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Propylguaiacol_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_chemotion_rcf_substances_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_chemotion_rcf_substances_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_chemotion_rcf_substances_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries were written down (2026-10-05T21:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-05T21:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_chemotion_rcf_substances_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_chemotion_rcf_substances_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:PotassiumIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:PotassiumIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:PotassiumIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/813",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 813), computed there from the molecular formula K+.",
+      "qudt:value": {
+        "@value": "39.0983",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:ChlorideIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:ChlorideIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:ChlorideIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/312",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 312), computed there from the molecular formula Cl-.",
+      "qudt:value": {
+        "@value": "35.45",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:Manganese2PlusIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Manganese2PlusIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Manganese2PlusIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/27854",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 27854), computed there from the molecular formula Mn+2.",
+      "qudt:value": {
+        "@value": "54.93804",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:Iron2PlusIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Iron2PlusIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Iron2PlusIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/27284",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 27284), computed there from the molecular formula Fe+2.",
+      "qudt:value": {
+        "@value": "55.84",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:Cobalt2PlusIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Cobalt2PlusIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Cobalt2PlusIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/104729",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 104729), computed there from the molecular formula Co+2.",
+      "qudt:value": {
+        "@value": "58.93319",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:Nickel2PlusIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Nickel2PlusIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Nickel2PlusIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/934",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 934), computed there from the molecular formula Ni+2.",
+      "qudt:value": {
+        "@value": "58.693",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:Copper2PlusIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Copper2PlusIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Copper2PlusIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/27099",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 27099), computed there from the molecular formula Cu+2.",
+      "qudt:value": {
+        "@value": "63.55",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:Zinc2PlusIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:Zinc2PlusIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:Zinc2PlusIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/32051",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 32051), computed there from the molecular formula Zn+2.",
+      "qudt:value": {
+        "@value": "65.4",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:FerrocyanideIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:FerrocyanideIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:FerrocyanideIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/25959",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 25959), computed there from the molecular formula C6FeN6-4.",
+      "qudt:value": {
+        "@value": "211.95",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:FerricyanideIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:FerricyanideIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:FerricyanideIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/439210",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 439210), computed there from the molecular formula C6FeN6-3.",
+      "qudt:value": {
+        "@value": "211.95",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:PotassiumFerrocyanideTrihydrate_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:PotassiumFerrocyanideTrihydrate_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:PotassiumFerrocyanideTrihydrate_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/161067",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 161067), computed there from the molecular formula C6H6FeK4N6O3.",
+      "qudt:value": {
+        "@value": "422.39",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "chem:NickelIIChlorideHexahydrate_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:NickelIIChlorideHexahydrate_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:NickelIIChlorideHexahydrate_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/24645",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 24645), computed there from the molecular formula Cl2H12NiO6.",
+      "qudt:value": {
+        "@value": "237.69",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_pba_ions_and_hydrates"
+      }
+    },
+    {
+      "@id": "task:looking_up_pba_ions_and_hydrates",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the ions and hydrates of the PBA series on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight of the ions of the PBA series and of the hydrates weighed in, looked up on PubChem by SMILES written by curation (generator/interfaces/pubchem/pubchem_lookup.py, run by Claude Code on 06.10.2026); for two the record with the CAS number found by name, for the ferrocyanide ion the CAS number from Wikipedia. Manganese(II) chloride tetrahydrate was removed on 08.10.2026 with its molar mass: Manganese(II) nitrate instead of the chloride since 08.10.2026 (projects/pba_synthesis/curation/archive/switch_pba_manganese_to_nitrate.py): the salt of 10 April 2026 is not recorded, the only one the files name is Mn(NO3)2 (run log of 12.03.2026); the tetrahydrate is assumed - Laura Fadler and Meng Kong, 08.10.2026.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_pba_ions_and_hydrates_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_pba_ions_and_hydrates_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_pba_ions_and_hydrates_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:PotassiumIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:ChlorideIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Manganese2PlusIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Iron2PlusIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Cobalt2PlusIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Nickel2PlusIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Copper2PlusIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:Zinc2PlusIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:FerrocyanideIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:FerricyanideIon_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:PotassiumFerrocyanideTrihydrate_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:NickelIIChlorideHexahydrate_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_pba_ions_and_hydrates_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_pba_ions_and_hydrates_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_pba_ions_and_hydrates_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries were written down (2026-10-06T14:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-06T14:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_pba_ions_and_hydrates_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_pba_ions_and_hydrates_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:SulfuricAcid_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:SulfuricAcid_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:SulfuricAcid_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/1118",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 1118), computed there from the molecular formula H2O4S.",
+      "qudt:value": {
+        "@value": "98.08",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_substance_20261007_2242"
+      }
+    },
+    {
+      "@id": "task:looking_up_substance_20261007_2242",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the substances of substance_20261007_2242.yaml on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight looked up on PubChem by SMILES (generator/interfaces/pubchem/pubchem_lookup.py; answers in substance_20261007_2242_pubchem.json); entries written with generator/workflow/library_entries/finish_library_entry.py from projects/pba_synthesis/curation/library_entries/substance_20261007_2242.yaml.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_substance_20261007_2242_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_substance_20261007_2242_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_substance_20261007_2242_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:SulfuricAcid_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_substance_20261007_2242_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_substance_20261007_2242_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_substance_20261007_2242_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries of substance_20261007_2242.yaml were written down (2026-10-07T21:42:51Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-07T21:42:51Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_substance_20261007_2242_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_substance_20261007_2242_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "chem:ManganeseIINitrateTetrahydrate_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:ManganeseIINitrateTetrahydrate_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:ManganeseIINitrateTetrahydrate_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/182616",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 182616), computed there from the molecular formula H8MnN2O10.",
+      "qudt:value": {
+        "@value": "251.01",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_substance_20261008_1741"
+      }
+    },
+    {
+      "@id": "chem:NitrateIon_MolarMass",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MolarMass"
+      },
+      "hlo:hasReference": {
+        "@id": "chem:NitrateIon_MolarMass_Reference_1"
+      }
+    },
+    {
+      "@id": "chem:NitrateIon_MolarMass_Reference_1",
+      "@type": [
+        "cpo:Parameter",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "https://pubchem.ncbi.nlm.nih.gov/compound/943",
+      "rdfs:comment": "Molecular weight given by PubChem (CID 943), computed there from the molecular formula NO3-.",
+      "qudt:value": {
+        "@value": "62.005",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:GM-PER-MOL"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_substance_20261008_1741"
+      }
+    },
+    {
+      "@id": "task:looking_up_substance_20261008_1741",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the substances of substance_20261008_1741.yaml on PubChem",
+      "schema:description": "Identifiers, molecular formula and molecular weight looked up on PubChem by SMILES (generator/interfaces/pubchem/pubchem_lookup.py; answers in substance_20261008_1741_pubchem.json); entries written with generator/workflow/library_entries/finish_library_entry.py from projects/pba_synthesis/curation/library_entries/substance_20261008_1741.yaml.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_substance_20261008_1741_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_substance_20261008_1741_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_substance_20261008_1741_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "chem:ManganeseIINitrateTetrahydrate_MolarMass_Reference_1"
+        },
+        {
+          "@id": "chem:NitrateIon_MolarMass_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_substance_20261008_1741_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_substance_20261008_1741_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_substance_20261008_1741_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries of substance_20261008_1741.yaml were written down (2026-10-08T16:41:57Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-08T16:41:57Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_chemical_entity_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_substance_20261008_1741_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_substance_20261008_1741_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    }
+  ]
+}

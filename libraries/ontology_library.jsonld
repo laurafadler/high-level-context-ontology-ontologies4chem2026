@@ -1,0 +1,265 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "ontology": "https://example.org/ontology/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "time": "http://www.w3.org/2006/time#",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  },
+  "@graph": [
+    {
+      "@id": "ontology:cpo",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "Chemical Process Ontology",
+      "cpo:hasOntologyPrefix": "cpo",
+      "cpo:hasNamespace": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+      "cpo:usedVersion": "1.0",
+      "cpo:lastAccessDate": { "@id": "ontology:cpo_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:cpo_File" }
+    },
+    {
+      "@id": "ontology:cpo_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-10-02T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:cpo_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "ChemicalProcessOntology.rdf",
+      "cpo:hasStorageLocation": "ontologies/ChemicalProcessOntology.rdf",
+      "schema:encodingFormat": "rdf"
+    },
+
+    {
+      "@id": "ontology:hlo",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "Higher Level Ontology",
+      "cpo:hasOntologyPrefix": "hlo",
+      "cpo:hasNamespace": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+      "cpo:usedVersion": "1.0",
+      "cpo:lastAccessDate": { "@id": "ontology:hlo_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:hlo_File" }
+    },
+    {
+      "@id": "ontology:hlo_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-10-02T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:hlo_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "HigherLevelOntology.rdf",
+      "cpo:hasStorageLocation": "ontologies/HigherLevelOntology.rdf",
+      "schema:encodingFormat": "rdf"
+    },
+
+    {
+      "@id": "ontology:qudt",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "QUDT (Quantities, Units, Dimensions and Types)",
+      "cpo:hasOntologyPrefix": "qudt",
+      "cpo:hasNamespace": "http://qudt.org/schema/qudt/",
+      "cpo:usedVersion": "v3.5.2 (released 2026-09-22)",
+      "cpo:lastAccessDate": { "@id": "ontology:qudt_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:qudt_File" }
+    },
+    {
+      "@id": "ontology:qudt_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:qudt_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "QUDT schema",
+      "cpo:hasStorageLocation": "https://qudt.org/3.5.2/schema/qudt",
+      "schema:encodingFormat": "ttl"
+    },
+
+    {
+      "@id": "ontology:quantitykind",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "QUDT Quantity Kind vocabulary",
+      "cpo:hasOntologyPrefix": "quantitykind",
+      "cpo:hasNamespace": "http://qudt.org/vocab/quantitykind/",
+      "cpo:usedVersion": "v3.5.2 (released 2026-09-22)",
+      "cpo:lastAccessDate": { "@id": "ontology:quantitykind_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:quantitykind_File" }
+    },
+    {
+      "@id": "ontology:quantitykind_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:quantitykind_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "QUDT Quantity Kind vocabulary",
+      "cpo:hasStorageLocation": "https://qudt.org/3.5.2/vocab/quantitykind",
+      "schema:encodingFormat": "ttl"
+    },
+
+    {
+      "@id": "ontology:unit",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "QUDT Unit vocabulary",
+      "cpo:hasOntologyPrefix": "unit",
+      "cpo:hasNamespace": "http://qudt.org/vocab/unit/",
+      "cpo:usedVersion": "v3.5.2 (released 2026-09-22)",
+      "cpo:lastAccessDate": { "@id": "ontology:unit_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:unit_File" }
+    },
+    {
+      "@id": "ontology:unit_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:unit_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "QUDT Unit vocabulary",
+      "cpo:hasStorageLocation": "https://qudt.org/3.5.2/vocab/unit",
+      "schema:encodingFormat": "ttl"
+    },
+
+    {
+      "@id": "ontology:time",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "OWL-Time",
+      "cpo:hasOntologyPrefix": "time",
+      "cpo:hasNamespace": "http://www.w3.org/2006/time#",
+      "cpo:usedVersion": "Time Ontology in OWL, W3C Candidate Recommendation Draft 15 November 2022 (CRD-owl-time-20221115). Deliberately the CRD and not the 2017 Recommendation: that is what /TR/owl-time/ serves today and what the namespace document reflects. The terms used in this crate (time:Instant, and rdf:value on it) are unchanged from the 19 October 2017 Recommendation. Same reasoning as for sosa below.",
+      "cpo:lastAccessDate": { "@id": "ontology:time_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:time_File" }
+    },
+    {
+      "@id": "ontology:time_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:time_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "OWL-Time",
+      "cpo:hasStorageLocation": "https://www.w3.org/TR/2022/CRD-owl-time-20221115/",
+      "schema:encodingFormat": "html"
+    },
+
+    {
+      "@id": "ontology:schema",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "Schema.org",
+      "cpo:hasOntologyPrefix": "schema",
+      "cpo:hasNamespace": "http://schema.org/",
+      "cpo:usedVersion": "v30.1 (released 2026-09-15)",
+      "cpo:lastAccessDate": { "@id": "ontology:schema_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:schema_File" }
+    },
+    {
+      "@id": "ontology:schema_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:schema_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "Schema.org vocabulary",
+      "cpo:hasStorageLocation": "https://schema.org/version/30.1/",
+      "schema:encodingFormat": "html"
+    },
+
+    {
+      "@id": "ontology:chebi",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "Chemical Entities of Biological Interest (ChEBI)",
+      "cpo:hasOntologyPrefix": "chebi",
+      "cpo:hasNamespace": "http://purl.obolibrary.org/obo/chebi.owl#",
+      "cpo:usedVersion": "255 (released 2026-09-09; versionIRI http://purl.obolibrary.org/obo/chebi/255/chebi.owl). The dated copy is not on the EBI archive yet - it lags the live release by a few weeks - so the file below points at the ChEBI site rather than at a frozen download.",
+      "cpo:lastAccessDate": { "@id": "ontology:chebi_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:chebi_File" }
+    },
+    {
+      "@id": "ontology:chebi_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:chebi_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "ChEBI",
+      "cpo:hasStorageLocation": "https://www.ebi.ac.uk/chebi/",
+      "schema:encodingFormat": "html"
+    },
+
+    {
+      "@id": "ontology:dcterms",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "DCMI Metadata Terms",
+      "cpo:hasOntologyPrefix": "dcterms",
+      "cpo:hasNamespace": "http://purl.org/dc/terms/",
+      "cpo:usedVersion": "2020-01-20 (DCMI Recommendation). Versioned by date rather than by number; the dated permalink is the file below.",
+      "cpo:lastAccessDate": { "@id": "ontology:dcterms_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:dcterms_File" }
+    },
+    {
+      "@id": "ontology:dcterms_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:dcterms_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "DCMI Metadata Terms",
+      "cpo:hasStorageLocation": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+      "schema:encodingFormat": "html"
+    },
+
+    {
+      "@id": "ontology:sosa",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "Sensor, Observation, Sample, and Actuator (SOSA) Ontology",
+      "cpo:hasOntologyPrefix": "sosa",
+      "cpo:hasNamespace": "http://www.w3.org/ns/sosa/",
+      "cpo:usedVersion": "SSN 2023 Edition, W3C Working Draft 14 September 2026 (WD-vocab-ssn-2023-20260914). The terms used in this crate (sosa:Sample, sosa:Sampler, sosa:Sampling, sosa:hasSample/isSampleOf, sosa:hasFeatureOfInterest, sosa:Sensor) are unchanged from the 2017 Recommendation and are the ones the namespace document at http://www.w3.org/ns/sosa/ actually serves; the 2023-only additions are deliberately not used.",
+      "cpo:lastAccessDate": { "@id": "ontology:sosa_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:sosa_File" }
+    },
+    {
+      "@id": "ontology:sosa_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-22T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:sosa_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "SOSA",
+      "cpo:hasStorageLocation": "https://www.w3.org/TR/2026/WD-vocab-ssn-2023-20260914/"
+    },
+
+    {
+      "@id": "ontology:org",
+      "@type": ["cpo:Ontology", "hlo:Fixed"],
+      "schema:name": "W3C Organization Ontology",
+      "cpo:hasOntologyPrefix": "org",
+      "cpo:hasNamespace": "http://www.w3.org/ns/org#",
+      "cpo:usedVersion": "W3C Recommendation 16 January 2014 (REC-vocab-org-20140116). A frozen Recommendation - the version does not depend on the access date. Currently unused: no org: prefix occurs in the crate, so the snapshot never picks this entry up. Kept for the moment organisations are carried in a crate.",
+      "cpo:lastAccessDate": { "@id": "ontology:org_LastAccessDate" },
+      "cpo:ontologyFile": { "@id": "ontology:org_File" }
+    },
+    {
+      "@id": "ontology:org_LastAccessDate",
+      "@type": ["time:Instant", "hlo:Fixed"],
+      "rdf:value": { "@value": "2026-09-23T00:00:00", "@type": "xsd:dateTime" }
+    },
+    {
+      "@id": "ontology:org_File",
+      "@type": ["cpo:File", "hlo:Fixed"],
+      "schema:name": "W3C Organization Ontology",
+      "cpo:hasStorageLocation": "http://www.w3.org/TR/2014/REC-vocab-org-20140116/",
+      "schema:encodingFormat": "html"
+    }
+  ]
+}

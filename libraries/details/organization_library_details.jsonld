@@ -1,0 +1,5482 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "device": "https://example.org/device/",
+    "lab": "https://example.org/laboratory/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "org": "http://www.w3.org/ns/org#",
+    "schema": "http://schema.org/",
+    "organization": "https://example.org/organization/",
+    "person": "https://example.org/person/",
+    "site": "https://example.org/site/",
+    "energyfield": "https://example.org/energyfield/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+    "chem": "https://example.org/chemical_entity/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "task": "https://example.org/task/",
+    "environment": "https://example.org/environment/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "time": "http://www.w3.org/2006/time#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "energyfield:EnergyField_CEB_PFD_Fixed",
+      "@type": [
+        "cpo:EnergyField",
+        "hlo:Fixed"
+      ],
+      "rdfs:label": "Local gravitational field",
+      "cpo:isEnergyFieldOf": {
+        "@id": "site:CEB_PFD"
+      },
+      "cpo:hasEnergyFieldType": {
+        "@id": "cpo:GravitationalField"
+      },
+      "cpo:hasFieldStrength": {
+        "@id": "energyfield:FieldStrength_CEB_PFD_Fixed"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "energyfield:Occurrence_CEB_PFD_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:Occurrence_CEB_PFD_Fixed",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The gravitational field of the site is always there: one occurrence without beginning or end. Its status says it occurred (from the literature), its times are empty Actuals - the quantities exist, a value would be pointless.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "energyfield:OccurrenceStatus_CEB_PFD_Fixed"
+      },
+      "cpo:hasStartTime": {
+        "@id": "energyfield:Occurrence_CEB_PFD_StartTime_Fixed"
+      },
+      "cpo:hasEndTime": {
+        "@id": "energyfield:Occurrence_CEB_PFD_EndTime_Fixed"
+      },
+      "cpo:hasDuration": {
+        "@id": "energyfield:Occurrence_CEB_PFD_Duration_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:OccurrenceStatus_CEB_PFD_Fixed",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "energyfield:OccurrenceStatus_CEB_PFD_Reference_1_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:OccurrenceStatus_CEB_PFD_Reference_1_Fixed",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "CODATA recommended values of the fundamental physical constants (NIST), standard acceleration of gravity.",
+      "hlo:isReferenceOf": {
+        "@id": "energyfield:OccurrenceStatus_CEB_PFD_Fixed"
+      },
+      "rdfs:comment": "Gravity acts everywhere on Earth at all times - general physics, not an observation at this site.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_standard_gravity"
+      }
+    },
+    {
+      "@id": "energyfield:Occurrence_CEB_PFD_StartTime_Fixed",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:Occurrence_CEB_PFD_EndTime_Fixed",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:Occurrence_CEB_PFD_Duration_Fixed",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:FieldStrength_CEB_PFD_Fixed",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "energyfield:FieldStrength_CEB_PFD_Reference_1_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:FieldStrength_CEB_PFD_Reference_1_Fixed",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "CODATA recommended values of the fundamental physical constants (NIST), standard acceleration of gravity.",
+      "rdfs:comment": "Standard gravity (CODATA), not a site-specific measurement - replace with a local value if one is measured.",
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Acceleration"
+      },
+      "qudt:value": {
+        "@value": "9.80665",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M-PER-SEC2"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_standard_gravity"
+      }
+    },
+    {
+      "@id": "task:looking_up_standard_gravity",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up standard gravity",
+      "schema:description": "Standard acceleration of gravity g_n = 9.80665 m/s2, an exact conventional value (CODATA). Used for the site as long as no local value is measured.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_standard_gravity_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_standard_gravity_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_standard_gravity_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "energyfield:FieldStrength_CEB_PFD_Reference_1_Fixed"
+        },
+        {
+          "@id": "energyfield:OccurrenceStatus_CEB_PFD_Reference_1_Fixed"
+        },
+        {
+          "@id": "energyfield:FieldStrength_RWTH_AVT_Reference_1_Fixed"
+        },
+        {
+          "@id": "energyfield:OccurrenceStatus_RWTH_AVT_Reference_1_Fixed"
+        },
+        {
+          "@id": "energyfield:FieldStrength_NTU_Reference_1_Fixed"
+        },
+        {
+          "@id": "energyfield:OccurrenceStatus_NTU_Reference_1_Fixed"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_standard_gravity_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_standard_gravity_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_standard_gravity_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L109_Air",
+      "@type": [
+        "cpo:Environment",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ambient air of Lab 109",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:L109"
+      },
+      "cpo:fillsForm": {
+        "@id": "lab:L109_Form"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:L109_Air_Volume"
+      },
+      "dcterms:hasPart": {
+        "@id": "environment:L109_Air_GasPhase"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_GasPhase",
+      "@type": [
+        "cpo:GasPhase",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lab 109 Air (Gas Phase)",
+      "dcterms:isPartOf": {
+        "@id": "environment:L109_Air"
+      },
+      "cpo:canCreateEnergyField": false,
+      "cpo:hasDispersionState": {
+        "@id": "cpo:Continuous"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:L109_Air_Volume"
+      },
+      "cpo:hasDensity": {
+        "@id": "environment:L109_Air_Density"
+      },
+      "cpo:hasMass": {
+        "@id": "environment:L109_Air_Mass"
+      },
+      "dcterms:hasPart": [
+        {
+          "@id": "environment:L109_Air_Molecule_0005"
+        },
+        {
+          "@id": "environment:L109_Air_Molecule_0006"
+        }
+      ],
+      "cpo:fillsForm": {
+        "@id": "lab:L109_Form"
+      },
+      "cpo:hasTemperature": {
+        "@id": "environment:L109_Air_Temperature"
+      },
+      "cpo:hasPressure": {
+        "@id": "environment:L109_Air_Pressure"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "environment:L109_Air_GasPhase_Occurrence"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "environment:L109_Air_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "environment:L109_Air_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Volume the room air occupies - the inner volume of the room itself (4 m * 5 m * 2.5 m = 50 m3, see lab:L109_Form). Anything standing in the room is deliberately ignored. Assumed room dimensions, not measured. Shared by environment:L109_Air and its gas phase: the air is the room's only phase, so both refer to the same quantity.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L109_Air_Volume"
+      }
+    },
+    {
+      "@id": "lab:L109_Form",
+      "@type": [
+        "cpo:CuboidForm"
+      ],
+      "rdfs:comment": "Shape of the room itself. Only inner dimensions are recorded: the walls of a building are not modelled, so the room is described by the space it encloses. The dimensions are cpo:ProcessVariable, the declared range of the geometry properties since cpo 1.01 (before that cpo:Parameter).",
+      "cpo:hasWidth": {
+        "@id": "lab:L109_Width"
+      },
+      "cpo:hasLength": {
+        "@id": "lab:L109_Length"
+      },
+      "cpo:hasHeight": {
+        "@id": "lab:L109_Height"
+      },
+      "cpo:hasOuterVolume": {
+        "@id": "lab:L109_Volume"
+      },
+      "cpo:hasWidthToLengthRatio": {
+        "@id": "lab:L109_Form_WidthToLengthRatio"
+      },
+      "cpo:hasHeightToLengthRatio": {
+        "@id": "lab:L109_Form_HeightToLengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L109_Form_WidthToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L109_Form_HeightToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L109_Width",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Width"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L109_Width_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L109_Width_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed width of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "4",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L109_Length",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Length"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L109_Length_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L109_Length_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed length of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L109_Height",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Height"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L109_Height_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L109_Height_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed ceiling height of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "2.5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L109_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "lab:L109_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "lab:L109_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Inner volume of the room: 4 m * 5 m * 2.5 m = 50 m3. The geometric capacity of the room, as opposed to environment:L109_Air_Volume, which is what the air actually occupies - the same number here, since anything standing in the room is ignored.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L109_InnerVolume"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Density",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Density"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L109_Air_Density_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Density_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Density_of_air.",
+      "rdfs:comment": "Density of dry air at about 20 degC and 1 atm (~1.2 kg/m3) - a textbook value, not measured in this room.",
+      "qudt:value": {
+        "@value": "1.2",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM-PER-M3"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_density"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Mass",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Mass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "environment:L109_Air_Mass_Evidence_1"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Mass_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Calculated from the room air volume (50 m3) and the assumed air density (1.2 kg/m3): 50 * 1.2 = 60 kg. Recalculate if either input changes.",
+      "qudt:value": {
+        "@value": "60",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L109_Air_Mass"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_Air_Mass",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Calculating the mass of the air in L109",
+      "schema:description": "Mass of the room air from its volume and the looked-up density of dry air: 50 m3 * 1.2 kg/m3 = 60 kg.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L109_Air_Mass_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L109_Air_Mass_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L109_Air_Mass_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L109_Air_Mass_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "environment:L109_Air_Volume_Evidence_1"
+        },
+        {
+          "@id": "environment:L109_Air_Density_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:calculating_L109_Air_Mass_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L109_Air_Mass_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_Air_Mass_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L109_Air_Mass_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L109_Air_Mass_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. The mass value was already in the library, its task was only written down later; stamped with that moment (2026-09-26T20:00:00Z) - an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-26T20:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "environment:L108_Air",
+      "@type": [
+        "cpo:Environment",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ambient air of Lab 108",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:L108"
+      },
+      "cpo:fillsForm": {
+        "@id": "lab:L108_Form"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:L108_Air_Volume"
+      },
+      "dcterms:hasPart": {
+        "@id": "environment:L108_Air_GasPhase"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_GasPhase",
+      "@type": [
+        "cpo:GasPhase",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lab 108 Air (Gas Phase)",
+      "dcterms:isPartOf": {
+        "@id": "environment:L108_Air"
+      },
+      "cpo:canCreateEnergyField": false,
+      "cpo:hasDispersionState": {
+        "@id": "cpo:Continuous"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:L108_Air_Volume"
+      },
+      "cpo:hasDensity": {
+        "@id": "environment:L108_Air_Density"
+      },
+      "cpo:hasMass": {
+        "@id": "environment:L108_Air_Mass"
+      },
+      "dcterms:hasPart": [
+        {
+          "@id": "environment:L108_Air_Molecule_0005"
+        },
+        {
+          "@id": "environment:L108_Air_Molecule_0006"
+        }
+      ],
+      "cpo:fillsForm": {
+        "@id": "lab:L108_Form"
+      },
+      "cpo:hasTemperature": {
+        "@id": "environment:L108_Air_Temperature"
+      },
+      "cpo:hasPressure": {
+        "@id": "environment:L108_Air_Pressure"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "environment:L108_Air_GasPhase_Occurrence"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "environment:L108_Air_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "environment:L108_Air_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Volume the room air occupies - the inner volume of the room itself (4 m * 5 m * 2.5 m = 50 m3, see lab:L108_Form). Anything standing in the room is deliberately ignored. Assumed room dimensions, not measured. Shared by environment:L108_Air and its gas phase: the air is the room's only phase, so both refer to the same quantity.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L108_Air_Volume"
+      }
+    },
+    {
+      "@id": "lab:L108_Form",
+      "@type": [
+        "cpo:CuboidForm"
+      ],
+      "rdfs:comment": "Shape of the room itself. Only inner dimensions are recorded: the walls of a building are not modelled, so the room is described by the space it encloses. The dimensions are cpo:ProcessVariable, the declared range of the geometry properties since cpo 1.01 (before that cpo:Parameter).",
+      "cpo:hasWidth": {
+        "@id": "lab:L108_Width"
+      },
+      "cpo:hasLength": {
+        "@id": "lab:L108_Length"
+      },
+      "cpo:hasHeight": {
+        "@id": "lab:L108_Height"
+      },
+      "cpo:hasOuterVolume": {
+        "@id": "lab:L108_Volume"
+      },
+      "cpo:hasWidthToLengthRatio": {
+        "@id": "lab:L108_Form_WidthToLengthRatio"
+      },
+      "cpo:hasHeightToLengthRatio": {
+        "@id": "lab:L108_Form_HeightToLengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L108_Form_WidthToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L108_Form_HeightToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L108_Width",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Width"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L108_Width_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L108_Width_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed width of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "4",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L108_Length",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Length"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L108_Length_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L108_Length_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed length of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L108_Height",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Height"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L108_Height_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L108_Height_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed ceiling height of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "2.5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L108_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "lab:L108_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "lab:L108_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Inner volume of the room: 4 m * 5 m * 2.5 m = 50 m3. The geometric capacity of the room, as opposed to environment:L108_Air_Volume, which is what the air actually occupies - the same number here, since anything standing in the room is ignored.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L108_InnerVolume"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Density",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Density"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L108_Air_Density_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Density_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Density_of_air.",
+      "rdfs:comment": "Density of dry air at about 20 degC and 1 atm (~1.2 kg/m3) - a textbook value, not measured in this room.",
+      "qudt:value": {
+        "@value": "1.2",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM-PER-M3"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_density"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Mass",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Mass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "environment:L108_Air_Mass_Evidence_1"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Mass_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Calculated from the room air volume (50 m3) and the assumed air density (1.2 kg/m3): 50 * 1.2 = 60 kg. Recalculate if either input changes.",
+      "qudt:value": {
+        "@value": "60",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L108_Air_Mass"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_Air_Mass",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Calculating the mass of the air in L108",
+      "schema:description": "Mass of the room air from its volume and the looked-up density of dry air: 50 m3 * 1.2 kg/m3 = 60 kg.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L108_Air_Mass_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L108_Air_Mass_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L108_Air_Mass_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L108_Air_Mass_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "environment:L108_Air_Volume_Evidence_1"
+        },
+        {
+          "@id": "environment:L108_Air_Density_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:calculating_L108_Air_Mass_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L108_Air_Mass_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_Air_Mass_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L108_Air_Mass_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L108_Air_Mass_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. The mass value was already in the library, its task was only written down later; stamped with that moment (2026-09-26T20:00:00Z) - an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-26T20:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_InnerVolume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Plain cuboid",
+      "schema:description": "Plain cuboid: 4 m x 5 m x 2.5 m = 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L108_InnerVolume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L108_InnerVolume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L108_InnerVolume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "lab:L108_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:L108_Width_Reference_1"
+        },
+        {
+          "@id": "lab:L108_Length_Reference_1"
+        },
+        {
+          "@id": "lab:L108_Height_Reference_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_InnerVolume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L108_InnerVolume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_InnerVolume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L108_InnerVolume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L108_InnerVolume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_InnerVolume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Plain cuboid",
+      "schema:description": "Plain cuboid: 4 m x 5 m x 2.5 m = 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L109_InnerVolume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L109_InnerVolume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L109_InnerVolume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "lab:L109_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:L109_Width_Reference_1"
+        },
+        {
+          "@id": "lab:L109_Length_Reference_1"
+        },
+        {
+          "@id": "lab:L109_Height_Reference_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_InnerVolume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L109_InnerVolume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_InnerVolume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L109_InnerVolume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L109_InnerVolume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_Air_Volume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "The air is the room's only phase, so it occupies the whole inner volume",
+      "schema:description": "The air is the room's only phase, so it occupies the whole inner volume: 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L108_Air_Volume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L108_Air_Volume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L108_Air_Volume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L108_Air_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:L108_Volume_Evidence_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_Air_Volume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L108_Air_Volume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L108_Air_Volume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L108_Air_Volume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L108_Air_Volume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_Air_Volume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "The air is the room's only phase, so it occupies the whole inner volume",
+      "schema:description": "The air is the room's only phase, so it occupies the whole inner volume: 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L109_Air_Volume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L109_Air_Volume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L109_Air_Volume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L109_Air_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:L109_Volume_Evidence_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_Air_Volume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L109_Air_Volume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L109_Air_Volume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L109_Air_Volume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L109_Air_Volume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_room_volumes",
+      "@type": [
+        "cpo:Task",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Working out the volumes of the two laboratory rooms",
+      "schema:description": "Both rooms are taken as the same plain cuboid; anything standing in them is ignored. Holds the individual calculations together - one sitting, one person.",
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_room_volumes_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_room_volumes_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_room_volumes_Duration"
+      },
+      "dcterms:hasPart": [
+        {
+          "@id": "task:calculating_L108_InnerVolume"
+        },
+        {
+          "@id": "task:calculating_L109_InnerVolume"
+        },
+        {
+          "@id": "task:calculating_L108_Air_Volume"
+        },
+        {
+          "@id": "task:calculating_L109_Air_Volume"
+        },
+        {
+          "@id": "task:calculating_L208_InnerVolume"
+        },
+        {
+          "@id": "task:calculating_L208_Air_Volume"
+        }
+      ]
+    },
+    {
+      "@id": "task:calculating_room_volumes_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_room_volumes_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_room_volumes_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_room_volumes_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_room_volumes_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_air_density",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the density of dry air",
+      "schema:description": "Dry air at 20 degC and 1 atm is 1.204 kg/m3, from p/(R*T) with R = 287.058 J/(kg*K). Recorded as 1.2 kg/m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_air_density_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_air_density_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_air_density_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L108_Air_Density_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_Density_Reference_1"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Density_Reference_1"
+        },
+        {
+          "@id": "environment:L208_Air_Density_Reference_1"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Density_Reference_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "environment:L108_Air_Temperature_Reference_1"
+        },
+        {
+          "@id": "environment:L108_Air_Pressure_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_Temperature_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_Pressure_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_air_density_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_air_density_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_air_density_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_air_density_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_air_density_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:assuming_room_dimensions",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming the dimensions of a typical laboratory room",
+      "schema:description": "No room was measured. All are taken as 4 m x 5 m x 2.5 m - one and the same modelling decision, which is why one task covers them (the SVT lab of the AVT added on 03.10.2026, Lab 208 on 05.10.2026, the lab of Congjian Lin at NTU added on 05.10.2026).",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_room_dimensions_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_room_dimensions_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_room_dimensions_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "lab:L108_Width_Reference_1"
+        },
+        {
+          "@id": "lab:L108_Length_Reference_1"
+        },
+        {
+          "@id": "lab:L108_Height_Reference_1"
+        },
+        {
+          "@id": "lab:L109_Width_Reference_1"
+        },
+        {
+          "@id": "lab:L109_Length_Reference_1"
+        },
+        {
+          "@id": "lab:L109_Height_Reference_1"
+        },
+        {
+          "@id": "lab:AVT_SVT_Lab_Width_Reference_1"
+        },
+        {
+          "@id": "lab:AVT_SVT_Lab_Length_Reference_1"
+        },
+        {
+          "@id": "lab:AVT_SVT_Lab_Height_Reference_1"
+        },
+        {
+          "@id": "lab:L208_Width_Reference_1"
+        },
+        {
+          "@id": "lab:L208_Length_Reference_1"
+        },
+        {
+          "@id": "lab:L208_Height_Reference_1"
+        },
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Width_Reference_1"
+        },
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Length_Reference_1"
+        },
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Height_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:assuming_room_dimensions_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_room_dimensions_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_room_dimensions_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_room_dimensions_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_room_dimensions_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Molecule_0005",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Oxygen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0005"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:L108_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:L108_Air_Molecule_0005_Concentration"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Molecule_0005_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:L108_Air_Molecule_0005"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L108_Air_Molecule_0005_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Molecule_0005_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of oxygen in dry air - a textbook value, not measured in this room. Follows from the standard mole fractions (O2 20.946 %, N2 78.084 %, Ar 0.934 %, CO2 0.041 %) and the molar masses, giving a mean molar mass of 28.97 g/mol: 0.20946 x 31.999 / 28.97 = 0.2314.",
+      "qudt:value": {
+        "@value": "0.2314",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Molecule_0006",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrogen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0006"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:L108_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:L108_Air_Molecule_0006_Concentration"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Molecule_0006_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:L108_Air_Molecule_0006"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L108_Air_Molecule_0006_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Molecule_0006_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of nitrogen in dry air - a textbook value, not measured in this room. Same derivation as for oxygen: 0.78084 x 28.013 / 28.97 = 0.7551.",
+      "qudt:value": {
+        "@value": "0.7551",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Molecule_0005",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Oxygen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0005"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:L109_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:L109_Air_Molecule_0005_Concentration"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Molecule_0005_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:L109_Air_Molecule_0005"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L109_Air_Molecule_0005_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Molecule_0005_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of oxygen in dry air - a textbook value, not measured in this room. Follows from the standard mole fractions (O2 20.946 %, N2 78.084 %, Ar 0.934 %, CO2 0.041 %) and the molar masses, giving a mean molar mass of 28.97 g/mol: 0.20946 x 31.999 / 28.97 = 0.2314.",
+      "qudt:value": {
+        "@value": "0.2314",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Molecule_0006",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrogen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0006"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:L109_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:L109_Air_Molecule_0006_Concentration"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Molecule_0006_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:L109_Air_Molecule_0006"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L109_Air_Molecule_0006_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Molecule_0006_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of nitrogen in dry air - a textbook value, not measured in this room. Same derivation as for oxygen: 0.78084 x 28.013 / 28.97 = 0.7551.",
+      "qudt:value": {
+        "@value": "0.7551",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "task:looking_up_air_composition",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the composition of dry air",
+      "schema:description": "Mass fractions of oxygen and nitrogen in dry air, 0.2314 and 0.7551, converted from the standard mole fractions with a mean molar mass of 28.97 g/mol. The two do not add up to 1 on purpose: argon (0.0129) and carbon dioxide (0.0006) are not recorded as constituents of the lab air, so 1.35 % of the mass is accounted for by species this crate does not name.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_air_composition_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_air_composition_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_air_composition_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L108_Air_Molecule_0005_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:L108_Air_Molecule_0006_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_Molecule_0005_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_Molecule_0006_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:L208_Air_Molecule_0005_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:L208_Air_Molecule_0006_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005_Concentration_Reference_1"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006_Concentration_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_air_composition_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_air_composition_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_air_composition_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_air_composition_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_air_composition_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:assuming_organization_library_task_times",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming when the room and air values were worked out",
+      "schema:description": "Same reasoning as for the device library: the room volumes, the air density and the air composition carry no record of when they were worked out, so every one of those tasks is stamped with the moment it was written into the library. This task's own start time is among them.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_organization_library_task_times_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_organization_library_task_times_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_organization_library_task_times_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "task:calculating_L108_InnerVolume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L109_InnerVolume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L108_Air_Volume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L109_Air_Volume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_room_volumes_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_air_density_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:assuming_room_dimensions_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_air_composition_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:assuming_organization_library_task_times_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L108_Air_Mass_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L109_Air_Mass_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:assuming_lab_air_state_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L208_InnerVolume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L208_Air_Volume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_L208_Air_Mass_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_StartTime_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:assuming_organization_library_task_times_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_organization_library_task_times_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_organization_library_task_times_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_organization_library_task_times_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_organization_library_task_times_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Temperature",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Temperature"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L108_Air_Temperature_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Temperature_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Room temperature of the lab, taken as 20 degC - not read off a thermometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "20",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Pressure",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Pressure"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L108_Air_Pressure_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_Pressure_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Ambient pressure of the lab, taken as 1 atm (101325 Pa) - not read off a barometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "101325",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PA"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_GasPhase_Occurrence",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The air of the room is always there: one occurrence without beginning or end. Its status says it occurred, its times are empty Actuals - the quantities exist, a value would be pointless. Stated once here; the series and experiment levels of the room air have no occurrence of their own, since it cannot be absent or occur more than once there.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "environment:L108_Air_GasPhase_OccurrenceStatus"
+      },
+      "cpo:hasStartTime": {
+        "@id": "environment:L108_Air_GasPhase_Occurrence_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "environment:L108_Air_GasPhase_Occurrence_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "environment:L108_Air_GasPhase_Occurrence_Duration"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_GasPhase_OccurrenceStatus",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "environment:L108_Air_GasPhase_OccurrenceStatus_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_GasPhase_OccurrenceStatus_Reference_1",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "environment:L108_Air_GasPhase_OccurrenceStatus"
+      },
+      "rdfs:comment": "The lab is always filled with air - an assumption about the room, not an observation during an experiment.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L108_Air_GasPhase_Occurrence_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L108_Air_GasPhase_Occurrence_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L108_Air_GasPhase_Occurrence_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L109_Air_Temperature",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Temperature"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L109_Air_Temperature_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Temperature_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Room temperature of the lab, taken as 20 degC - not read off a thermometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "20",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Pressure",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Pressure"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L109_Air_Pressure_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_Pressure_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Ambient pressure of the lab, taken as 1 atm (101325 Pa) - not read off a barometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "101325",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PA"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_GasPhase_Occurrence",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The air of the room is always there: one occurrence without beginning or end. Its status says it occurred, its times are empty Actuals - the quantities exist, a value would be pointless. Stated once here; the series and experiment levels of the room air have no occurrence of their own, since it cannot be absent or occur more than once there.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "environment:L109_Air_GasPhase_OccurrenceStatus"
+      },
+      "cpo:hasStartTime": {
+        "@id": "environment:L109_Air_GasPhase_Occurrence_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "environment:L109_Air_GasPhase_Occurrence_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "environment:L109_Air_GasPhase_Occurrence_Duration"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_GasPhase_OccurrenceStatus",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "environment:L109_Air_GasPhase_OccurrenceStatus_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_GasPhase_OccurrenceStatus_Reference_1",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "environment:L109_Air_GasPhase_OccurrenceStatus"
+      },
+      "rdfs:comment": "The lab is always filled with air - an assumption about the room, not an observation during an experiment.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L109_Air_GasPhase_Occurrence_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L109_Air_GasPhase_Occurrence_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L109_Air_GasPhase_Occurrence_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_lab_air_state",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming the state of the lab air",
+      "schema:description": "No thermometer or barometer reading of the rooms is kept, so the lab air is taken as 20 degC and 1 atm - the condition the looked-up air density refers to - and as always present.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_lab_air_state_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_lab_air_state_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_lab_air_state_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L108_Air_Temperature_Reference_1"
+        },
+        {
+          "@id": "environment:L108_Air_Pressure_Reference_1"
+        },
+        {
+          "@id": "environment:L108_Air_GasPhase_OccurrenceStatus_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_Temperature_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_Pressure_Reference_1"
+        },
+        {
+          "@id": "environment:L109_Air_GasPhase_OccurrenceStatus_Reference_1"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Temperature_Reference_1"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Pressure_Reference_1"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_GasPhase_OccurrenceStatus_Reference_1"
+        },
+        {
+          "@id": "environment:L208_Air_Temperature_Reference_1"
+        },
+        {
+          "@id": "environment:L208_Air_Pressure_Reference_1"
+        },
+        {
+          "@id": "environment:L208_Air_GasPhase_OccurrenceStatus_Reference_1"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Temperature_Reference_1"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Pressure_Reference_1"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_OccurrenceStatus_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:assuming_lab_air_state_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_lab_air_state_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_lab_air_state_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_lab_air_state_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_lab_air_state_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Stamped with the moment this assumption was written into the library (2026-09-26T14:40:00Z).",
+      "rdf:value": {
+        "@value": "2026-09-26T14:40:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "energyfield:EnergyField_RWTH_AVT_Fixed",
+      "@type": [
+        "cpo:EnergyField",
+        "hlo:Fixed"
+      ],
+      "rdfs:label": "Local gravitational field",
+      "cpo:isEnergyFieldOf": {
+        "@id": "site:RWTH_AVT"
+      },
+      "cpo:hasEnergyFieldType": {
+        "@id": "cpo:GravitationalField"
+      },
+      "cpo:hasFieldStrength": {
+        "@id": "energyfield:FieldStrength_RWTH_AVT_Fixed"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "energyfield:Occurrence_RWTH_AVT_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:Occurrence_RWTH_AVT_Fixed",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The gravitational field of the site is always there: one occurrence without beginning or end. Its status says it occurred (from the literature), its times are empty Actuals - the quantities exist, a value would be pointless.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "energyfield:OccurrenceStatus_RWTH_AVT_Fixed"
+      },
+      "cpo:hasStartTime": {
+        "@id": "energyfield:Occurrence_RWTH_AVT_StartTime_Fixed"
+      },
+      "cpo:hasEndTime": {
+        "@id": "energyfield:Occurrence_RWTH_AVT_EndTime_Fixed"
+      },
+      "cpo:hasDuration": {
+        "@id": "energyfield:Occurrence_RWTH_AVT_Duration_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:OccurrenceStatus_RWTH_AVT_Fixed",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "energyfield:OccurrenceStatus_RWTH_AVT_Reference_1_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:OccurrenceStatus_RWTH_AVT_Reference_1_Fixed",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "CODATA recommended values of the fundamental physical constants (NIST), standard acceleration of gravity.",
+      "hlo:isReferenceOf": {
+        "@id": "energyfield:OccurrenceStatus_RWTH_AVT_Fixed"
+      },
+      "rdfs:comment": "Gravity acts everywhere on Earth at all times - general physics, not an observation at this site.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_standard_gravity"
+      }
+    },
+    {
+      "@id": "energyfield:Occurrence_RWTH_AVT_StartTime_Fixed",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:Occurrence_RWTH_AVT_EndTime_Fixed",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:Occurrence_RWTH_AVT_Duration_Fixed",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:FieldStrength_RWTH_AVT_Fixed",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "energyfield:FieldStrength_RWTH_AVT_Reference_1_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:FieldStrength_RWTH_AVT_Reference_1_Fixed",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "CODATA recommended values of the fundamental physical constants (NIST), standard acceleration of gravity.",
+      "rdfs:comment": "Standard gravity (CODATA), not a site-specific measurement - replace with a local value if one is measured.",
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Acceleration"
+      },
+      "qudt:value": {
+        "@value": "9.80665",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M-PER-SEC2"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_standard_gravity"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air",
+      "@type": [
+        "cpo:Environment",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ambient air of SVT lab",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:AVT_SVT_Lab"
+      },
+      "cpo:fillsForm": {
+        "@id": "lab:AVT_SVT_Lab_Form"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:AVT_SVT_Lab_Air_Volume"
+      },
+      "dcterms:hasPart": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_GasPhase",
+      "@type": [
+        "cpo:GasPhase",
+        "hlo:Fixed"
+      ],
+      "schema:name": "SVT lab Air (Gas Phase)",
+      "dcterms:isPartOf": {
+        "@id": "environment:AVT_SVT_Lab_Air"
+      },
+      "cpo:canCreateEnergyField": false,
+      "cpo:hasDispersionState": {
+        "@id": "cpo:Continuous"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:AVT_SVT_Lab_Air_Volume"
+      },
+      "cpo:hasDensity": {
+        "@id": "environment:AVT_SVT_Lab_Air_Density"
+      },
+      "cpo:hasMass": {
+        "@id": "environment:AVT_SVT_Lab_Air_Mass"
+      },
+      "dcterms:hasPart": [
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006"
+        }
+      ],
+      "cpo:fillsForm": {
+        "@id": "lab:AVT_SVT_Lab_Form"
+      },
+      "cpo:hasTemperature": {
+        "@id": "environment:AVT_SVT_Lab_Air_Temperature"
+      },
+      "cpo:hasPressure": {
+        "@id": "environment:AVT_SVT_Lab_Air_Pressure"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Volume the room air occupies - the inner volume of the room itself (4 m * 5 m * 2.5 m = 50 m3, see lab:AVT_SVT_Lab_Form). Anything standing in the room is deliberately ignored. Assumed room dimensions, not measured. Shared by environment:AVT_SVT_Lab_Air and its gas phase: the air is the room's only phase, so both refer to the same quantity.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Volume"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Form",
+      "@type": [
+        "cpo:CuboidForm"
+      ],
+      "rdfs:comment": "Shape of the room itself. Only inner dimensions are recorded: the walls of a building are not modelled, so the room is described by the space it encloses. The dimensions are cpo:ProcessVariable, the declared range of the geometry properties since cpo 1.01 (before that cpo:Parameter).",
+      "cpo:hasWidth": {
+        "@id": "lab:AVT_SVT_Lab_Width"
+      },
+      "cpo:hasLength": {
+        "@id": "lab:AVT_SVT_Lab_Length"
+      },
+      "cpo:hasHeight": {
+        "@id": "lab:AVT_SVT_Lab_Height"
+      },
+      "cpo:hasOuterVolume": {
+        "@id": "lab:AVT_SVT_Lab_Volume"
+      },
+      "cpo:hasWidthToLengthRatio": {
+        "@id": "lab:AVT_SVT_Lab_Form_WidthToLengthRatio"
+      },
+      "cpo:hasHeightToLengthRatio": {
+        "@id": "lab:AVT_SVT_Lab_Form_HeightToLengthRatio"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Form_WidthToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Form_HeightToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Width",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Width"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:AVT_SVT_Lab_Width_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Width_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed width of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "4",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Length",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Length"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:AVT_SVT_Lab_Length_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Length_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed length of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Height",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Height"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:AVT_SVT_Lab_Height_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Height_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed ceiling height of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "2.5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "lab:AVT_SVT_Lab_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Inner volume of the room: 4 m * 5 m * 2.5 m = 50 m3. The geometric capacity of the room, as opposed to environment:AVT_SVT_Lab_Air_Volume, which is what the air actually occupies - the same number here, since anything standing in the room is ignored.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_AVT_SVT_Lab_InnerVolume"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Density",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Density"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:AVT_SVT_Lab_Air_Density_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Density_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Density_of_air.",
+      "rdfs:comment": "Density of dry air at about 20 degC and 1 atm (~1.2 kg/m3) - a textbook value, not measured in this room.",
+      "qudt:value": {
+        "@value": "1.2",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM-PER-M3"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_density"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Mass",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Mass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "environment:AVT_SVT_Lab_Air_Mass_Evidence_1"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Mass_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Calculated from the room air volume (50 m3) and the assumed air density (1.2 kg/m3): 50 * 1.2 = 60 kg. Recalculate if either input changes.",
+      "qudt:value": {
+        "@value": "60",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Mass"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Mass",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Calculating the mass of the air in AVT_SVT_Lab",
+      "schema:description": "Mass of the room air from its volume and the looked-up density of dry air: 50 m3 * 1.2 kg/m3 = 60 kg.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Mass_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Volume_Evidence_1"
+        },
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Density_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Mass_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. The mass value was already in the library, its task was only written down later; stamped with that moment (2026-09-26T20:00:00Z) - an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-26T20:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_InnerVolume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Plain cuboid",
+      "schema:description": "Plain cuboid: 4 m x 5 m x 2.5 m = 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "lab:AVT_SVT_Lab_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:AVT_SVT_Lab_Width_Reference_1"
+        },
+        {
+          "@id": "lab:AVT_SVT_Lab_Length_Reference_1"
+        },
+        {
+          "@id": "lab:AVT_SVT_Lab_Height_Reference_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_InnerVolume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Volume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "The air is the room's only phase, so it occupies the whole inner volume",
+      "schema:description": "The air is the room's only phase, so it occupies the whole inner volume: 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:AVT_SVT_Lab_Air_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:AVT_SVT_Lab_Volume_Evidence_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_AVT_SVT_Lab_Air_Volume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Oxygen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0005"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005_Concentration"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Molecule_0005_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of oxygen in dry air - a textbook value, not measured in this room. Follows from the standard mole fractions (O2 20.946 %, N2 78.084 %, Ar 0.934 %, CO2 0.041 %) and the molar masses, giving a mean molar mass of 28.97 g/mol: 0.20946 x 31.999 / 28.97 = 0.2314.",
+      "qudt:value": {
+        "@value": "0.2314",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrogen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0006"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006_Concentration"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Molecule_0006_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of nitrogen in dry air - a textbook value, not measured in this room. Same derivation as for oxygen: 0.78084 x 28.013 / 28.97 = 0.7551.",
+      "qudt:value": {
+        "@value": "0.7551",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Temperature",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Temperature"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:AVT_SVT_Lab_Air_Temperature_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Temperature_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Room temperature of the lab, taken as 20 degC - not read off a thermometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "20",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Pressure",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Pressure"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:AVT_SVT_Lab_Air_Pressure_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_Pressure_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Ambient pressure of the lab, taken as 1 atm (101325 Pa) - not read off a barometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "101325",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PA"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The air of the room is always there: one occurrence without beginning or end. Its status says it occurred, its times are empty Actuals - the quantities exist, a value would be pointless. Stated once here; the series and experiment levels of the room air have no occurrence of their own, since it cannot be absent or occur more than once there.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase_OccurrenceStatus"
+      },
+      "cpo:hasStartTime": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence_Duration"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_GasPhase_OccurrenceStatus",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase_OccurrenceStatus_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_GasPhase_OccurrenceStatus_Reference_1",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "environment:AVT_SVT_Lab_Air_GasPhase_OccurrenceStatus"
+      },
+      "rdfs:comment": "The lab is always filled with air - an assumption about the room, not an observation during an experiment.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:AVT_SVT_Lab_Air_GasPhase_Occurrence_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L208_Air",
+      "@type": [
+        "cpo:Environment",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ambient air of Lab 208",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:L208"
+      },
+      "cpo:fillsForm": {
+        "@id": "lab:L208_Form"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:L208_Air_Volume"
+      },
+      "dcterms:hasPart": {
+        "@id": "environment:L208_Air_GasPhase"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_GasPhase",
+      "@type": [
+        "cpo:GasPhase",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lab 208 Air (Gas Phase)",
+      "dcterms:isPartOf": {
+        "@id": "environment:L208_Air"
+      },
+      "cpo:canCreateEnergyField": false,
+      "cpo:hasDispersionState": {
+        "@id": "cpo:Continuous"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:L208_Air_Volume"
+      },
+      "cpo:hasDensity": {
+        "@id": "environment:L208_Air_Density"
+      },
+      "cpo:hasMass": {
+        "@id": "environment:L208_Air_Mass"
+      },
+      "dcterms:hasPart": [
+        {
+          "@id": "environment:L208_Air_Molecule_0005"
+        },
+        {
+          "@id": "environment:L208_Air_Molecule_0006"
+        }
+      ],
+      "cpo:fillsForm": {
+        "@id": "lab:L208_Form"
+      },
+      "cpo:hasTemperature": {
+        "@id": "environment:L208_Air_Temperature"
+      },
+      "cpo:hasPressure": {
+        "@id": "environment:L208_Air_Pressure"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "environment:L208_Air_GasPhase_Occurrence"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "environment:L208_Air_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "environment:L208_Air_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Volume the room air occupies - the inner volume of the room itself (15 m * 8 m * 3 m = 360 m3, see lab:L208_Form). Anything standing in the room is deliberately ignored. Room dimensions estimated, not measured. Shared by environment:L208_Air and its gas phase: the air is the room's only phase, so both refer to the same quantity.",
+      "qudt:value": {
+        "@value": "360",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L208_Air_Volume"
+      }
+    },
+    {
+      "@id": "lab:L208_Form",
+      "@type": [
+        "cpo:CuboidForm"
+      ],
+      "rdfs:comment": "Shape of the room itself. Only inner dimensions are recorded: the walls of a building are not modelled, so the room is described by the space it encloses. The dimensions are cpo:ProcessVariable, the declared range of the geometry properties since cpo 1.01 (before that cpo:Parameter).",
+      "cpo:hasWidth": {
+        "@id": "lab:L208_Width"
+      },
+      "cpo:hasLength": {
+        "@id": "lab:L208_Length"
+      },
+      "cpo:hasHeight": {
+        "@id": "lab:L208_Height"
+      },
+      "cpo:hasOuterVolume": {
+        "@id": "lab:L208_Volume"
+      },
+      "cpo:hasWidthToLengthRatio": {
+        "@id": "lab:L208_Form_WidthToLengthRatio"
+      },
+      "cpo:hasHeightToLengthRatio": {
+        "@id": "lab:L208_Form_HeightToLengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L208_Form_WidthToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L208_Form_HeightToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:L208_Width",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Width"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L208_Width_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L208_Width_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Estimated width of Lab 208, 15 m - estimated by Laura Fadler and Meng Kong, 07.10.2026; not measured.",
+      "qudt:value": {
+        "@value": "15",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L208_Length",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Length"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L208_Length_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L208_Length_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Estimated length of Lab 208, 8 m - estimated by Laura Fadler and Meng Kong, 07.10.2026; not measured.",
+      "qudt:value": {
+        "@value": "8",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L208_Height",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Height"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:L208_Height_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:L208_Height_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Estimated ceiling height of Lab 208, 3 m - estimated by Laura Fadler and Meng Kong, 07.10.2026; not measured.",
+      "qudt:value": {
+        "@value": "3",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:L208_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "lab:L208_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "lab:L208_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Inner volume of the room: 15 m * 8 m * 3 m = 360 m3. The geometric capacity of the room, as opposed to environment:L208_Air_Volume, which is what the air actually occupies - the same number here, since anything standing in the room is ignored.",
+      "qudt:value": {
+        "@value": "360",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L208_InnerVolume"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Density",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Density"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L208_Air_Density_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Density_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Density_of_air.",
+      "rdfs:comment": "Density of dry air at about 20 degC and 1 atm (~1.2 kg/m3) - a textbook value, not measured in this room.",
+      "qudt:value": {
+        "@value": "1.2",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM-PER-M3"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_density"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Mass",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Mass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "environment:L208_Air_Mass_Evidence_1"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Mass_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Calculated from the room air volume (360 m3) and the assumed air density (1.2 kg/m3): 360 * 1.2 = 432 kg. Recalculate if either input changes.",
+      "qudt:value": {
+        "@value": "432",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_L208_Air_Mass"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_Air_Mass",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Calculating the mass of the air in L208",
+      "schema:description": "Mass of the room air from its volume and the looked-up density of dry air: 50 m3 * 1.2 kg/m3 = 60 kg.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L208_Air_Mass_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L208_Air_Mass_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L208_Air_Mass_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L208_Air_Mass_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "environment:L208_Air_Volume_Evidence_1"
+        },
+        {
+          "@id": "environment:L208_Air_Density_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:calculating_L208_Air_Mass_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L208_Air_Mass_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_Air_Mass_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L208_Air_Mass_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L208_Air_Mass_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. The mass value was already in the library, its task was only written down later; stamped with that moment (2026-09-26T20:00:00Z) - an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-26T20:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_InnerVolume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Plain cuboid",
+      "schema:description": "Plain cuboid: 4 m x 5 m x 2.5 m = 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L208_InnerVolume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L208_InnerVolume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L208_InnerVolume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "lab:L208_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:L208_Width_Reference_1"
+        },
+        {
+          "@id": "lab:L208_Length_Reference_1"
+        },
+        {
+          "@id": "lab:L208_Height_Reference_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_InnerVolume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L208_InnerVolume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_InnerVolume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L208_InnerVolume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L208_InnerVolume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_Air_Volume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "The air is the room's only phase, so it occupies the whole inner volume",
+      "schema:description": "The air is the room's only phase, so it occupies the whole inner volume: 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_L208_Air_Volume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_L208_Air_Volume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_L208_Air_Volume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:L208_Air_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:L208_Volume_Evidence_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_Air_Volume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_L208_Air_Volume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_L208_Air_Volume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L208_Air_Volume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_L208_Air_Volume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. Stamped with the moment the library tasks were written down (2026-09-22T17:38:06Z) - which is an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-22T17:38:06Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Molecule_0005",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Oxygen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0005"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:L208_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:L208_Air_Molecule_0005_Concentration"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Molecule_0005_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:L208_Air_Molecule_0005"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L208_Air_Molecule_0005_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Molecule_0005_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of oxygen in dry air - a textbook value, not measured in this room. Follows from the standard mole fractions (O2 20.946 %, N2 78.084 %, Ar 0.934 %, CO2 0.041 %) and the molar masses, giving a mean molar mass of 28.97 g/mol: 0.20946 x 31.999 / 28.97 = 0.2314.",
+      "qudt:value": {
+        "@value": "0.2314",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Molecule_0006",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrogen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0006"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:L208_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:L208_Air_Molecule_0006_Concentration"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Molecule_0006_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:L208_Air_Molecule_0006"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L208_Air_Molecule_0006_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Molecule_0006_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of nitrogen in dry air - a textbook value, not measured in this room. Same derivation as for oxygen: 0.78084 x 28.013 / 28.97 = 0.7551.",
+      "qudt:value": {
+        "@value": "0.7551",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Temperature",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Temperature"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L208_Air_Temperature_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Temperature_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Room temperature of the lab, taken as 20 degC - not read off a thermometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "20",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Pressure",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Pressure"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:L208_Air_Pressure_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_Pressure_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Ambient pressure of the lab, taken as 1 atm (101325 Pa) - not read off a barometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "101325",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PA"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_GasPhase_Occurrence",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The air of the room is always there: one occurrence without beginning or end. Its status says it occurred, its times are empty Actuals - the quantities exist, a value would be pointless. Stated once here; the series and experiment levels of the room air have no occurrence of their own, since it cannot be absent or occur more than once there.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "environment:L208_Air_GasPhase_OccurrenceStatus"
+      },
+      "cpo:hasStartTime": {
+        "@id": "environment:L208_Air_GasPhase_Occurrence_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "environment:L208_Air_GasPhase_Occurrence_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "environment:L208_Air_GasPhase_Occurrence_Duration"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_GasPhase_OccurrenceStatus",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "environment:L208_Air_GasPhase_OccurrenceStatus_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_GasPhase_OccurrenceStatus_Reference_1",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "environment:L208_Air_GasPhase_OccurrenceStatus"
+      },
+      "rdfs:comment": "The lab is always filled with air - an assumption about the room, not an observation during an experiment.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:L208_Air_GasPhase_Occurrence_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L208_Air_GasPhase_Occurrence_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:L208_Air_GasPhase_Occurrence_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:EnergyField_NTU_Fixed",
+      "@type": [
+        "cpo:EnergyField",
+        "hlo:Fixed"
+      ],
+      "rdfs:label": "Local gravitational field",
+      "cpo:isEnergyFieldOf": {
+        "@id": "site:NTU"
+      },
+      "cpo:hasEnergyFieldType": {
+        "@id": "cpo:GravitationalField"
+      },
+      "cpo:hasFieldStrength": {
+        "@id": "energyfield:FieldStrength_NTU_Fixed"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "energyfield:Occurrence_NTU_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:Occurrence_NTU_Fixed",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The gravitational field of the site is always there: one occurrence without beginning or end. Its status says it occurred (from the literature), its times are empty Actuals - the quantities exist, a value would be pointless.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "energyfield:OccurrenceStatus_NTU_Fixed"
+      },
+      "cpo:hasStartTime": {
+        "@id": "energyfield:Occurrence_NTU_StartTime_Fixed"
+      },
+      "cpo:hasEndTime": {
+        "@id": "energyfield:Occurrence_NTU_EndTime_Fixed"
+      },
+      "cpo:hasDuration": {
+        "@id": "energyfield:Occurrence_NTU_Duration_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:OccurrenceStatus_NTU_Fixed",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "energyfield:OccurrenceStatus_NTU_Reference_1_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:OccurrenceStatus_NTU_Reference_1_Fixed",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "CODATA recommended values of the fundamental physical constants (NIST), standard acceleration of gravity.",
+      "hlo:isReferenceOf": {
+        "@id": "energyfield:OccurrenceStatus_NTU_Fixed"
+      },
+      "rdfs:comment": "Gravity acts everywhere on Earth at all times - general physics, not an observation at this site.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_standard_gravity"
+      }
+    },
+    {
+      "@id": "energyfield:Occurrence_NTU_StartTime_Fixed",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:Occurrence_NTU_EndTime_Fixed",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:Occurrence_NTU_Duration_Fixed",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "energyfield:FieldStrength_NTU_Fixed",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "energyfield:FieldStrength_NTU_Reference_1_Fixed"
+      }
+    },
+    {
+      "@id": "energyfield:FieldStrength_NTU_Reference_1_Fixed",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "CODATA recommended values of the fundamental physical constants (NIST), standard acceleration of gravity.",
+      "rdfs:comment": "Standard gravity (CODATA), not a site-specific measurement - replace with a local value if one is measured.",
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Acceleration"
+      },
+      "qudt:value": {
+        "@value": "9.80665",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M-PER-SEC2"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_standard_gravity"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air",
+      "@type": [
+        "cpo:Environment",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ambient air of Lab of Congjian Lin",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:NTU_CongjianLin_Lab"
+      },
+      "cpo:fillsForm": {
+        "@id": "lab:NTU_CongjianLin_Lab_Form"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Volume"
+      },
+      "dcterms:hasPart": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase",
+      "@type": [
+        "cpo:GasPhase",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lab of Congjian Lin Air (Gas Phase)",
+      "dcterms:isPartOf": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air"
+      },
+      "cpo:canCreateEnergyField": false,
+      "cpo:hasDispersionState": {
+        "@id": "cpo:Continuous"
+      },
+      "cpo:hasVolume": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Volume"
+      },
+      "cpo:hasDensity": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Density"
+      },
+      "cpo:hasMass": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Mass"
+      },
+      "dcterms:hasPart": [
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006"
+        }
+      ],
+      "cpo:fillsForm": {
+        "@id": "lab:NTU_CongjianLin_Lab_Form"
+      },
+      "cpo:hasTemperature": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Temperature"
+      },
+      "cpo:hasPressure": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Pressure"
+      },
+      "cpo:hasOccurrence": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Volume the room air occupies - the inner volume of the room itself (4 m * 5 m * 2.5 m = 50 m3, see lab:NTU_CongjianLin_Lab_Form). Anything standing in the room is deliberately ignored. Assumed room dimensions, not measured. Shared by environment:NTU_CongjianLin_Lab_Air and its gas phase: the air is the room's only phase, so both refer to the same quantity.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Form",
+      "@type": [
+        "cpo:CuboidForm"
+      ],
+      "rdfs:comment": "Shape of the room itself. Only inner dimensions are recorded: the walls of a building are not modelled, so the room is described by the space it encloses. The dimensions are cpo:ProcessVariable, the declared range of the geometry properties since cpo 1.01 (before that cpo:Parameter).",
+      "cpo:hasWidth": {
+        "@id": "lab:NTU_CongjianLin_Lab_Width"
+      },
+      "cpo:hasLength": {
+        "@id": "lab:NTU_CongjianLin_Lab_Length"
+      },
+      "cpo:hasHeight": {
+        "@id": "lab:NTU_CongjianLin_Lab_Height"
+      },
+      "cpo:hasOuterVolume": {
+        "@id": "lab:NTU_CongjianLin_Lab_Volume"
+      },
+      "cpo:hasWidthToLengthRatio": {
+        "@id": "lab:NTU_CongjianLin_Lab_Form_WidthToLengthRatio"
+      },
+      "cpo:hasHeightToLengthRatio": {
+        "@id": "lab:NTU_CongjianLin_Lab_Form_HeightToLengthRatio"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Form_WidthToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Form_HeightToLengthRatio",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:LengthRatio"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Width",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Width"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:NTU_CongjianLin_Lab_Width_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Width_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed width of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "4",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Length",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Length"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:NTU_CongjianLin_Lab_Length_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Length_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed length of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Height",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Height"
+      },
+      "hlo:hasReference": {
+        "@id": "lab:NTU_CongjianLin_Lab_Height_Reference_1"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Height_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Assumed ceiling height of a typical lab room, not measured.",
+      "qudt:value": {
+        "@value": "2.5",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_room_dimensions"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Volume",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Volume"
+      },
+      "hlo:hasEvidence": [
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Volume_Evidence_1"
+        }
+      ]
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Volume_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "rdfs:comment": "Inner volume of the room: 4 m * 5 m * 2.5 m = 50 m3. The geometric capacity of the room, as opposed to environment:NTU_CongjianLin_Lab_Air_Volume, which is what the air actually occupies - the same number here, since anything standing in the room is ignored.",
+      "qudt:value": {
+        "@value": "50",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3"
+      },
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Density",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Density"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Density_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Density_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Density_of_air.",
+      "rdfs:comment": "Density of dry air at about 20 degC and 1 atm (~1.2 kg/m3) - a textbook value, not measured in this room.",
+      "qudt:value": {
+        "@value": "1.2",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM-PER-M3"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_density"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Mass",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Mass"
+      },
+      "hlo:hasEvidence": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Mass_Evidence_1"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Mass_Evidence_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Evidence"
+      ],
+      "hlo:hasEvidenceType": {
+        "@id": "hlo:Calculated"
+      },
+      "rdfs:comment": "Calculated from the room air volume (50 m3) and the assumed air density (1.2 kg/m3): 50 * 1.2 = 60 kg. Recalculate if either input changes.",
+      "qudt:value": {
+        "@value": "60",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:KiloGM"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Calculating the mass of the air in NTU_CongjianLin_Lab",
+      "schema:description": "Mass of the room air from its volume and the looked-up density of dry air: 50 m3 * 1.2 kg/m3 = 60 kg.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Mass_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Volume_Evidence_1"
+        },
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Density_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Mass_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries were written down (2026-10-05T21:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-05T21:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Plain cuboid",
+      "schema:description": "Plain cuboid: 4 m x 5 m x 2.5 m = 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Width_Reference_1"
+        },
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Length_Reference_1"
+        },
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Height_Reference_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_InnerVolume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries were written down (2026-10-05T21:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-05T21:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume",
+      "@type": [
+        "cpo:CalculationTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "The air is the room's only phase, so it occupies the whole inner volume",
+      "schema:description": "The air is the room's only phase, so it occupies the whole inner volume: 50 m3.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "environment:NTU_CongjianLin_Lab_Air_Volume_Evidence_1"
+        }
+      ],
+      "cpo:hasInputValue": [
+        {
+          "@id": "lab:NTU_CongjianLin_Lab_Volume_Evidence_1"
+        }
+      ],
+      "dcterms:isPartOf": {
+        "@id": "task:calculating_room_volumes"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:calculating_NTU_CongjianLin_Lab_Air_Volume_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries were written down (2026-10-05T21:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-05T21:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_organization_library_task_times"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Oxygen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0005"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005_Concentration"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0005_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of oxygen in dry air - a textbook value, not measured in this room. Follows from the standard mole fractions (O2 20.946 %, N2 78.084 %, Ar 0.934 %, CO2 0.041 %) and the molar masses, giving a mean molar mass of 28.97 g/mol: 0.20946 x 31.999 / 28.97 = 0.2314.",
+      "qudt:value": {
+        "@value": "0.2314",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006",
+      "@type": [
+        "chebi:Molecule",
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrogen",
+      "hlo:specializationOf": {
+        "@id": "chem:Molecule_0006"
+      },
+      "dcterms:isPartOf": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase"
+      },
+      "cpo:hasConcentration": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006_Concentration"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006_Concentration",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "cpo:isProcessVariableOf": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006_Concentration_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Molecule_0006_Concentration_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:MassFraction"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "en.wikipedia.org/wiki/Atmosphere_of_Earth.",
+      "rdfs:comment": "Mass fraction of nitrogen in dry air - a textbook value, not measured in this room. Same derivation as for oxygen: 0.78084 x 28.013 / 28.97 = 0.7551.",
+      "qudt:value": {
+        "@value": "0.7551",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_air_composition"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Temperature",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Temperature"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Temperature_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Temperature_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Room temperature of the lab, taken as 20 degC - not read off a thermometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "20",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Pressure",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Pressure"
+      },
+      "hlo:hasReference": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_Pressure_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_Pressure_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Ambient pressure of the lab, taken as 1 atm (101325 Pa) - not read off a barometer. The looked-up air density refers to the same condition.",
+      "qudt:value": {
+        "@value": "101325",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PA"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence",
+      "@type": [
+        "cpo:Occurrence",
+        "hlo:Fixed"
+      ],
+      "rdfs:comment": "The air of the room is always there: one occurrence without beginning or end. Its status says it occurred, its times are empty Actuals - the quantities exist, a value would be pointless. Stated once here; the series and experiment levels of the room air have no occurrence of their own, since it cannot be absent or occur more than once there.",
+      "cpo:hasOccurrenceStatus": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_OccurrenceStatus"
+      },
+      "cpo:hasStartTime": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence_Duration"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_OccurrenceStatus",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_OccurrenceStatus_Reference_1"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_OccurrenceStatus_Reference_1",
+      "@type": [
+        "cpo:OccurrenceStatus",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_OccurrenceStatus"
+      },
+      "rdfs:comment": "The lab is always filled with air - an assumption about the room, not an observation during an experiment.",
+      "cpo:hasOccurrenceValue": {
+        "@id": "cpo:Occurred"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_lab_air_state"
+      }
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "environment:NTU_CongjianLin_Lab_Air_GasPhase_Occurrence_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    }
+  ]
+}

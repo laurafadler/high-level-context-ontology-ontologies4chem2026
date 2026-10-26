@@ -1,0 +1,2286 @@
+{
+ "@context": {
+  "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+  "chem": "https://example.org/chemical_entity/",
+  "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+  "dcterms": "http://purl.org/dc/terms/",
+  "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+  "placeholder": "https://example.org/placeholder/",
+  "reaction": "https://example.org/reaction/",
+  "schema": "http://schema.org/",
+  "xsd": "http://www.w3.org/2001/XMLSchema#",
+  "qudt": "http://qudt.org/schema/qudt/",
+  "quantitykind": "http://qudt.org/vocab/quantitykind/",
+  "unit": "http://qudt.org/vocab/unit/",
+  "task": "https://example.org/task/",
+  "time": "http://www.w3.org/2006/time#",
+  "person": "https://example.org/person/",
+  "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+ },
+ "@graph": [
+  {
+   "@id": "placeholder:PBA_MetalChloride_1",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "MCl2 (metal 1)",
+   "schema:description": "Metal 1 of a Prussian blue analogue: a transition metal(II) chloride. Shared by all PBA templates - resolved once per series, so metal 1 of the one-metal template is metal 1 of the mixtures as well.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:ManganeseIIChloride"
+    },
+    {
+     "@id": "chem:IronIIChloride"
+    },
+    {
+     "@id": "chem:CobaltIIChloride"
+    },
+    {
+     "@id": "chem:NickelIIChloride"
+    },
+    {
+     "@id": "chem:CopperIIChloride"
+    },
+    {
+     "@id": "chem:ZincChloride"
+    }
+   ]
+  },
+  {
+   "@id": "placeholder:PBA_MetalChloride_2",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "MCl2 (metal 2)",
+   "schema:description": "Metal 2 of a Prussian blue analogue: a transition metal(II) chloride. Shared by all PBA templates - resolved once per series, so metal 1 of the one-metal template is metal 1 of the mixtures as well.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:ManganeseIIChloride"
+    },
+    {
+     "@id": "chem:IronIIChloride"
+    },
+    {
+     "@id": "chem:CobaltIIChloride"
+    },
+    {
+     "@id": "chem:NickelIIChloride"
+    },
+    {
+     "@id": "chem:CopperIIChloride"
+    },
+    {
+     "@id": "chem:ZincChloride"
+    }
+   ]
+  },
+  {
+   "@id": "placeholder:PBA_MetalChloride_3",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "MCl2 (metal 3)",
+   "schema:description": "Metal 3 of a Prussian blue analogue: a transition metal(II) chloride. Shared by all PBA templates - resolved once per series, so metal 1 of the one-metal template is metal 1 of the mixtures as well.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:ManganeseIIChloride"
+    },
+    {
+     "@id": "chem:IronIIChloride"
+    },
+    {
+     "@id": "chem:CobaltIIChloride"
+    },
+    {
+     "@id": "chem:NickelIIChloride"
+    },
+    {
+     "@id": "chem:CopperIIChloride"
+    },
+    {
+     "@id": "chem:ZincChloride"
+    }
+   ]
+  },
+  {
+   "@id": "placeholder:PBA_MetalChloride_4",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "MCl2 (metal 4)",
+   "schema:description": "Metal 4 of a Prussian blue analogue: a transition metal(II) chloride. Shared by all PBA templates - resolved once per series, so metal 1 of the one-metal template is metal 1 of the mixtures as well.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:ManganeseIIChloride"
+    },
+    {
+     "@id": "chem:IronIIChloride"
+    },
+    {
+     "@id": "chem:CobaltIIChloride"
+    },
+    {
+     "@id": "chem:NickelIIChloride"
+    },
+    {
+     "@id": "chem:CopperIIChloride"
+    },
+    {
+     "@id": "chem:ZincChloride"
+    }
+   ]
+  },
+  {
+   "@id": "placeholder:PBA_MetalChloride_5",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "MCl2 (metal 5)",
+   "schema:description": "Metal 5 of a Prussian blue analogue: a transition metal(II) chloride. Shared by all PBA templates - resolved once per series, so metal 1 of the one-metal template is metal 1 of the mixtures as well.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:ManganeseIIChloride"
+    },
+    {
+     "@id": "chem:IronIIChloride"
+    },
+    {
+     "@id": "chem:CobaltIIChloride"
+    },
+    {
+     "@id": "chem:NickelIIChloride"
+    },
+    {
+     "@id": "chem:CopperIIChloride"
+    },
+    {
+     "@id": "chem:ZincChloride"
+    }
+   ]
+  },
+  {
+   "@id": "placeholder:PBA_MetalChloride_6",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "MCl2 (metal 6)",
+   "schema:description": "Metal 6 of a Prussian blue analogue: a transition metal(II) chloride. Shared by all PBA templates - resolved once per series, so metal 1 of the one-metal template is metal 1 of the mixtures as well.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:ManganeseIIChloride"
+    },
+    {
+     "@id": "chem:IronIIChloride"
+    },
+    {
+     "@id": "chem:CobaltIIChloride"
+    },
+    {
+     "@id": "chem:NickelIIChloride"
+    },
+    {
+     "@id": "chem:CopperIIChloride"
+    },
+    {
+     "@id": "chem:ZincChloride"
+    }
+   ]
+  },
+  {
+   "@id": "placeholder:PBA_Ferrocyanide_OneMetal_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)2[Fe(CN)6]",
+   "schema:description": "Product of the template reaction:PBA_Ferrocyanide_OneMetal: the Prussian blue analogue (M1)2[Fe(CN)6] from potassium ferrocyanide. Idealized composition: no potassium, water or vacancies in the lattice - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:NickelHexacyanoferrateII"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_OneMetal",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, 1 metal (template)",
+   "schema:description": "K4[Fe(CN)6] + 2 MCl2 (metal 1) > (M1)2[Fe(CN)6] + 4 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferrocyanide and one metal(II) chloride in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferrocyanide_OneMetal_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 4.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferrocyanide_TwoMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)(M2)[Fe(CN)6]",
+   "schema:description": "Product of the template reaction:PBA_Ferrocyanide_TwoMetals: the Prussian blue analogue (M1)(M2)[Fe(CN)6] (2 metals in equal amounts) from potassium ferrocyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series.",
+   "cpo:hasPotentialCandidate": [
+    {
+     "@id": "chem:NickelManganeseHexacyanoferrateII"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_TwoMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, 2 metals (template)",
+   "schema:description": "K4[Fe(CN)6] + MCl2 (metal 1) + MCl2 (metal 2) > (M1)(M2)[Fe(CN)6] + 4 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferrocyanide and a mixture of 2 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferrocyanide_TwoMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 4.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferrocyanide_ThreeMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)2(M2)2(M3)2[Fe(CN)6]3",
+   "schema:description": "Product of the template reaction:PBA_Ferrocyanide_ThreeMetals: the Prussian blue analogue (M1)2(M2)2(M3)2[Fe(CN)6]3 (3 metals in equal amounts) from potassium ferrocyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_ThreeMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, 3 metals (template)",
+   "schema:description": "3 K4[Fe(CN)6] + 2 MCl2 (metal 1) + 2 MCl2 (metal 2) + 2 MCl2 (metal 3) > (M1)2(M2)2(M3)2[Fe(CN)6]3 + 12 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferrocyanide and a mixture of 3 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferrocyanide_ThreeMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_ThreeMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 12.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferrocyanide_FourMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)(M2)(M3)(M4)[Fe(CN)6]2",
+   "schema:description": "Product of the template reaction:PBA_Ferrocyanide_FourMetals: the Prussian blue analogue (M1)(M2)(M3)(M4)[Fe(CN)6]2 (4 metals in equal amounts) from potassium ferrocyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, 4 metals (template)",
+   "schema:description": "2 K4[Fe(CN)6] + MCl2 (metal 1) + MCl2 (metal 2) + MCl2 (metal 3) + MCl2 (metal 4) > (M1)(M2)(M3)(M4)[Fe(CN)6]2 + 8 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferrocyanide and a mixture of 4 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_4"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_MetalChloride_4",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_4"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferrocyanide_FourMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FourMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 8.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferrocyanide_FiveMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)2(M2)2(M3)2(M4)2(M5)2[Fe(CN)6]5",
+   "schema:description": "Product of the template reaction:PBA_Ferrocyanide_FiveMetals: the Prussian blue analogue (M1)2(M2)2(M3)2(M4)2(M5)2[Fe(CN)6]5 (5 metals in equal amounts) from potassium ferrocyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, 5 metals (template)",
+   "schema:description": "5 K4[Fe(CN)6] + 2 MCl2 (metal 1) + 2 MCl2 (metal 2) + 2 MCl2 (metal 3) + 2 MCl2 (metal 4) + 2 MCl2 (metal 5) > (M1)2(M2)2(M3)2(M4)2(M5)2[Fe(CN)6]5 + 20 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferrocyanide and a mixture of 5 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_4"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_5"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -5.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_4",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_4"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_MetalChloride_5",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_5"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferrocyanide_FiveMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_FiveMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 20.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferrocyanide_SixMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)(M2)(M3)(M4)(M5)(M6)[Fe(CN)6]3",
+   "schema:description": "Product of the template reaction:PBA_Ferrocyanide_SixMetals: the Prussian blue analogue (M1)(M2)(M3)(M4)(M5)(M6)[Fe(CN)6]3 (6 metals in equal amounts) from potassium ferrocyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, 6 metals (template)",
+   "schema:description": "3 K4[Fe(CN)6] + MCl2 (metal 1) + MCl2 (metal 2) + MCl2 (metal 3) + MCl2 (metal 4) + MCl2 (metal 5) + MCl2 (metal 6) > (M1)(M2)(M3)(M4)(M5)(M6)[Fe(CN)6]3 + 12 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferrocyanide and a mixture of 6 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_4"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_5"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_6"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_4",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_4"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_5",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_5"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_MetalChloride_6",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_6"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferrocyanide_SixMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_SixMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 12.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferricyanide_OneMetal_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)3[Fe(CN)6]2",
+   "schema:description": "Product of the template reaction:PBA_Ferricyanide_OneMetal: the Prussian blue analogue (M1)3[Fe(CN)6]2 from potassium ferricyanide. Idealized composition: no potassium, water or vacancies in the lattice - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_OneMetal",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferricyanide, 1 metal (template)",
+   "schema:description": "2 K3[Fe(CN)6] + 3 MCl2 (metal 1) > (M1)3[Fe(CN)6]2 + 6 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferricyanide and one metal(II) chloride in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerricyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferricyanide_OneMetal_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_OneMetal_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 6.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_OneMetal"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferricyanide_TwoMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)3(M2)3[Fe(CN)6]4",
+   "schema:description": "Product of the template reaction:PBA_Ferricyanide_TwoMetals: the Prussian blue analogue (M1)3(M2)3[Fe(CN)6]4 (2 metals in equal amounts) from potassium ferricyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_TwoMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferricyanide, 2 metals (template)",
+   "schema:description": "4 K3[Fe(CN)6] + 3 MCl2 (metal 1) + 3 MCl2 (metal 2) > (M1)3(M2)3[Fe(CN)6]4 + 12 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferricyanide and a mixture of 2 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerricyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -4.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferricyanide_TwoMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_TwoMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 12.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_TwoMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferricyanide_ThreeMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)(M2)(M3)[Fe(CN)6]2",
+   "schema:description": "Product of the template reaction:PBA_Ferricyanide_ThreeMetals: the Prussian blue analogue (M1)(M2)(M3)[Fe(CN)6]2 (3 metals in equal amounts) from potassium ferricyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_ThreeMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferricyanide, 3 metals (template)",
+   "schema:description": "2 K3[Fe(CN)6] + MCl2 (metal 1) + MCl2 (metal 2) + MCl2 (metal 3) > (M1)(M2)(M3)[Fe(CN)6]2 + 6 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferricyanide and a mixture of 3 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerricyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferricyanide_ThreeMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_ThreeMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 6.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_ThreeMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferricyanide_FourMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)3(M2)3(M3)3(M4)3[Fe(CN)6]8",
+   "schema:description": "Product of the template reaction:PBA_Ferricyanide_FourMetals: the Prussian blue analogue (M1)3(M2)3(M3)3(M4)3[Fe(CN)6]8 (4 metals in equal amounts) from potassium ferricyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferricyanide, 4 metals (template)",
+   "schema:description": "8 K3[Fe(CN)6] + 3 MCl2 (metal 1) + 3 MCl2 (metal 2) + 3 MCl2 (metal 3) + 3 MCl2 (metal 4) > (M1)3(M2)3(M3)3(M4)3[Fe(CN)6]8 + 24 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferricyanide and a mixture of 4 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_4"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerricyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -8.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_MetalChloride_4",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_4"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferricyanide_FourMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FourMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 24.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FourMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferricyanide_FiveMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)3(M2)3(M3)3(M4)3(M5)3[Fe(CN)6]10",
+   "schema:description": "Product of the template reaction:PBA_Ferricyanide_FiveMetals: the Prussian blue analogue (M1)3(M2)3(M3)3(M4)3(M5)3[Fe(CN)6]10 (5 metals in equal amounts) from potassium ferricyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferricyanide, 5 metals (template)",
+   "schema:description": "10 K3[Fe(CN)6] + 3 MCl2 (metal 1) + 3 MCl2 (metal 2) + 3 MCl2 (metal 3) + 3 MCl2 (metal 4) + 3 MCl2 (metal 5) > (M1)3(M2)3(M3)3(M4)3(M5)3[Fe(CN)6]10 + 30 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferricyanide and a mixture of 5 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_4"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_5"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerricyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -10.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_4",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_4"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_MetalChloride_5",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_5"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -3.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferricyanide_FiveMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_FiveMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 30.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_FiveMetals"
+   }
+  },
+  {
+   "@id": "placeholder:PBA_Ferricyanide_SixMetals_Product",
+   "@type": [
+    "chebi:ChemicalEntity",
+    "cpo:Placeholder",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA (M1)(M2)(M3)(M4)(M5)(M6)[Fe(CN)6]4",
+   "schema:description": "Product of the template reaction:PBA_Ferricyanide_SixMetals: the Prussian blue analogue (M1)(M2)(M3)(M4)(M5)(M6)[Fe(CN)6]4 (6 metals in equal amounts) from potassium ferricyanide. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Resolved once per series."
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed",
+    "hlo:Template"
+   ],
+   "schema:name": "PBA formation, potassium ferricyanide, 6 metals (template)",
+   "schema:description": "4 K3[Fe(CN)6] + MCl2 (metal 1) + MCl2 (metal 2) + MCl2 (metal 3) + MCl2 (metal 4) + MCl2 (metal 5) + MCl2 (metal 6) > (M1)(M2)(M3)(M4)(M5)(M6)[Fe(CN)6]4 + 12 KCl",
+   "schema:comment": "TEMPLATE of the co-precipitation of a Prussian blue analogue from potassium ferricyanide and a mixture of 6 metal(II) chlorides in equal amounts in water. The metal chlorides and the product are placeholders; the fixed reactions of the concrete metals specialize the template (hlo:specializationOf; made with curation/pba_reactions.py), and a sheet names those. Idealized composition: no potassium, water or vacancies in the lattice, the metals equimolar - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). A net balance, not a mechanism. Added by curation for the series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis).",
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_3"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_4"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_5"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_6"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerricyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -4.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_1"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_2"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_3",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_3"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_4",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_4"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_5",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_5"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_MetalChloride_6",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_MetalChloride_6"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "placeholder:PBA_Ferricyanide_SixMetals_Product"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferricyanide_SixMetals_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 12.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferricyanide_SixMetals"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Ni",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, Ni",
+   "schema:description": "K4[Fe(CN)6] + 2 NiCl2 > Ni2[Fe(CN)6] + 4 KCl",
+   "schema:comment": "Co-precipitation of the Prussian blue analogue Ni2[Fe(CN)6] from potassium ferrocyanide and nickel(II) chloride in water - the template reaction:PBA_Ferrocyanide_OneMetal with its placeholders replaced (made with projects/pba_synthesis/curation/pba_reactions.py on 2026-10-05; decided by Laura Fadler, 05.10.2026). Idealized product; a net balance, not a mechanism.",
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal"
+   },
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_Hexacyanoferrate"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:NickelIIChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -2.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_MetalChloride_1"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:NickelHexacyanoferrateII"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_Product"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Ni_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 4.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_OneMetal_Participant_PotassiumChloride"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Mn_Ni",
+   "@type": [
+    "cpo:StoichiometricReaction",
+    "hlo:Fixed"
+   ],
+   "schema:name": "PBA formation, potassium ferrocyanide, Mn + Ni",
+   "schema:description": "K4[Fe(CN)6] + MnCl2 + NiCl2 > MnNi[Fe(CN)6] + 4 KCl",
+   "schema:comment": "Co-precipitation of the Prussian blue analogue MnNi[Fe(CN)6] from potassium ferrocyanide and manganese and nickel(II) chloride in water - the template reaction:PBA_Ferrocyanide_TwoMetals with its placeholders replaced (made with projects/pba_synthesis/curation/pba_reactions.py on 2026-10-05; decided by Laura Fadler, 05.10.2026). Idealized product; a net balance, not a mechanism.",
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals"
+   },
+   "cpo:hasParticipant": [
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_Hexacyanoferrate"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_MetalChloride_1"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_MetalChloride_2"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_Product"
+    },
+    {
+     "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_PotassiumChloride"
+    }
+   ]
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_Hexacyanoferrate",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumFerrocyanide"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Mn_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_Hexacyanoferrate"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_MetalChloride_1",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:ManganeseIIChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Mn_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_MetalChloride_1"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_MetalChloride_2",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:NickelIIChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Reactant"
+   },
+   "cpo:hasStoichiometricCoefficient": -1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Mn_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_MetalChloride_2"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_Product",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:NickelManganeseHexacyanoferrateII"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Product"
+   },
+   "cpo:hasStoichiometricCoefficient": 1.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Mn_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_Product"
+   }
+  },
+  {
+   "@id": "reaction:PBA_Ferrocyanide_Mn_Ni_Participant_PotassiumChloride",
+   "@type": [
+    "cpo:ReactionParticipant",
+    "hlo:Fixed"
+   ],
+   "dcterms:hasPart": {
+    "@id": "chem:PotassiumChloride"
+   },
+   "cpo:hasChemicalRole": {
+    "@id": "cpo:Byproduct"
+   },
+   "cpo:hasStoichiometricCoefficient": 4.0,
+   "cpo:participatesIn": {
+    "@id": "reaction:PBA_Ferrocyanide_Mn_Ni"
+   },
+   "hlo:specializationOf": {
+    "@id": "reaction:PBA_Ferrocyanide_TwoMetals_Participant_PotassiumChloride"
+   }
+  }
+ ]
+}

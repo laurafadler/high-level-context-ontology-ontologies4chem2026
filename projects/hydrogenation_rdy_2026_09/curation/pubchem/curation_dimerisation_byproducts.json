@@ -1,0 +1,21 @@
+[
+ {
+  "name": "Ammonia",
+  "query_smiles": "N",
+  "looked_up": "2026-09-29",
+  "found": true,
+  "CID": 222,
+  "MolecularFormula": "H3N",
+  "MolecularWeight": "17.031",
+  "ConnectivitySMILES": "N",
+  "InChI": "InChI=1S/H3N/h1H3",
+  "InChIKey": "QGZKDVFQNNGYKY-UHFFFAOYSA-N",
+  "IUPACName": "azane",
+  "Title": "Ammonia",
+  "cas_candidates": [
+   "7664-41-7",
+   "82168-61-4",
+   "8007-57-6"
+  ]
+ }
+]

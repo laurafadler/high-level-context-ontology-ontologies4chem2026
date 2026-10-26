@@ -1,0 +1,337 @@
+# Schema of the library entry files: what a person fills in to add something to a library -
+# one type per kind of thing, seen from what a person knows, not from the graph. Read by
+# create_library_entry.py (to write the empty template) and finish_library_entry.py (to check it).
+#
+# The fields were derived by hand from the shapes, the generator and check_library_consistency.py
+#; "basis" of each type says where its required fields come from.
+#
+# Per type:
+#   library:   the library file the entries go to (others it touches are named by the builder)
+#   id_prefix: the prefix of the IDs it makes; the ID is built from the name (PascalCase, letters and digits),
+#              unless the entry gives "id"
+#   doc:       what the type is for (head of the template)
+#   basis:     where the required fields come from
+#   fields:    per field
+#     required: true     must be filled in
+#     doc:               what the field is for (comment in the template)
+#     example:           shown in the template
+#     property:          what it becomes in the library (for the overview of properties per class)
+#     ref: <type>        names an entry of that type - its ID or its name; an unknown one starts an entry
+#                        file of that type (organization) or is reported (types without a template)
+#     list: true         a list of plain values
+#     list_of: <module>  a list, the module per item
+#     module: <module>   a block of fields, the module's
+#     format: <kind>     cas | orcid | email | url | smiles - checked
+#     allow: [...]       further allowed plain values besides the format (cas: none)
+#     one_of: [...]      allowed values
+#     when: {f: v}       required only when field f of the same block has the value v
+#     quantity: <q>      a value block (module value) of this quantity: mass, volume, fraction, time - its number,
+#                        unit and time are checked by the type
+#
+# Every entry file has the head fields of "file" and a list "entries" of the type's fields. The tool adds
+# "open" (questions that came up while finishing) and "written" (what was written, when).
+
+format: library-entry-schema-v1
+
+file:
+  fields:
+    format:     {required: true, doc: "format of this file - do not change"}
+    type:       {required: true, doc: "type of the entries - do not change"}
+    entered_by: {required: true, ref: person, doc: "who writes these entries into the library: person:<ID> or the name of a person of the People Library", property: cpo:performedBy}
+    source:     {required: true, doc: "where the information comes from, as a sentence - it goes into the comment of every entry", example: "Given by Meng Kong on 07.10.2026."}
+
+modules:
+  value:
+    doc: "a value and how it is known - as in the setup sheet (kind); every value of a library needs it (rule 4.1)"
+    fields:
+      value:  {required: true, doc: "a number, or a time as 2025-06-02T09:30:00Z (UTC)"}
+      unit:   {doc: "QUDT unit of a number (KiloGM, GM, L, MilliL, M, MOL-PER-L ...)"}
+      kind:   {required: true, one_of: [measured, observed, calculated, literature, planned, assumed]}
+      source: {required: true, doc: "where it was read - or why it is assumed"}
+
+  content:
+    doc: "what is in the container as delivered (Material Library, rule 2.15)"
+    fields:
+      label:           {required: true, doc: "name of the content", example: "Nickel(II) chloride hexahydrate, lot MKCL1234", property: schema:name}
+      state:           {required: true, one_of: [solid, liquid, gas], property: "@type (phase)"}
+      solid_structure: {required: true, when: {state: solid}, one_of: [crystalline, amorphous, semicrystalline], property: cpo:hasSolidStructure}
+      lot:             {required: true, doc: "the lot on the label - if it is not known, say so in words (the consistency check asks for a lot)", property: cpo:hasLotNumber}
+      species:         {required: true, list_of: species, doc: "the substances of the content", property: "dcterms:hasPart (phase)"}
+      sku:             {doc: "catalogue number of the manufacturer", example: "646377-1L", property: schema:sku}
+      manufacturer:    {ref: organization, doc: "an organization of the Organization Library - an unknown one starts its own entry", property: cpo:hasManufacturer}
+      mass:            {module: value, quantity: mass, doc: "net content at delivery", property: cpo:hasMass}
+      volume:          {module: value, quantity: volume, property: cpo:hasVolume}
+      expires:         {module: value, quantity: time, doc: "expiry date of the lot", property: cpo:hasExpiryTime}
+      retest:          {module: value, quantity: time, doc: "re-test date of the lot (stable substances have one instead of an expiry date)", property: cpo:hasRetestTime}
+
+  species:
+    doc: "one substance of a content"
+    fields:
+      substance: {required: true, ref: substance, doc: "a substance of the Chemical Entity Library (ID or name) - an unknown one starts its own entry", example: "chem:NickelIIChlorideHexahydrate", property: hlo:specializationOf}
+      fraction:  {module: value, quantity: fraction, doc: "mass fraction (0 to 1), e.g. the purity from the certificate", property: cpo:hasConcentration}
+
+  opening:
+    doc: "an opening of a piece of labware (a port, cpo:DeviceOpening)"
+    fields:
+      name: {required: true, doc: "short name, part of the ID port:<labware>_<name>", example: "tube_port", property: "@id"}
+      note: {doc: "what it is for", example: "takes the falcon tube", property: rdfs:comment}
+
+  exemplar:
+    doc: "one identifiable piece of the labware, with its own place and usage history (rule 3.11)"
+    fields:
+      name:         {required: true, doc: "the piece as people call it", example: "Falcon tube 50 mL no. 1", property: schema:name}
+      location:     {required: true, ref: place, doc: "the laboratory or cabinet it is kept in", example: "lab:L208", property: cpo:locatedInsideOf}
+      commissioned: {required: true, module: value, quantity: time, doc: "when it was put into service - its usage history starts there (rule 5.5)", property: "cpo:hasUsageHistory (first task)"}
+      id:           {doc: "only if the ID made from the name does not fit", property: "@id"}
+      note:         {property: rdfs:comment}
+
+  source:
+    doc: "where something came from when a container was filled in the lab - one transfer (cpo:PortCrossing) out of its content"
+    fields:
+      container: {required: true, ref: source, doc: "a container or line of the libraries that holds something (its current content is taken)", example: "device:bottle_nickel_chloride_hexahydrate_01", property: cpo:removesFromPhase}
+      volume:    {module: value, quantity: volume, doc: "volume taken - one block, or a list of blocks (measured and planned)", property: cpo:hasTransferredVolume}
+      note:      {doc: "what else is known of it, e.g. the mass weighed in (the ontology has no transferred mass)", example: "0.476 g weighed in", property: rdfs:comment}
+
+  preparation:
+    doc: "the task that filled the container (cpo:OperationTask)"
+    fields:
+      name:        {required: true, doc: "a gerund, as every task name (rule 1.7)", example: "Preparing the nickel(II) chloride stock solution", property: schema:name}
+      description: {required: true, doc: "what was done", property: schema:description}
+      functions:   {required: true, list: true, doc: "what it was for - functions of the CPO", example: "[cpo:Dissolving, cpo:Mixing]", property: cpo:realizesFunction}
+
+  prepared_content:
+    doc: "what is in the container after the preparation (Material Library)"
+    fields:
+      label:           {required: true, doc: "name of the content", example: "Nickel(II) chloride stock solution 0.01 M", property: schema:name}
+      state:           {required: true, one_of: [solid, liquid, gas], property: "@type (phase)"}
+      solid_structure: {required: true, when: {state: solid}, one_of: [crystalline, amorphous, semicrystalline], property: cpo:hasSolidStructure}
+      species:         {required: true, list_of: prepared_species, doc: "the substances in it", property: "dcterms:hasPart (phase)"}
+      lot:             {doc: "the label on the container - otherwise the label of the content is taken", property: cpo:hasLotNumber}
+      volume:          {module: value, quantity: volume, doc: "one block, or a list (measured and planned)", property: cpo:hasVolume}
+      mass:            {module: value, quantity: mass, property: cpo:hasMass}
+
+  prepared_species:
+    doc: "one substance of a prepared content"
+    fields:
+      substance:     {required: true, ref: substance, doc: "a substance of the Chemical Entity Library (ID or name)", property: hlo:specializationOf}
+      concentration: {module: value, quantity: concentration, doc: "amount concentration (MOL-PER-L) - one block or a list (planned and calculated)", property: cpo:hasConcentration}
+      fraction:      {module: value, quantity: fraction, doc: "mass fraction (0 to 1), instead of a concentration", property: cpo:hasConcentration}
+
+  identifier:
+    doc: "the same thing in another system (schema:PropertyValue, library_import.identifier)"
+    fields:
+      system: {required: true, doc: "the system", example: "AI4Green", property: schema:propertyID}
+      value:  {required: true, doc: "its local ID there", example: "./author/7", property: schema:value}
+      url:    {format: url, property: schema:url}
+
+types:
+  person:
+    library: people_library.jsonld
+    id_prefix: person
+    doc: "A person who plans, performs or enters something (People Library)."
+    basis: >-
+      The generator finds a person by the ID or schema:name (task_functions._ask_performers, check_sheet); every
+      entry of the library has given and family name; ORCID format: DataQualityShapes Person_ORCID_Format_Shape
+      (rule 2.8); memberships both ways (rule 2.8).
+    fields:
+      name:             {required: true, doc: "full name as it is written", example: "Meng Kong", property: schema:name}
+      id:               {doc: "only if the ID made from the name does not fit", example: "person:MengKong", property: "@id"}
+      given_name:       {required: true, example: "Meng", property: schema:givenName}
+      family_name:      {required: true, example: "Kong", property: schema:familyName}
+      honorific_prefix: {example: "Dr", property: schema:honorificPrefix}
+      orcid:            {format: orcid, doc: "the plain identifier, no https://orcid.org/", example: "0000-0001-7621-0889", property: cpo:hasORCID}
+      email:            {format: email, property: schema:email}
+      member_of:        {list: true, ref: organization, doc: "organizations the person belongs to - the organization gets org:hasMember back", example: "[organization:CEB]", property: org:memberOf}
+      identifiers:      {list_of: identifier, doc: "the same person in another system (an ELN user, say)", property: schema:identifier}
+      note:             {doc: "anything else worth saying about the entry", property: schema:description}
+
+  organization:
+    library: organization_library.jsonld
+    id_prefix: organization
+    doc: "An organization: a university, a department, a manufacturer (Organization Library). Sites, laboratories and cabinets are not made here."
+    basis: >-
+      Every organization of the library has schema:name; units name their parent (org:unitOf) and the parent its
+      unit (org:hasUnit) - both ways (rule 2.8).
+    fields:
+      name:    {required: true, example: "Sigma-Aldrich", property: schema:name}
+      id:      {doc: "only if the ID made from the name does not fit", example: "organization:SigmaAldrich", property: "@id"}
+      url:     {format: url, example: "https://www.sigmaaldrich.com", property: schema:url}
+      unit_of: {ref: organization, doc: "the organization this one is a unit of (a department of a university) - it gets org:hasUnit back", property: org:unitOf}
+      note:    {doc: "what the organization is, for the reader", property: rdfs:comment}
+
+  substance:
+    library: chemical_entity_library.jsonld
+    id_prefix: chem
+    doc: >-
+      A chemical substance that PubChem knows (Chemical Entity Library). finish_library_entry.py looks it up by its
+      SMILES and keeps the answer next to this file; identifiers and the molar mass come from there.
+    basis: >-
+      ContextRequirementShapes Molecule_Information_R2 (CAS or cpo:hasNoCASNumber), _R4 (PubChem CID), _R5 (InChIKey),
+      Molecule_Structure_Substance_R1 (InChI), _R2 (SMILES), _R3 (molecular formula); molar mass as a cpo:Parameter
+      with its reference and lookup task (rules 3.7, 4.1); CAS check digit (rule 2.8).
+    fields:
+      name:       {required: true, doc: "the name the entry is shown by - a person chooses it (PubChem titles are often unwieldy)", example: "Thionyl chloride", property: schema:name}
+      id:         {doc: "only if the ID made from the name does not fit (a name that starts with a digit needs one)", example: "chem:ThionylChloride", property: "@id"}
+      smiles:     {required: true, format: smiles, doc: "the structure to look up on PubChem", example: "O=S(Cl)Cl", property: cpo:hasSMILES}
+      cas:        {format: cas, allow: [none], doc: "needed when PubChem lists several CAS numbers (you are asked); 'none' when there is none", example: "7719-09-7", property: cpo:hasCAS}
+      called:     {doc: "the name an ELN or a record uses for it, when it differs - said in the comment", example: "SOCl2", property: schema:comment}
+      eln_record: {ref: record, doc: "the ELN record it was taken from (reaction:Record_...) - it gets schema:about back", property: schema:subjectOf}
+      note:       {doc: "anything else worth saying - its role, a choice that was made", property: schema:comment}
+
+  container:
+    library: device_library.jsonld
+    id_prefix: device
+    id_style: snake
+    doc: >-
+      A container of the chemical inventory as it was delivered - a bottle, a can, a gas cylinder - with its content
+      (Device Library: the container; Material Library: its content, rule 2.15). Not a container filled in the lab
+      (workflow/inventory_tool.py prepare), not a line.
+    basis: >-
+      check_library_consistency "Containers of the inventory" (content, lot, an occurrence of the content starting at the
+      delivery, cabinet and room) and "Devices and contents apart" (rule 2.15); rule 5.5 (the usage history starts with a
+      commissioning - the receipt); rule 4.1 (every value with its evidence or reference and task); ContextRequirementShapes
+      Phase_Information_R2/R4 (lot), Phase_Time_R1 (occurrence of the content), _R3 (opening), _R4 (expiry, re-test).
+    fields:
+      name:        {required: true, doc: "the container as people call it", example: "Nickel(II) chloride hexahydrate bottle no. 1", property: schema:name}
+      id:          {doc: "only if the ID made from the name does not fit", example: "device:bottle_nickel_chloride_hexahydrate_01", property: "@id"}
+      template:    {required: true, ref: template, doc: "the kind of container, a template of the Device Library (its form, body and opening)", example: "device:glass_bottle_250mL", property: hlo:specializationOf}
+      cabinet:     {required: true, ref: cabinet, doc: "where it is kept, a cabinet of the Organization Library", example: "lab:L208_Chemicals_Cabinet", property: cpo:locatedInsideOf}
+      delivered:   {required: true, module: value, quantity: time, doc: "when it came into the lab - its delivery time and the start of its content in the lab", property: cpo:hasDeliveryTime}
+      content:     {required: true, module: content, property: cpo:containsMaterial}
+      opened:      {module: value, quantity: time, doc: "when it was first opened (the date on the label)", property: cpo:hasOpeningTime}
+      received_by: {ref: person, doc: "who received it", property: "cpo:performedBy (receipt)"}
+      note:        {doc: "anything else worth saying", property: rdfs:comment}
+
+  site:
+    library: organization_library.jsonld
+    id_prefix: site
+    doc: >-
+      A site - a building or campus where laboratories are (Organization Library). It gets its gravitational field,
+      standard gravity from the literature, with an occurrence without beginning or end (like
+      energyfield:EnergyField_CEB_PFD_Fixed).
+    basis: >-
+      Every site of the library has its gravitational field (helpers/energy_fields.py: the field of a site is kept in
+      the library, not made by a run; ContextRequirementShapes reach it from a device through its room); the
+      organization names its site (org:hasSite).
+    fields:
+      name:         {required: true, example: "CEB Site on Philippa Fawcett Drive", property: schema:name}
+      id:           {doc: "only if the ID made from the name does not fit", example: "site:CEB_PFD", property: "@id"}
+      organization: {ref: organization, doc: "the organization whose site it is - it gets org:hasSite", example: "organization:CEB", property: "org:hasSite (inverse)"}
+      note:         {doc: "what and where the site is", property: rdfs:comment}
+
+  laboratory:
+    library: organization_library.jsonld
+    id_prefix: lab
+    doc: >-
+      A laboratory room at a site, with its form (a cuboid, inner dimensions) and its air - dry air of the textbook,
+      always there (Organization Library). Its volume and the mass of its air are calculated.
+    basis: >-
+      Every laboratory of the library: a cpo:CuboidForm with width, length, height and the volume calculated from them;
+      its air (cpo:Environment, one gas phase) with volume, density (task:looking_up_air_density), oxygen and
+      nitrogen (task:looking_up_air_composition), temperature and pressure (task:assuming_lab_air_state unless given),
+      mass (calculated) and an occurrence without beginning or end; the site names the room (cpo:hasRoom).
+    fields:
+      name:        {required: true, example: "Lab 208", property: schema:name}
+      id:          {doc: "only if the ID made from the name does not fit", example: "lab:L208", property: "@id"}
+      site:        {required: true, ref: site, doc: "the site the room is at - an unknown one starts its own entry", example: "site:CEB_PFD", property: cpo:isRoomOf}
+      width:       {required: true, module: value, quantity: length, doc: "inner width of the room - assumed if not measured", property: cpo:hasWidth}
+      length:      {required: true, module: value, quantity: length, property: cpo:hasLength}
+      height:      {required: true, module: value, quantity: length, property: cpo:hasHeight}
+      temperature: {module: value, quantity: temperature, doc: "of the room air - otherwise 20 degC assumed (task:assuming_lab_air_state)", property: "cpo:hasTemperature (air)"}
+      pressure:    {module: value, quantity: pressure, doc: "of the room air - otherwise 1 atm assumed", property: "cpo:hasPressure (air)"}
+      note:        {doc: "what and where the room is", property: rdfs:comment}
+
+  cabinet:
+    library: organization_library.jsonld
+    id_prefix: lab
+    doc: "A cabinet in a laboratory where containers of the inventory are kept (Organization Library)."
+    basis: "check_library_consistency 'Containers of the inventory': a container's cabinet lies in a room (cpo:locatedInsideOf)."
+    fields:
+      name: {required: true, example: "Chemicals cabinet, Lab 208", property: schema:name}
+      id:   {doc: "only if the ID made from the name does not fit", example: "lab:L208_Chemicals_Cabinet", property: "@id"}
+      room: {required: true, ref: laboratory, doc: "the laboratory it stands in", example: "lab:L208", property: cpo:locatedInsideOf}
+      note: {doc: "what is kept there", property: rdfs:comment}
+
+  labware:
+    library: device_library.jsonld
+    id_prefix: device
+    doc: >-
+      A kind of labware without a content of its own - a beaker, a tube, a cap - as a template (hlo:Template: form,
+      body and openings, the catalogue item), and the identifiable pieces of it (exemplars) that are in the lab (Device
+      Library, rule 3.11). Approximated as a cup: outer diameter and height, wall thickness; inner dimensions, volumes and
+      the mass of the body are calculated.
+    basis: >-
+      helpers/inventory_entries.py: container_template and vessel_exemplar, as device:beaker_1L and device:beaker_1L_01;
+      rule 3.11 (template and exemplar), rule 5.5 (an exemplar's usage history starts with its commissioning; single-use
+      items have none), rule 4.1 (every value with its task).
+    fields:
+      name:           {required: true, doc: "the kind, as in a catalogue - or, with 'template', a name for this file's pieces", example: "Falcon tube 50 mL", property: schema:name}
+      id:             {doc: "only if the ID made from the name does not fit", example: "device:falcon_tube_50mL", property: "@id"}
+      template:       {ref: template, doc: "a template of the library this file only adds pieces of (exemplars) - then the fields of the kind are not needed", example: "device:beaker_1L", property: hlo:specializationOf}
+      device_class:   {required: true, when: {template: null}, one_of: [vessel, chemical_container, lid, septum], doc: "vessel (beaker, flask, tube), chemical_container (a bottle of the inventory), lid (a cap), septum", property: "@type"}
+      body:           {required: true, when: {template: null}, one_of: [glass, steel, polypropylene, ptfe, hdpe, aluminium], doc: "what the body is made of (generic density from the literature)", property: cpo:madeOfMaterial}
+      outer_diameter: {required: true, when: {template: null}, module: value, quantity: length, doc: "catalogue value (literature) or assumed", property: cpo:hasOuterDiameter}
+      outer_height:   {required: true, when: {template: null}, module: value, quantity: length, doc: "without a neck; of a lid or septum its height or thickness", property: cpo:hasOuterHeight}
+      wall:           {module: value, quantity: length, doc: "vessel and chemical_container only (a cup with a cavity): wall and bottom thickness", property: cpo:hasWallThickness}
+      inner_diameter: {module: value, quantity: length, doc: "lid only (a ring around its opening, no cavity): the diameter of the opening, e.g. the neck it fits on; a septum is a solid disc and needs neither", property: cpo:hasInnerDiameter}
+      exemplars:      {list_of: exemplar, doc: "the pieces in the lab - none for single-use items", property: "hlo:specializationOf (inverse)"}
+      manufacturer:   {ref: organization, property: cpo:hasManufacturer}
+      openings:       {list_of: opening, doc: "more than the one opening (a cap with two holes); otherwise one, port:<name>_opening", property: cpo:hasPort}
+      single_use:     {one_of: [true, false], doc: "true: every use is a fresh piece taken from the stock (cpo:isSingleUse) - no exemplars", property: cpo:isSingleUse}
+      stock_location: {ref: place, doc: "where the stock of a single-use item is kept", property: cpo:locatedInsideOf}
+      note:           {doc: "what it is, how it is approximated", property: rdfs:comment}
+
+  device:
+    library: device_library.jsonld
+    id_prefix: device
+    doc: >-
+      A simple device without a content: a balance, a bench, a stand - one piece in the lab with its envelope form (a box
+      or a cylinder), its body and its usage history (Device Library). The body volume follows from the mass and the
+      density, or - without a mass - the device counts as solid.
+    basis: >-
+      As device:balance001 and the K1 parts (add_k1_system.py: cuboid, cylinder, body, device): an envelope form with its
+      dimensions and outer volume, a body material with density, volume and mass, a commissioning that starts the usage
+      history (rule 5.5), every value with its task (rule 4.1).
+    fields:
+      name:         {required: true, example: "Precision balance (Lab 208)", property: schema:name}
+      id:           {doc: "only if the ID made from the name does not fit", example: "device:balance_l208", property: "@id"}
+      device_class: {required: true, one_of: [device, sensor, vessel, reactor, pump, stirrer, valve, mass_flow_controller, mass_flow_meter], doc: "sensor: a measuring instrument (sosa:Sensor), as the balance device:balance001", property: "@type"}
+      shape:        {required: true, one_of: [cuboid, cylinder], doc: "of the envelope", property: cpo:hasEnvelopeForm}
+      length:       {required: true, when: {shape: cuboid}, module: value, quantity: length, property: cpo:hasLength}
+      width:        {required: true, when: {shape: cuboid}, module: value, quantity: length, property: cpo:hasWidth}
+      diameter:     {required: true, when: {shape: cylinder}, module: value, quantity: length, property: cpo:hasDiameter}
+      height:       {required: true, module: value, quantity: length, property: cpo:hasHeight}
+      body:         {required: true, one_of: [glass, steel, polypropylene, ptfe, hdpe, aluminium], property: cpo:madeOfMaterial}
+      location:     {required: true, ref: place, doc: "the laboratory or cabinet it is in", example: "lab:L208", property: cpo:locatedInsideOf}
+      commissioned: {required: true, module: value, quantity: time, doc: "when it was put into service (rule 5.5)", property: "cpo:hasUsageHistory (first task)"}
+      mass:         {module: value, quantity: mass, doc: "of the device - the body volume follows from it; without it the device counts as solid", property: "cpo:hasMass (body)"}
+      manufacturer: {ref: organization, property: cpo:hasManufacturer}
+      model:        {doc: "model or type designation", example: "PAS214C", property: schema:model}
+      powered:      {one_of: [true, false], doc: "takes electric power (default false)", property: cpo:canReceivePower}
+      note:         {doc: "what it is - also what the ontology has no property for, e.g. the readability of a balance", example: "Readability 0.001 g.", property: rdfs:comment}
+
+  prepared_container:
+    library: device_library.jsonld
+    id_prefix: device
+    doc: >-
+      A container filled in the lab - a stock solution, a rinsing acid - with the preparation that made its content: the
+      task, one transfer from each source, the content (Device Library: the container; Material Library: preparation and
+      content, rule 2.15). The preparation is sorted into the usage histories of the sources and starts the container's
+      own. To fill a container that is there already: workflow/inventory_tool.py prepare.
+    basis: >-
+      helpers/inventory_entries.py: prepared_container and workflow/inventory_tool.py prepare; check_library_consistency
+      "Containers of the inventory" (content, lot, occurrence from the end of the preparation, cabinet); rule 5.5 (usage
+      history), rule 4.1 (values measured, observed or planned in the preparation are determined by it, others by the tasks
+      of the file).
+    fields:
+      name:        {required: true, doc: "the container as people call it", example: "Dilute sulfuric acid for rinsing", property: schema:name}
+      id:          {doc: "only if the ID made from the name does not fit", property: "@id"}
+      template:    {required: true, ref: template, doc: "the kind of container (a template of the Device Library)", example: "device:glass_bottle_250mL", property: hlo:specializationOf}
+      cabinet:     {required: true, ref: place, doc: "where it is kept - a cabinet, or the laboratory", example: "lab:L208_Chemicals_Cabinet", property: cpo:locatedInsideOf}
+      start:       {required: true, module: value, quantity: time, doc: "start of the preparation", property: "cpo:hasStartTime (preparation)"}
+      end:         {required: true, module: value, quantity: time, doc: "end of the preparation - the content exists from here on", property: "cpo:hasEndTime (preparation)"}
+      preparation: {required: true, module: preparation, property: "cpo:hasUsageHistory (first task)"}
+      sources:     {required: true, list_of: source, property: "cpo:aimsAt (transfers)"}
+      content:     {required: true, module: prepared_content, property: cpo:containsMaterial}
+      prepared_by: {ref: person, doc: "who made it - otherwise entered_by", property: "cpo:performedBy (preparation)"}
+      note:        {doc: "anything else worth saying", property: rdfs:comment}

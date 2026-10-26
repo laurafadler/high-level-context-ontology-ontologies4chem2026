@@ -1,0 +1,1651 @@
+{
+  "@context": {
+    "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+    "chem": "https://example.org/chemical_entity/",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "placeholder": "https://example.org/placeholder/",
+    "reaction": "https://example.org/reaction/",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "task": "https://example.org/task/",
+    "time": "http://www.w3.org/2006/time#",
+    "person": "https://example.org/person/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@graph": [
+    {
+      "@id": "reaction:ReactionMechanism_0001",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "schema:name": "ReactionMechanism 0001 Fixed",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:StoichiometricReaction_0001"
+      },
+      "hlo:hasReference": [
+        {
+          "@id": "reaction:ReactionMechanism_0001_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "reaction:ReactionMechanism_0001_Reference_1",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Reference"
+      ],
+      "schema:name": "ReactionMechanism_Hydrogenation",
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:StoichiometricReaction_0001"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "reaction:ReactionMechanism_0001"
+      },
+      "cpo:containsElementaryReaction": [
+        {
+          "@id": "reaction:ElementaryReaction_0001"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0002"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0003"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0004"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0005"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0006"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0007"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0008"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0009"
+        }
+      ],
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      }
+    },
+    {
+      "@id": "reaction:ReactionMechanism_0003",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "schema:name": "ReactionMechanism 0003 Fixed",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:StoichiometricReaction_0002"
+      },
+      "hlo:hasReference": [
+        {
+          "@id": "reaction:ReactionMechanism_0003_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "reaction:ReactionMechanism_0003_Reference_1",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Reference"
+      ],
+      "schema:name": "ReactionMechanism_Dimerisation_1",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:StoichiometricReaction_0002"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "reaction:ReactionMechanism_0003"
+      },
+      "cpo:containsElementaryReaction": [
+        {
+          "@id": "reaction:ElementaryReaction_0010"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0011"
+        }
+      ],
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      }
+    },
+    {
+      "@id": "reaction:ReactionMechanism_0005",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "schema:name": "ReactionMechanism 0005 Fixed",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:StoichiometricReaction_0003"
+      },
+      "hlo:hasReference": [
+        {
+          "@id": "reaction:ReactionMechanism_0005_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "reaction:ReactionMechanism_0005_Reference_1",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Reference"
+      ],
+      "schema:name": "ReactionMechanism_Dimerisation_2",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:StoichiometricReaction_0003"
+      },
+      "hlo:isReferenceOf": {
+        "@id": "reaction:ReactionMechanism_0005"
+      },
+      "cpo:containsElementaryReaction": [
+        {
+          "@id": "reaction:ElementaryReaction_0010"
+        },
+        {
+          "@id": "reaction:ElementaryReaction_0012"
+        }
+      ],
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0001_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0001_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0001_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0001_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0001_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0001_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0001_0003",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0001_0003_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0001_0003_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0002_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0002_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0002_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0002_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0002_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0002_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0003_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0003_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0003_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0003_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0003_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0003_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0003_0004",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0003_0004_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0003_0004_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0004_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0004_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0004_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0004_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0004_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0004_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0005_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0005_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0005_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0005_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0005_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0005_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0005_0004",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0005_0004_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0005_0004_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0006_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0006_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0006_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0006_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0006_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0006_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0007_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0007_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0007_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0007_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0007_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0007_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0007_0004",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0007_0004_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0007_0004_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0008_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0008_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0008_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0008_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0008_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0008_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0009_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0009_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0009_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0009_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0009_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0009_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0009_0004",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0009_0004_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0009_0004_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0010_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0010_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0010_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0010_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0010_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0010_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0010_0003",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0010_0003_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0010_0003_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0011_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0011_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0011_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0011_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0011_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0011_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0012_0001",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0012_0001_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0012_0001_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "1.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0012_0002",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "qudt:hasQuantityKind": {
+        "@id": "quantitykind:Dimensionless"
+      },
+      "hlo:hasReference": {
+        "@id": "reaction:PartialOrder_ElementaryReaction_0012_0002_Reference_1"
+      }
+    },
+    {
+      "@id": "reaction:PartialOrder_ElementaryReaction_0012_0002_Reference_1",
+      "@type": [
+        "cpo:ProcessVariable",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "qudt:value": {
+        "@value": "2.0",
+        "@type": "xsd:decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      }
+    },
+    {
+      "@id": "task:assuming_reaction_library_task_times",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming when the reaction library values were looked up",
+      "schema:description": "The literature values of the reaction library were not recorded with a time. Their tasks are therefore stamped with the moment the tasks themselves were written into the library - an upper bound, not the moment the work happened. This task's own start time is among them.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_reaction_library_task_times_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_reaction_library_task_times_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_reaction_library_task_times_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "task:assuming_reaction_library_task_times_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:looking_up_hydrogenation_kinetics_StartTime_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:assuming_reaction_library_task_times_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_reaction_library_task_times_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_reaction_library_task_times_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_reaction_library_task_times_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_reaction_library_task_times_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "Stamped with the moment the tasks of this library were written down (2026-09-26T14:06:58Z).",
+      "rdf:value": {
+        "@value": "2026-09-26T14:06:58Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_reaction_library_task_times"
+      }
+    },
+    {
+      "@id": "task:looking_up_hydrogenation_kinetics",
+      "@type": [
+        "cpo:LiteratureLookupTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Looking up the reaction mechanisms and partial reaction orders",
+      "schema:description": "Mechanisms of the hydrogenation and of the two dimerisations, and the partial orders of their elementary reactions, taken from the publication named as source.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:looking_up_hydrogenation_kinetics_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:looking_up_hydrogenation_kinetics_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:looking_up_hydrogenation_kinetics_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "reaction:ReactionMechanism_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:ReactionMechanism_0003_Reference_1"
+        },
+        {
+          "@id": "reaction:ReactionMechanism_0005_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0001_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0001_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0001_0003_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0002_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0002_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0003_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0003_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0003_0004_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0004_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0004_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0005_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0005_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0005_0004_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0006_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0006_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0007_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0007_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0007_0004_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0008_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0008_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0009_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0009_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0009_0004_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0010_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0010_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0010_0003_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0011_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0011_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0012_0001_Reference_1"
+        },
+        {
+          "@id": "reaction:PartialOrder_ElementaryReaction_0012_0002_Reference_1"
+        },
+        {
+          "@id": "reaction:Hydrogenation_Adiponitrile_Pt_Mechanism_Reference_1"
+        },
+        {
+          "@id": "reaction:Dimerisation1_Adiponitrile_Pt_Mechanism_Reference_1"
+        },
+        {
+          "@id": "reaction:Dimerisation2_Adiponitrile_Pt_Mechanism_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:looking_up_hydrogenation_kinetics_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:looking_up_hydrogenation_kinetics_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:looking_up_hydrogenation_kinetics_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_hydrogenation_kinetics_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:looking_up_hydrogenation_kinetics_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was worked out. The values were already in the library, their task was only written down later; stamped with that moment (2026-09-26T14:06:58Z) - an upper bound for the determination, not the moment it happened. Replace this with the real time if it is ever known.",
+      "rdf:value": {
+        "@value": "2026-09-26T14:06:58Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_reaction_library_task_times"
+      }
+    },
+    {
+      "@id": "reaction:Hydrogenation_Adiponitrile_Pt_Mechanism",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "schema:name": "Reaction mechanism of Hydrogenation_Adiponitrile_Pt",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:Hydrogenation_Adiponitrile_Pt"
+      },
+      "hlo:hasReference": [
+        {
+          "@id": "reaction:Hydrogenation_Adiponitrile_Pt_Mechanism_Reference_1"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Reference"
+      ],
+      "schema:name": "ReactionMechanism_Hydrogenation",
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "@id": "reaction:Hydrogenation_Adiponitrile_Pt_Mechanism_Reference_1",
+      "hlo:isReferenceOf": {
+        "@id": "reaction:Hydrogenation_Adiponitrile_Pt_Mechanism"
+      },
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:Hydrogenation_Adiponitrile_Pt"
+      },
+      "cpo:containsElementaryReaction": [
+        {
+          "@id": "reaction:Adiponitrile_Pt_AdsorptionDesorptionOfHydrogen"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_FirstHydrogenAdditionToAdiponitrile"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_DesorptionOf6Iminocapronitrile"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_SecondHydrogenAdditionTo6Iminocapronitrile"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_DesorptionOf6Aminocapronitrile"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_ThirdHydrogenAdditionTo6Aminocapronitrile"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_DesorptionOf6Iminohexylamine"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_FourthHydrogenAdditionTo6Iminohexylamine"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_DesorptionOfHexamethylenediamine"
+        }
+      ]
+    },
+    {
+      "@id": "reaction:Dimerisation1_Adiponitrile_Pt_Mechanism",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "schema:name": "Reaction mechanism of Dimerisation1_Adiponitrile_Pt",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:Dimerisation1_Adiponitrile_Pt"
+      },
+      "hlo:hasReference": [
+        {
+          "@id": "reaction:Dimerisation1_Adiponitrile_Pt_Mechanism_Reference_1"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Reference"
+      ],
+      "schema:name": "ReactionMechanism_Dimerisation_1",
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "@id": "reaction:Dimerisation1_Adiponitrile_Pt_Mechanism_Reference_1",
+      "hlo:isReferenceOf": {
+        "@id": "reaction:Dimerisation1_Adiponitrile_Pt_Mechanism"
+      },
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:Dimerisation1_Adiponitrile_Pt"
+      },
+      "cpo:containsElementaryReaction": [
+        {
+          "@id": "reaction:Adiponitrile_Pt_AdsorptionDesorptionOfHexamethylenediamine"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_66AminohexylIminoHexanenitrileFormationFrom6Iminocapronitrile"
+        }
+      ]
+    },
+    {
+      "@id": "reaction:Dimerisation2_Adiponitrile_Pt_Mechanism",
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "schema:name": "Reaction mechanism of Dimerisation2_Adiponitrile_Pt",
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:Dimerisation2_Adiponitrile_Pt"
+      },
+      "hlo:hasReference": [
+        {
+          "@id": "reaction:Dimerisation2_Adiponitrile_Pt_Mechanism_Reference_1"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "cpo:ReactionMechanism",
+        "hlo:Fixed",
+        "hlo:Reference"
+      ],
+      "schema:name": "ReactionMechanism_Dimerisation_2",
+      "hlo:hasSource": "10.1016/j.cep.2011.06.005",
+      "cpo:hasDeterminationTask": {
+        "@id": "task:looking_up_hydrogenation_kinetics"
+      },
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Literature"
+      },
+      "@id": "reaction:Dimerisation2_Adiponitrile_Pt_Mechanism_Reference_1",
+      "hlo:isReferenceOf": {
+        "@id": "reaction:Dimerisation2_Adiponitrile_Pt_Mechanism"
+      },
+      "cpo:describesStoichiometricReaction": {
+        "@id": "reaction:Dimerisation2_Adiponitrile_Pt"
+      },
+      "cpo:containsElementaryReaction": [
+        {
+          "@id": "reaction:Adiponitrile_Pt_AdsorptionDesorptionOfHexamethylenediamine"
+        },
+        {
+          "@id": "reaction:Adiponitrile_Pt_N6AminohexylideneHexane16DiamineFormationFrom6Iminohexylamine"
+        }
+      ]
+    }
+  ]
+}

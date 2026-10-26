@@ -1,0 +1,712 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix hlo: <http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix cpo: <http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+@prefix chebi: <http://purl.obolibrary.org/obo/chebi.owl#> .
+
+#################################################################
+#
+# Data quality - checks that are no context requirement
+#
+#################################################################
+
+# Deliberately NOT in ContextRequirementShapes.ttl: the shapes there say which context belongs to an
+# entity, and each hangs at a requirement via hlo:isShapeOfRequirement. Here stands what holds for
+# every value, whatever the context - without a requirement.
+# generator/workflow/run_shacl.py loads both files and runs these shapes under their own name. Rule
+# numbers refer to the crate rules (docs/rules_crate.md); "the generator" is the code in generator/ that
+# builds the crates.
+
+# Every value with qudt:value needs a unit. Fractions carry unit:UNITLESS (see
+# dimensionless_quantity_kinds in generator/config/units_and_quantity_kinds.json), so there is no value
+# for which "no unit" would be right. Time stamps are not concerned: time:Instant carries rdf:value,
+# not qudt:value.
+# This includes a value that only states a bound (hlo:hasLowerBound/hlo:hasUpperBound,
+# "at least 50 mL") - its unit stands at the value as well (see hlo:hasLowerBound). Excepted is a
+# time:Instant: its bound is an xsd:dateTime ("before 10:00") without a unit.
+#
+# sh:nodeKind sh:IRI also catches a unit that ends up in the crate as the literal "unit:L" instead of as
+# a reference.
+# sh:maxCount 1: two units at one value would be a contradiction.
+hlo:Value_Unit_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf qudt:value, hlo:hasLowerBound, hlo:hasUpperBound ;
+    sh:severity sh:Violation ;
+    sh:message "Every value with qudt:value, hlo:hasLowerBound or hlo:hasUpperBound needs exactly one unit (qudt:hasUnit, as a link to a QUDT unit - unit:UNITLESS for fractions); a time:Instant, whose bound is a date and time, is excepted. Without it the number cannot be interpreted." ;
+    sh:or (
+        [ sh:class time:Instant ]
+        [ sh:property [
+            sh:path qudt:hasUnit ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+        ] ]
+    ) .
+
+# Quantity kinds of values (rule 4.4): in shapes/QuantityKindShapes.ttl, one shape per property in plain
+# SHACL Core, generated from cpo:valueHasQuantityKind by generator/workflow/generate_quantity_kind_shapes.py.
+# Not as SHACL-SPARQL shapes here that read the ontology at run time: GraphDB does not run SHACL-SPARQL
+# reliably.
+
+# Surroundings: room -> site -> gravitational field. The energy field collecting
+# paths (Device_Energy_R6, Phase_Energy_R5, Molecule_Energy_R2) climb from the exemplar via location
+# and room air to the room and from there to the site, where the gravitational field hangs. They stay
+# sh:Info without minCount (rule 4 in ContextRequirementShapes.ttl); that the chain does not break is
+# ensured by the single links: device -> location is asked for by Device_Space_R2, the two links in the
+# library stand here. A required path at the exemplar, however, would fire at every device, every phase
+# and every molecule on its own as soon as a link is missing.
+# cpo:Laboratory is a subclass of cpo:Room; sh:targetClass finds it because
+# generator/workflow/run_shacl.py loads the ontology into the data graph.
+hlo:Room_Site_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Room ;
+    sh:property [
+        sh:path cpo:isRoomOf ;
+        sh:qualifiedValueShape [ sh:class org:Site ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Every Room (and Laboratory) should belong to a Site (cpo:isRoomOf). Without it the energy field collection paths end at the room and never reach the gravitational field of the site." ;
+    ] .
+
+hlo:Site_GravitationalField_Shape
+    a sh:NodeShape ;
+    sh:targetClass org:Site ;
+    sh:property [
+        sh:path cpo:hasEnergyField ;
+        sh:qualifiedValueShape [ sh:property [ sh:path cpo:hasEnergyFieldType ; sh:hasValue cpo:GravitationalField ] ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Every Site should carry a gravitational field (cpo:hasEnergyField with cpo:hasEnergyFieldType cpo:GravitationalField) - maintained by hand in the organization library, standard gravity unless a local value is measured." ;
+    ] .
+
+# Every form is defined by exactly one thing: cpo:definesForm or, for the envelope of
+# a device, cpo:hasEnvelopeForm - or it is the cavity or a part of a form (cpo:hasCavityForm,
+# dcterms:hasPart) and thus belongs to whoever defines the whole form. Excluded are reference and
+# evidence values of a form (the assumption "form of the device" is itself a cpo:Form).
+# Which requirements check a form depends on the defining thing; if it is missing, the form with
+# everything that shares it (material, material phase) would silently stay unchecked, and two defining
+# things would give double reports. A check of the generator, not a question to the user.
+hlo:Form_DefinedOnce_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Form ;
+    sh:severity sh:Violation ;
+    sh:message "Internal: every form is defined by exactly one thing (cpo:definesForm, or cpo:hasEnvelopeForm for the envelope of a device), unless it is the cavity, a part or a layer of a form (cpo:hasCavityForm, dcterms:hasPart, cpo:hasLayerForm) or a reference or evidence value of one. A form without one is checked by no requirement; a form with two would be reported twice." ;
+    sh:or (
+        [ sh:class hlo:Reference ]
+        [ sh:class hlo:Evidence ]
+        [ sh:property [ sh:path [ sh:alternativePath ( [ sh:inversePath cpo:hasCavityForm ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath cpo:hasLayerForm ] ) ] ; sh:qualifiedValueShape [ sh:class cpo:Form ] ; sh:qualifiedMinCount 1 ] ]
+        [ sh:property [
+            sh:path [ sh:alternativePath ( [ sh:inversePath cpo:definesForm ] [ sh:inversePath cpo:hasEnvelopeForm ] ) ] ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+        ] ]
+    ) .
+
+
+# Every hollow form has its cavity, of the class its hollow form needs (restrictions on the classes in the
+# CPO): a solid cylinder for a tube, a cup and a closed hollow cylinder, a ring for an annular shell. The
+# generator builds the cavity from the hollow form itself - it shares its dimensions (cpo:cavityCounterpart)
+# and nobody is asked for it -, so a missing one is a building error, not missing context (rule 7.13).
+# The cavity belongs to the structure context of its device through Device_Structure_R4. Reference and
+# evidence values of a form are excluded, as in hlo:Form_DefinedOnce_Shape. Whether a cavity hangs only at
+# a hollow form is deliberately not checked: a new hollow form class gets its restriction and its line here.
+hlo:Cavity_SolidCylinder_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:TubeForm, cpo:CupForm, cpo:ClosedHollowCylinderForm ;
+    sh:severity sh:Violation ;
+    sh:message "Internal: every tube, cup and closed hollow cylinder form has its cavity (cpo:hasCavityForm), a cpo:SolidCylinderForm - built by the generator from the hollow form." ;
+    sh:or (
+        [ sh:class hlo:Reference ]
+        [ sh:class hlo:Evidence ]
+        [ sh:property [ sh:path cpo:hasCavityForm ; sh:qualifiedValueShape [ sh:class cpo:SolidCylinderForm ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+hlo:Cavity_Annulus_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:AnnularShellForm ;
+    sh:severity sh:Violation ;
+    sh:message "Internal: every annular shell form has its cavity (cpo:hasCavityForm), a cpo:AnnulusForm - built by the generator from the hollow form." ;
+    sh:or (
+        [ sh:class hlo:Reference ]
+        [ sh:class hlo:Evidence ]
+        [ sh:property [ sh:path cpo:hasCavityForm ; sh:qualifiedValueShape [ sh:class cpo:AnnulusForm ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+# The body material of a device fills exactly the form the device defines (rule 3a.11): the forms its body
+# materials fill (cpo:madeOfMaterial, then cpo:fillsForm) are the forms it defines (cpo:definesForm). Built by
+# the generator - nobody is asked -, so a deviation is a building error (rule 7.13). sh:equals compares both sets and reports each value
+# found on one side only: a body material that fills another form gives two results at the device - that
+# form, and its own form that no body material fills. Devices without a body of their
+# own (composite devices, library exemplars of a template) are no target. None of the three properties has a
+# subproperty, so RDFS inference changes nothing here.
+hlo:BodyMaterial_FillsForm_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:madeOfMaterial ;
+    sh:severity sh:Violation ;
+    sh:message "Internal: the body material of a device (cpo:madeOfMaterial) fills exactly the form the device defines (cpo:fillsForm = cpo:definesForm) - built by the generator (rule 3a.11)." ;
+    sh:property [
+        sh:path ( cpo:madeOfMaterial cpo:fillsForm ) ;
+        sh:equals cpo:definesForm ;
+    ] .
+
+# The phases of one material border on each other (rule 3b.1): the generator creates a PhasePairInterface for every
+# pair of phases within the same MaterialRepresentation, without asking - so a phase that borders on none of the
+# other phases of its material is a building error, not missing context (rule 7.13). The interfaces belong to the
+# space context of a phase through Phase_Space_R6. SHACL Core asks for at least one such interface - one to every
+# other phase of the material would need SPARQL; for two phases it is the same.
+# Library entries are checked too (rule 3b.1): a library material with several phases needs a Fixed
+# PhasePairInterface between them. No library content has several phases yet.
+hlo:Phase_SameMaterial_Interface_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Violation ;
+    sh:message "Internal: a phase whose material (dcterms:isPartOf) has further phases (dcterms:hasPart) borders on at least one of them through a PhasePairInterface (cpo:isSeparatedByInterface) - the generator creates one for every pair of phases of a material (rule 3b.1)." ;
+    sh:or (
+        [ sh:not [ sh:property [ sh:path ( dcterms:isPartOf dcterms:hasPart ) ; sh:qualifiedValueShape [ sh:class cpo:Phase ] ; sh:qualifiedMinCount 2 ] ] ]
+        [ sh:property [ sh:path cpo:isSeparatedByInterface ; sh:qualifiedValueShape [ sh:class cpo:PhasePairInterface ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+# A device standing directly in the room air (cpo:locatedInsideOf an Environment) borders on it with its body (rule
+# 3b.1): the generator creates this contact instead of asking - with the body phases that face outwards. A
+# missing one is a building error (rule 7.13). A device mounted on another one stays a question and is not
+# checked here; a
+# device without a body (a line whose content comes from a nameless source) is no target. Library entries (hlo:Fixed)
+# are excluded: a library device does not border on a room air of its own.
+hlo:Device_RoomAir_Contact_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:madeOfMaterial ;
+    sh:severity sh:Violation ;
+    sh:message "Internal: a device standing directly in the room air (cpo:locatedInsideOf an Environment) borders on it with its body (cpo:madeOfMaterial, its phases, cpo:isSeparatedByInterface, cpo:separatesPhases, a phase of the Environment) - created by the generator (rule 3b.1)." ;
+    sh:or (
+        [ sh:class hlo:Fixed ]
+        [ sh:not [ sh:property [ sh:path cpo:locatedInsideOf ; sh:qualifiedValueShape [ sh:class cpo:Environment ] ; sh:qualifiedMinCount 1 ] ] ]
+        [ sh:property [ sh:path ( cpo:madeOfMaterial dcterms:hasPart cpo:isSeparatedByInterface cpo:separatesPhases dcterms:isPartOf ) ; sh:qualifiedValueShape [ sh:class cpo:Environment ] ; sh:qualifiedMinCount 1 ] ]
+    ) .
+
+# cpo:isLocationOf leads the field collecting paths from the room air into the devices of the room
+# (rule 7.9). That stays on one level only as long as it never stands at a library entry and only
+# connects entities of the same level (as the generator sets it). The same experiment number cannot be
+# compared in SHACL Core; the generator sets only pairs from the same experiment.
+hlo:LocationInverse_SameLevel_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:isLocationOf ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:isLocationOf may only link entities of the same level in the crate (series with series, experiment with experiment), never a library entry (hlo:Fixed): the energy field collection paths descend along it, and from a Fixed room they would reach the devices of every level." ;
+    sh:not [ sh:class hlo:Fixed ] ;
+    sh:or (
+        [ sh:class hlo:SeriesSpecific ; sh:property [ sh:path cpo:isLocationOf ; sh:class hlo:SeriesSpecific ] ]
+        [ sh:class hlo:ExperimentSpecific ; sh:property [ sh:path cpo:isLocationOf ; sh:class hlo:ExperimentSpecific ] ]
+    ) .
+
+# Rule 4.1, checked in the crate: a value stands at an
+# evidence or reference, never at the actual; every evidence/reference hangs at exactly one variable, has
+# exactly one type and a determination task, and task and value name each other. The same check for the
+# libraries stands in check_library_consistency.py; because generator/workflow/run_shacl.py loads the
+# libraries into the data graph, these shapes hit their values too.
+#
+# Exception reaction mechanism (rule 4.1): a reference mechanism has an entity of its
+# own on the series and experiment level, but type and task stand only at the library entry and are read
+# via hlo:specializationOf (as rule 3.6). The chain holds only for cpo:ReactionMechanism - any other value
+# must carry both itself.
+
+#
+# Exception file dates: date of creation and change of a file
+# (cpo:dateCreated/cpo:dateModified) are actuals with rdf:value
+# directly at them, without evidence and task - read from the file system, a property of the file like
+# cpo:fileSize, not a statement about the process. The exception holds only for rdf:value at such a
+# point in time; qudt:value and bounds stay forbidden there too.
+hlo:Actual_NoValue_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:Actual ;
+    sh:severity sh:Violation ;
+    sh:message "Rule 4.1: an Actual carries no value itself (qudt:value, rdf:value, bounds) - the value stands on an Evidence or Reference (hlo:hasEvidence/hlo:hasReference) with its determination task. Only exception: rdf:value on the creation or modification date of a file (cpo:dateCreated/cpo:dateModified)." ;
+    sh:property [ sh:path qudt:value ; sh:maxCount 0 ] ;
+    sh:property [ sh:path hlo:hasLowerBound ; sh:maxCount 0 ] ;
+    sh:property [ sh:path hlo:hasUpperBound ; sh:maxCount 0 ] ;
+    sh:or (
+        [ sh:property [ sh:path rdf:value ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path [ sh:alternativePath ( [ sh:inversePath cpo:dateCreated ] [ sh:inversePath cpo:dateModified ] ) ] ; sh:minCount 1 ] ]
+    ) .
+
+hlo:Value_Variable_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:Evidence , hlo:Reference ;
+    sh:property [
+        sh:path [ sh:alternativePath ( [ sh:inversePath hlo:hasEvidence ] [ sh:inversePath hlo:hasReference ] ) ] ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Rule 4.1: every Evidence/Reference hangs at exactly one variable (hlo:hasEvidence/hlo:hasReference) - its ID is built from it (rule 1.6)." ;
+    ] .
+
+hlo:Value_Type_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:Evidence , hlo:Reference ;
+    sh:severity sh:Violation ;
+    sh:message "Rule 4.1: every Evidence has exactly one hlo:hasEvidenceType, every Reference exactly one hlo:hasReferenceType (a reaction mechanism reads it through hlo:specializationOf from its library entry)." ;
+    sh:or (
+        [ sh:class hlo:Evidence ; sh:property [ sh:path hlo:hasEvidenceType ; sh:minCount 1 ; sh:maxCount 1 ] ]
+        [ sh:class hlo:Reference ; sh:property [ sh:path hlo:hasReferenceType ; sh:minCount 1 ; sh:maxCount 1 ] ]
+        [ sh:class cpo:ReactionMechanism ; sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] hlo:hasReferenceType ) ; sh:minCount 1 ] ]
+    ) .
+
+hlo:Value_DeterminationTask_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:Evidence , hlo:Reference ;
+    sh:severity sh:Violation ;
+    sh:message "Rule 4.1: every Evidence/Reference has a determination task (cpo:hasDeterminationTask; a reaction mechanism reads it through hlo:specializationOf from its library entry)." ;
+    sh:or (
+        [ sh:property [ sh:path cpo:hasDeterminationTask ; sh:minCount 1 ] ]
+        [ sh:class cpo:ReactionMechanism ; sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:hasDeterminationTask ) ; sh:minCount 1 ] ]
+    ) .
+
+# Both directions in one comparison: the tasks that name the value in cpo:determines are exactly those
+# it names in cpo:hasDeterminationTask. Exception (rule 4.1): a value in the crate may
+# name a task of the library without it naming the value back - otherwise the run would have to write
+# into the library (rule 2.2). This is allowed only if ALL tasks of the value are library tasks (at least
+# one); in the libraries themselves check_library_consistency.py still checks both directions.
+hlo:Value_TaskBothWays_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:Evidence , hlo:Reference ;
+    sh:severity sh:Violation ;
+    sh:message "Rule 4.1: value and determination task name each other - the tasks naming this value in cpo:determines are exactly those it names in cpo:hasDeterminationTask; only a value whose tasks are all library tasks (hlo:Fixed) needs no back link." ;
+    sh:or (
+        [ sh:property [ sh:path cpo:hasDeterminationTask ; sh:minCount 1 ; sh:class hlo:Fixed ] ]
+        [ sh:property [ sh:path [ sh:inversePath cpo:determines ] ; sh:equals cpo:hasDeterminationTask ] ]
+    ) .
+
+
+# Times of an occurrence of a phase that happened: only an occurrence whose status says Occurred (at the evidence or
+# reference of the status) needs start, end and duration. Here and not among the context requirements,
+# because the generator creates the times of an occurrence itself (rule 7.13); the occurrence itself is
+# assigned to the time context of the phase (Phase_Time_R3). One node shape per occurrence, so that with
+# several occurrences each is checked on its own.
+hlo:Phase_Occurrence_Times_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Phase ;
+    sh:property [
+        sh:path cpo:hasOccurrence ;
+        sh:node hlo:Phase_Occurrence_Times_OccurrenceShape ;
+        sh:severity sh:Warning ;
+        sh:message "Every occurrence of a Phase whose status says it occurred (cpo:hasOccurrenceStatus, an evidence or reference with cpo:hasOccurrenceValue cpo:Occurred) should have its own Actual for cpo:hasStartTime, cpo:hasEndTime and cpo:hasDuration. Which of them is missing is not named by the report - look at the occurrence." ;
+    ] .
+
+hlo:Phase_Occurrence_Times_OccurrenceShape
+    a sh:NodeShape ;
+    sh:or (
+        [ sh:not [ sh:property [ sh:path ( cpo:hasOccurrenceStatus [ sh:alternativePath ( hlo:hasEvidence hlo:hasReference ) ] cpo:hasOccurrenceValue ) ; sh:hasValue cpo:Occurred ] ] ]
+        [ sh:node hlo:Phase_Occurrence_Times_Demand ]
+    ) .
+
+hlo:Phase_Occurrence_Times_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasStartTime ; sh:qualifiedValueShape [ sh:class time:Instant, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasEndTime ; sh:qualifiedValueShape [ sh:class time:Instant, hlo:Actual ] ; sh:qualifiedMinCount 1 ] ;
+    sh:property [ sh:path cpo:hasDuration ; sh:qualifiedValueShape [ sh:class time:Duration, hlo:Actual ] ; sh:qualifiedMinCount 1 ] .
+
+# Single-use items (rule 3.11): cpo:isSingleUse true stands only at a template
+# (hlo:Template) - that an entry stands for a kind of object is said by the template, the flag only says
+# that every use is a fresh piece straight from it. In the crate the flag is not repeated (rule 3.6), so
+# the shape never hits anything there.
+hlo:SingleUse_OnlyTemplate_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:isSingleUse ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:isSingleUse true only on a template (hlo:Template): only a kind of object can be used as a fresh specimen each time (rule 3.11)." ;
+    sh:or (
+        [ sh:not [ sh:property [ sh:path cpo:isSingleUse ; sh:hasValue true ] ] ]
+        [ sh:class hlo:Template ]
+    ) .
+
+# Levels (rule 3.2b): hlo:Fixed exists only in the libraries. An exemplar of the series or of an
+# experiment and each of its actuals is never Fixed at the same time - not even an actual that
+# specializes a Fixed value of the library. Every entity of the crate
+# carries its level as a type, so the level is enough as the target.
+hlo:Level_NotFixed_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:SeriesSpecific, hlo:ExperimentSpecific ;
+    sh:severity sh:Violation ;
+    sh:message "An entity of the series or of an experiment is never hlo:Fixed - Fixed exists only in the libraries (rule 3.2b). A crate Actual that takes over a library value specializes it instead." ;
+    sh:not [ sh:class hlo:Fixed ] .
+
+# Format of the ORCID of a person (rule 2.8), like the formats of the identifiers of a
+# chemical entity (hlo:ChemicalEntity_Format_Shape below). People stand only in the People Library (rule 2.7), entered by hand; Warning as when
+# entering a CAS number (the generator warns and saves all the same). The format is checked, not the
+# check digit (ISO 7064 11,2). The target is only people with an ORCID: a missing one is no finding, not
+# every person has one.
+hlo:Person_ORCID_Format_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasORCID ;
+    sh:property [
+        sh:path cpo:hasORCID ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$" ;
+        sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Rule 2.8: an ORCID is written as the plain identifier, four groups of four characters separated by '-', digits only except a final X (e.g. 0000-0001-7621-0889) - no https://orcid.org/ prefix, and one per person." ;
+    ] .
+
+# Formats of the identifiers and notations of a chemical entity (rule 2.8). The requirements
+# Molecule_Information_R2/R3/R4, Molecule_Structure_R2, Molecule_Structure_Substance_R1 and
+# Molecule_Substance_R2 ask only that the value exists; its format is checked here.
+# Checked wherever a value stands - in practice once, at the entry of the chemical entity library; the
+# target is only what carries one, a missing value is the business of the requirements. Warning as when
+# entering a CAS number; its check digit is checked by check_library_consistency.py.
+hlo:ChemicalEntity_Format_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasCAS, cpo:hasPubChemCID, cpo:hasInChIKey, cpo:hasInChI, cpo:hasSMILES, cpo:hasMolecularFormula ;
+    sh:property [
+        sh:path cpo:hasCAS ;
+        sh:pattern "^\\d{2,7}-\\d{2}-\\d$" ;
+        sh:severity sh:Warning ;
+        sh:message "Rule 2.8: a CAS number is written as two to seven digits, a hyphen, two digits, a hyphen and the check digit (e.g. 7732-18-5)." ;
+    ] ;
+    sh:property [
+        sh:path cpo:hasPubChemCID ;
+        sh:pattern "^[1-9][0-9]*$" ;
+        sh:severity sh:Warning ;
+        sh:message "Rule 2.8: a PubChem CID is a positive integer (e.g. 962)." ;
+    ] ;
+    sh:property [
+        sh:path cpo:hasInChIKey ;
+        sh:pattern "^[A-Z]{14}-[A-Z]{10}-[A-Z]$" ;
+        sh:severity sh:Warning ;
+        sh:message "Rule 2.8: a standard InChIKey has 27 characters - 14 upper-case letters, a hyphen, 10 upper-case letters, a hyphen and one upper-case letter (e.g. XLYOFNOQVPJJNP-UHFFFAOYSA-N)." ;
+    ] ;
+    sh:property [
+        sh:path cpo:hasInChI ;
+        sh:datatype xsd:string ;
+        sh:pattern "^InChI=" ;
+        sh:severity sh:Warning ;
+        sh:message "Rule 2.8: an InChI is a text that starts with \"InChI=\"." ;
+    ] ;
+    sh:property [
+        sh:path cpo:hasSMILES ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Warning ;
+        sh:message "Rule 2.8: a SMILES string is a text." ;
+    ] ;
+    sh:property [
+        sh:path cpo:hasMolecularFormula ;
+        sh:datatype xsd:string ;
+        sh:severity sh:Warning ;
+        sh:message "Rule 2.8: a molecular formula is a text." ;
+    ] .
+
+# Times of every task (rule 4.6): every task of an experiment and every task
+# of the libraries that is no template has start, end and duration - unknown is an empty actual, not a
+# missing property; a subtask of an experiment also its start offset. Excluded are the templates at the
+# series (by type they cannot be told from the planning, the only one carrying times) and the templates of
+# the libraries (hlo:Template). cpo:Task finds its subclasses because run_shacl.py loads the ontology into
+# the data graph. Excluded is a node without a name: a type stub (rule 3.2a), also the one run_shacl.py
+# creates for a task of another crate (the usage history of the libraries points at the procedures of all
+# crates). A check of the generator (rule 7.13), not a context requirement.
+hlo:Task_Times_Experiment_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Task ;
+    sh:severity sh:Warning ;
+    sh:message "Every task of an experiment needs its own cpo:hasStartTime, cpo:hasEndTime and cpo:hasDuration - an empty Actual if unknown - and, as part of another task (dcterms:isPartOf), its cpo:hasStartOffset (rule 4.6)." ;
+    sh:or (
+        [ sh:not [ sh:class hlo:ExperimentSpecific ] ]
+        [ sh:not [ sh:property [ sh:path schema:name ; sh:minCount 1 ] ] ]
+        [ sh:and (
+            [ sh:node hlo:Task_Times_Demand ]
+            [ sh:or (
+                [ sh:not [ sh:property [ sh:path dcterms:isPartOf ; sh:minCount 1 ] ] ]
+                [ sh:property [ sh:path cpo:hasStartOffset ; sh:minCount 1 ] ]
+            ) ]
+        ) ]
+    ) .
+
+hlo:Task_Times_Library_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Task ;
+    sh:severity sh:Warning ;
+    sh:message "Every task of the libraries that is not a template (hlo:Template) took place once and needs its own cpo:hasStartTime, cpo:hasEndTime and cpo:hasDuration - an empty Actual if unknown (rule 4.6)." ;
+    sh:or (
+        [ sh:not [ sh:class hlo:Fixed ] ]
+        [ sh:class hlo:Template ]
+        [ sh:node hlo:Task_Times_Demand ]
+    ) .
+
+hlo:Task_Times_Demand
+    a sh:NodeShape ;
+    sh:property [ sh:path cpo:hasStartTime ; sh:minCount 1 ] ;
+    sh:property [ sh:path cpo:hasEndTime ; sh:minCount 1 ] ;
+    sh:property [ sh:path cpo:hasDuration ; sh:minCount 1 ] .
+
+# People on every level (rule 7c.4): the series and every experiment
+# name at least one creator and one experimenter themselves - never left out, never only at another
+# level. People are no context objects, hence here and not among the context requirements.
+hlo:Persons_EachLevel_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:ExperimentalSeries, cpo:SingleExperiment ;
+    sh:property [
+        sh:path cpo:hasCreator ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "The series and every experiment name at least one creator of their own (cpo:hasCreator, rule 7c.4)." ;
+    ] ;
+    sh:property [
+        sh:path cpo:hasExperimenter ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "The series and every experiment name at least one experimenter of their own (cpo:hasExperimenter, rule 7c.4)." ;
+    ] .
+
+# Species per experiment (rule 3.13): a species of the series that does not occur in an experiment is left
+# out of that experiment's phases (except the contents and bodies the library describes), and with it every
+# transfer of it there (the generator drops them). So:
+# an experiment transfer never moves a species at a phase that dropped it - a species its series phase lists
+# but the experiment phase does not. Port crossings are transfers too and are checked alike.
+# Deliberately not "the species stands in both phases": transfers name every possible exchange, and an
+# adsorption names only the fluid phase while the species sits in the solid one; in the existing crates
+# several hundred transfers move a species that only the other side of the interface lists. A species the
+# series phase does not list either is no business of this shape.
+# SHACL-SPARQL, because the same species has to be found along two paths (transfer -> species, phase ->
+# series phase -> species), which SHACL Core cannot compare. GraphDB does not run SHACL-SPARQL reliably (see
+# the quantity kind shapes above): this check runs in generator/workflow/run_shacl.py (pyshacl) only.
+# The type checks stand in FILTER EXISTS on purpose: rdflib orders the patterns before $this is bound and
+# would start with "?seriesPhase a hlo:SeriesSpecific" - every series entity, for every transfer (several
+# times slower on a large crate).
+# Counter-check: generator/tests/absent_species_shape_test.py.
+hlo:Transfer_DroppedSpecies_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:transfersChemicalEntity ;
+    sh:severity sh:Violation ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "An experiment transfer moves {?species} at {?phase}, a phase that left this species out although its series phase lists it (species not in this experiment, rule 3.13). Such a transfer is not taken over into the experiment." ;
+        sh:prefixes hlo:DataQualityPrefixes ;
+        sh:select """
+            SELECT $this ?phase ?species WHERE {
+                $this cpo:transfersChemicalEntity ?species .
+                FILTER EXISTS { $this a hlo:ExperimentSpecific }
+                $this cpo:removesFromPhase|cpo:addsToPhase ?phase .
+                ?phase hlo:specializationOf ?seriesPhase .
+                FILTER EXISTS { ?seriesPhase a hlo:SeriesSpecific }
+                ?seriesPhase dcterms:hasPart/hlo:specializationOf* ?species .
+                FILTER NOT EXISTS { ?phase dcterms:hasPart/hlo:specializationOf* ?species . }
+            }
+        """ ;
+    ] .
+
+#################################################################
+#
+# Rules as shapes: what the rules say and otherwise only code would check, or nothing - found with the
+# property overview (docs/property_overview/). Counter-check:
+# generator/tests/rules_as_shapes_test.py.
+#
+#################################################################
+
+# Names (rule 1.4): every entity of the crate has a schema:name - where none was asked or taken over, the
+# generator gives it one from the ID before saving. In the libraries the entries a
+# person looks things up by have one as well (every library entry type asks for it, rule 2.16); what
+# describes them (values, times, forms, ports, participants) is named by its owner and needs none.
+# The target classes of hlo:Name_LibraryEntry_Shape reach further than "looked up by": cpo:MaterialVolume
+# also takes in the body materials of devices, chebi:ChemicalEntity the molecule records of library phases,
+# cpo:Reaction the elementary reactions. These are named too, so the shape asks it of them as well.
+# Warning: a missing name loses nothing but readability.
+hlo:Name_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:SeriesSpecific, hlo:ExperimentSpecific ;
+    sh:severity sh:Warning ;
+    sh:message "Every entity of the crate has a schema:name (rule 1.4) - the generator names an unnamed one from its ID before saving." ;
+    sh:property [ sh:path schema:name ; sh:minCount 1 ] .
+
+hlo:Name_LibraryEntry_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Device, schema:Person, org:Organization, org:Site, cpo:Room, cpo:StorageCabinet,
+        chebi:ChemicalEntity, cpo:MaterialVolume, cpo:Reaction ;
+    sh:severity sh:Warning ;
+    sh:message "A library entry a person looks things up by (device, template, person, organization, site, room, cabinet, substance, content, reaction) has a schema:name (rules 1.4, 2.16)." ;
+    sh:or (
+        [ sh:not [ sh:class hlo:Fixed ] ]
+        [ sh:property [ sh:path schema:name ; sh:minCount 1 ] ]
+    ) .
+
+# Contents of a device (rule 2.15): cpo:containsMaterial names only the current content - at most one - and
+# only the current content names its device back (cpo:materialContainedIn). On every level: a series device
+# holds the series copy of its content the same way. That the current content is the last of
+# cpo:hasContainedMaterialHistory, and that the contents follow one another in time, cannot be said in SHACL
+# Core and stays in check_library_consistency.py ("Contents of devices").
+hlo:Content_Current_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:containsMaterial ;
+    sh:targetObjectsOf cpo:materialContainedIn ;
+    sh:severity sh:Violation ;
+    sh:message "A device names at most one current content (cpo:containsMaterial), and exactly the contents that name it back with cpo:materialContainedIn (rule 2.15)." ;
+    sh:property [ sh:path cpo:containsMaterial ; sh:maxCount 1 ] ;
+    sh:property [ sh:path [ sh:inversePath cpo:materialContainedIn ] ; sh:equals cpo:containsMaterial ] .
+
+hlo:Content_OneDevice_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:materialContainedIn ;
+    sh:severity sh:Violation ;
+    sh:message "A content is in at most one device at a time (cpo:materialContainedIn, rule 2.15)." ;
+    sh:property [ sh:path cpo:materialContainedIn ; sh:maxCount 1 ] .
+
+# Joints: two joined ports name each other - the generator reads cpo:isConnectedTo on the
+# port it is at, without a reasoner. That the two belong to different devices stays in
+# check_library_consistency.py ("Joined ports name each other").
+hlo:Port_Joint_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:isConnectedTo ;
+    sh:severity sh:Violation ;
+    sh:message "A joined port is named back by the port it is joined to (cpo:isConnectedTo both ways)." ;
+    sh:property [ sh:path [ sh:inversePath cpo:isConnectedTo ] ; sh:equals cpo:isConnectedTo ] .
+
+# Literals once (rule 3.6): what a substance or a device is, stands once in the library and is read through
+# hlo:specializationOf - never repeated on the series or an experiment. Only the literals of the library
+# here; the terms that may first be said on the series follow below (Literal_Once_*). The list holds every
+# literal and term that a shape reads through the chain or that only the library states (searched over all
+# sh:path of both shape files). Not here: cpo:hasModeOfOperation - when
+# the experiments differ, each carries its own mode and the series all of them (rule 3.6).
+hlo:Literal_LibraryOnly_Shape
+    a sh:NodeShape ;
+    sh:targetClass hlo:SeriesSpecific, hlo:ExperimentSpecific ;
+    sh:severity sh:Violation ;
+    sh:message "A literal of the library (CAS, SMILES, InChI, InChIKey, molecular formula, PubChem CID, RInChI, RInChIKey, isRadioactive, isCompositeDevice, isSingleUse, canReceivePower, canRotate, isInert, supportsOperatingMode, lot number, layer coverage) is not repeated on the series or an experiment - it is read through hlo:specializationOf (rule 3.6)." ;
+    sh:property [ sh:path cpo:hasCAS ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasNoCASNumber ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasSMILES ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasInChI ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasInChIKey ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasMolecularFormula ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasPubChemCID ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasNoPubChemCID ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:isCompositeDevice ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:isSingleUse ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:canReceivePower ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:canRotate ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:isInert ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:isRadioactive ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasRInChI ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasRInChIKey ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:supportsOperatingMode ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasLotNumber ; sh:maxCount 0 ] ;
+    sh:property [ sh:path cpo:hasLayerCoverage ; sh:maxCount 0 ] .
+
+# Terms once (rule 3.6): the dispersion state of a phase, the type of a transfer, the reversibility of a
+# reaction, the roles of a participant, the sorption type of an occupation state, the structure of a solid
+# phase (cpo:hasSolidStructure) and the flag cpo:canCreateEnergyField of a device or a phase stand where they
+# are first said - in the library or on the series - and a level below reads them through hlo:specializationOf. A node
+# of the series or an experiment either does not carry the term or nothing above it in its chain does. Library entries
+# (hlo:Fixed) are left out: a fixed reaction still repeats roles, reversibility and sorption type of its template
+# (a known limitation).
+hlo:Literal_Once_DispersionState_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasDispersionState ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:hasDispersionState stands once, where it is first said; a level below reads it through hlo:specializationOf and does not repeat it (rule 3.6). Library entries (hlo:Fixed) are not checked here." ;
+    sh:or ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:hasDispersionState ) ; sh:maxCount 0 ] ] ) .
+
+hlo:Literal_Once_TransferType_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasTransferType ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:hasTransferType stands once, where it is first said; a level below reads it through hlo:specializationOf and does not repeat it (rule 3.6). Library entries (hlo:Fixed) are not checked here." ;
+    sh:or ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:hasTransferType ) ; sh:maxCount 0 ] ] ) .
+
+hlo:Literal_Once_Reversibility_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasReversibility ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:hasReversibility stands once, where it is first said; a level below reads it through hlo:specializationOf and does not repeat it (rule 3.6). Library entries (hlo:Fixed) are not checked here." ;
+    sh:or ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:hasReversibility ) ; sh:maxCount 0 ] ] ) .
+
+hlo:Literal_Once_ChemicalRole_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasChemicalRole ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:hasChemicalRole stands once, where it is first said; a level below reads it through hlo:specializationOf and does not repeat it (rule 3.6). Library entries (hlo:Fixed) are not checked here." ;
+    sh:or ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:hasChemicalRole ) ; sh:maxCount 0 ] ] ) .
+
+hlo:Literal_Once_SorptionType_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasSorptionType ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:hasSorptionType stands once, where it is first said; a level below reads it through hlo:specializationOf and does not repeat it (rule 3.6). Library entries (hlo:Fixed) are not checked here." ;
+    sh:or ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:hasSorptionType ) ; sh:maxCount 0 ] ] ) .
+
+hlo:Literal_Once_SolidStructure_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:hasSolidStructure ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:hasSolidStructure stands once, where it is first said; a level below reads it through hlo:specializationOf and does not repeat it (rule 3.6). Library entries (hlo:Fixed) are not checked here." ;
+    sh:or ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:hasSolidStructure ) ; sh:maxCount 0 ] ] ) .
+
+hlo:Literal_Once_CanCreateEnergyField_Shape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cpo:canCreateEnergyField ;
+    sh:severity sh:Violation ;
+    sh:message "cpo:canCreateEnergyField stands once, where it is first said; a level below reads it through hlo:specializationOf and does not repeat it (rule 3.6). Library entries (hlo:Fixed) are not checked here." ;
+    sh:or ( [ sh:class hlo:Fixed ] [ sh:property [ sh:path ( [ sh:oneOrMorePath hlo:specializationOf ] cpo:canCreateEnergyField ) ; sh:maxCount 0 ] ] ) .
+
+# Start of the procedure (rule 5.6): every experiment knows when its procedure started - as an evidence or a
+# reference (an assumption included) on the start of the "Experimental procedure". Without it the usage
+# history of the devices cannot be ordered (rules 5.2, 5.3); the generator stops before, this says it of the
+# finished crate too.
+hlo:Procedure_Start_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:SingleExperiment ;
+    sh:severity sh:Violation ;
+    sh:message "The start of the procedure of every experiment has a value: an evidence or a reference on cpo:hasStartTime of its cpo:hasProcedure (rule 5.6)." ;
+    sh:property [
+        sh:path ( cpo:hasProcedure cpo:hasStartTime ) ;
+        sh:qualifiedValueShape [ sh:or ( [ sh:property [ sh:path hlo:hasEvidence ; sh:minCount 1 ] ]
+                                         [ sh:property [ sh:path hlo:hasReference ; sh:minCount 1 ] ] ) ] ;
+        sh:qualifiedMinCount 1 ;
+    ] .
+
+# What the generator needs to build (rule 7.13; fields required in the setup sheet, sheet_schema.yaml): a
+# stream runs from exactly one port end to exactly one (material.from/to, uncontained_stream.from/to), a
+# phase is continuous or dispersed (phase.dispersion, read through the chain - rule 3.6), a series says
+# whether it is completed (series.completed).
+hlo:Stream_Ends_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Stream ;
+    sh:severity sh:Violation ;
+    sh:message "A stream flows from exactly one port (cpo:flowsFrom) to exactly one (cpo:flowsTo) on every level." ;
+    sh:property [ sh:path cpo:flowsFrom ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cpo:flowsTo ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+hlo:Phase_Dispersion_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:Phase ;
+    sh:severity sh:Violation ;
+    sh:message "A phase is continuous or dispersed (cpo:hasDispersionState, read through hlo:specializationOf), and says it at most once." ;
+    sh:property [ sh:path ( [ sh:zeroOrMorePath hlo:specializationOf ] cpo:hasDispersionState ) ; sh:minCount 1 ] ;
+    sh:property [ sh:path cpo:hasDispersionState ; sh:maxCount 1 ] .
+
+hlo:Series_Completed_Shape
+    a sh:NodeShape ;
+    sh:targetClass cpo:ExperimentalSeries ;
+    sh:severity sh:Violation ;
+    sh:message "A series says whether it is completed (cpo:isCompleted, exactly once)." ;
+    sh:property [ sh:path cpo:isCompleted ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+# Files (rule 4a.2): every file of the series or of an experiment comes from at least one task - a
+# measurement, a recording, or the planning or recording a record of an electronic lab notebook (ELN)
+# stems from. The links to the libraries and the ontology snapshot are no files of the series (no level).
+hlo:File_GeneratedBy_Shape
+    a sh:NodeShape ;
+    sh:targetClass schema:MediaObject ;
+    sh:severity sh:Warning ;
+    sh:message "Every file of the series or of an experiment names the task it comes from (cpo:generatedBy, rule 4a.2) - an assumed one if it is not known." ;
+    sh:or (
+        [ sh:not [ sh:or ( [ sh:class hlo:SeriesSpecific ] [ sh:class hlo:ExperimentSpecific ] ) ] ]
+        [ sh:property [ sh:path cpo:generatedBy ; sh:class cpo:Task ; sh:minCount 1 ] ]
+    ) .
+
+hlo:DataQualityPrefixes
+    sh:declare [ sh:prefix "hlo" ; sh:namespace "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#"^^xsd:anyURI ] ;
+    sh:declare [ sh:prefix "cpo" ; sh:namespace "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#"^^xsd:anyURI ] ;
+    sh:declare [ sh:prefix "dcterms" ; sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ] .

@@ -1,0 +1,1022 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R8",
+    "record_url": null,
+    "record_uuid": "77b99335-f0fc-47fe-b91e-63a39b4dd770"
+  },
+  "experiment": {
+    "title": "RCF of Spruce Wood Pellets (NREL-characterized batch)",
+    "status": null,
+    "completed": null,
+    "entry_created": "2026-08-06T08:12:27.891Z",
+    "entry_modified": "2026-08-06T08:12:28.126Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "RCF of the NREL-characterized spruce wood pellet batch (BM-SPRUCE-NREL-01).\n",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": "RCF of Spruce Wood Pellets (NREL-characterized batch)",
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S/<>C10H14O2/c1-3-4-8-5-6-9(11)10(7-8)12-2/h5-7,11H,3-4H2,1-2H3/d+/u1-0-0",
+    "rinchi_long_key": "Long-RInChIKey=SA-FUHFF-MOSFIJXAXDLOML-UHFFFAOYSA-N--PXIKRTCSSLJURC-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "Spruce Wood Pellets — Raw Biomass",
+      "sample_label": "LCJ-159",
+      "sample_id": "ac3f8f2d-ffbe-476d-a461-761615354cb2",
+      "split_from": null,
+      "description": null,
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "equivalents": null
+    },
+    {
+      "role": "product",
+      "name": "4-Propylguaiacol",
+      "sample_label": "LCJ-162",
+      "sample_id": "2f37be81-e377-43ef-b12b-d5521d4a0176",
+      "split_from": null,
+      "description": null,
+      "external_label": null,
+      "with_structure": true,
+      "iupac_name": "2-methoxy-4-propylphenol",
+      "smiles": "CCCc1ccc(c(c1)OC)O",
+      "inchikey": "PXIKRTCSSLJURC-UHFFFAOYSA-N",
+      "molecular_formula": "C10H14O2",
+      "molar_mass": {
+        "value": 166.21695999999997,
+        "unit": "g/mol"
+      },
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "mass": {
+        "value": 0.0,
+        "unit": "g"
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "property": "temperature",
+      "value": {
+        "value": 151.0,
+        "unit": "°C"
+      },
+      "text": "temperature.userText"
+    }
+  ],
+  "results": [],
+  "procedure": {
+    "text": "RCF of the NREL-characterized spruce wood pellet batch (BM-SPRUCE-NREL-01).\n",
+    "steps": []
+  },
+  "notes": [],
+  "files": [
+    {
+      "path": "attachments/85bbc99b-c1c7-4ce2-b75a-134f51be59d1.csv",
+      "name": "summary.csv",
+      "encoding_format": "text/csv",
+      "size": 213,
+      "md5": "247564c109e29c728064cf290af35654",
+      "created": "2026-08-06T09:58:26.046Z",
+      "of": "LCJ-159",
+      "analysis": "NREL Structural Carbohydrates and Lignin — Summary",
+      "analysis_kind": null,
+      "analysis_status": null,
+      "analysis_text": "",
+      "dataset": "summary.csv",
+      "dataset_creator": null
+    }
+  ],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": [
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Outcomes] Reaction Outcome",
+        "field": "reaction_outcome",
+        "label": "Overall Reaction Outcome (Required)",
+        "type": "select",
+        "value": "successful",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Outcomes] Reaction Outcome",
+        "field": "yield_type",
+        "label": "Yield Determination Method",
+        "type": "select",
+        "value": "isolated",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_role",
+        "label": "Reaction Role in Workflow (Required)",
+        "type": "select",
+        "value": "preparative",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_class",
+        "label": "Reaction Class (Required)",
+        "type": "select",
+        "value": "biomass_fractionation",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "reactor_type",
+        "label": "Reactor Type (Required)",
+        "type": "select",
+        "value": "stainless_autoclave",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "gas_supply",
+        "label": "Gas Supply Source",
+        "type": "select",
+        "value": "h2_cylinder",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "setup_notes",
+        "label": "Equipment Notes",
+        "type": "text",
+        "value": "5 wt% Pd/C catalyst (100 mg). MeOH solvent (20 mL). Starting biomass is the NREL-characterized spruce wood pellet sample (BM-SPRUCE-NREL-01).",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Workup] Workup Procedure",
+        "field": "gas_vented_before_opening",
+        "label": "Gas / Pressure Vented Before Opening Reactor",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Workup] Workup Procedure",
+        "field": "product_separation_method",
+        "label": "Primary Product Separation Method",
+        "type": "select",
+        "value": "filtration",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Workup] Workup Procedure",
+        "field": "workup_notes",
+        "label": "Workup Notes",
+        "type": "text",
+        "value": "Reactor cooled to room temperature, H2 vented, catalyst removed by filtration, solvent evaporated.",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Conditions] Reaction Conditions",
+        "field": "atmosphere",
+        "label": "Reaction Atmosphere (Required)",
+        "type": "select",
+        "value": "h2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R8",
+        "segment": "Reaction Details",
+        "layer": "[Conditions] Reaction Conditions",
+        "field": "conditions_notes",
+        "label": "Conditions Notes",
+        "type": "text",
+        "value": "151 C, 3 h, 50 bar H2, MeOH solvent, 5 wt% Pd/C catalyst.",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "General Notes",
+        "field": "general_notes",
+        "label": "Additional Notes / Observations",
+        "type": "text",
+        "value": "Air-dried and milled prior to receipt. Particle size <0.425 mm confirmed by sieving. This exact sample record is the biomass source characterized by NREL LAP compositional analysis and subsequently used as the starting material for RCF fractionation (LCJ-R6).",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "Physical State & Storage",
+        "field": "physical_form",
+        "label": "Physical Form",
+        "type": "select",
+        "value": "pellet",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "Physical State & Storage",
+        "field": "initial_quantity_unit",
+        "label": "Quantity Unit",
+        "type": "select",
+        "value": "g",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "Identity",
+        "field": "container_type",
+        "label": "Container Type",
+        "type": "select",
+        "value": "biomass",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Quality Control",
+        "field": "duplicate_analyses",
+        "label": "All Samples Run in Duplicate",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "Periodic Measurements (use + to add repetitions with timestamps)",
+        "field": "measurement_type",
+        "label": "Measurement Type",
+        "type": "select",
+        "value": "moisture_content",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Notes] Procedure Summary (Action Graph)",
+        "field": "procedure_details",
+        "label": "Procedure Details",
+        "type": "text",
+        "value": "Two-step H2SO4 hydrolysis (NREL/TP-510-42618): 72% H2SO4 primary hydrolysis (30 C, 1 h), diluted to 4% and autoclaved (121 C, 1 h), filtered; acid-insoluble residue dried/ashed for Klason lignin, filtrate analyzed by UV-Vis (acid-soluble lignin) and HPLC (structural sugars).",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "air_pct",
+        "label": "Acid Insoluble Residue / AIR (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "27.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "acid_insoluble_ash_pct",
+        "label": "Acid Insoluble Ash (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "0.1",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "ail_pct",
+        "label": "Acid Insoluble Lignin / AIL (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "27.5",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "asl_pct",
+        "label": "Acid Soluble Lignin / ASL (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "1.4",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "total_lignin_pct",
+        "label": "Total Lignin (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "28.9",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "lignin_as_received_pct",
+        "label": "Total Lignin (% as-received basis) [AUTO]",
+        "type": "formula_field",
+        "value": "27.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "acetyl_pct",
+        "label": "Acetyl Content (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "1.5",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "glucan_as_received_pct",
+        "label": "Glucan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "40.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "xylan_as_received_pct",
+        "label": "Xylan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "5.3",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "galactan_as_received_pct",
+        "label": "Galactan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "1.9",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "arabinan_as_received_pct",
+        "label": "Arabinan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "1.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "mannan_as_received_pct",
+        "label": "Mannan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "10.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "acetyl_as_received_pct",
+        "label": "Acetyl (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "1.4",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "total_structural_pct",
+        "label": "Total Structural Components (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "63.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Inputs] Weigh Biomass Sample",
+        "field": "odw_mg",
+        "label": "Oven Dry Weight / ODW (mg) [AUTO]",
+        "type": "formula_field",
+        "value": "283.1",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Workup] Ash & Weigh - Acid Insoluble Residue",
+        "field": "ash_constant_weight_achieved",
+        "label": "Constant Weight Achieved",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Workup] Dry & Weigh - Acid Insoluble Residue",
+        "field": "air_constant_weight_achieved",
+        "label": "Constant Weight Achieved",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Workup] Measure - UV-Vis (Acid Soluble Lignin)",
+        "field": "uv_vis_within_6h",
+        "label": "Measured Within 6 Hours of Hydrolysis",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "cellobiose_check_passed",
+        "label": "Cellobiose < 3 mg/mL (hydrolysis complete)",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "glucan_pct",
+        "label": "Glucan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "43.1",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "xylan_pct",
+        "label": "Xylan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "5.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "galactan_pct",
+        "label": "Galactan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "2.0",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "arabinan_pct",
+        "label": "Arabinan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "1.3",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "mannan_pct",
+        "label": "Mannan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "11.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Setup] Prepare Filtering Crucible",
+        "field": "constant_weight_check_passed",
+        "label": "Constant Weight Check Passed (+/- 0.3 mg)",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Setup] Select Instruments",
+        "field": "hplc_column_sugar",
+        "label": "HPLC Column for Sugars",
+        "type": "select",
+        "value": "shodex_sp0810",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Setup] Select Instruments",
+        "field": "hplc_column_acetyl",
+        "label": "HPLC Column for Acetyl",
+        "type": "select",
+        "value": "biorad_hpx87h",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Workup] Neutralize & Filter for HPLC",
+        "field": "samples_prepared_in_duplicate",
+        "label": "Samples Prepared in Duplicate",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Structural Carbohydrates and Lignin in Biomass",
+        "layer": "[Workup] Analyze - HPLC Acetyl (Optional)",
+        "field": "acetyl_analysis_performed",
+        "label": "Acetyl Analysis Performed",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "General Notes",
+        "field": "general_notes",
+        "label": "Additional Notes / Observations",
+        "type": "text",
+        "value": "Air-dried and milled prior to receipt. Particle size <0.425 mm confirmed by sieving. This exact sample record is the biomass source characterized by NREL LAP compositional analysis and subsequently used as the starting material for RCF fractionation (LCJ-R6).",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "Physical State & Storage",
+        "field": "physical_form",
+        "label": "Physical Form",
+        "type": "select",
+        "value": "pellet",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "Physical State & Storage",
+        "field": "initial_quantity_unit",
+        "label": "Quantity Unit",
+        "type": "select",
+        "value": "g",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "Identity",
+        "field": "container_type",
+        "label": "Container Type",
+        "type": "select",
+        "value": "biomass",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Quality Control",
+        "field": "duplicate_analyses",
+        "label": "All Samples Run in Duplicate",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "Periodic Measurements (use + to add repetitions with timestamps)",
+        "field": "measurement_type",
+        "label": "Measurement Type",
+        "type": "select",
+        "value": "moisture_content",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Notes] Procedure Summary (Action Graph)",
+        "field": "procedure_details",
+        "label": "Procedure Details",
+        "type": "text",
+        "value": "Two-step H2SO4 hydrolysis (NREL/TP-510-42618): 72% H2SO4 primary hydrolysis (30 C, 1 h), diluted to 4% and autoclaved (121 C, 1 h), filtered; acid-insoluble residue dried/ashed for Klason lignin, filtrate analyzed by UV-Vis (acid-soluble lignin) and HPLC (structural sugars).",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "air_pct",
+        "label": "Acid Insoluble Residue / AIR (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "27.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "acid_insoluble_ash_pct",
+        "label": "Acid Insoluble Ash (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "0.1",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "ail_pct",
+        "label": "Acid Insoluble Lignin / AIL (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "27.5",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "asl_pct",
+        "label": "Acid Soluble Lignin / ASL (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "1.4",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "total_lignin_pct",
+        "label": "Total Lignin (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "28.9",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Lignin Results",
+        "field": "lignin_as_received_pct",
+        "label": "Total Lignin (% as-received basis) [AUTO]",
+        "type": "formula_field",
+        "value": "27.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "acetyl_pct",
+        "label": "Acetyl Content (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "1.5",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "glucan_as_received_pct",
+        "label": "Glucan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "40.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "xylan_as_received_pct",
+        "label": "Xylan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "5.3",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "galactan_as_received_pct",
+        "label": "Galactan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "1.9",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "arabinan_as_received_pct",
+        "label": "Arabinan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "1.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "mannan_as_received_pct",
+        "label": "Mannan (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "10.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "acetyl_as_received_pct",
+        "label": "Acetyl (% as-received) [AUTO]",
+        "type": "formula_field",
+        "value": "1.4",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Acetyl, As-Received & QC Summary",
+        "field": "total_structural_pct",
+        "label": "Total Structural Components (% ODW) [AUTO]",
+        "type": "formula_field",
+        "value": "63.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Inputs] Weigh Biomass Sample",
+        "field": "odw_mg",
+        "label": "Oven Dry Weight / ODW (mg) [AUTO]",
+        "type": "formula_field",
+        "value": "283.1",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Workup] Ash & Weigh - Acid Insoluble Residue",
+        "field": "ash_constant_weight_achieved",
+        "label": "Constant Weight Achieved",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Workup] Dry & Weigh - Acid Insoluble Residue",
+        "field": "air_constant_weight_achieved",
+        "label": "Constant Weight Achieved",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Workup] Measure - UV-Vis (Acid Soluble Lignin)",
+        "field": "uv_vis_within_6h",
+        "label": "Measured Within 6 Hours of Hydrolysis",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "cellobiose_check_passed",
+        "label": "Cellobiose < 3 mg/mL (hydrolysis complete)",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "glucan_pct",
+        "label": "Glucan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "43.1",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "xylan_pct",
+        "label": "Xylan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "5.6",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "galactan_pct",
+        "label": "Galactan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "2.0",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "arabinan_pct",
+        "label": "Arabinan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "1.3",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Outcomes] Carbohydrate Results",
+        "field": "mannan_pct",
+        "label": "Mannan (% ODW, extractives-free) [AUTO]",
+        "type": "formula_field",
+        "value": "11.2",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Setup] Prepare Filtering Crucible",
+        "field": "constant_weight_check_passed",
+        "label": "Constant Weight Check Passed (+/- 0.3 mg)",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Setup] Select Instruments",
+        "field": "hplc_column_sugar",
+        "label": "HPLC Column for Sugars",
+        "type": "select",
+        "value": "shodex_sp0810",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Setup] Select Instruments",
+        "field": "hplc_column_acetyl",
+        "label": "HPLC Column for Acetyl",
+        "type": "select",
+        "value": "biorad_hpx87h",
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Workup] Neutralize & Filter for HPLC",
+        "field": "samples_prepared_in_duplicate",
+        "label": "Samples Prepared in Duplicate",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-159",
+        "segment": "Container Provenance",
+        "layer": "[Workup] Analyze - HPLC Acetyl (Optional)",
+        "field": "acetyl_analysis_performed",
+        "label": "Acetyl Analysis Performed",
+        "type": "checkbox",
+        "value": true,
+        "unit": null
+      },
+      {
+        "of": "LCJ-162",
+        "segment": "Sample Provenance",
+        "layer": "Identity",
+        "field": "sample_role_in_workflow",
+        "label": "Sample Role in Workflow (Required)",
+        "type": "select",
+        "value": "analytical_subsample",
+        "unit": null
+      },
+      {
+        "of": "LCJ-162",
+        "segment": "Sample Provenance",
+        "layer": "Identity",
+        "field": "material_class",
+        "label": "Material Class (Required)",
+        "type": "select",
+        "value": "purified_product",
+        "unit": null
+      },
+      {
+        "of": "LCJ-162",
+        "segment": "Sample Provenance",
+        "layer": "Source & Provenance",
+        "field": "source_ref",
+        "label": "Parent / Source Sample (drag here — Required for sub-samples and aliquots)",
+        "type": "drag_sample",
+        "value": {
+          "el_id": "c70d47b4-1c3d-4c07-9cf1-fdb84c4a4c2a",
+          "cr_opt": 0,
+          "el_tip": "LCJ-160",
+          "is_new": false,
+          "el_name": "4-Propylguaiacol",
+          "el_type": "sample",
+          "isAssoc": false,
+          "el_klass": "sample",
+          "el_label": "LCJ-160",
+          "el_decoupled": false
+        },
+        "unit": null
+      },
+      {
+        "of": "LCJ-162",
+        "segment": "Sample Provenance",
+        "layer": "Source & Provenance",
+        "field": "generation_or_preparation_note",
+        "label": "Generation / Preparation Note",
+        "type": "text",
+        "value": "Sub-sample of LCJ-160; see Parent/Source Sample field below",
+        "unit": null
+      }
+    ]
+  }
+}

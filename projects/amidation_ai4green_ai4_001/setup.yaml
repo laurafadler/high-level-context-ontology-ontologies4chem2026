@@ -1,0 +1,527 @@
+format: setup-sheet-v1
+
+# Setup sheet of the amidation from AI4Green (record AI4-001). What stands here only a person
+# knows: which devices, which substance in which phase, which procedure. What the ELN says
+# (amounts, people, temperature, yield) does NOT stand here, but comes from the core file.
+#
+# Origin (rule 2.10): for the amidation nobody from the lab wrote the sheet - it is invented
+# for the demonstration (D), suggested by Claude Code on 29.09.2026. An entry with a "source"
+# of its own says it more precisely: as one text for all its fields, or as a table per field
+# (name, type, equipment, state, species, ...).
+
+source: "D: setup sheet invented for the demonstration (suggested by Claude Code, 29.09.2026)"
+
+series:
+  short_name: amidation_ai4green_ai4_001
+  planned_experiments:                         # empty = unknown
+  completed: true
+  eln_records: [core/AI4Green_AI4-001.json]          # relative to this sheet, one record per experiment
+  source:
+    short_name: "C: identifier chosen for the crate"
+
+people:                                        # who planned (creator), who performed (experimenter) - names
+                                               # as in the People Library. The ELN names only the author
+                                               # of the record; nothing is inferred from that.
+  creator: [Joe Davies]
+  experimenter: [Joe Davies]
+  source: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+
+none:                                          # what explicitly does NOT exist ("none"); if an item is missing,
+  categories:                                  # the generator asks (list: generator/interfaces/eln/README.md)
+    - further_values
+    - samples
+    - interfaces
+    - energy_fields
+    - air_species
+    - occurrences
+    - experiment_tasks
+    - profiles
+    - task_details
+    - reference_sources
+    - emptied
+  source: "D: for the demonstration - nobody from the lab has said that nothing else is known"
+  sources:
+    reference_sources: "C: no document is known for these values (decided by Laura Fadler, 04.10.2026)"
+    emptied: "C: the containers are placeholders - that a task used one up is not known (Claude Code, 08.10.2026)"
+
+devices:                                       # library IDs (Device Library), all in Lab 109
+  - flask_50mL_01                              # exemplar of round_bottom_flask_50mL
+  - glass_vial_20mL                            # single-use template for the isolated product
+  - balance001
+  - bottle_benzoic_acid_01                   # placeholder container (Laura Fadler, 08.10.2026)
+  - bottle_ethylamine_01                     # placeholder container (Laura Fadler, 08.10.2026)
+  - bottle_diisopropylamine_01               # placeholder container (Laura Fadler, 08.10.2026)
+  - bottle_hatu_01                           # placeholder container (Laura Fadler, 08.10.2026)
+  - bottle_dmf_01                            # placeholder container (Laura Fadler, 08.10.2026)
+
+materials:
+  - name: Reaction_Mixture
+    content_of: flask_50mL_01
+    phases:
+      - name: Liquid_Phase
+        state: liquid
+        species: ["N,N-Dimethylformamide", Benzoic acid, Ethylamine, Diisopropylamine, HATU]
+        dispersion: continuous
+        solvents: ["N,N-Dimethylformamide"]
+    source:
+      dispersion: "D: for the demonstration"
+      solvents: "E: ELN AI4Green AI4-001, substances[4].role 'solvent'"
+  - name: Isolated_Product                     # the isolated product - without an invented way to it
+    content_of: glass_vial_20mL
+    phases:
+      - name: Product_Phase
+        state: solid                           # "off-white solid" in the text of the procedure
+        species: [N-Ethylbenzamide]
+        structure: crystalline
+        dispersion: continuous
+    source:
+      state: "X: ELN AI4Green AI4-001, procedure text 'This yielded an off-white solid'"
+      dispersion: "D: for the demonstration"
+      structure: "D: not in the ELN record ('off-white solid'); crystalline for the demonstration"
+
+uncontained_streams:                           # one stream per substance added, from its container (placeholders since 08.10.2026)
+  - name: Benzoic_Acid_Charge
+    from: bottle_benzoic_acid_01_opening
+    to: flask_50mL_01
+    phases:
+      - {name: Benzoic_Acid_Phase, state: solid, species: [Benzoic acid], structure: crystalline, dispersion: continuous}
+    source:
+      from: "C: an assumed container of the libraries (a placeholder, allowed by Laura Fadler on 08.10.2026; Claude Code)"
+      dispersion: "D: for the demonstration"
+      state: "E: ELN AI4Green AI4-001, substances[0].delivered_as 'Dense Solid'"
+      structure: "C: benzoic acid is a crystalline solid (suggested by Claude Code, 29.09.2026)"
+  - name: Ethylamine_Charge
+    from: bottle_ethylamine_01_opening
+    to: flask_50mL_01
+    phases:
+      - {name: Ethylamine_Phase, state: liquid, species: [Ethylamine], dispersion: continuous}
+    source:
+      from: "C: an assumed container of the libraries (a placeholder, allowed by Laura Fadler on 08.10.2026; Claude Code)"
+      dispersion: "D: for the demonstration"
+      state: "E: ELN AI4Green AI4-001, substances[1].delivered_as 'Highly volatile liquid (b.p. < 70 degC)'"
+  - name: Diisopropylamine_Charge
+    from: bottle_diisopropylamine_01_opening
+    to: flask_50mL_01
+    phases:
+      - {name: Diisopropylamine_Phase, state: liquid, species: [Diisopropylamine], dispersion: continuous}
+    source:
+      from: "C: an assumed container of the libraries (a placeholder, allowed by Laura Fadler on 08.10.2026; Claude Code)"
+      dispersion: "D: for the demonstration"
+      state: "E: ELN AI4Green AI4-001, substances[2].delivered_as 'Volatile liquid (b.p. 70-130 degC)'"
+  - name: HATU_Charge
+    from: bottle_hatu_01_opening
+    to: flask_50mL_01
+    phases:
+      - {name: HATU_Phase, state: solid, species: [HATU], structure: crystalline, dispersion: continuous}
+    source:
+      from: "C: an assumed container of the libraries (a placeholder, allowed by Laura Fadler on 08.10.2026; Claude Code)"
+      dispersion: "D: for the demonstration"
+      state: "E: ELN AI4Green AI4-001, substances[3].delivered_as 'Dense Solid'"
+      structure: "C: HATU is a crystalline solid (suggested by Claude Code, 29.09.2026)"
+  - name: DMF_Charge
+    from: bottle_dmf_01_opening
+    to: flask_50mL_01
+    phases:
+      - {name: DMF_Phase, state: liquid, species: ["N,N-Dimethylformamide"], dispersion: continuous}
+    source:
+      from: "C: an assumed container of the libraries (a placeholder, allowed by Laura Fadler on 08.10.2026; Claude Code)"
+      dispersion: "D: for the demonstration"
+      state: "E: ELN AI4Green AI4-001, substances[4].delivered_as 'Non-volatile liquid (b.p. > 130 degC)'"
+
+reactions:                                     # from the Reaction Library
+  - name: Amidation of benzoic acid with ethylamine
+    in_phase: Liquid_Phase
+    source:
+      name: "C: reaction of the Reaction Library curated from the ELN record (reaction:Amidation_BenzoicAcid_Ethylamine)"
+
+tasks:                                         # procedure after the text of the record
+  # functions: what the task achieves (list of the CPO)
+  # determines: which values the task determines - a group of eln_values or <material>/<phase>/<quantity>.
+  # The generator creates such a task through its value, not as a free task.
+  # performers: who performed the task - only what stands here, nothing inferred from people.
+  - name: Weighing the isolated product
+    type: measurement
+    equipment: [balance001]
+    determines: [product_mass]
+    part_of: Establishing the values
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "This yielded an off-white solid (100 mg, 82%)."'
+    source:
+      name: "X: ELN AI4Green AI4-001, procedure text 'This yielded an off-white solid (100 mg, 82%)'"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      equipment: "D: for the demonstration"
+      determines: "D: for the demonstration"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Calculating the yield
+    type: calculation
+    determines: [yield]
+    part_of: Establishing the values
+    inputs: [Mass Product_Phase, AmountOfSubstance Benzoic_Acid_Phase]   # "<quantity> <place>" as in the question
+    performers: [Joe Davies]
+    description: >-
+      AI4Green calculates the yield from the mass of the isolated product and its theoretical mass
+      (from the amount of the limiting reactant, benzoic acid, 0.82 mmol): Y = 100 mg / 122.17 mg = 81.86 %.
+    source:
+      name: "C: named after what the task does (suggested by Claude Code, 30.09.2026)"
+      determines: "C: AI4Green calculates the yield (confirmed by Laura Fadler on 30.09.2026)"
+      description: "E: ELN AI4Green AI4-001, substances[5].mass, .theoretical_mass, results[0]"
+      inputs: "E: ELN AI4Green AI4-001, the product mass and the amount of the limiting reactant"
+      performers: "C: AI4Green does the arithmetic on Joe Davies' entries in his record (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Calculating the selectivity
+    type: calculation
+    determines: [selectivity]
+    part_of: Establishing the values
+    inputs: [Yield NEthylbenzamide]              # the conversion does not stand in the crate
+    performers: [Joe Davies]
+    description: >-
+      Calculated from yield and conversion: S = Y / X = 81.86 % / 95 % = 86.2 %; the ELN record gives
+      86 %. The conversion follows from the unreacted limiting reactant, 5 mg of 100 mg benzoic acid:
+      X = 95 %. It is not in the crate, because the record names no substance it refers to.
+    source:
+      name: "C: named after what the task does (suggested by Claude Code, 30.09.2026)"
+      determines: "C: the selectivity is yield / conversion (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)"
+      description: "E: ELN AI4Green AI4-001, results[0], results[1], results[2], substances[5].unreacted_limiting_reactant_mass"
+      inputs: "C: the yield; the conversion is not in the crate (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)"
+      performers: "C: AI4Green does the arithmetic on Joe Davies' entries in his record (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Experimental procedure               # built by the generator; its start is required
+    times: {start: "2024-07-18T12:00:00+01:00", end: "2024-07-18T15:00:00+01:00", kind: assumed}
+    source:
+      times: "C: assumed - the record has no experiment date; on the day of the record, before the first note (15:08) and the entry (15:56) of 18.07.2024 (suggested by Claude Code, accepted by Laura Fadler on 01.10.2026)"
+  - name: Assuming the times of the experiment
+    determines: [Experimental procedure/times]
+    description: >-
+      The record of AI4Green has no experiment date (experiment_date is empty). The experimental
+      procedure is assumed to have taken place on 18.07.2024, the day the record was written, from
+      12:00 to 15:00 - before the first note (15:08) and the entry (15:56). The usage history of the
+      devices is ordered by this time.
+    performers: [Laura Fadler]
+    source:
+      name: "C: named after what the task does (suggested by Claude Code, 01.10.2026); 'times' as in the hydrogenation (Laura Fadler, 02.10.2026)"
+      determines: "C: assumed - the record has no experiment date; on the day of the record, before the first note (15:08) and the entry (15:56) of 18.07.2024 (suggested by Claude Code, accepted by Laura Fadler on 01.10.2026)"
+      description: "E: ELN AI4Green AI4-001, entry_created, notes[0].time, experiment_date (empty)"
+      performers: "C: the person who builds the crate makes its assumptions (Laura Fadler, 01.10.2026)"
+  - name: Planning the series                  # built by the generator
+    determines: [reaction_table, conditions]
+    performers: [Joe Davies]
+    source:
+      determines: "C: the reaction table is the plan (see eln_values; confirmed by Laura Fadler on 29.09.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Adding the reactants and reagents    # as small as possible: the ELN only says "were mixed"
+    type: transfer
+    part_of: Preparation
+    equipment: [bottle_benzoic_acid_01, bottle_ethylamine_01, bottle_diisopropylamine_01, bottle_hatu_01, bottle_dmf_01]
+    functions: [Charging]
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "Benzoic acid, ethylamine, diisopropylamine and HATU were mixed at RT for 2 hours."'
+    source:
+      name: "X: ELN AI4Green AI4-001, procedure text 'Benzoic acid, ethylamine, diisopropylamine and HATU were mixed' - the substances had to be added before they were mixed; a task of its own, as small as possible (decided by Laura Fadler, 02.10.2026)"
+      type: "C: adding is a transfer into the flask (decided by Laura Fadler, 02.10.2026)"
+      equipment: "C: the containers it adds from are assumed placeholders (Laura Fadler, 08.10.2026)"
+      functions: "C: Charging, as the adding tasks of the hydrogenation (decided by Laura Fadler, 02.10.2026)"
+      part_of: "C: adding comes before the reaction (decided by Laura Fadler, 03.10.2026)"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Reacting at room temperature         # the task that brings the reaction about (rule 4.9)
+    type: task
+    part_of: Main operation
+    aims_at: [Amidation of benzoic acid with ethylamine]
+    functions: [ReactingChemicals]
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "Benzoic acid, ethylamine, diisopropylamine and HATU were mixed at RT for 2 hours."'
+    source:
+      name: "C: section holding the mixing, as 'Running the hydrogenation' in the hydrogenation (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026); named after rule 1.7 (Laura Fadler, 02.10.2026)"
+      type: "C: a section of the procedure, no more specific task class"
+      functions: "C: chosen from the CPO functions (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)"
+      part_of: "C: the task that brings about the reaction hangs in the main operation (decided by Laura Fadler, 03.10.2026)"
+      aims_at: "C: the task that brings about the reaction aims at it (decided by Laura Fadler, 03.10.2026)"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Mixing at room temperature
+    type: operation
+    equipment: [flask_50mL_01]
+    part_of: Reacting at room temperature
+    functions: [Mixing]
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "Benzoic acid, ethylamine, diisopropylamine and HATU were mixed at RT for 2 hours."'
+    source:
+      equipment: "D: for the demonstration"
+      name: "X: ELN AI4Green AI4-001, procedure text 'were mixed at RT for 2 hours'"
+      part_of: "C: the reaction happens while mixing (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)"
+      functions: "C: chosen from the CPO functions (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Washing with aqueous sodium chloride
+    type: operation
+    part_of: Work-up
+    functions: [Washing]                        # the purpose; shaking and settling are the steps
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "The reaction mixture was washed with aqueous sodium chloride and extracted in ethyl acetate."'
+    source:
+      name: "X: ELN AI4Green AI4-001, procedure text 'washed with aqueous sodium chloride'"
+      part_of: "C: part of the work-up (decided by Laura Fadler, 02.10.2026)"
+      functions: "C: Washing (02.10.2026: the purpose, not the steps shaking and settling; both annotations of the function check (Claude Code; Jane Doe, done by Claude Chat) chose it); before: Mixing; SeparatingByGravity, confirmed by Laura Fadler on 30.09.2026"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Extracting into ethyl acetate
+    type: operation
+    part_of: Work-up
+    functions: [Extracting]
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "The reaction mixture was washed with aqueous sodium chloride and extracted in ethyl acetate."'
+    source:
+      name: "X: ELN AI4Green AI4-001, procedure text 'extracted in ethyl acetate'; named after rule 1.7 (Laura Fadler, 02.10.2026)"
+      part_of: "C: part of the work-up (decided by Laura Fadler, 02.10.2026)"
+      functions: "C: Extracting (02.10.2026: the purpose, not the steps shaking and settling; both annotations of the function check (Claude Code; Jane Doe, done by Claude Chat) chose it); before: Mixing; SeparatingByGravity, confirmed by Laura Fadler on 30.09.2026"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Concentrating under vacuum
+    type: operation
+    part_of: Work-up
+    functions: [Evaporating]
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "The resultant mixture was concentrated under vacuum and purified by silica gel, eluting at 70% ethyl acetate 30% cyclohexane."'
+    source:
+      name: "X: ELN AI4Green AI4-001, procedure text 'concentrated under vacuum'"
+      part_of: "C: part of the work-up (decided by Laura Fadler, 02.10.2026)"
+      functions: "C: chosen from the CPO functions (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Purifying by column chromatography   # only as a task, without a flow of material
+    type: operation
+    part_of: Work-up
+    functions: [SeparatingChromatographically]
+    performers: [Joe Davies]
+    description: 'From the procedure text of the ELN record: "The resultant mixture was concentrated under vacuum and purified by silica gel, eluting at 70% ethyl acetate 30% cyclohexane."'
+    source:
+      name: "X: ELN AI4Green AI4-001, procedure text 'purified by silica gel' and isolation_method 'Column'; named after rule 1.7 (Laura Fadler, 02.10.2026)"
+      part_of: "C: part of the work-up (decided by Laura Fadler, 02.10.2026)"
+      functions: "C: chosen from the CPO functions (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)"
+      description: "X: ELN AI4Green AI4-001, procedure text (quoted; decided by Laura Fadler, 02.10.2026)"
+      performers: "C: Joe Davies planned and performed the experiment (confirmed by Laura Fadler on 30.09.2026)"
+  - name: Preparation
+    equipment: []
+    description: 'Everything done before the main operation starts: charging, setting up, closing the apparatus.'
+    source:
+      description: 'C: the standard description of the fixed shell (generator)'
+      software: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+      aims_at: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+      equipment: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+  - name: Main operation
+    equipment: []
+    description: 'The main part of the run - for a reaction, the time during which it takes place, with what is done meanwhile (stirring, heating, cooling, feeding).'
+    source:
+      description: 'C: the standard description of the fixed shell (generator)'
+      software: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+      aims_at: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+      equipment: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+  - name: Work-up
+    equipment: []
+    description: 'Everything done after the main operation: sampling, emptying, separating, washing, concentrating, purifying, analysing.'
+    source:
+      description: 'C: the standard description of the fixed shell (generator)'
+      software: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+      aims_at: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+      equipment: 'C: a fixed shell of the procedure, it holds its parts and uses no equipment of its own (decided by Laura Fadler, 03.10.2026)'
+
+files:                                         # the ELN export as a file of the crate (04.10.2026)
+  - name: ai4green_export_workbook_2024-08-27.eln
+    from: Planning the series
+    creator: ''
+    source:
+      from: "C: assumed - the record the export holds was written in the planning of the series; that the export comes from a task is decided by Laura Fadler (08.10.2026, rule 4a.2: every file has a generating task), which one is assumed by Claude Code"
+      creator: "C: who exported the ELN record is not known (Claude Code, 04.10.2026)"
+
+values:                                        # values: pre-filled from the ELN (prefill_sheet.py) and by hand;
+                                               # kind (measured, planned ...) is set by a person
+  - at: Benzoic_Acid_Charge/Benzoic_Acid_Phase
+    experiment: 1
+    quantity: mass
+    value: 100.0
+    unit: mg
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[0].mass'
+      unit: 'E: ELN AI4Green AI4-001, substances[0].mass.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Benzoic_Acid_Charge/Benzoic_Acid_Phase
+    of: Benzoic acid
+    experiment: 1
+    quantity: amountofsubstance
+    value: 0.82
+    unit: mmol
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[0].amount'
+      unit: 'E: ELN AI4Green AI4-001, substances[0].amount.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Ethylamine_Charge/Ethylamine_Phase
+    experiment: 1
+    quantity: mass
+    value: 73.83
+    unit: mg
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[1].mass'
+      unit: 'E: ELN AI4Green AI4-001, substances[1].mass.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Ethylamine_Charge/Ethylamine_Phase
+    of: Ethylamine
+    experiment: 1
+    quantity: amountofsubstance
+    value: 1.64
+    unit: mmol
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[1].amount'
+      unit: 'E: ELN AI4Green AI4-001, substances[1].amount.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Diisopropylamine_Charge/Diisopropylamine_Phase
+    experiment: 1
+    quantity: mass
+    value: 116.01
+    unit: mg
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[2].mass'
+      unit: 'E: ELN AI4Green AI4-001, substances[2].mass.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Diisopropylamine_Charge/Diisopropylamine_Phase
+    of: Diisopropylamine
+    experiment: 1
+    quantity: amountofsubstance
+    value: 1.15
+    unit: mmol
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[2].amount'
+      unit: 'E: ELN AI4Green AI4-001, substances[2].amount.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: HATU_Charge/HATU_Phase
+    experiment: 1
+    quantity: mass
+    value: 373.63
+    unit: mg
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[3].mass'
+      unit: 'E: ELN AI4Green AI4-001, substances[3].mass.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: HATU_Charge/HATU_Phase
+    of: HATU
+    experiment: 1
+    quantity: amountofsubstance
+    value: 0.98
+    unit: mmol
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[3].amount'
+      unit: 'E: ELN AI4Green AI4-001, substances[3].amount.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: DMF_Charge/DMF_Phase
+    experiment: 1
+    quantity: volume
+    value: 1.0
+    unit: mL
+    kind: planned
+    exact: true
+    group: reaction_table
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[4].volume'
+      unit: 'E: ELN AI4Green AI4-001, substances[4].volume.unit'
+      kind: 'C: the reaction table of AI4Green is the plan (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Isolated_Product/Product_Phase
+    experiment: 1
+    quantity: mass
+    value: 100.0
+    unit: mg
+    kind: measured
+    exact: true
+    group: product_mass
+    source:
+      value: 'E: ELN AI4Green AI4-001, substances[5].mass'
+      unit: 'E: ELN AI4Green AI4-001, substances[5].mass.unit'
+      kind: 'C: the product mass was weighed (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Reaction_Mixture/Liquid_Phase
+    experiment: 1
+    quantity: temperature
+    value: 20.0
+    unit: DEG_C
+    kind: planned
+    exact: true
+    group: conditions
+    source:
+      value: 'E: ELN AI4Green AI4-001, conditions[0].value'
+      kind: 'C: the conditions of the reaction table are planned (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+      unit: 'C: the temperature of the record is in degrees Celsius (confirmed by Laura Fadler on 30.09.2026)'
+  - at: Amidation of benzoic acid with ethylamine
+    of: N-Ethylbenzamide
+    experiment: 1
+    quantity: yield
+    value: 81.86
+    unit: '%'
+    kind: calculated
+    exact: true
+    group: yield
+    source:
+      value: 'E: ELN AI4Green AI4-001, results[0].value'
+      unit: 'E: ELN AI4Green AI4-001, results[0].value.unit'
+      kind: 'C: AI4Green calculates the yield from the product mass (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+  - at: Amidation of benzoic acid with ethylamine
+    of: N-Ethylbenzamide
+    experiment: 1
+    quantity: selectivity
+    value: 86.0
+    unit: '%'
+    kind: calculated
+    exact: true
+    group: selectivity
+    source:
+      value: 'E: ELN AI4Green AI4-001, results[2].value'
+      unit: 'E: ELN AI4Green AI4-001, results[2].value.unit'
+      kind: 'C: the selectivity is yield / conversion, 81.86 % / 95 % = 86.2 %, given as 86 % (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+      exact: 'C: the record gives numbers, not ranges (suggested by Claude Code, confirmed by Laura Fadler on 30.09.2026)'
+
+open:                                          # open questions of the exploratory run (open_questions.py --write-sheet):
+                                               # fill in answer - left empty = still open, '' = none on purpose
+  - key: series:1/task:Adding_the_reactants_and_reagents/aims_at
+    about: tasks / Adding the reactants and reagents
+    several: true
+    question: Which PortCrossing Transfers does Adding the reactants and reagents aim at?
+    options: [Transfer Benzoic acid-PortCrossing-from-Benzoic Acid Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific, Transfer Ethylamine-PortCrossing-from-Ethylamine Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific, Transfer Diisopropylamine-PortCrossing-from-Diisopropylamine Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific, Transfer HATU-PortCrossing-from-HATU Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific, Transfer NN-Dimethylformamide-PortCrossing-from-DMF Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific]
+    answer: 'Transfer Benzoic acid-PortCrossing-from-Benzoic Acid Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific; Transfer Ethylamine-PortCrossing-from-Ethylamine Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific; Transfer Diisopropylamine-PortCrossing-from-Diisopropylamine Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific; Transfer HATU-PortCrossing-from-HATU Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific; Transfer NN-Dimethylformamide-PortCrossing-from-DMF Phase-to-Liquid Phase flask 50mL 01 opening SeriesSpecific'
+    source: "X: ELN AI4Green AI4-001, procedure text 'Benzoic acid, ethylamine, diisopropylamine and HATU were mixed' - the four substances it names were added; C: DMF as well, the solvent of the reaction mixture, a phase of the sheet (decided by Laura Fadler, 03.10.2026)"
+  - key: series:1/experiment:1/task:Adding_the_reactants_and_reagents/aims_at
+    about: tasks / Adding the reactants and reagents (experiment 1)
+    several: true
+    question: Which PortCrossing Transfers does Adding the reactants and reagents aim at?
+    options: [Transfer Benzoic acid-PortCrossing-from-Benzoic Acid Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1, Transfer Ethylamine-PortCrossing-from-Ethylamine Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1, Transfer Diisopropylamine-PortCrossing-from-Diisopropylamine Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1, Transfer HATU-PortCrossing-from-HATU Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1, Transfer NN-Dimethylformamide-PortCrossing-from-DMF Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1]
+    answer: 'Transfer Benzoic acid-PortCrossing-from-Benzoic Acid Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1; Transfer Ethylamine-PortCrossing-from-Ethylamine Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1; Transfer Diisopropylamine-PortCrossing-from-Diisopropylamine Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1; Transfer HATU-PortCrossing-from-HATU Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1; Transfer NN-Dimethylformamide-PortCrossing-from-DMF Phase-to-Liquid Phase flask 50mL 01 opening ExperimentSpecific 1'
+    source: "X: ELN AI4Green AI4-001, procedure text 'Benzoic acid, ethylamine, diisopropylamine and HATU were mixed' - the four substances it names were added; C: DMF as well, the solvent of the reaction mixture, a phase of the sheet (decided by Laura Fadler, 03.10.2026)"

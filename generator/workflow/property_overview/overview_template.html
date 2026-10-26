@@ -1,0 +1,251 @@
+<title>Properties per Class and Level</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: a sticky filter bar over one long column - per family, per class a table (rows properties,
+     columns the four levels) with its conditions and gaps underneath. Same faces as shape_overview.html. */
+  :root {
+    --bg: #f2f4f7;
+    --surface: #ffffff;
+    --ink: #18232e;
+    --muted: #5a6775;
+    --line: #d4dbe3;
+    --head: #e8edf3;
+    --accent: #2f5d8a;
+    --req: #b3261e;      --req-bg: #fbe9e7;
+    --rec: #9a6200;      --rec-bg: #fdf1dc;
+    --ask: #1f5fa8;      --ask-bg: #e4eefa;
+    --drv: #56636f;      --drv-bg: #edf0f3;
+    --ban: #6a3fa0;      --ban-bg: #efe8f8;
+    --ok: #2b7a3d;
+    --short: #c0561b;
+    --font: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12181f; --surface: #1a222b; --ink: #e2e8ee; --muted: #9aa6b2; --line: #2f3b47; --head: #222c37;
+      --accent: #8db8e3;
+      --req: #ff8a80; --req-bg: #3a1c1a; --rec: #ffc266; --rec-bg: #36290f; --ask: #8ab8f0; --ask-bg: #172a40;
+      --drv: #a9b4bf; --drv-bg: #242d36; --ban: #c9a6f2; --ban-bg: #2b2140; --ok: #6cc884; --short: #f39a5f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12181f; --surface: #1a222b; --ink: #e2e8ee; --muted: #9aa6b2; --line: #2f3b47; --head: #222c37;
+    --accent: #8db8e3;
+    --req: #ff8a80; --req-bg: #3a1c1a; --rec: #ffc266; --rec-bg: #36290f; --ask: #8ab8f0; --ask-bg: #172a40;
+    --drv: #a9b4bf; --drv-bg: #242d36; --ban: #c9a6f2; --ban-bg: #2b2140; --ok: #6cc884; --short: #f39a5f;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--font); }
+  .wrap { max-width: 1500px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 60px; }
+  h1, h2, h3 { text-wrap: balance; line-height: 1.2; }
+  h1 { font-size: 1.6rem; margin: 0 0 .3rem; }
+  h2 { font-size: 1.25rem; margin: 2.2rem 0 .3rem; }
+  h3 { font: 600 1.02rem/1.3 var(--mono); margin: 0; }
+  p { max-width: 70ch; margin: .3rem 0; }
+  .muted { color: var(--muted); }
+  code, .mono { font-family: var(--mono); font-size: .86em; }
+
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+         border-bottom: 1px solid var(--line); padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px 14px;
+         align-items: center; }
+  .bar label { font-size: .82rem; color: var(--muted); letter-spacing: .03em; text-transform: uppercase; display: flex; gap: 6px; align-items: center; }
+  .bar select, .bar input[type="search"] { font: inherit; font-size: .9rem; padding: 4px 8px; border: 1px solid var(--line);
+         border-radius: 6px; background: var(--surface); color: var(--ink); }
+  .bar input[type="search"] { width: min(260px, 100%); }
+  .levels { display: flex; gap: 4px; flex-wrap: wrap; }
+  .levels button { font: inherit; font-size: .82rem; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line);
+         background: var(--surface); color: var(--muted); cursor: pointer; }
+  .levels button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .count { font-size: .85rem; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .85rem; margin: .8rem 0 0; }
+  .legend span { display: inline-flex; gap: 6px; align-items: center; }
+
+  .chip { display: inline-block; font: 600 .72rem/1.5 var(--mono); padding: 0 6px; border-radius: 4px; letter-spacing: .02em; }
+  .chip.required { color: var(--req); background: var(--req-bg); }
+  .chip.recommended { color: var(--rec); background: var(--rec-bg); }
+  .chip.asked { color: var(--ask); background: var(--ask-bg); }
+  .chip.derived, .chip.library { color: var(--drv); background: var(--drv-bg); font-style: italic; }
+  .chip.banned { color: var(--ban); background: var(--ban-bg); }
+  .chip.none { color: var(--muted); background: transparent; }
+
+  .cls { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; margin-top: 14px; padding: 14px 16px; }
+  .cls header { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+  .cls .meta { font-size: .86rem; color: var(--muted); }
+  .cls .meta a { color: var(--accent); }
+  .totals { font: .78rem var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .scroll { overflow-x: auto; margin-top: 10px; }
+  table { border-collapse: collapse; width: 100%; min-width: 820px; font-size: .84rem; }
+  th, td { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: left; }
+  th { background: var(--head); font-weight: 700; font-size: .78rem; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
+  th small { text-transform: none; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+  td.prop { font-family: var(--mono); font-size: .8rem; width: 24%; word-break: break-word; }
+  td.cell { width: 19%; }
+  td.dim { opacity: .45; }
+  .src { display: block; font: .72rem/1.35 var(--mono); color: var(--muted); word-break: break-word; }
+  .src b { color: var(--ink); font-weight: 600; }
+  .n { display: flex; align-items: center; gap: 6px; margin-top: 3px; font: .72rem var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); }
+  .n i { flex: 0 0 48px; height: 4px; border-radius: 2px; background: var(--line); position: relative; overflow: hidden; }
+  .n i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p); background: var(--ok); }
+  .n.short i::after { background: var(--short); }
+  details { margin-top: 10px; font-size: .84rem; }
+  summary { cursor: pointer; color: var(--accent); }
+  details ul { margin: .4rem 0 0; padding-left: 1.2rem; }
+  details li { margin: .15rem 0; word-break: break-word; }
+  .gaps { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: .85rem; }
+  .gaps li { padding-left: 10px; border-left: 3px solid var(--short); word-break: break-word; }
+  .gaps li.unchecked { border-left-color: var(--line); color: var(--muted); }
+  .gaps .t { font-weight: 700; }
+  .empty { color: var(--muted); font-style: italic; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<!--BODY-->
+<div class="wrap">
+  <h1>Properties per class and level</h1>
+  <p class="muted">What every class has to have, should have or can have on each level – Template, Fixed (library), Series, Experiment – according to the shapes, the library entry schema, the setup sheet, the questions of the generator and the consistency check, next to how often the data have it. Generated by <code>generator/workflow/property_overview/build_property_overview.py</code> from <span id="from"></span>. The same content as <code>docs/property_overview/</code>.</p>
+  <div class="legend" id="legend"></div>
+  <div class="bar" role="search">
+    <label for="family">Family <select id="family"></select></label>
+    <label>Levels <span class="levels" id="levels"></span></label>
+    <label for="status">Status <select id="status">
+      <option value="">any</option>
+      <option value="required">required</option>
+      <option value="recommended">recommended</option>
+      <option value="banned">banned</option>
+      <option value="asked">asked</option>
+      <option value="library">library</option>
+      <option value="derived">derived</option>
+    </select></label>
+    <label for="gap">Gaps <select id="gap"></select></label>
+    <label for="q">Search <input type="search" id="q" placeholder="cpo:hasVolume, Device_Space_R2, task.name"></label>
+    <span class="count" id="count"></span>
+  </div>
+  <div id="out"></div>
+</div>
+<script>
+const DATA = /*DATA*/null;
+const STATUS = { required: "req", recommended: "rec", banned: "ban", asked: "ask", library: "lib", derived: "drv", "": "–" };
+const state = { family: "", levels: new Set(DATA.levels), status: "", gap: "", q: "" };
+
+function el(tag, attrs, ...children) {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === "class") node.className = v; else if (k === "style") node.setAttribute("style", v); else node.setAttribute(k, v);
+  }
+  for (const c of children.flat()) if (c != null && c !== false) node.append(c);
+  return node;
+}
+const anchor = id => id.replace(":", "").toLowerCase();
+
+function setup() {
+  document.getElementById("from").textContent = DATA.generatedFrom;
+  const legend = document.getElementById("legend");
+  [["required", "a Violation shape, a required field or a check asks for it"], ["recommended", "a Warning shape asks for it"],
+   ["asked", "a question or an optional field gives it"], ["library", "read from the libraries (entry tool, run or curation script)"],
+   ["derived", "only the crate has it (the generator makes it)"], ["banned", "a shape forbids it"]]
+    .forEach(([s, t]) => legend.append(el("span", {}, el("span", { class: "chip " + s }, STATUS[s]), t)));
+  legend.append(el("span", {}, el("b", {}, "↑"), "met through hlo:specializationOf"),
+                el("span", {}, el("b", {}, "†"), "conditions or alternatives"),
+                el("span", {}, el("b", {}, "E S G C"), "entry field, sheet field, question, check (! required)"),
+                el("span", {}, el("b", {}, "k/n"), "of the entities the shapes apply to"));
+  const fam = document.getElementById("family");
+  fam.append(el("option", { value: "" }, "all"));
+  DATA.families.forEach(f => fam.append(el("option", { value: f.id }, f.title)));
+  const gap = document.getElementById("gap");
+  gap.append(el("option", { value: "" }, "show all classes"), el("option", { value: "*" }, "classes with gaps"));
+  DATA.gapTypes.forEach(g => gap.append(el("option", { value: g.id }, g.title)));
+  const lv = document.getElementById("levels");
+  DATA.levels.forEach(l => {
+    const b = el("button", { type: "button", "aria-pressed": "true" }, l);
+    b.addEventListener("click", () => {
+      if (state.levels.has(l)) { if (state.levels.size > 1) state.levels.delete(l); } else state.levels.add(l);
+      b.setAttribute("aria-pressed", state.levels.has(l)); render();
+    });
+    lv.append(b);
+  });
+  fam.addEventListener("change", e => { state.family = e.target.value; render(); });
+  document.getElementById("status").addEventListener("change", e => { state.status = e.target.value; render(); });
+  gap.addEventListener("change", e => { state.gap = e.target.value; render(); });
+  document.getElementById("q").addEventListener("input", e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+}
+
+function cellText(c) {
+  return [c.s, ...c.sh.map(s => s.id), ...c.f.map(f => f[0]), ...c.q, ...c.k].join(" ").toLowerCase();
+}
+
+function cellNode(c) {
+  const td = el("td", { class: "cell" + (c.s ? "" : " dim") }, el("span", { class: "chip " + (c.s || "none") }, STATUS[c.s]));
+  if (c.sh.length) td.append(el("span", { class: "src" }, (c.ch ? "↑ " : "") + [...new Set(c.sh.map(s => (s.b ? "✕" : "") + s.id + (s.c ? "†" : "")))].join(", ")));
+  if (c.f.length) td.append(el("span", { class: "src" }, ...c.f.map((f, i) => [i ? ", " : "", f[1] ? el("b", {}, f[0] + "!") : f[0]])));
+  if (c.q.length) td.append(el("span", { class: "src" }, c.q.join(", ")));
+  if (c.k.length) td.append(el("span", { class: "src" }, c.k.join(", ")));
+  if (c.show) {
+    const p = c.t ? Math.round(100 * c.n / c.t) : 0;
+    td.append(el("span", { class: "n" + (c.sh.length && c.n < c.t ? " short" : "") }, el("i", { style: "--p:" + p + "%" }), c.n + "/" + c.t));
+  }
+  return td;
+}
+
+function rowMatches(r, levels) {
+  if (state.status && !levels.some(l => r.cells[l].s === state.status)) return false;
+  if (state.q) {
+    const hay = (r.key + " " + levels.map(l => cellText(r.cells[l])).join(" ") + " " + r.notes.join(" ")).toLowerCase();
+    if (!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function classNode(c, levels) {
+  const gaps = c.gaps.filter(g => levels.includes(g.level) && (!state.gap || state.gap === "*" || g.type === state.gap));
+  if (state.gap && !gaps.filter(g => state.gap !== "*" || g.type !== "unchecked").length) return null;
+  const classHit = state.q && c.id.toLowerCase().includes(state.q);
+  const rows = c.rows.filter(r => classHit ? (!state.status || levels.some(l => r.cells[l].s === state.status)) : rowMatches(r, levels));
+  if ((state.q || state.status) && !rows.length && !classHit) return null;
+  const meta = [];
+  if (c.parent) meta.push("subclass of ", el("a", { href: "#" + anchor(c.parent) }, c.parent), " – shows only its additions");
+  if (c.subs.length) meta.push(meta.length ? "; " : "", "subclasses: ", ...c.subs.flatMap((s, i) => [i ? ", " : "", el("a", { href: "#" + anchor(s) }, s)]));
+  const box = el("section", { class: "cls", id: anchor(c.id) },
+    el("header", {}, el("h3", {}, c.id), el("span", { class: "totals" }, levels.map(l => l + " " + c.totals[l]).join(" · "))),
+    c.comment ? el("div", { class: "meta" }, c.comment) : null,
+    meta.length ? el("div", { class: "meta" }, ...meta) : null);
+  if (rows.length) {
+    const head = el("tr", {}, el("th", {}, "Property"), ...levels.map(l => el("th", {}, l + " ", el("small", {}, "(" + c.totals[l] + ")"))));
+    const body = rows.map(r => el("tr", {}, el("td", { class: "prop" }, r.key), ...levels.map(l => cellNode(r.cells[l]))));
+    box.append(el("div", { class: "scroll" }, el("table", {}, el("thead", {}, head), el("tbody", {}, body))));
+  } else box.append(el("p", { class: "empty" }, "No rows of its own."));
+  const notes = rows.filter(r => r.notes.length);
+  if (notes.length) box.append(el("details", {}, el("summary", {}, "Conditions and constraints (" + notes.length + ")"),
+    el("ul", {}, notes.map(r => el("li", {}, el("code", {}, r.key), ": " + r.notes.join(" · "))))));
+  if (gaps.length) {
+    const title = id => DATA.gapTypes.find(g => g.id === id).title;
+    box.append(el("ul", { class: "gaps" }, gaps.map(g => el("li", { class: g.type === "unchecked" ? "unchecked" : "" },
+      el("span", { class: "t" }, title(g.type) + ": "), g.text.replace(/`/g, "")))));
+  }
+  return box;
+}
+
+function render() {
+  const out = document.getElementById("out");
+  out.replaceChildren();
+  const levels = DATA.levels.filter(l => state.levels.has(l));
+  let shown = 0;
+  for (const f of DATA.families) {
+    if (state.family && f.id !== state.family) continue;
+    const boxes = DATA.classes.filter(c => c.family === f.id).map(c => classNode(c, levels)).filter(Boolean);
+    if (!boxes.length) continue;
+    shown += boxes.length;
+    out.append(el("h2", {}, f.title), el("p", { class: "muted" }, f.doc), ...boxes);
+  }
+  if (!shown) out.append(el("p", { class: "empty" }, "No class matches these filters."));
+  document.getElementById("count").textContent = shown + " of " + DATA.classes.length + " classes";
+}
+
+setup();
+render();
+</script>

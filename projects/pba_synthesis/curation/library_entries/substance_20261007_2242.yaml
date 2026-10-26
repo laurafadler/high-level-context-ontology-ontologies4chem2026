@@ -1,0 +1,31 @@
+# Library entry: substance -> libraries/chemical_entity_library.jsonld
+# A chemical substance that PubChem knows (Chemical Entity Library). finish_library_entry.py looks it up by its
+# SMILES and keeps the answer next to this file; identifiers and the molar mass come from there.
+#
+# Fill in the fields without '#'. An optional field is commented out: remove its '# ' to use it.
+# More than one entry: copy the block under 'entries' (from '- name:') once per entry.
+# A value (a mass, a time) is a block: value, unit, kind and source. kind: measured (weighed, read off an
+# instrument), observed (written down by someone, e.g. the opening date on the label), literature (printed
+# by the manufacturer: label, certificate, delivery note), assumed (source then says why).
+# Then check it (nothing is written):
+#   python generator/workflow/library_entries/finish_library_entry.py <this file>
+# and write it into the libraries with --write.
+
+format: library-entry-v1  # (required) format of this file - do not change
+type: substance           # (required) type of the entries - do not change
+entered_by: Laura Fadler
+source: Decided by Laura Fadler on 07.10.2026 for the PBA series - the K1 is rinsed with dilute sulfuric acid after the last experiment of the day.
+
+entries:
+  - name: Sulfuric acid
+    smiles: OS(=O)(=O)O
+    cas: 7664-93-9
+    called: H2SO4
+    note: The acid of the dilute sulfuric acid the K1 Start is rinsed with (PBA series).
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-07T21:42:51Z'
+    by: person:LauraFadler
+    entries: ['chem:SulfuricAcid', 'chem:SulfuricAcid_MolarMass', 'chem:SulfuricAcid_MolarMass_Reference_1', 'task:looking_up_substance_20261007_2242', 'task:looking_up_substance_20261007_2242_StartTime', 'task:looking_up_substance_20261007_2242_StartTime_Reference_1', 'task:looking_up_substance_20261007_2242_EndTime', 'task:looking_up_substance_20261007_2242_Duration']
+    libraries: [chemical_entity_library.jsonld]

@@ -1,0 +1,432 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "device": "https://example.org/device/",
+    "lab": "https://example.org/laboratory/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "org": "http://www.w3.org/ns/org#",
+    "schema": "http://schema.org/",
+    "organization": "https://example.org/organization/",
+    "person": "https://example.org/person/",
+    "site": "https://example.org/site/",
+    "energyfield": "https://example.org/energyfield/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+    "chem": "https://example.org/chemical_entity/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "task": "https://example.org/task/",
+    "environment": "https://example.org/environment/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "time": "http://www.w3.org/2006/time#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "organization:UniversityOfCambridge",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "University of Cambridge",
+      "org:hasMember": [
+        {
+          "@id": "person:AlexeiLapkin"
+        },
+        {
+          "@id": "person:LauraFadler"
+        },
+        {
+          "@id": "person:MengKong"
+        },
+        {
+          "@id": "person:ChuyueLi"
+        },
+        {
+          "@id": "person:CongjianLin"
+        }
+      ],
+      "org:hasUnit": {
+        "@id": "organization:CEB"
+      }
+    },
+    {
+      "@id": "organization:CEB",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Department of Chemical Engineering and Biotechnology",
+      "org:hasMember": [
+        {
+          "@id": "person:AlexeiLapkin"
+        },
+        {
+          "@id": "person:LauraFadler"
+        },
+        {
+          "@id": "person:MengKong"
+        },
+        {
+          "@id": "person:ChuyueLi"
+        },
+        {
+          "@id": "person:CongjianLin"
+        }
+      ],
+      "org:unitOf": {
+        "@id": "organization:UniversityOfCambridge"
+      },
+      "org:hasSite": {
+        "@id": "site:CEB_PFD"
+      }
+    },
+    {
+      "@id": "organization:RWTHAachen",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "RWTH Aachen",
+      "org:hasMember": [
+        {
+          "@id": "person:LauraFadler"
+        },
+        {
+          "@id": "person:LennardSchulte"
+        }
+      ],
+      "org:hasUnit": {
+        "@id": "organization:AVT"
+      }
+    },
+    {
+      "@id": "organization:AVT",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Aachener Verfahrenstechnik (AVT)",
+      "org:unitOf": {
+        "@id": "organization:RWTHAachen"
+      },
+      "org:hasMember": [
+        {
+          "@id": "person:LennardSchulte"
+        }
+      ]
+    },
+    {
+      "@id": "organization:ExampleCorp",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "ExampleCorp",
+      "rdfs:comment": "Placeholder manufacturer for devices whose real manufacturer is not recorded. Replace it with the real manufacturer once it is known."
+    },
+    {
+      "@id": "site:CEB_PFD",
+      "@type": [
+        "org:Site",
+        "hlo:Fixed"
+      ],
+      "schema:name": "CEB Site on Philippa Fawcett Drive",
+      "cpo:hasRoom": [
+        {
+          "@id": "lab:L109"
+        },
+        {
+          "@id": "lab:L108"
+        },
+        {
+          "@id": "lab:L208"
+        }
+      ],
+      "cpo:hasEnergyField": {
+        "@id": "energyfield:EnergyField_CEB_PFD_Fixed"
+      }
+    },
+    {
+      "@id": "lab:L109",
+      "@type": [
+        "cpo:Laboratory",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lab 109",
+      "cpo:definesForm": {
+        "@id": "lab:L109_Form"
+      },
+      "cpo:isRoomOf": {
+        "@id": "site:CEB_PFD"
+      }
+    },
+    {
+      "@id": "lab:L108",
+      "@type": [
+        "cpo:Laboratory",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lab 108",
+      "cpo:definesForm": {
+        "@id": "lab:L108_Form"
+      },
+      "cpo:isRoomOf": {
+        "@id": "site:CEB_PFD"
+      }
+    },
+    {
+      "@id": "lab:L109_Cabinet_A",
+      "@type": [
+        "cpo:StorageCabinet",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Chemicals cabinet A, Lab 109",
+      "rdfs:comment": "Ventilated cabinet for the chemicals of Lab 109. Test entry (28.09.2026).",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:L109"
+      }
+    },
+    {
+      "@id": "organization:UniversityOfNottingham",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "University of Nottingham",
+      "org:hasMember": [
+        {
+          "@id": "person:JoeDavies"
+        }
+      ]
+    },
+    {
+      "@id": "lab:L109_GasCabinet",
+      "@type": [
+        "cpo:StorageCabinet",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Gas cabinet, Lab 109",
+      "rdfs:comment": "Ventilated cabinet for the gas cylinders of Lab 109. Test entry (02.10.2026).",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:L109"
+      }
+    },
+    {
+      "@id": "site:RWTH_AVT",
+      "@type": [
+        "org:Site",
+        "hlo:Fixed"
+      ],
+      "schema:name": "AVT, RWTH Aachen (building not known)",
+      "rdfs:comment": "Site of the lab of Lennard Schulte's team. Added on 03.10.2026 for the eLabFTW case study (Lennard Schulte's record 7849): his eLabFTW team is 'SVT Labor'; which room, its size and its air are not known. Gravity copied from the CEB site - assumed size, textbook air (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed).",
+      "cpo:hasRoom": [
+        {
+          "@id": "lab:AVT_SVT_Lab"
+        }
+      ],
+      "cpo:hasEnergyField": {
+        "@id": "energyfield:EnergyField_RWTH_AVT_Fixed"
+      }
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab",
+      "@type": [
+        "cpo:Laboratory",
+        "hlo:Fixed"
+      ],
+      "schema:name": "SVT lab (AVT, RWTH Aachen)",
+      "cpo:definesForm": {
+        "@id": "lab:AVT_SVT_Lab_Form"
+      },
+      "cpo:isRoomOf": {
+        "@id": "site:RWTH_AVT"
+      },
+      "rdfs:comment": "Added on 03.10.2026 for the eLabFTW case study (Lennard Schulte's record 7849): his eLabFTW team is 'SVT Labor'; which room, its size and its air are not known. Copied from the entries of Lab 108 - assumed size, textbook air (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed)."
+    },
+    {
+      "@id": "organization:AcceleratedMaterials",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Accelerated Materials",
+      "schema:url": "https://www.acceleratedmaterials.co",
+      "rdfs:comment": "Maker of the K-series annular flow reactors (K1, K10, K100) and the AMLearn software; based in the UK. Contact: sales@acceleratedmaterials.co.uk.",
+      "schema:comment": "Added by curation; not in the ELN (Accelerated Materials, K1 Technical Data Sheet V20260220) - suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis."
+    },
+    {
+      "@id": "organization:FLOM",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "FLOM Corporation",
+      "schema:url": "https://www.flom.co.jp/eng/",
+      "rdfs:comment": "Japanese maker of HPLC and flow chemistry pumps (Intelligent Pump series).",
+      "schema:comment": "Added by curation; not in the ELN (FLOM, Intelligent Pump UI-32 series (flom.co.jp/eng/product/oem_ui32.html) and UI-22-110P (glsciencesinc.com/linear-drive-pulse-control-intelligent-pump-peek-10-ml-min-20-mpa)) - suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis."
+    },
+    {
+      "@id": "organization:Sensirion",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Sensirion AG",
+      "schema:url": "https://sensirion.com",
+      "rdfs:comment": "Swiss maker of sensors and mass flow controllers (CMOSens technology, SFC5500 series).",
+      "schema:comment": "Added by curation; not in the ELN (Sensirion, Datasheet SFC5500 mass flow controller and SFM5500 mass flow meter (sensirion.com/resource/datasheet/sfc5500_sfm5500)) - suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis."
+    },
+    {
+      "@id": "lab:L208",
+      "@type": [
+        "cpo:Laboratory",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lab 208",
+      "cpo:definesForm": {
+        "@id": "lab:L208_Form"
+      },
+      "cpo:isRoomOf": {
+        "@id": "site:CEB_PFD"
+      },
+      "rdfs:comment": "Lab 208 of the CEB building, where the K1 Start stands (Laura Fadler, 05.10.2026). Its size is estimated (Laura Fadler and Meng Kong, 07.10.2026); its air is textbook air, as copied from Lab 108.",
+      "schema:comment": "Added by curation; not in the ELN (assumption, copied from Lab 108) - suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis."
+    },
+    {
+      "@id": "organization:NTU",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nanyang Technological University (NTU)",
+      "org:hasMember": [
+        {
+          "@id": "person:CongjianLin"
+        }
+      ],
+      "org:hasSite": {
+        "@id": "site:NTU"
+      },
+      "schema:comment": "Added by curation; not in the ELN - Congjian Lin's membership given by Laura Fadler on 05.10.2026."
+    },
+    {
+      "@id": "site:NTU",
+      "@type": [
+        "org:Site",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nanyang Technological University, Singapore",
+      "rdfs:comment": "Site of the lab of Congjian Lin; the inventory of the Chemotion export names building S1 there. Gravity copied from the RWTH site (standard gravity). From the ELN (Chemotion, inventory of sample LCJ-28, the spruce wood stock SPRUCE-2025-03): host_building 'S1', host_room 'B1-09', host_cabinet 'B3', host_group 'SCCB'; sample location 'Cabinet B3, Shelf 1'. The methanol bottles of the collection (LCJ-44, LCJ-45) name only '#01-10'. That the experiments ran in this room is assumed (suggested by Claude Code, places confirmed by Laura Fadler on 05.10.2026).",
+      "cpo:hasRoom": [
+        {
+          "@id": "lab:NTU_CongjianLin_Lab"
+        }
+      ],
+      "cpo:hasEnergyField": {
+        "@id": "energyfield:EnergyField_NTU_Fixed"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab",
+      "@type": [
+        "cpo:Laboratory",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Room B1-09, building S1 (NTU) - lab of Congjian Lin",
+      "cpo:definesForm": {
+        "@id": "lab:NTU_CongjianLin_Lab_Form"
+      },
+      "cpo:isRoomOf": {
+        "@id": "site:NTU"
+      },
+      "rdfs:comment": "The lab of Congjian Lin (group SCCB), where the RCF of the Chemotion records LCJ-R5 and LCJ-R8 is taken to have run. Its size and air are not known: copied from the entries of the SVT lab - assumed size, textbook air (suggested by Claude Code, not yet confirmed). From the ELN (Chemotion, inventory of sample LCJ-28, the spruce wood stock SPRUCE-2025-03): host_building 'S1', host_room 'B1-09', host_cabinet 'B3', host_group 'SCCB'; sample location 'Cabinet B3, Shelf 1'. The methanol bottles of the collection (LCJ-44, LCJ-45) name only '#01-10'. That the experiments ran in this room is assumed (suggested by Claude Code, places confirmed by Laura Fadler on 05.10.2026)."
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Cabinet_B3",
+      "@type": [
+        "cpo:StorageCabinet",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Cabinet B3, room B1-09",
+      "rdfs:comment": "The cabinet of the spruce wood stock of the Chemotion collection.",
+      "schema:comment": "From the ELN (Chemotion, inventory of sample LCJ-28): host_cabinet 'B3', host_room 'B1-09'; sample location 'Cabinet B3, Shelf 1'.",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:NTU_CongjianLin_Lab"
+      }
+    },
+    {
+      "@id": "lab:NTU_CongjianLin_Lab_Solvent_Cabinet",
+      "@type": [
+        "cpo:StorageCabinet",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Solvent cabinet, lab of Congjian Lin ('#01-10')",
+      "rdfs:comment": "Where the methanol bottles of the Chemotion collection are kept. The export gives only '#01-10' (host_building and sample location of LCJ-44, LCJ-45) - taken as a cabinet in the lab (suggested by Claude Code on 05.10.2026 for the Chemotion example, not yet confirmed).",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:NTU_CongjianLin_Lab"
+      }
+    },
+    {
+      "@id": "organization:NorskeSkog",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Norske Skog",
+      "rdfs:comment": "Supplier of the spruce wood pellets of the Chemotion collection - 'Norske Skog (via SCCB)': passed on by the group SCCB.",
+      "schema:comment": "From the ELN (Chemotion, inventory of sample LCJ-28): vendor 'Norske Skog (via SCCB)'."
+    },
+    {
+      "@id": "organization:SigmaAldrich",
+      "@type": [
+        "org:Organization",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Sigma-Aldrich",
+      "schema:comment": "From the ELN (Chemotion, inventory of samples LCJ-44, LCJ-45): vendor 'Sigma-Aldrich'."
+    },
+    {
+      "@id": "lab:L208_Chemicals_Cabinet",
+      "@type": [
+        "cpo:StorageCabinet",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Chemicals cabinet, Lab 208",
+      "rdfs:comment": "Where the metal chlorides and nitrates of the PBA series are kept - ferrocyanide and ferricyanide stand in lab:L208_Cyanoferrate_Cabinet (Meng Kong, 14.10.2026).",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:L208"
+      },
+      "schema:comment": "Added by curation for the series pba_synthesis: not in the ELN; what is kept here given by Meng Kong, 14.10.2026."
+    },
+    {
+      "@id": "lab:AVT_SVT_Lab_Cabinet",
+      "@type": [
+        "cpo:StorageCabinet",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Chemicals cabinet, SVT lab (AVT, RWTH Aachen)",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:AVT_SVT_Lab"
+      },
+      "rdfs:comment": "Assumed - where the containers of the FDCA-Cl2 synthesis are taken to be kept (DUMMY, Claude Code, 08.10.2026).",
+      "schema:comment": "The record names no cabinet of the SVT lab - a DUMMY (Claude Code, 08.10.2026; placeholders allowed by Laura Fadler on 08.10.2026 so that every substance comes from a container of the libraries (Phase_Time_R7, rule 3.10)). Entered by Laura Fadler on 08.10.2026 with generator/workflow/library_entries/finish_library_entry.py from projects/fdca_cl2_elabftw_7849/curation/library_entries/cabinet_20261008_placeholder.yaml."
+    },
+    {
+      "@id": "lab:L208_Cyanoferrate_Cabinet",
+      "@type": [
+        "cpo:StorageCabinet",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ferrocyanide and ferricyanide cabinet, Lab 208",
+      "cpo:locatedInsideOf": {
+        "@id": "lab:L208"
+      },
+      "rdfs:comment": "The salts potassium ferrocyanide and ferricyanide - apart from the metal chlorides and nitrates, which stand in lab:L208_Chemicals_Cabinet.",
+      "schema:comment": "Given by Meng Kong on 14.10.2026 (answers to the remaining PBA questions) - the metal chlorides and nitrates are kept in one cabinet of Lab L2.08, ferrocyanide and ferricyanide in another. Entered by Laura Fadler on 14.10.2026 with generator/workflow/library_entries/finish_library_entry.py from projects/pba_synthesis/curation/library_entries/cabinet_20261014_1828.yaml."
+    }
+  ]
+}

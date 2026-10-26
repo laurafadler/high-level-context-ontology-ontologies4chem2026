@@ -1,0 +1,24 @@
+# Python packages the crate generator and its tools need (tested with Python 3.14.5). Install with:
+#     pip install -r dependencies.txt
+# The versions are pinned: generator/helpers/context_links.py uses internal functions of pyshacl
+# (Shape.validate, ShapesGraph.lookup_shape_from_node), which can change between versions.
+# So raise a version on purpose and check a run with compare_crates afterwards.
+
+# Reading and writing RDF, ontologies, shapes (everywhere in the code)
+rdflib==7.6.0
+# SHACL: checking (generator/workflow/run_shacl.py) and context linking in the run (generator/helpers/context_links.py)
+pyshacl==0.40.1
+# Excel files of the measured data (generator/get_additional_information/get_file_metadata.py)
+openpyxl==3.1.5
+# Setup sheet (projects/<crate_identifier>/setup.yaml) in the ELN adapter (generator/interfaces/eln/adapter.py)
+pyyaml==6.0.3
+
+# Optional: author from PDF metadata (generator/get_additional_information/get_file_metadata.py). If the
+# package is missing, the author of a PDF file silently stays empty. Not installed and not needed today,
+# because the data contain no PDFs.
+# pypdf
+
+# Only for checking the finished crates, not for running the generator: the RO-Crate validator
+# (projects/<crate_identifier>/reports/rocrate_validator.txt). It uses the same rdflib and pyshacl as above.
+#     rocrate-validator validate -p ro-crate-1.3 --skip-availability-check projects/<crate_identifier>/crate
+roc-validator==0.12.1

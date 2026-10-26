@@ -1,0 +1,29 @@
+# Library entry: cabinet -> libraries/organization_library.jsonld
+# A cabinet in a laboratory where containers of the inventory are kept (Organization Library).
+#
+# Fill in the fields without '#'. An optional field is commented out: remove its '# ' to use it.
+# More than one entry: copy the block under 'entries' (from '- name:') once per entry.
+# A value (a mass, a time) is a block: value, unit, kind and source. kind: measured (weighed, read off an
+# instrument), observed (written down by someone, e.g. the opening date on the label), literature (printed
+# by the manufacturer: label, certificate, delivery note), assumed (source then says why).
+# Then check it (nothing is written):
+#   python generator/workflow/library_entries/finish_library_entry.py <this file>
+# and write it into the libraries with --write.
+
+format: library-entry-v1  # (required) format of this file - do not change
+type: cabinet             # (required) type of the entries - do not change
+entered_by: person:LauraFadler  # (required) who writes these entries into the library: person:<ID> or the name of a person of the People Library
+source: Given by Meng Kong on 14.10.2026 (answers to the remaining PBA questions) - the metal chlorides and nitrates are kept in one cabinet of Lab L2.08, ferrocyanide and ferricyanide in another.  # (required) where the information comes from, as a sentence - it goes into the comment of every entry - e.g. Given by Meng Kong on 07.10.2026.
+
+entries:
+  - name: Ferrocyanide and ferricyanide cabinet, Lab 208  # (required) e.g. Chemicals cabinet, Lab 208
+    id: lab:L208_Cyanoferrate_Cabinet  # only if the ID made from the name does not fit - e.g. lab:L208_Chemicals_Cabinet
+    room: lab:L208  # (required) the laboratory it stands in - e.g. lab:L208
+    note: The salts potassium ferrocyanide and ferricyanide - apart from the metal chlorides and nitrates, which stand in lab:L208_Chemicals_Cabinet.
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-14T17:28:48Z'
+    by: person:LauraFadler
+    entries: ['lab:L208_Cyanoferrate_Cabinet']
+    libraries: [organization_library.jsonld]

@@ -1,0 +1,105 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R6",
+    "record_url": null,
+    "record_uuid": "c70f08ec-eb14-49e6-b911-a947e4a4132b"
+  },
+  "experiment": {
+    "title": "According to General Procedure R5",
+    "status": null,
+    "completed": null,
+    "entry_created": "2026-06-04T06:54:48.124Z",
+    "entry_modified": "2026-08-05T10:42:53.158Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": "According to General Procedure R5",
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S/<>H2O/h1H2/d-",
+    "rinchi_long_key": "Long-RInChIKey=SA-BUHFF---XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "oxidane",
+      "sample_label": "LCJ-39",
+      "sample_id": "58ff3133-4b7e-4a39-bf01-7b20508eb6cb",
+      "split_from": null,
+      "description": null,
+      "external_label": null,
+      "with_structure": true,
+      "iupac_name": "oxidane",
+      "smiles": "O",
+      "inchikey": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+      "molecular_formula": "H2O",
+      "molar_mass": {
+        "value": 18.01528,
+        "unit": "g/mol"
+      },
+      "reference": true,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "equivalents": {
+        "value": 1.0,
+        "unit": null
+      }
+    }
+  ],
+  "conditions": [],
+  "results": [],
+  "procedure": {
+    "text": "",
+    "steps": []
+  },
+  "notes": [],
+  "files": [],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": [
+      {
+        "of": "LCJ-R6",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_role",
+        "label": "Reaction Role in Workflow (Required)",
+        "type": "select",
+        "value": "optimization",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R6",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_class",
+        "label": "Reaction Class (Required)",
+        "type": "select",
+        "value": "stoichiometric",
+        "unit": null
+      }
+    ]
+  }
+}

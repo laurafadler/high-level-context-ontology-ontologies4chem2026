@@ -1,0 +1,1247 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "chem": "https://example.org/chemical_entity/",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "task": "https://example.org/task/",
+    "time": "http://www.w3.org/2006/time#",
+    "person": "https://example.org/person/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "reaction": "https://example.org/reaction/"
+  },
+  "@graph": [
+    {
+      "@id": "chem:Molecule_0001",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hydrogen",
+      "cpo:hasCAS": "1333-74-0",
+      "cpo:hasSMILES": "[HH]",
+      "cpo:hasInChI": "InChI=1S/H2/h1H",
+      "cpo:hasMolecularFormula": "H2",
+      "cpo:hasInChIKey": "UFHFLCQGNIYNRP-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "783",
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/783. The identifiers that were already here predate this and were not changed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0001_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0002",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Platinum",
+      "cpo:hasCAS": "7440-06-4",
+      "cpo:hasSMILES": "[Pt]",
+      "cpo:hasInChI": "InChI=1S/Pt",
+      "cpo:hasMolecularFormula": "Pt",
+      "cpo:hasInChIKey": "BASFCYQUMIYNBI-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "23939",
+      "dcterms:hasPart": [
+        {
+          "@id": "chem:ActiveSite_0001"
+        },
+        {
+          "@id": "chem:ActiveSite_0002"
+        }
+      ],
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/23939. The identifiers that were already here predate this and were not changed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0002_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0003",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Water",
+      "cpo:hasCAS": "7732-18-5",
+      "cpo:hasSMILES": "O",
+      "cpo:hasInChI": "InChI=1S/H2O/h1H2",
+      "cpo:hasMolecularFormula": "H2O",
+      "cpo:hasInChIKey": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "962",
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/962. The identifiers that were already here predate this and were not changed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0003_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0004",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Isopropanol",
+      "cpo:hasCAS": "67-63-0",
+      "cpo:hasSMILES": "CC(C)O",
+      "cpo:hasInChI": "InChI=1S/C3H8O/c1-3(2)4/h3-4H,1-2H3",
+      "cpo:hasMolecularFormula": "C3H8O",
+      "cpo:hasInChIKey": "KFZMGEQAYNKOFK-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "3776",
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/3776. The identifiers that were already here predate this and were not changed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0004_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0005",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Oxygen",
+      "cpo:hasCAS": "7782-44-7",
+      "cpo:hasSMILES": "O=O",
+      "cpo:hasInChI": "InChI=1S/O2/c1-2",
+      "cpo:hasMolecularFormula": "O2",
+      "cpo:hasInChIKey": "MYMOFIZGZYHOMD-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "977",
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/977. The identifiers that were already here predate this and were not changed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0005_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0006",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrogen",
+      "cpo:hasCAS": "7727-37-9",
+      "cpo:hasSMILES": "N#N",
+      "cpo:hasInChI": "InChI=1S/N2/c1-2",
+      "cpo:hasMolecularFormula": "N2",
+      "cpo:hasInChIKey": "IJGRMHOSHXDMSA-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "947",
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/947. The identifiers that were already here predate this and were not changed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0006_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0007",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hexamethylenediamine",
+      "cpo:hasCAS": "124-09-4",
+      "cpo:hasSMILES": "C(CCCN)CCN",
+      "cpo:hasInChI": "InChI=1S/C6H16N2/c7-5-3-1-2-4-6-8/h1-8H2",
+      "cpo:hasMolecularFormula": "C6H16N2",
+      "cpo:hasInChIKey": "NAQMVNRVTILPCV-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "16402",
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/16402. The identifiers that were already here predate this and were not changed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0007_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0008",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": [
+        "Adiponitrile",
+        "Hexanedinitrile"
+      ],
+      "cpo:hasCAS": "111-69-3",
+      "cpo:hasSMILES": "N#CCCCCC#N",
+      "cpo:hasInChI": "InChI=1S/C6H8N2/c7-5-3-1-2-4-6-8/h1-4H2",
+      "cpo:hasInChIKey": "BTGRAWJCKBQKAO-UHFFFAOYSA-N",
+      "cpo:hasMolecularFormula": "C6H8N2",
+      "cpo:hasPubChemCID": "8128",
+      "schema:comment": "cpo:hasInChIKey and cpo:hasPubChemCID were added from PubChem, resolved via the CAS number recorded above: https://pubchem.ncbi.nlm.nih.gov/compound/8128. The identifiers that were already here predate this and were not changed. The InChIKey already recorded here matched the PubChem value exactly, which cross-checks the CAS-to-compound mapping.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0008_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Atom_0001",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Atom",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hydrogen atom",
+      "cpo:hasCAS": "12385-13-6",
+      "cpo:hasSMILES": "[H]",
+      "cpo:hasInChI": "InChI=1S/H",
+      "cpo:hasMolecularFormula": "H",
+      "cpo:hasInChIKey": "YZCKVEUIGOORGS-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "5362549",
+      "schema:comment": "Added for the adsorbed hydrogen atom of the hydrogenation mechanism in the reaction library - cat-H carries atomic H, not H2 (that is chem:Molecule_0001). All identifiers from PubChem CID 5362549: https://pubchem.ncbi.nlm.nih.gov/compound/5362549",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Atom_0001_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0009",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "6-Iminocapronitrile",
+      "cpo:hasSMILES": "C(CCC#N)CC=N",
+      "cpo:hasInChI": "InChI=1S/C6H10N2/c7-5-3-1-2-4-6-8/h5,7H,1-4H2",
+      "cpo:hasInChIKey": "NYDGYXCGQHDUKD-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "134402930",
+      "cpo:hasMolecularFormula": "C6H10N2",
+      "schema:comment": "Concrete species behind the placeholder \"RYE\" in the reaction library: adiponitrile with one of its two nitrile groups reduced to an imine. All identifiers from PubChem CID 134402930: https://pubchem.ncbi.nlm.nih.gov/compound/134402930 - PubChem lists no CAS registry number for this compound, so cpo:hasCAS is deliberately absent.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0009_MolarMass"
+      },
+      "cpo:hasNoCASNumber": true
+    },
+    {
+      "@id": "chem:Molecule_0010",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": [
+        "6-Aminocapronitrile",
+        "6-Aminohexanenitrile"
+      ],
+      "cpo:hasCAS": "2432-74-8",
+      "cpo:hasSMILES": "C(CCC#N)CCN",
+      "cpo:hasInChI": "InChI=1S/C6H12N2/c7-5-3-1-2-4-6-8/h1-5,7H2",
+      "cpo:hasInChIKey": "KBMSFJFLSXLIDJ-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "17079",
+      "cpo:hasMolecularFormula": "C6H12N2",
+      "schema:comment": "Concrete species behind the placeholder \"RYA\" in the reaction library: the literature-known intermediate 6-aminocapronitrile of the adiponitrile hydrogenation. All identifiers from PubChem CID 17079: https://pubchem.ncbi.nlm.nih.gov/compound/17079 (the CAS number is the first one listed in that record's synonyms).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0010_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0011",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "6-Iminohexylamine",
+      "cpo:hasSMILES": "C(CCC=N)CCN",
+      "cpo:hasInChI": "InChI=1S/C6H14N2/c7-5-3-1-2-4-6-8/h5,7H,1-4,6,8H2",
+      "cpo:hasInChIKey": "UKWNAPIEMJZWEZ-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "18368809",
+      "cpo:hasMolecularFormula": "C6H14N2",
+      "schema:comment": "Concrete species behind the placeholder \"REA\" in the reaction library: one nitrile group fully reduced to an amine, the other to an imine. All identifiers from PubChem CID 18368809: https://pubchem.ncbi.nlm.nih.gov/compound/18368809 - PubChem lists no CAS registry number for this compound, so cpo:hasCAS is deliberately absent.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0011_MolarMass"
+      },
+      "cpo:hasNoCASNumber": true
+    },
+    {
+      "@id": "chem:Molecule_0012",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "6-[(6-Aminohexyl)imino]hexanenitrile",
+      "cpo:hasSMILES": "C(CCCN=CCCCCC#N)CCN",
+      "cpo:hasInChI": "InChI=1S/C12H23N3/c13-9-5-1-3-7-11-15-12-8-4-2-6-10-14/h12H,1-9,11,13H2",
+      "cpo:hasInChIKey": "CZWQERKSWJEUTN-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "140387209",
+      "cpo:hasMolecularFormula": "C12H23N3",
+      "schema:comment": "Concrete species behind the placeholder \"Dimer1\" in the reaction library: the condensation product of 6-iminocapronitrile with hexamethylenediamine. All identifiers from PubChem CID 140387209: https://pubchem.ncbi.nlm.nih.gov/compound/140387209 - that record carries neither a name nor a CAS registry number, so the name here was constructed from the structure and cpo:hasCAS is deliberately absent.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0012_MolarMass"
+      },
+      "cpo:hasNoCASNumber": true
+    },
+    {
+      "@id": "chem:Molecule_0013",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "N-(6-Aminohexylidene)hexane-1,6-diamine",
+      "cpo:hasSMILES": "NCCCCCC=NCCCCCCN",
+      "cpo:hasInChI": "InChI=1S/C12H27N3/c13-9-5-1-3-7-11-15-12-8-4-2-6-10-14/h11H,1-10,12-14H2",
+      "cpo:hasInChIKey": "ZEWXEVOFTFJYFH-UHFFFAOYSA-N",
+      "cpo:hasMolecularFormula": "C12H27N3",
+      "schema:comment": "Concrete species behind the placeholder \"Dimer2\" in the reaction library: the condensation product of 6-iminohexylamine with hexamethylenediamine. NOT registered in PubChem, so there is no CID and no CAS number. The structure was derived from the reaction scheme; cpo:hasInChI and cpo:hasInChIKey were computed from that structure with the NCI CACTUS structure resolver (https://cactus.nci.nih.gov/chemical/structure/NCCCCCC%3DNCCCCCCN/stdinchi). The name was constructed from the structure - no registered name exists.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0013_MolarMass"
+      },
+      "cpo:hasNoCASNumber": true,
+      "cpo:hasNoPubChemCID": true
+    },
+    {
+      "@id": "chem:ActiveSite_0001",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "cpo:ActiveSite",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Platinum active site (H-type)",
+      "dcterms:isPartOf": {
+        "@id": "chem:Molecule_0002"
+      },
+      "schema:comment": "A distinguishable kind of site on the platinum catalyst surface (dcterms:isPartOf chem:Molecule_0002, which carries the matching dcterms:hasPart) that binds hydrogen atoms and the hydrogenation intermediates. Carrier of cpo:boundTo on the occupation states cat(H), cat-H, cat-RYE, cat-RYA, cat-REA and cat-RDEt; the reaction library placeholder placeholder:CatalystSiteH resolves to this entry. Kept as a separate entry from the X-type site on purpose: _resolve_occupation_state_placeholder distinguishes occupation states by exactly the pair (occupiedBy, boundTo), so merging the two site types would make cat-RDEt and catX-RDEt indistinguishable. A site is recorded as a chemical entity because cpo:boundTo and cpo:occupiedBy have chebi:ChemicalEntity as their range. No CAS/SMILES/InChI exists for a surface site. Two things keep this entry out of the way when a real species is being looked up: callers that want a species pass NON_SPECIES_TYPES to ask_chemical_entity, which filters cpo:ActiveSite out of search and creation, and _search_chemical_entities gives exact name matches precedence over substring matches - so a Name search for \"Platinum\" returns the metal alone, not everything containing that word."
+    },
+    {
+      "@id": "chem:ActiveSite_0002",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "cpo:ActiveSite",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Platinum active site (X-type)",
+      "dcterms:isPartOf": {
+        "@id": "chem:Molecule_0002"
+      },
+      "schema:comment": "A second, distinguishable kind of site on the platinum catalyst surface (dcterms:isPartOf chem:Molecule_0002) - it binds an RDEt molecule, which then becomes reactive towards RYE and REA (the two dimerisations). Carrier of cpo:boundTo on the occupation states cat(X) and catX-RDEt; the reaction library placeholder placeholder:CatalystSiteX resolves to this entry. See chem:ActiveSite_0001 for why the two site types are separate entries."
+    },
+    {
+      "@id": "chem:ChemicalEntity_0001",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Glass",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - glass is an amorphous mixture. Kept as a chemical entity because cpo:madeOfMaterial resolves through a material to its phases, and a phase lists its constituents as chebi:ChemicalEntity. No CAS/SMILES/InChI/molar mass exists for it, which is why it carries neither - unlike every chebi:Molecule in this library. Moved here from device_library.jsonld on 2026-09-22, where it used to sit under the foreign chebi: namespace."
+    },
+    {
+      "@id": "chem:ChemicalEntity_0002",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Stainless steel",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - stainless steel is an alloy. Same reasoning as chem:ChemicalEntity_0001 (Glass): carried as a chemical entity so a device body phase can list what it is made of, without CAS/SMILES/InChI/molar mass. Moved here from device_library.jsonld on 2026-09-22."
+    },
+    {
+      "@id": "chem:ChemicalEntity_0003",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Polypropylene",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - polypropylene is a polymer with a distribution of chain lengths. Same reasoning as chem:ChemicalEntity_0001 (Glass) and _0002 (Stainless steel): carried as a chemical entity so a device body phase can list what it is made of, without CAS/SMILES/InChI/molar mass. Added 2026-09-22 for device:syringe_template."
+    },
+    {
+      "@id": "chem:ChemicalEntity_0004",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "PTFE",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - polytetrafluoroethylene is a polymer. Same reasoning as chem:ChemicalEntity_0001 (Glass): carried as a chemical entity so a device body phase can list what it is made of, without CAS/SMILES/InChI/molar mass. Added 2026-09-26 for device:vial_septum_template (the sample side of the septum)."
+    },
+    {
+      "@id": "chem:Molecule_0014",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Benzoic acid",
+      "cpo:hasCAS": "65-85-0",
+      "cpo:hasSMILES": "C1=CC=C(C=C1)C(=O)O",
+      "cpo:hasInChI": "InChI=1S/C7H6O2/c8-7(9)6-4-2-1-3-5-6/h1-5H,(H,8,9)",
+      "cpo:hasMolecularFormula": "C7H6O2",
+      "cpo:hasInChIKey": "WPYMKLBDIGXBTP-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "243",
+      "schema:comment": "Imported on 28.09.2026 from the ELN record reaction:Record_AI4Green_AI4-001, where it is called 'Benzoic Acid' with the SMILES O=C(O)c1ccccc1. Identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/243.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0014_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_AI4Green_AI4-001"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0015",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ethylamine",
+      "cpo:hasCAS": "75-04-7",
+      "cpo:hasSMILES": "CCN",
+      "cpo:hasInChI": "InChI=1S/C2H7N/c1-2-3/h2-3H2,1H3",
+      "cpo:hasMolecularFormula": "C2H7N",
+      "cpo:hasInChIKey": "QUSNBJAOOMFDIB-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "6341",
+      "schema:comment": "Imported on 28.09.2026 from the ELN record reaction:Record_AI4Green_AI4-001, where it is called 'Ethylamine'. Identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/6341.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0015_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_AI4Green_AI4-001"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0016",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Diisopropylamine",
+      "cpo:hasCAS": "108-18-9",
+      "cpo:hasSMILES": "CC(C)NC(C)C",
+      "cpo:hasInChI": "InChI=1S/C6H15N/c1-5(2)7-6(3)4/h5-7H,1-4H3",
+      "cpo:hasMolecularFormula": "C6H15N",
+      "cpo:hasInChIKey": "UAOMVDZJSHZZME-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "7912",
+      "schema:comment": "Imported on 28.09.2026 from the ELN record reaction:Record_AI4Green_AI4-001, where it is called 'Diisopropylamine'. Identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/7912.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0016_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_AI4Green_AI4-001"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0017",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "HATU",
+      "cpo:hasCAS": "200731-31-3",
+      "cpo:hasSMILES": "CN(C)C(=[N+](C)C)ON1C2=C(C=CC=N2)N=N1.F[P-](F)(F)(F)(F)F",
+      "cpo:hasInChI": "InChI=1S/C10H15N6O.F6P/c1-14(2)10(15(3)4)17-16-9-8(12-13-16)6-5-7-11-9;1-7(2,3,4,5)6/h5-7H,1-4H3;/q+1;-1",
+      "cpo:hasMolecularFormula": "C10H15F6N6OP",
+      "cpo:hasInChIKey": "JNWBBCNCSMBKNE-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "9886157",
+      "schema:comment": "Imported on 28.09.2026 from the ELN record reaction:Record_AI4Green_AI4-001, where it is called 'O-(7-Azabenzotriazol-1-yl)-N,N,N',N'-tetramethyluronium hexafluorophosphate' with the SMILES CN(C)C(=[O+]n1nnc2cccnc21)N(C)C.F[P-](F)(F)(F)(F)F. Identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/9886157. The ELN draws HATU as the O-uronium isomer (PubChem CID 9886157, CAS 200731-31-3). The reagent sold as HATU (CAS 148893-10-1, PubChem CID 6409673) is the N-guanidinium isomer; which one was used is not known.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0017_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_AI4Green_AI4-001"
+      }
+    },
+    {
+      "@id": "chem:Molecule_0018",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "N,N-Dimethylformamide",
+      "cpo:hasCAS": "68-12-2",
+      "cpo:hasSMILES": "CN(C)C=O",
+      "cpo:hasInChI": "InChI=1S/C3H7NO/c1-4(2)3-5/h3H,1-2H3",
+      "cpo:hasMolecularFormula": "C3H7NO",
+      "cpo:hasInChIKey": "ZMXDDKWLCZADIW-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "6228",
+      "schema:comment": "Imported on 28.09.2026 from the ELN record reaction:Record_AI4Green_AI4-001, where it is called 'Dimethylformamide'. Identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/6228.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0018_MolarMass"
+      },
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_AI4Green_AI4-001"
+        },
+        {
+          "@id": "reaction:Record_eLabFTW_7849"
+        }
+      ]
+    },
+    {
+      "@id": "chem:Molecule_0019",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "N-Ethylbenzamide",
+      "cpo:hasCAS": "614-17-5",
+      "cpo:hasSMILES": "CCNC(=O)C1=CC=CC=C1",
+      "cpo:hasInChI": "InChI=1S/C9H11NO/c1-2-10-9(11)8-6-4-3-5-7-8/h3-7H,2H2,1H3,(H,10,11)",
+      "cpo:hasMolecularFormula": "C9H11NO",
+      "cpo:hasInChIKey": "SDIDYFBTIZOPLA-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "11959",
+      "schema:comment": "Imported on 28.09.2026 from the ELN record reaction:Record_AI4Green_AI4-001, where it is called 'N-Ethylbenzamide' with the SMILES CCN=C(O)c1ccccc1. Identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/11959. The ELN gives the product as the imidic acid tautomer (CCN=C(O)c1ccccc1) in the substance list and as the amide in the reaction SMILES; PubChem resolves both to the amide.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Molecule_0019_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_AI4Green_AI4-001"
+      }
+    },
+    {
+      "@id": "chem:HOAt",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "HOAt",
+      "cpo:hasCAS": "39968-33-7",
+      "cpo:hasSMILES": "C1=CC2=C(N=C1)N(N=N2)O",
+      "cpo:hasInChI": "InChI=1S/C5H4N4O/c10-9-5-4(7-8-9)2-1-3-6-5/h1-3,10H",
+      "cpo:hasMolecularFormula": "C5H4N4O",
+      "cpo:hasInChIKey": "FPIRBHDGWMWJEP-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "181649",
+      "schema:comment": "Added on 29.09.2026 by curation as a by-product of the amidation reaction:Amidation_BenzoicAcid_Ethylamine (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026); not in the ELN record reaction:Record_AI4Green_AI4-001. Identifiers and molar mass from PubChem, looked up by the SMILES On1nnc2cccnc21: https://pubchem.ncbi.nlm.nih.gov/compound/181649. PubChem also lists CAS 57115-46-5; 39968-33-7 chosen by a person as the number HOAt is sold under.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:HOAt_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Tetramethylurea",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Tetramethylurea",
+      "cpo:hasCAS": "632-22-4",
+      "cpo:hasSMILES": "CN(C)C(=O)N(C)C",
+      "cpo:hasInChI": "InChI=1S/C5H12N2O/c1-6(2)5(8)7(3)4/h1-4H3",
+      "cpo:hasMolecularFormula": "C5H12N2O",
+      "cpo:hasInChIKey": "AVQQQNCBBIEMEU-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "12437",
+      "schema:comment": "Added on 29.09.2026 by curation as a by-product of the amidation reaction:Amidation_BenzoicAcid_Ethylamine (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026); not in the ELN record reaction:Record_AI4Green_AI4-001. Identifiers and molar mass from PubChem, looked up by the SMILES CN(C)C(=O)N(C)C: https://pubchem.ncbi.nlm.nih.gov/compound/12437.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Tetramethylurea_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Diisopropylammonium",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Diisopropylammonium",
+      "cpo:hasNoCASNumber": true,
+      "cpo:hasSMILES": "CC(C)[NH2+]C(C)C",
+      "cpo:hasInChI": "InChI=1S/C6H15N/c1-5(2)7-6(3)4/h5-7H,1-4H3/p+1",
+      "cpo:hasMolecularFormula": "C6H16N+",
+      "cpo:hasInChIKey": "UAOMVDZJSHZZME-UHFFFAOYSA-O",
+      "cpo:hasPubChemCID": "4667801",
+      "schema:comment": "Added on 29.09.2026 by curation as a by-product of the amidation reaction:Amidation_BenzoicAcid_Ethylamine (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026); not in the ELN record reaction:Record_AI4Green_AI4-001. Identifiers and molar mass from PubChem, looked up by the SMILES CC(C)[NH2+]C(C)C: https://pubchem.ncbi.nlm.nih.gov/compound/4667801. A cation; entered as a species of its own because the salt diisopropylammonium hexafluorophosphate is not on PubChem (decided by Laura Fadler on 29.09.2026). PubChem gives no CAS number for it.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Diisopropylammonium_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Hexafluorophosphate",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hexafluorophosphate",
+      "cpo:hasCAS": "16919-18-9",
+      "cpo:hasSMILES": "F[P-](F)(F)(F)(F)F",
+      "cpo:hasInChI": "InChI=1S/F6P/c1-7(2,3,4,5)6/q-1",
+      "cpo:hasMolecularFormula": "F6P-",
+      "cpo:hasInChIKey": "LJQLCJWAZJINEB-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "9886",
+      "schema:comment": "Added on 29.09.2026 by curation as a by-product of the amidation reaction:Amidation_BenzoicAcid_Ethylamine (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026); not in the ELN record reaction:Record_AI4Green_AI4-001. Identifiers and molar mass from PubChem, looked up by the SMILES F[P-](F)(F)(F)(F)F: https://pubchem.ncbi.nlm.nih.gov/compound/9886. An anion; entered as a species of its own because the salt diisopropylammonium hexafluorophosphate is not on PubChem (decided by Laura Fadler on 29.09.2026).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Hexafluorophosphate_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Ammonia",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ammonia",
+      "cpo:hasCAS": "7664-41-7",
+      "cpo:hasSMILES": "N",
+      "cpo:hasInChI": "InChI=1S/H3N/h1H3",
+      "cpo:hasMolecularFormula": "H3N",
+      "cpo:hasInChIKey": "QGZKDVFQNNGYKY-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "222",
+      "schema:comment": "Added on 29.09.2026 by curation as the by-product NH3 of the dimerisations reaction:StoichiometricReaction_0002, reaction:StoichiometricReaction_0003 of the hydrogenation (suggested by Claude Code, confirmed by Laura Fadler on 29.09.2026). Identifiers and molar mass from PubChem, looked up by the SMILES N: https://pubchem.ncbi.nlm.nih.gov/compound/222. PubChem also lists CAS 82168-61-4 and 8007-57-6; 7664-41-7 is the number of ammonia itself.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Ammonia_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:FurandicarboxylicAcid",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "2,5-Furandicarboxylic acid",
+      "cpo:hasCAS": "3238-40-2",
+      "cpo:hasSMILES": "C1=C(OC(=C1)C(=O)O)C(=O)O",
+      "cpo:hasInChI": "InChI=1S/C6H4O5/c7-5(8)3-1-2-4(11-3)6(9)10/h1-2H,(H,7,8)(H,9,10)",
+      "cpo:hasMolecularFormula": "C6H4O5",
+      "cpo:hasInChIKey": "CHTHALBTIRVDBM-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "76720",
+      "schema:comment": "Imported on 03.10.2026 from the ELN record reaction:Record_eLabFTW_7849, where it is called 'FDCA' in the free text; the record gives no structure. The structure (SMILES OC(=O)c1ccc(o1)C(=O)O) was written by curation (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/76720.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:FurandicarboxylicAcid_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_eLabFTW_7849"
+      }
+    },
+    {
+      "@id": "chem:ThionylChloride",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Thionyl chloride",
+      "cpo:hasCAS": "7719-09-7",
+      "cpo:hasSMILES": "O=S(Cl)Cl",
+      "cpo:hasInChI": "InChI=1S/Cl2OS/c1-4(2)3",
+      "cpo:hasMolecularFormula": "Cl2OS",
+      "cpo:hasInChIKey": "FYSNRJHAOHDILO-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "24386",
+      "schema:comment": "Imported on 03.10.2026 from the ELN record reaction:Record_eLabFTW_7849, where it is called 'SOCl2' in the free text; the record gives no structure. The structure (SMILES O=S(Cl)Cl) was written by curation (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/24386.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:ThionylChloride_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_eLabFTW_7849"
+      }
+    },
+    {
+      "@id": "chem:FurandicarbonylDichloride",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "2,5-Furandicarbonyl dichloride",
+      "cpo:hasCAS": "10375-34-5",
+      "cpo:hasSMILES": "C1=C(OC(=C1)C(=O)Cl)C(=O)Cl",
+      "cpo:hasInChI": "InChI=1S/C6H2Cl2O3/c7-5(9)3-1-2-4(11-3)6(8)10/h1-2H",
+      "cpo:hasMolecularFormula": "C6H2Cl2O3",
+      "cpo:hasInChIKey": "PDSULNVJASBMLP-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "11480968",
+      "schema:comment": "Imported on 03.10.2026 from the ELN record reaction:Record_eLabFTW_7849, where it is called '2,5-furandicarboxylic acid chloride' (in the title 'FDCA-Cl2' in the free text; the record gives no structure. The structure (SMILES ClC(=O)c1ccc(o1)C(=O)Cl) was written by curation (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/11480968.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:FurandicarbonylDichloride_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_eLabFTW_7849"
+      }
+    },
+    {
+      "@id": "chem:HydrogenChloride",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hydrogen chloride",
+      "cpo:hasCAS": "7647-01-0",
+      "cpo:hasSMILES": "Cl",
+      "cpo:hasInChI": "InChI=1S/ClH/h1H",
+      "cpo:hasMolecularFormula": "ClH",
+      "cpo:hasInChIKey": "VEXZGXHMUGYJMC-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "313",
+      "schema:comment": "Imported on 03.10.2026 from the ELN record reaction:Record_eLabFTW_7849, where it is called 'hcl' in the free text; the record gives no structure. The structure (SMILES Cl) was written by curation (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/313. PubChem lists 13 CAS-like numbers; 7647-01-0 chosen as the one the substance is usually sold under (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:HydrogenChloride_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_eLabFTW_7849"
+      }
+    },
+    {
+      "@id": "chem:SulfurDioxide",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Sulfur dioxide",
+      "cpo:hasCAS": "7446-09-5",
+      "cpo:hasSMILES": "O=S=O",
+      "cpo:hasInChI": "InChI=1S/O2S/c1-3-2",
+      "cpo:hasMolecularFormula": "O2S",
+      "cpo:hasInChIKey": "RAHZWNYVWXNFOC-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "1119",
+      "schema:comment": "Imported on 03.10.2026 from the ELN record reaction:Record_eLabFTW_7849, where it is called 'so2' in the free text; the record gives no structure. The structure (SMILES O=S=O) was written by curation (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/1119. PubChem lists 2 CAS-like numbers; 7446-09-5 chosen as the one the substance is usually sold under (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:SulfurDioxide_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_eLabFTW_7849"
+      }
+    },
+    {
+      "@id": "chem:Hexane",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hexane",
+      "cpo:hasCAS": "110-54-3",
+      "cpo:hasSMILES": "CCCCCC",
+      "cpo:hasInChI": "InChI=1S/C6H14/c1-3-5-6-4-2/h3-6H2,1-2H3",
+      "cpo:hasMolecularFormula": "C6H14",
+      "cpo:hasInChIKey": "VLKZOEOYAKHREP-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "8058",
+      "schema:comment": "Imported on 03.10.2026 from the ELN record reaction:Record_eLabFTW_7849, where it is called 'hexane' in the free text; the record gives no structure. The structure (SMILES CCCCCC) was written by curation (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/8058. PubChem lists 3 CAS-like numbers; 110-54-3 chosen as the one the substance is usually sold under (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Hexane_MolarMass"
+      },
+      "schema:subjectOf": {
+        "@id": "reaction:Record_eLabFTW_7849"
+      }
+    },
+    {
+      "@id": "chem:FusedQuartz",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Fused quartz",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - fused quartz is amorphous silicon dioxide, a glass. Same reasoning as chem:ChemicalEntity_0001 (Glass): carried as a chemical entity so a device body phase can list what it is made of, without CAS/SMILES/InChI/molar mass. Added 2026-10-05 for the capillaries of the K1 reactor.",
+      "schema:comment": "Added by curation; not in the ELN (Patent US11724241B2, 'Constant shear continuous reactor device' (N. Jose, A. Lapkin; Cambridge Enterprise), example annular microreactor; patents.google.com/patent/US11724241B2) - suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis."
+    },
+    {
+      "@id": "chem:Aluminium",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Aluminium",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - the body of an instrument is an aluminium alloy, not the pure element. Same reasoning as chem:ChemicalEntity_0001 (Glass): carried as a chemical entity so a device body phase can list what it is made of, without CAS/SMILES/InChI/molar mass. Added 2026-10-05 for the body of the K1 Start's mass flow controller.",
+      "schema:comment": "Added by curation; not in the ELN (Sensirion, Datasheet SFC5500 mass flow controller and SFM5500 mass flow meter (sensirion.com/resource/datasheet/sfc5500_sfm5500)) - suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis."
+    },
+    {
+      "@id": "chem:PEEK",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "PEEK",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - polyether ether ketone is a polymer. Same reasoning as chem:ChemicalEntity_0001 (Glass): carried as a chemical entity so a device body phase can list what it is made of, without CAS/SMILES/InChI/molar mass. Added 2026-10-05 for the pump heads of the K1 Start.",
+      "schema:comment": "Added by curation; not in the ELN (FLOM, Intelligent Pump UI-32 series (flom.co.jp/eng/product/oem_ui32.html) and UI-22-110P (glsciencesinc.com/linear-drive-pulse-control-intelligent-pump-peek-10-ml-min-20-mpa)) - suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis."
+    },
+    {
+      "@id": "chem:NickelHexacyanoferrateII",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nickel hexacyanoferrate(II)",
+      "cpo:hasNoCASNumber": true,
+      "cpo:hasSMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2].[Ni+2].[Ni+2]",
+      "cpo:hasInChI": "InChI=1S/6CN.Fe.2Ni/c6*1-2;;;/q6*-1;3*+2",
+      "cpo:hasMolecularFormula": "C6FeN6Ni2",
+      "cpo:hasInChIKey": "SWODCICMZQPBPU-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "6101841",
+      "schema:comment": "PBA product of nickel(II) chloride and potassium ferrocyanide, Ni2[Fe(CN)6]. Idealized composition: no potassium, water or vacancies in the lattice - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Added by curation for the PBA series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2].[Ni+2].[Ni+2]: https://pubchem.ncbi.nlm.nih.gov/compound/6101841. PubChem lists no CAS number for this idealized composition.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:NickelHexacyanoferrateII_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:NickelManganeseHexacyanoferrateII",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nickel manganese hexacyanoferrate(II)",
+      "cpo:hasNoCASNumber": true,
+      "cpo:hasNoPubChemCID": true,
+      "cpo:hasSMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2].[Ni+2].[Mn+2]",
+      "cpo:hasMolecularFormula": "C6FeMnN6Ni",
+      "schema:comment": "PBA product of nickel(II) chloride and manganese(II) nitrate with potassium ferrocyanide, NiMn[Fe(CN)6]. Idealized composition: no potassium, water or vacancies in the lattice, and the two metals equimolar, as planned (Ni:Mn = 1:1, Laura Fadler and Meng Kong, 07.10.2026) - the real composition of the precipitate is only known after its characterization (Laura Fadler, 05.10.2026). Added by curation for the PBA series pba_synthesis (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the series pba_synthesis); not on PubChem (looked up by the SMILES [C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2].[Ni+2].[Mn+2]), so no CAS, InChI or CID; formula and SMILES written by curation. Manganese(II) nitrate instead of the chloride since 08.10.2026 (projects/pba_synthesis/curation/archive/switch_pba_manganese_to_nitrate.py): the salt of 10 April 2026 is not recorded, the only one the files name is Mn(NO3)2 (run log of 12.03.2026); the tetrahydrate is assumed - Laura Fadler and Meng Kong, 08.10.2026.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:NickelManganeseHexacyanoferrateII_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Methanol",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Methanol",
+      "cpo:hasCAS": "67-56-1",
+      "cpo:hasSMILES": "CO",
+      "cpo:hasInChI": "InChI=1S/CH4O/c1-2/h2H,1H3",
+      "cpo:hasMolecularFormula": "CH4O",
+      "cpo:hasInChIKey": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "887",
+      "schema:comment": "Imported on 05.10.2026 from the Chemotion records LCJ-R5 and LCJ-R8, where it is called 'MeOH' in the free text (description, conditions, the segment 'Reaction Details'); the records give no structure. Structure (SMILES CO) written by curation (suggested by Claude Code on 05.10.2026 for the Chemotion example, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/887. PubChem lists 3 CAS-like numbers; 67-56-1, the first, is the usual one (suggested by Claude Code on 05.10.2026 for the Chemotion example, not yet confirmed).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Methanol_MolarMass"
+      },
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R5"
+        },
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R8"
+        }
+      ]
+    },
+    {
+      "@id": "chem:Palladium",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Palladium",
+      "cpo:hasCAS": "7440-05-3",
+      "cpo:hasSMILES": "[Pd]",
+      "cpo:hasInChI": "InChI=1S/Pd",
+      "cpo:hasMolecularFormula": "Pd",
+      "cpo:hasInChIKey": "KDLHZDBZIXYQEI-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "23938",
+      "schema:comment": "Imported on 05.10.2026 from the Chemotion records LCJ-R5 and LCJ-R8, where the catalyst is called '5 wt% Pd/C' in the free text; the records give no structure. The palladium of the catalyst; its support is chem:ActivatedCarbon. Structure (SMILES [Pd]) written by curation (suggested by Claude Code on 05.10.2026 for the Chemotion example, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/23938.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Palladium_MolarMass"
+      },
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R5"
+        },
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R8"
+        }
+      ]
+    },
+    {
+      "@id": "chem:Propylguaiacol",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "4-Propylguaiacol",
+      "cpo:hasCAS": "2785-87-7",
+      "cpo:hasSMILES": "CCCC1=CC(=C(C=C1)O)OC",
+      "cpo:hasInChI": "InChI=1S/C10H14O2/c1-3-4-8-5-6-9(11)10(7-8)12-2/h5-7,11H,3-4H2,1-2H3",
+      "cpo:hasMolecularFormula": "C10H14O2",
+      "cpo:hasInChIKey": "PXIKRTCSSLJURC-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "17739",
+      "schema:comment": "From the ELN (Chemotion LCJ-R8): the product sample LCJ-162 '4-Propylguaiacol' with its molecule (2-methoxy-4-propylphenol, InChIKey PXIKRTCSSLJURC-UHFFFAOYSA-N, SMILES CCCc1ccc(c(c1)OC)O). In LCJ-R5 the main product of the liquid phase ('guaiacyl-type monophenol', sample LCJ-36) without a structure. Structure (SMILES CCCC1=CC(=C(C=C1)O)OC) written by curation (suggested by Claude Code on 05.10.2026 for the Chemotion example, not yet confirmed); identifiers and molar mass from PubChem, looked up by that SMILES: https://pubchem.ncbi.nlm.nih.gov/compound/17739.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Propylguaiacol_MolarMass"
+      },
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R8"
+        },
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R5"
+        }
+      ]
+    },
+    {
+      "@id": "chem:SpruceWood",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Spruce wood (Picea abies)",
+      "rdfs:comment": "Informal entry, not a single chemical species - wood is a lignocellulosic material (cellulose, hemicellulose, lignin, extractives). Carried as a chemical entity so a phase can list what it consists of, without CAS/SMILES/InChI/molar mass.",
+      "schema:comment": "From the ELN (Chemotion LCJ-R5, LCJ-R8): the starting material samples 'Spruce Wood — RCF Feed' (LCJ-35-1, 'aliquot from SPRUCE-2025-03 stock') and 'Spruce Wood Pellets — Raw Biomass' (LCJ-159, 'Air-dried, knife-milled Picea abies' in its parent LCJ-28), samples without a structure. The batches are not library entries.",
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R5"
+        },
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R8"
+        }
+      ]
+    },
+    {
+      "@id": "chem:Cellulose",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Cellulose",
+      "rdfs:comment": "Informal entry, not a single chemical species - cellulose is a polymer of glucose of no fixed chain length. Carried as a chemical entity so a phase can list what it consists of, without CAS/SMILES/InChI/molar mass.",
+      "schema:comment": "From the ELN (Chemotion LCJ-R5): the product sample LCJ-37 'LCJ-R5-B', described as 'Carbohydrate-enriched solid residue ... Cellulose and residual hemicellulose', a sample without a structure. The hemicellulose is not an entry of its own (suggested by Claude Code on 05.10.2026 for the Chemotion example, not yet confirmed).",
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R5"
+        }
+      ]
+    },
+    {
+      "@id": "chem:ActivatedCarbon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Activated carbon",
+      "rdfs:comment": "Informal entry, not a single chemical species - activated carbon is a porous, mostly amorphous carbon. Carried as a chemical entity so a phase can list what it consists of (here the support of the catalyst), without CAS/SMILES/InChI/molar mass.",
+      "schema:comment": "Added by curation; not in the ELN as a substance: the records LCJ-R5 and LCJ-R8 name the catalyst '5 wt% Pd/C' in the free text, and the carbon of a Pd/C catalyst is usually activated carbon (suggested by Claude Code on 05.10.2026 for the Chemotion example, not yet confirmed).",
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R5"
+        },
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R8"
+        }
+      ]
+    },
+    {
+      "@id": "chem:Lignin",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Lignin",
+      "rdfs:comment": "Informal entry, not a single chemical species - lignin is a cross-linked aromatic polymer of varying composition (in softwood mostly guaiacyl units). Carried as a chemical entity so a phase can list what it consists of, without CAS/SMILES/InChI/molar mass.",
+      "schema:comment": "Added by curation; not in the ELN as a substance: the Chemotion records LCJ-R5 and LCJ-R8 speak of a 'lignin-derived liquid product' and 'G-unit depolymerisation' of spruce wood - the lignin of the wood is the substrate of the RCF (suggested by Claude Code, confirmed by Laura Fadler on 05.10.2026 for the Chemotion example).",
+      "schema:subjectOf": [
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R5"
+        },
+        {
+          "@id": "reaction:Record_Chemotion_LCJ-R8"
+        }
+      ]
+    },
+    {
+      "@id": "chem:HDPE",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "hlo:Fixed"
+      ],
+      "schema:name": "High-density polyethylene (HDPE)",
+      "cpo:isInert": true,
+      "rdfs:comment": "Informal entry, not a single chemical species - HDPE is a polymer with a distribution of chain lengths. Same reasoning as chem:ChemicalEntity_0003 (Polypropylene): carried as a chemical entity so a device body phase can list what it is made of, without CAS/SMILES/InChI/molar mass.",
+      "schema:comment": "From the ELN (Chemotion, inventory of sample LCJ-28: 'Keep dry. Store in sealed HDPE container.'); the container added as a template (decided by Laura Fadler on 05.10.2026 for the Chemotion example)."
+    },
+    {
+      "@id": "chem:PotassiumIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Potassium ion",
+      "cpo:hasCAS": "24203-36-9",
+      "cpo:hasSMILES": "[K+]",
+      "cpo:hasInChI": "InChI=1S/K/q+1",
+      "cpo:hasMolecularFormula": "K+",
+      "cpo:hasInChIKey": "NPYPAHLBTDXSSS-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "813",
+      "schema:comment": "K+, from potassium hexacyanoferrate; a spectator ion in the PBA precipitation. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [K+]: https://pubchem.ncbi.nlm.nih.gov/compound/813. PubChem lists 3 CAS-like numbers; 24203-36-9 is the first, the one of the compound itself.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:PotassiumIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:ChlorideIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Chloride ion",
+      "cpo:hasCAS": "16887-00-6",
+      "cpo:hasSMILES": "[Cl-]",
+      "cpo:hasInChI": "InChI=1S/ClH/h1H/p-1",
+      "cpo:hasMolecularFormula": "Cl-",
+      "cpo:hasInChIKey": "VEXZGXHMUGYJMC-UHFFFAOYSA-M",
+      "cpo:hasPubChemCID": "312",
+      "schema:comment": "Cl-, from the metal(II) chlorides; a spectator ion in the PBA precipitation. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [Cl-]: https://pubchem.ncbi.nlm.nih.gov/compound/312. PubChem lists 8 CAS-like numbers; 16887-00-6 is the first, the one of the compound itself.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:ChlorideIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Manganese2PlusIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Manganese(II) ion",
+      "cpo:hasCAS": "16397-91-4",
+      "cpo:hasSMILES": "[Mn+2]",
+      "cpo:hasInChI": "InChI=1S/Mn/q+2",
+      "cpo:hasMolecularFormula": "Mn+2",
+      "cpo:hasInChIKey": "WAEMQWOKJMHJLA-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "27854",
+      "schema:comment": "Mn2+, one of the six metal ions of the PBA series. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [Mn+2]: https://pubchem.ncbi.nlm.nih.gov/compound/27854. PubChem lists 2 CAS-like numbers; 16397-91-4 is the first, the one of the compound itself.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Manganese2PlusIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Iron2PlusIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Iron(II) ion",
+      "cpo:hasCAS": "15438-31-0",
+      "cpo:hasSMILES": "[Fe+2]",
+      "cpo:hasInChI": "InChI=1S/Fe/q+2",
+      "cpo:hasMolecularFormula": "Fe+2",
+      "cpo:hasInChIKey": "CWYNVVGOOAEACU-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "27284",
+      "schema:comment": "Fe2+, one of the six metal ions of the PBA series. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [Fe+2]: https://pubchem.ncbi.nlm.nih.gov/compound/27284.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Iron2PlusIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Cobalt2PlusIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Cobalt(II) ion",
+      "cpo:hasCAS": "22541-53-3",
+      "cpo:hasSMILES": "[Co+2]",
+      "cpo:hasInChI": "InChI=1S/Co/q+2",
+      "cpo:hasMolecularFormula": "Co+2",
+      "cpo:hasInChIKey": "XLJKHNWPARRRJB-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "104729",
+      "schema:comment": "Co2+, one of the six metal ions of the PBA series. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [Co+2]: https://pubchem.ncbi.nlm.nih.gov/compound/104729.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Cobalt2PlusIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Nickel2PlusIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nickel(II) ion",
+      "cpo:hasCAS": "14701-22-5",
+      "cpo:hasSMILES": "[Ni+2]",
+      "cpo:hasInChI": "InChI=1S/Ni/q+2",
+      "cpo:hasMolecularFormula": "Ni+2",
+      "cpo:hasInChIKey": "VEQPNABPJHWNSG-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "934",
+      "schema:comment": "Ni2+, one of the six metal ions of the PBA series. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [Ni+2]: https://pubchem.ncbi.nlm.nih.gov/compound/934.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Nickel2PlusIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Copper2PlusIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Copper(II) ion",
+      "cpo:hasCAS": "15158-11-9",
+      "cpo:hasSMILES": "[Cu+2]",
+      "cpo:hasInChI": "InChI=1S/Cu/q+2",
+      "cpo:hasMolecularFormula": "Cu+2",
+      "cpo:hasInChIKey": "JPVYNHNXODAKFH-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "27099",
+      "schema:comment": "Cu2+, one of the six metal ions of the PBA series. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [Cu+2]: https://pubchem.ncbi.nlm.nih.gov/compound/27099.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Copper2PlusIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:Zinc2PlusIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Zinc ion",
+      "cpo:hasCAS": "23713-49-7",
+      "cpo:hasSMILES": "[Zn+2]",
+      "cpo:hasInChI": "InChI=1S/Zn/q+2",
+      "cpo:hasMolecularFormula": "Zn+2",
+      "cpo:hasInChIKey": "PTFCDOFLOPIGGS-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "32051",
+      "schema:comment": "Zn2+, one of the six metal ions of the PBA series. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [Zn+2]: https://pubchem.ncbi.nlm.nih.gov/compound/32051. PubChem lists 4 CAS-like numbers; 23713-49-7 is the first, the one of the compound itself.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:Zinc2PlusIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:FerrocyanideIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ferrocyanide ion",
+      "cpo:hasCAS": "13408-63-4",
+      "cpo:hasSMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2]",
+      "cpo:hasInChI": "InChI=1S/6CN.Fe/c6*1-2;/q6*-1;+2",
+      "cpo:hasMolecularFormula": "C6FeN6-4",
+      "cpo:hasInChIKey": "UETZVSHORCDDTH-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "25959",
+      "schema:comment": "Hexacyanoferrate(II), [Fe(CN)6]4- - the anion of potassium ferrocyanide (reagent A). Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2]: https://pubchem.ncbi.nlm.nih.gov/compound/25959. PubChem lists no CAS number for this record; 13408-63-4 from en.wikipedia.org/wiki/Ferrocyanide (CASNo, marked as checked by CAS).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:FerrocyanideIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:FerricyanideIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ferricyanide ion",
+      "cpo:hasCAS": "13408-62-3",
+      "cpo:hasSMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+3]",
+      "cpo:hasInChI": "InChI=1S/6CN.Fe/c6*1-2;/q6*-1;+3",
+      "cpo:hasMolecularFormula": "C6FeN6-3",
+      "cpo:hasInChIKey": "YAGKRVSRTSUGEY-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "439210",
+      "schema:comment": "Hexacyanoferrate(III), [Fe(CN)6]3- - the anion of potassium ferricyanide. Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES [C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+3]: https://pubchem.ncbi.nlm.nih.gov/compound/439210. The SMILES lookup found CID 6102284 without a CAS number; CID 439210 is the same compound (same InChIKey), found by name, and carries it.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:FerricyanideIon_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:PotassiumFerrocyanideTrihydrate",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Potassium ferrocyanide trihydrate",
+      "cpo:hasCAS": "14459-95-1",
+      "cpo:hasSMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.O.O.O.[K+].[K+].[K+].[K+].[Fe+2]",
+      "cpo:hasInChI": "InChI=1S/6CN.Fe.4K.3H2O/c6*1-2;;;;;;;;/h;;;;;;;;;;;3*1H2/q6*-1;+2;4*+1;;;",
+      "cpo:hasMolecularFormula": "C6H6FeK4N6O3",
+      "cpo:hasInChIKey": "UTYXJYFJPBYDKY-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "161067",
+      "schema:comment": "K4[Fe(CN)6]*3H2O - reagent A. Supplied and weighed in as this hydrate (Meng Kong, 06.10.2026). Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES O.O.O.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[K+].[K+].[K+].[K+].[Fe+2]: https://pubchem.ncbi.nlm.nih.gov/compound/161067.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:PotassiumFerrocyanideTrihydrate_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:NickelIIChlorideHexahydrate",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nickel(II) chloride hexahydrate",
+      "cpo:hasCAS": "7791-20-0",
+      "cpo:hasSMILES": "O.O.O.O.O.O.Cl[Ni]Cl",
+      "cpo:hasInChI": "InChI=1S/2ClH.Ni.6H2O/h2*1H;;6*1H2/q;;+2;;;;;;/p-2",
+      "cpo:hasMolecularFormula": "Cl2H12NiO6",
+      "cpo:hasInChIKey": "LAIZPRYFQUWUBN-UHFFFAOYSA-L",
+      "cpo:hasPubChemCID": "24645",
+      "schema:comment": "NiCl2*6H2O - reagent B. Supplied and weighed in as this hydrate (Meng Kong, 06.10.2026). Added by curation for the PBA series pba_synthesis (suggested by Claude Code, decided by Laura Fadler and Meng Kong on 06.10.2026 for the series pba_synthesis); not in an ELN. Identifiers and molar mass from PubChem, looked up by the SMILES O.O.O.O.O.O.Cl[Ni]Cl: https://pubchem.ncbi.nlm.nih.gov/compound/24645. The SMILES lookup found CID 11791229 without a CAS number; CID 24645 is the same compound (same InChIKey), found by name, and carries it.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:NickelIIChlorideHexahydrate_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:SulfuricAcid",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Sulfuric acid",
+      "cpo:hasCAS": "7664-93-9",
+      "cpo:hasSMILES": "OS(=O)(=O)O",
+      "cpo:hasInChI": "InChI=1S/H2O4S/c1-5(2,3)4/h(H2,1,2,3,4)",
+      "cpo:hasMolecularFormula": "H2O4S",
+      "cpo:hasInChIKey": "QAOWNCQODCNURD-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "1118",
+      "schema:comment": "Decided by Laura Fadler on 07.10.2026 for the PBA series - the K1 is rinsed with dilute sulfuric acid after the last experiment of the day. Entered by Laura Fadler on 07.10.2026 with generator/workflow/library_entries/finish_library_entry.py from projects/pba_synthesis/curation/library_entries/substance_20261007_2242.yaml. Called 'H2SO4' there. Identifiers and molar mass from PubChem, looked up by the SMILES OS(=O)(=O)O: https://pubchem.ncbi.nlm.nih.gov/compound/1118. PubChem lists 2 CAS-like numbers; 7664-93-9 chosen (Laura Fadler, 07.10.2026). The acid of the dilute sulfuric acid the K1 Start is rinsed with (PBA series).",
+      "cpo:hasMolarMass": {
+        "@id": "chem:SulfuricAcid_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:ManganeseIINitrateTetrahydrate",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Manganese(II) nitrate tetrahydrate",
+      "cpo:hasCAS": "20694-39-7",
+      "cpo:hasSMILES": "[N+](=O)([O-])[O-].[N+](=O)([O-])[O-].O.O.O.O.[Mn+2]",
+      "cpo:hasInChI": "InChI=1S/Mn.2NO3.4H2O/c;2*2-1(3)4;;;;/h;;;4*1H2/q+2;2*-1;;;;",
+      "cpo:hasMolecularFormula": "H8MnN2O10",
+      "cpo:hasInChIKey": "ALIMWUQMDCBYFM-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "182616",
+      "schema:comment": "Decided by Laura Fadler and Meng Kong on 08.10.2026 for the PBA series - the manganese salt of 10 April 2026 is not recorded; the only one the files name is Mn(NO3)2 (run log of 12.03.2026), so the nitrate is taken, its tetrahydrate assumed. Entered by Laura Fadler on 08.10.2026 with generator/workflow/library_entries/finish_library_entry.py from projects/pba_synthesis/curation/library_entries/substance_20261008_1741.yaml. Called 'Mn(NO3)2' there. Identifiers and molar mass from PubChem, looked up by the SMILES O.O.O.O.[N+](=O)([O-])[O-].[N+](=O)([O-])[O-].[Mn+2]: https://pubchem.ncbi.nlm.nih.gov/compound/182616. Mn(NO3)2*4H2O - the manganese salt of the stock solution of experiment 2; the salt from the run log of 12.03.2026, the hydrate assumed.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:ManganeseIINitrateTetrahydrate_MolarMass"
+      }
+    },
+    {
+      "@id": "chem:NitrateIon",
+      "@type": [
+        "chebi:ChemicalEntity",
+        "chebi:Molecule",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrate ion",
+      "cpo:hasCAS": "14797-55-8",
+      "cpo:hasSMILES": "[N+](=O)([O-])[O-]",
+      "cpo:hasInChI": "InChI=1S/NO3/c2-1(3)4/q-1",
+      "cpo:hasMolecularFormula": "NO3-",
+      "cpo:hasInChIKey": "NHNBFGGVMKEFGY-UHFFFAOYSA-N",
+      "cpo:hasPubChemCID": "943",
+      "schema:comment": "Decided by Laura Fadler and Meng Kong on 08.10.2026 for the PBA series - the manganese salt of 10 April 2026 is not recorded; the only one the files name is Mn(NO3)2 (run log of 12.03.2026), so the nitrate is taken, its tetrahydrate assumed. Entered by Laura Fadler on 08.10.2026 with generator/workflow/library_entries/finish_library_entry.py from projects/pba_synthesis/curation/library_entries/substance_20261008_1741.yaml. Called 'NO3-' there. Identifiers and molar mass from PubChem, looked up by the SMILES [N+](=O)([O-])[O-]: https://pubchem.ncbi.nlm.nih.gov/compound/943. NO3-, from manganese(II) nitrate; a spectator ion in the PBA precipitation.",
+      "cpo:hasMolarMass": {
+        "@id": "chem:NitrateIon_MolarMass"
+      }
+    }
+  ]
+}

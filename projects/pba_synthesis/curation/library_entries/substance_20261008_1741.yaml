@@ -1,0 +1,34 @@
+# Library entry: substance -> libraries/chemical_entity_library.jsonld
+# A chemical substance that PubChem knows (Chemical Entity Library). finish_library_entry.py looks it up by its
+# SMILES and keeps the answer next to this file; identifiers and the molar mass come from there.
+#
+# Fill in the fields without '#'. An optional field is commented out: remove its '# ' to use it.
+# More than one entry: copy the block under 'entries' (from '- name:') once per entry.
+# A value (a mass, a time) is a block: value, unit, kind and source. kind: measured (weighed, read off an
+# instrument), observed (written down by someone, e.g. the opening date on the label), literature (printed
+# by the manufacturer: label, certificate, delivery note), assumed (source then says why).
+# Then check it (nothing is written):
+#   python generator/workflow/library_entries/finish_library_entry.py <this file>
+# and write it into the libraries with --write.
+
+format: library-entry-v1  # (required) format of this file - do not change
+type: substance           # (required) type of the entries - do not change
+entered_by: Laura Fadler
+source: Decided by Laura Fadler and Meng Kong on 08.10.2026 for the PBA series - the manganese salt of 10 April 2026 is not recorded; the only one the files name is Mn(NO3)2 (run log of 12.03.2026), so the nitrate is taken, its tetrahydrate assumed.
+
+entries:
+  - name: Manganese(II) nitrate tetrahydrate
+    smiles: O.O.O.O.[N+](=O)([O-])[O-].[N+](=O)([O-])[O-].[Mn+2]
+    called: Mn(NO3)2
+    note: Mn(NO3)2*4H2O - the manganese salt of the stock solution of experiment 2; the salt from the run log of 12.03.2026, the hydrate assumed.
+  - name: Nitrate ion
+    smiles: '[N+](=O)([O-])[O-]'
+    called: NO3-
+    note: NO3-, from manganese(II) nitrate; a spectator ion in the PBA precipitation.
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-08T16:41:57Z'
+    by: person:LauraFadler
+    entries: ['chem:ManganeseIINitrateTetrahydrate', 'chem:ManganeseIINitrateTetrahydrate_MolarMass', 'chem:ManganeseIINitrateTetrahydrate_MolarMass_Reference_1', 'chem:NitrateIon', 'chem:NitrateIon_MolarMass', 'chem:NitrateIon_MolarMass_Reference_1', 'task:looking_up_substance_20261008_1741', 'task:looking_up_substance_20261008_1741_StartTime', 'task:looking_up_substance_20261008_1741_StartTime_Reference_1', 'task:looking_up_substance_20261008_1741_EndTime', 'task:looking_up_substance_20261008_1741_Duration']
+    libraries: [chemical_entity_library.jsonld]

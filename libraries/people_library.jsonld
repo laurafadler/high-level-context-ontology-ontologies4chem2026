@@ -1,0 +1,188 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "device": "https://example.org/device/",
+    "lab": "https://example.org/laboratory/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "schema": "http://schema.org/",
+    "org": "http://www.w3.org/ns/org#",
+    "person": "https://example.org/person/",
+    "identifier": "https://example.org/identifier/",
+    "organization": "https://example.org/organization/"
+  },
+
+  "@graph": [
+    {
+      "@id": "person:LauraFadler",
+      "@type": 
+        [
+          "schema:Person",
+          "hlo:Fixed"
+        ],
+      "schema:name": "Laura Fadler",
+      "schema:givenName": "Laura",
+      "schema:familyName": "Fadler",
+      "org:memberOf":
+        [
+          {
+            "@id": "organization:UniversityOfCambridge"
+          },
+          {
+            "@id": "organization:CEB"
+          },
+          {
+            "@id": "organization:RWTHAachen"
+          }
+        ]
+    },
+
+    {
+      "@id": "person:AlexeiLapkin",
+      "@type": 
+        [
+          "schema:Person",
+          "hlo:Fixed"
+        ],
+      "schema:name": "Alexei Lapkin",
+      "schema:givenName": "Alexei",
+      "schema:familyName": "Lapkin",
+      "cpo:hasORCID": "0000-0001-7621-0889",
+      "org:memberOf":
+        [
+          {
+            "@id": "organization:UniversityOfCambridge"
+          },
+          {
+            "@id": "organization:CEB"
+          }
+        ]
+    },
+      {
+        "@id": "person:JoeDavies",
+        "@type": [
+          "schema:Person",
+          "hlo:Fixed"
+        ],
+        "schema:name": "Joe Davies",
+        "schema:givenName": "Joe",
+        "schema:familyName": "Davies",
+        "org:memberOf": [
+          {
+            "@id": "organization:UniversityOfNottingham"
+          }
+        ],
+        "schema:identifier": {
+          "@id": "identifier:JoeDavies_AI4Green"
+        },
+        "schema:description": "Author of the AI4Green record AI4-001, imported with it on 28.09.2026. No ORCID in the export."
+      },
+      {
+        "@id": "identifier:JoeDavies_AI4Green",
+        "@type": [
+          "schema:PropertyValue"
+        ],
+        "schema:propertyID": "AI4Green",
+        "schema:value": "./author/7 (user name Joe_Davies)"
+      },
+      {
+        "@id": "person:LennardSchulte",
+        "@type": [
+          "schema:Person",
+          "hlo:Fixed"
+        ],
+        "schema:name": "Lennard Schulte",
+        "schema:givenName": "Lennard",
+        "schema:familyName": "Schulte",
+        "org:memberOf": [
+          {
+            "@id": "organization:RWTHAachen"
+          },
+          {
+            "@id": "organization:AVT"
+          }
+        ],
+        "schema:identifier": {
+          "@id": "identifier:LennardSchulte_eLabFTW"
+        },
+        "schema:description": "Author of the eLabFTW records 7849 and 8218 (FDCA-Cl2 synthesis), imported with them on 03.10.2026. No ORCID in the export. Membership of RWTH Aachen and the AVT from the e-mail address (avt.rwth-aachen.de) and the eLabFTW instance of RWTH Aachen (suggested by Claude Code in the night of 02./03.10.2026 for the eLabFTW case study, not yet confirmed); his eLabFTW team is 'SVT Labor'."
+      },
+      {
+        "@id": "identifier:LennardSchulte_eLabFTW",
+        "@type": [
+          "schema:PropertyValue"
+        ],
+        "schema:propertyID": "eLabFTW (research.eln.rwth-aachen.de)",
+        "schema:value": "person://b3e0cf6085dca8830e0189871ced7978f241fc877f98f632c2eb63b6c9c3be61?hash_algo=sha256 (user id 451)"
+      },
+    
+
+      {
+        "@id": "person:MengKong",
+        "@type": 
+          [
+            "schema:Person",
+            "hlo:Fixed"
+          ],
+        "schema:name": "Meng Kong",
+        "schema:givenName": "Meng",
+        "schema:familyName": "Kong",
+        "org:memberOf":
+          [
+            {
+              "@id": "organization:UniversityOfCambridge"
+            },
+            {
+              "@id": "organization:CEB"
+            }
+            
+          ]
+      },
+
+      {
+        "@id": "person:ChuyueLi",
+        "@type": 
+          [
+            "schema:Person",
+            "hlo:Fixed"
+          ],
+        "schema:name": "Chuyue Li",
+        "schema:givenName": "Chuyue",
+        "schema:familyName": "Li",
+        "org:memberOf":
+          [
+            {
+              "@id": "organization:UniversityOfCambridge"
+            },
+            {
+              "@id": "organization:CEB"
+            }
+            
+          ]
+      },
+      {
+        "@id": "person:CongjianLin",
+        "@type": [
+          "schema:Person",
+          "hlo:Fixed"
+        ],
+        "schema:name": "Congjian Lin",
+        "schema:givenName": "Congjian",
+        "schema:familyName": "Lin",
+        "schema:honorificPrefix": "Dr",
+        "org:memberOf": [
+          {
+            "@id": "organization:UniversityOfCambridge"
+          },
+          {
+            "@id": "organization:CEB"
+          },
+          {
+            "@id": "organization:NTU"
+          }
+        ],
+        "schema:description": "Exported the Chemotion collection with the RCF reactions LCJ-R1 to LCJ-R9 and gave it to Laura Fadler as an example (05.10.2026); named as creator of its analysis datasets. No ORCID in the export. Memberships of the University of Cambridge (CEB) and of NTU given by Laura Fadler on 05.10.2026."
+      }
+
+  ]
+}

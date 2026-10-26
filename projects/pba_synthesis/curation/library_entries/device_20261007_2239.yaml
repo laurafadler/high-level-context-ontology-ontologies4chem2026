@@ -1,0 +1,120 @@
+# Library entry: device -> libraries/device_library.jsonld
+# PBA series (07.10.2026, Laura Fadler): the balance the nickel(II) chloride
+# was weighed on, the bench the dosing unit and the vessels stand on, and the clamp stand that holds the reactor.
+# Every size and mass is assumed (classic sizes, Laura Fadler: "klassische Sachen annehmen").
+
+format: library-entry-v1
+type: device
+entered_by: Laura Fadler
+source: Decided by Laura Fadler on 07.10.2026 for the PBA series; sizes and masses assumed by Claude Code (classic sizes).
+
+entries:
+  - name: Precision balance (Lab 208)
+    id: device:balance_L208
+    device_class: sensor
+    shape: cuboid
+    length:
+      value: 0.32
+      unit: M
+      kind: assumed
+      source: a typical precision balance, about 32 cm deep
+    width:
+      value: 0.21
+      unit: M
+      kind: assumed
+      source: a typical precision balance, about 21 cm wide
+    height:
+      value: 0.09
+      unit: M
+      kind: assumed
+      source: a typical precision balance without a draft shield, about 9 cm high
+    body: steel
+    location: lab:L208
+    commissioned:
+      value: 2025-06-16T16:00:00Z
+      kind: assumed
+      source: not recorded - taken as the commissioning of the K1 Start (mid-June 2025)
+    mass:
+      value: 4.5
+      unit: KiloGM
+      kind: assumed
+      source: a typical precision balance, about 4.5 kg
+    model: precision balance with 0.001 g readability - model not recorded
+    powered: true
+    note: "'Fisher Scientific scale' in the preparation record of the nickel(II) chloride stock solution (Chuyue Li); readability 0.001 g from its measurement error. Make and model to be confirmed by Meng Kong."
+
+  - name: Lab bench at the K1 Start (Lab 208)
+    id: device:bench_L208_K1
+    device_class: device
+    shape: cuboid
+    length:
+      value: 1.8
+      unit: M
+      kind: assumed
+      source: a classic lab bench, 1.8 m long
+    width:
+      value: 0.75
+      unit: M
+      kind: assumed
+      source: a classic lab bench, 75 cm deep
+    height:
+      value: 0.9
+      unit: M
+      kind: assumed
+      source: a classic lab bench, 90 cm high
+    body: steel
+    location: lab:L208
+    commissioned:
+      value: 2020-01-06T16:00:00Z
+      kind: assumed
+      source: installed with the lab - not recorded, taken as for the supply lines of the lab
+    mass:
+      value: 60
+      unit: KiloGM
+      kind: assumed
+      source: a steel-frame lab bench with its top, about 60 kg
+    note: The bench the dosing unit (pumps, mass flow controller) and the vessels stand on (Laura Fadler, 07.10.2026); the tubes hang freely. Its top counted as steel.
+
+  - name: Clamp stand of the K1 reactor (Lab 208)
+    id: device:clamp_stand_L208_K1
+    device_class: device
+    shape: cuboid
+    length:
+      value: 0.30
+      unit: M
+      kind: assumed
+      source: a classic retort stand, base plate about 30 cm
+    width:
+      value: 0.20
+      unit: M
+      kind: assumed
+      source: a classic retort stand, base plate about 20 cm
+    height:
+      value: 0.70
+      unit: M
+      kind: assumed
+      source: a classic retort stand with its rod, about 70 cm high
+    body: steel
+    location: lab:L208
+    commissioned:
+      value: 2025-06-16T16:00:00Z
+      kind: assumed
+      source: taken as the commissioning of the K1 Start (mid-June 2025), which it holds
+    mass:
+      value: 3.5
+      unit: KiloGM
+      kind: assumed
+      source: a classic retort stand with its clamp, about 3.5 kg
+    note: Stands on the bench and holds the K1 reactor with a clamp - the reactor does not touch the bench (Laura Fadler, 07.10.2026).
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-07T21:46:36Z'
+    by: person:LauraFadler
+    entries: ['device:balance_L208_Length', 'device:balance_L208_Length_Reference_1', 'device:balance_L208_Width', 'device:balance_L208_Width_Reference_1', 'device:balance_L208_Height', 'device:balance_L208_Height_Reference_1', 'device:balance_L208_Form', 'device:balance_L208_Form_WidthToLengthRatio', 'device:balance_L208_Form_HeightToLengthRatio', 'device:balance_L208_OuterVolume', 'device:balance_L208_OuterVolume_Evidence_1', 'material:balance_L208_Body_SolidPhase_Density', 'material:balance_L208_Body_SolidPhase_Density_Reference_1', 'material:balance_L208_Body_SolidPhase_Mass', 'material:balance_L208_Body_SolidPhase_Mass_Reference_1', 'material:balance_L208_Body_SolidPhase_Volume', 'material:balance_L208_Body_SolidPhase_Volume_Evidence_1', 'material:balance_L208_Body', 'material:balance_L208_Body_SolidPhase', 'device:balance_L208', 'task:commissioning_balance_L208', 'task:commissioning_balance_L208_StartTime', 'task:commissioning_balance_L208_StartTime_Reference_1', 'task:commissioning_balance_L208_EndTime',
+      'task:commissioning_balance_L208_EndTime_Reference_1', 'task:commissioning_balance_L208_Duration', 'device:bench_L208_K1_Length', 'device:bench_L208_K1_Length_Reference_1', 'device:bench_L208_K1_Width', 'device:bench_L208_K1_Width_Reference_1', 'device:bench_L208_K1_Height', 'device:bench_L208_K1_Height_Reference_1', 'device:bench_L208_K1_Form', 'device:bench_L208_K1_Form_WidthToLengthRatio', 'device:bench_L208_K1_Form_HeightToLengthRatio', 'device:bench_L208_K1_OuterVolume', 'device:bench_L208_K1_OuterVolume_Evidence_1', 'material:bench_L208_K1_Body_SolidPhase_Density', 'material:bench_L208_K1_Body_SolidPhase_Density_Reference_1', 'material:bench_L208_K1_Body_SolidPhase_Mass', 'material:bench_L208_K1_Body_SolidPhase_Mass_Reference_1', 'material:bench_L208_K1_Body_SolidPhase_Volume', 'material:bench_L208_K1_Body_SolidPhase_Volume_Evidence_1', 'material:bench_L208_K1_Body', 'material:bench_L208_K1_Body_SolidPhase', 'device:bench_L208_K1', 'task:commissioning_bench_L208_K1', 'task:commissioning_bench_L208_K1_StartTime',
+      'task:commissioning_bench_L208_K1_StartTime_Reference_1', 'task:commissioning_bench_L208_K1_EndTime', 'task:commissioning_bench_L208_K1_EndTime_Reference_1', 'task:commissioning_bench_L208_K1_Duration', 'device:clamp_stand_L208_K1_Length', 'device:clamp_stand_L208_K1_Length_Reference_1', 'device:clamp_stand_L208_K1_Width', 'device:clamp_stand_L208_K1_Width_Reference_1', 'device:clamp_stand_L208_K1_Height', 'device:clamp_stand_L208_K1_Height_Reference_1', 'device:clamp_stand_L208_K1_Form', 'device:clamp_stand_L208_K1_Form_WidthToLengthRatio', 'device:clamp_stand_L208_K1_Form_HeightToLengthRatio', 'device:clamp_stand_L208_K1_OuterVolume', 'device:clamp_stand_L208_K1_OuterVolume_Evidence_1', 'material:clamp_stand_L208_K1_Body_SolidPhase_Density', 'material:clamp_stand_L208_K1_Body_SolidPhase_Density_Reference_1', 'material:clamp_stand_L208_K1_Body_SolidPhase_Mass', 'material:clamp_stand_L208_K1_Body_SolidPhase_Mass_Reference_1', 'material:clamp_stand_L208_K1_Body_SolidPhase_Volume', 'material:clamp_stand_L208_K1_Body_SolidPhase_Volume_Evidence_1',
+      'material:clamp_stand_L208_K1_Body', 'material:clamp_stand_L208_K1_Body_SolidPhase', 'device:clamp_stand_L208_K1', 'task:commissioning_clamp_stand_L208_K1', 'task:commissioning_clamp_stand_L208_K1_StartTime', 'task:commissioning_clamp_stand_L208_K1_StartTime_Reference_1', 'task:commissioning_clamp_stand_L208_K1_EndTime', 'task:commissioning_clamp_stand_L208_K1_EndTime_Reference_1', 'task:commissioning_clamp_stand_L208_K1_Duration', 'task:calculating_balance_L208_OuterVolume', 'task:calculating_balance_L208_OuterVolume_StartTime', 'task:calculating_balance_L208_OuterVolume_StartTime_Reference_1', 'task:calculating_balance_L208_OuterVolume_EndTime', 'task:calculating_balance_L208_OuterVolume_Duration', 'task:calculating_balance_L208_Body_SolidPhase_Volume', 'task:calculating_balance_L208_Body_SolidPhase_Volume_StartTime', 'task:calculating_balance_L208_Body_SolidPhase_Volume_StartTime_Reference_1', 'task:calculating_balance_L208_Body_SolidPhase_Volume_EndTime', 'task:calculating_balance_L208_Body_SolidPhase_Volume_Duration',
+      'task:calculating_bench_L208_K1_OuterVolume', 'task:calculating_bench_L208_K1_OuterVolume_StartTime', 'task:calculating_bench_L208_K1_OuterVolume_StartTime_Reference_1', 'task:calculating_bench_L208_K1_OuterVolume_EndTime', 'task:calculating_bench_L208_K1_OuterVolume_Duration', 'task:calculating_bench_L208_K1_Body_SolidPhase_Volume', 'task:calculating_bench_L208_K1_Body_SolidPhase_Volume_StartTime', 'task:calculating_bench_L208_K1_Body_SolidPhase_Volume_StartTime_Reference_1', 'task:calculating_bench_L208_K1_Body_SolidPhase_Volume_EndTime', 'task:calculating_bench_L208_K1_Body_SolidPhase_Volume_Duration', 'task:calculating_clamp_stand_L208_K1_OuterVolume', 'task:calculating_clamp_stand_L208_K1_OuterVolume_StartTime', 'task:calculating_clamp_stand_L208_K1_OuterVolume_StartTime_Reference_1', 'task:calculating_clamp_stand_L208_K1_OuterVolume_EndTime', 'task:calculating_clamp_stand_L208_K1_OuterVolume_Duration', 'task:calculating_clamp_stand_L208_K1_Body_SolidPhase_Volume', 'task:calculating_clamp_stand_L208_K1_Body_SolidPhase_Volume_StartTime',
+      'task:calculating_clamp_stand_L208_K1_Body_SolidPhase_Volume_StartTime_Reference_1', 'task:calculating_clamp_stand_L208_K1_Body_SolidPhase_Volume_EndTime', 'task:calculating_clamp_stand_L208_K1_Body_SolidPhase_Volume_Duration', 'task:assuming_device_20261007_2239', 'task:assuming_device_20261007_2239_StartTime', 'task:assuming_device_20261007_2239_StartTime_Reference_1', 'task:assuming_device_20261007_2239_EndTime', 'task:assuming_device_20261007_2239_Duration']
+    libraries: [device_library.jsonld]

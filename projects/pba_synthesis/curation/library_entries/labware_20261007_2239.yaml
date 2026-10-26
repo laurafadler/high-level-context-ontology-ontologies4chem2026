@@ -1,0 +1,58 @@
+# Library entry: labware -> libraries/device_library.jsonld
+# PBA series (07.10.2026, Laura Fadler): the caps of the feed bottles, the
+# falcon tubes the samples are taken in, and a second 1 L beaker for the priming water. Every size is assumed
+# (typical catalogue sizes) until Meng Kong gives better ones.
+
+format: library-entry-v1
+type: labware
+entered_by: Laura Fadler
+source: Decided by Laura Fadler on 07.10.2026 for the PBA series; sizes assumed by Claude Code (typical catalogue sizes).
+
+entries:
+  - name: Falcon tube 50 mL
+    id: device:falcon_tube_50mL
+    device_class: vessel
+    body: polypropylene
+    outer_diameter:
+      value: 0.030
+      unit: M
+      kind: assumed
+      source: a typical 50 mL conical centrifuge tube, 30 mm across
+    outer_height:
+      value: 0.115
+      unit: M
+      kind: assumed
+      source: a typical 50 mL conical centrifuge tube, 115 mm long
+    wall:
+      value: 0.001
+      unit: M
+      kind: assumed
+      source: a typical wall of a polypropylene centrifuge tube
+    single_use: true
+    stock_location: lab:L208_Chemicals_Cabinet
+    note: The plastic tube a sample is taken in - held under the outlet tip of the K1 instead of the beaker (Laura Fadler, 07.10.2026); 15 or 50 mL is not known, 50 mL assumed. Graduated - the volume collected is read off it. Approximated as a cup (the conical end left out).
+
+  - name: Beaker 1 L for priming and rinsing water
+    template: device:beaker_1L
+    exemplars:
+      - name: Beaker 1 L no. 2 (Lab 208)
+        id: device:beaker_1L_02
+        location: lab:L208
+        commissioned:
+          value: 2025-06-16T16:00:00Z
+          kind: assumed
+          source: taken as the commissioning of the K1 Start (mid-June 2025), like beaker no. 1
+        note: Holds the water the tubes are put into for priming and rinsing (Laura Fadler, 07.10.2026).
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+# The GL45 cap first written here was taken out again (07.10.2026: a lid has no cavity) and is written from
+# labware_20261007_cap.yaml.
+written:
+  - at: '2026-10-07T21:41:47Z'
+    by: person:LauraFadler
+    entries: ['device:falcon_tube_50mL', 'port:falcon_tube_50mL_opening', 'device:falcon_tube_50mL_Form', 'device:falcon_tube_50mL_Cavity', 'device:falcon_tube_50mL_Form_HeightToDiameterRatio', 'device:falcon_tube_50mL_Form_DiameterRatio', 'device:falcon_tube_50mL_Cavity_HeightToDiameterRatio', 'device:falcon_tube_50mL_OuterDiameter', 'device:falcon_tube_50mL_OuterDiameter_Reference_1', 'device:falcon_tube_50mL_OuterHeight', 'device:falcon_tube_50mL_OuterHeight_Reference_1', 'device:falcon_tube_50mL_WallThickness', 'device:falcon_tube_50mL_WallThickness_Reference_1', 'device:falcon_tube_50mL_InnerDiameter', 'device:falcon_tube_50mL_InnerDiameter_Evidence_1', 'task:calculating_falcon_tube_50mL_InnerDiameter', 'task:calculating_falcon_tube_50mL_InnerDiameter_StartTime',
+      'task:calculating_falcon_tube_50mL_InnerDiameter_StartTime_Reference_1', 'task:calculating_falcon_tube_50mL_InnerDiameter_EndTime', 'task:calculating_falcon_tube_50mL_InnerDiameter_Duration', 'device:falcon_tube_50mL_InnerHeight', 'device:falcon_tube_50mL_InnerHeight_Evidence_1', 'task:calculating_falcon_tube_50mL_InnerHeight', 'task:calculating_falcon_tube_50mL_InnerHeight_StartTime', 'task:calculating_falcon_tube_50mL_InnerHeight_StartTime_Reference_1', 'task:calculating_falcon_tube_50mL_InnerHeight_EndTime', 'task:calculating_falcon_tube_50mL_InnerHeight_Duration', 'device:falcon_tube_50mL_InnerVolume', 'device:falcon_tube_50mL_InnerVolume_Evidence_1', 'task:calculating_falcon_tube_50mL_InnerVolume', 'task:calculating_falcon_tube_50mL_InnerVolume_StartTime', 'task:calculating_falcon_tube_50mL_InnerVolume_StartTime_Reference_1', 'task:calculating_falcon_tube_50mL_InnerVolume_EndTime', 'task:calculating_falcon_tube_50mL_InnerVolume_Duration', 'device:falcon_tube_50mL_OuterVolume', 'device:falcon_tube_50mL_OuterVolume_Evidence_1',
+      'task:calculating_falcon_tube_50mL_OuterVolume', 'task:calculating_falcon_tube_50mL_OuterVolume_StartTime', 'task:calculating_falcon_tube_50mL_OuterVolume_StartTime_Reference_1', 'task:calculating_falcon_tube_50mL_OuterVolume_EndTime', 'task:calculating_falcon_tube_50mL_OuterVolume_Duration', 'material:falcon_tube_50mL_Body_SolidPhase_Volume', 'material:falcon_tube_50mL_Body_SolidPhase_Volume_Evidence_1', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Volume', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Volume_StartTime', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Volume_StartTime_Reference_1', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Volume_EndTime', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Volume_Duration', 'material:falcon_tube_50mL_Body_SolidPhase_Mass', 'material:falcon_tube_50mL_Body_SolidPhase_Mass_Evidence_1', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Mass', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Mass_StartTime', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Mass_StartTime_Reference_1',
+      'task:calculating_falcon_tube_50mL_Body_SolidPhase_Mass_EndTime', 'task:calculating_falcon_tube_50mL_Body_SolidPhase_Mass_Duration', 'task:calculating_falcon_tube_50mL_geometry', 'task:calculating_falcon_tube_50mL_geometry_StartTime', 'task:calculating_falcon_tube_50mL_geometry_StartTime_Reference_1', 'task:calculating_falcon_tube_50mL_geometry_EndTime', 'task:calculating_falcon_tube_50mL_geometry_Duration', 'material:falcon_tube_50mL_Body_SolidPhase_Density', 'material:falcon_tube_50mL_Body_SolidPhase_Density_Reference_1', 'material:falcon_tube_50mL_Body', 'material:falcon_tube_50mL_Body_SolidPhase', 'device:beaker_1L_02', 'task:commissioning_beaker_1L_02', 'task:commissioning_beaker_1L_02_StartTime', 'task:commissioning_beaker_1L_02_StartTime_Reference_1', 'task:commissioning_beaker_1L_02_EndTime', 'task:commissioning_beaker_1L_02_EndTime_Reference_1', 'task:commissioning_beaker_1L_02_Duration', 'task:assuming_labware_20261007_2239', 'task:assuming_labware_20261007_2239_StartTime',
+      'task:assuming_labware_20261007_2239_StartTime_Reference_1', 'task:assuming_labware_20261007_2239_EndTime', 'task:assuming_labware_20261007_2239_Duration']
+    libraries: [device_library.jsonld]

@@ -1,0 +1,39 @@
+# Library entry: labware -> libraries/device_library.jsonld
+# A kind of labware without a content of its own - a beaker, a tube, a cap - as a template (hlo:Template: form,
+# body and openings, the catalogue item), and the identifiable pieces of it (exemplars) that are in the lab
+# (Device Library, rule 3.11). Approximated as a cup: outer diameter and height, wall thickness; inner
+# dimensions, volumes and the mass of the body are calculated.
+#
+# Fill in the fields without '#'. An optional field is commented out: remove its '# ' to use it.
+# More than one entry: copy the block under 'entries' (from '- name:') once per entry.
+# A value (a mass, a time) is a block: value, unit, kind and source. kind: measured (weighed, read off an
+# instrument), observed (written down by someone, e.g. the opening date on the label), literature (printed
+# by the manufacturer: label, certificate, delivery note), assumed (source then says why).
+# Then check it (nothing is written):
+#   python generator/workflow/library_entries/finish_library_entry.py <this file>
+# and write it into the libraries with --write.
+
+format: library-entry-v1  # (required) format of this file - do not change
+type: labware             # (required) type of the entries - do not change
+entered_by: Laura Fadler  # (required) who writes these entries into the library: person:<ID> or the name of a person of the People Library
+source: A placeholder for the flask the methanol is evaporated from in the work-up of LCJ-R5 and LCJ-R8 ('Evaporate MeOH to recover liquid phenolic fraction', 'solvent evaporated') - the records name no flask; it holds the lignin oil afterwards (decided by Laura Fadler on 09.10.2026, a minimal way of the lignin oil; suggested by Claude Code).
+
+entries:
+  - name: Round-bottom flask 50 mL (evaporation flask, Lab of Congjian Lin)
+    template: device:round_bottom_flask_50mL
+    exemplars:
+      - name: Round-bottom flask 50 mL no. 1 (Lab of Congjian Lin)
+        location: lab:NTU_CongjianLin_Lab
+        commissioned:
+          value: 2026-04-16T16:00:00Z
+          kind: assumed
+          source: Not known when the flask was put into service - stamped like the rest of the RCF setup of the lab (task:commissioning_congjian_lin_rcf_setup, the start of the day the first record LCJ-R5 was created), an upper bound.
+        id: device:flask_50mL_02
+        note: The flask of the rotary evaporator (device:rotary_evaporator_01 is a box without a flask of its own); a placeholder, the records name no flask.
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-09T11:21:11Z'
+    by: person:LauraFadler
+    entries: ['device:flask_50mL_02', 'task:commissioning_flask_50mL_02', 'task:commissioning_flask_50mL_02_StartTime', 'task:commissioning_flask_50mL_02_StartTime_Reference_1', 'task:commissioning_flask_50mL_02_EndTime', 'task:commissioning_flask_50mL_02_EndTime_Reference_1', 'task:commissioning_flask_50mL_02_Duration', 'task:assuming_labware_20261009_1220', 'task:assuming_labware_20261009_1220_StartTime', 'task:assuming_labware_20261009_1220_StartTime_Reference_1', 'task:assuming_labware_20261009_1220_EndTime', 'task:assuming_labware_20261009_1220_Duration']
+    libraries: [device_library.jsonld]

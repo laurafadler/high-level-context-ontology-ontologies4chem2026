@@ -1,0 +1,232 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "time": "http://www.w3.org/2006/time#",
+    "person": "https://example.org/person/",
+    "task": "https://example.org/task/"
+  },
+  "@graph": [
+    {
+      "@id": "task:assuming_single_species_phase_is_pure",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming that a phase with a single known species is pure",
+      "schema:description": "A model assumption the generator makes in every crate: for every phase whose composition lists exactly one species, that species is recorded with a mole fraction of 1. RDF assumes an open world, so a single dcterms:hasPart on its own would only mean that no further species is known. The values it determines are in the crates; each names this task in cpo:hasDeterminationTask, and the library does not list them (rule 4.1, exception for library tasks).",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_single_species_phase_is_pure_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_single_species_phase_is_pure_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_single_species_phase_is_pure_Duration"
+      },
+      "schema:comment": "Added on 01.10.2026 by curation (suggested by Claude Code, confirmed by Laura Fadler on 01.10.2026). The assumption itself has been made by the generator since 21.09.2026; until 01.10.2026 every crate carried it as a task of its own on every level. The value 1 follows from the definition of the amount fraction once the phase is taken to hold only that species (IUPAC Compendium of Chemical Terminology, 'amount fraction', doi:10.1351/goldbook.A00296); taking it to hold only that species is a closed-world assumption about the composition, which RDF does not make on its own (R. Reiter, On Closed World Data Bases, in: H. Gallaire, J. Minker (eds.), Logic and Data Bases, Springer, 1978, pp. 55-76, doi:10.1007/978-1-4684-3384-5_3). No official rule states the assumption itself; it is a convention of the model (Laura Fadler, 02.10.2026)."
+    },
+    {
+      "@id": "task:assuming_single_species_phase_is_pure_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_single_species_phase_is_pure_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_single_species_phase_is_pure_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries of the assumption library were written down (2026-10-01T17:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-01T17:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_assumption_library_task_times"
+      }
+    },
+    {
+      "@id": "task:assuming_single_species_phase_is_pure_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_single_species_phase_is_pure_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_inert_phases_exchange_nothing",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming that an inert phase exchanges nothing",
+      "schema:description": "A model assumption the generator makes in every crate (rule 3b.3): a phase that consists only of chemical entities marked cpo:isInert true in the chemical entity library (glass, stainless steel, PTFE, polypropylene) exchanges no species with the phases it touches - no transfer and no adsorption; adsorption at walls is deliberately neglected. The generator creates no potential transfers at its interfaces. Whether a substance is inert is a property of the substance and stays in the chemical entity library; this task is the modelling rule built on it. The interfaces it applies to are not linked to this task.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_inert_phases_exchange_nothing_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_inert_phases_exchange_nothing_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_inert_phases_exchange_nothing_Duration"
+      },
+      "schema:comment": "Added on 01.10.2026 by curation (suggested by Claude Code, confirmed by Laura Fadler on 01.10.2026). The rule has been part of the generator since 26.09.2026."
+    },
+    {
+      "@id": "task:assuming_inert_phases_exchange_nothing_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_inert_phases_exchange_nothing_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_inert_phases_exchange_nothing_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries of the assumption library were written down (2026-10-01T17:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-01T17:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_assumption_library_task_times"
+      }
+    },
+    {
+      "@id": "task:assuming_inert_phases_exchange_nothing_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_inert_phases_exchange_nothing_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_assumption_library_task_times",
+      "@type": [
+        "cpo:AssumptionTask",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Assuming when the assumption library entries were worked out",
+      "schema:description": "None of the model assumptions in this library was recorded with the time it was made. Their tasks are therefore stamped with the moment they were written into the library - an upper bound, not the moment the decision was taken. This task's own start time is among them.",
+      "cpo:performedBy": [
+        {
+          "@id": "person:LauraFadler"
+        }
+      ],
+      "cpo:hasStartTime": {
+        "@id": "task:assuming_assumption_library_task_times_StartTime"
+      },
+      "cpo:hasEndTime": {
+        "@id": "task:assuming_assumption_library_task_times_EndTime"
+      },
+      "cpo:hasDuration": {
+        "@id": "task:assuming_assumption_library_task_times_Duration"
+      },
+      "cpo:determines": [
+        {
+          "@id": "task:assuming_single_species_phase_is_pure_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:assuming_inert_phases_exchange_nothing_StartTime_Reference_1"
+        },
+        {
+          "@id": "task:assuming_assumption_library_task_times_StartTime_Reference_1"
+        }
+      ]
+    },
+    {
+      "@id": "task:assuming_assumption_library_task_times_StartTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ],
+      "hlo:hasReference": {
+        "@id": "task:assuming_assumption_library_task_times_StartTime_Reference_1"
+      }
+    },
+    {
+      "@id": "task:assuming_assumption_library_task_times_StartTime_Reference_1",
+      "@type": [
+        "time:Instant",
+        "hlo:Reference"
+      ],
+      "hlo:hasReferenceType": {
+        "@id": "hlo:Assumed"
+      },
+      "rdfs:comment": "No record of when this was done. Stamped with the moment the entries of the assumption library were written down (2026-10-01T17:00:00Z) - an upper bound, not the moment it happened.",
+      "rdf:value": {
+        "@value": "2026-10-01T17:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cpo:hasDeterminationTask": {
+        "@id": "task:assuming_assumption_library_task_times"
+      }
+    },
+    {
+      "@id": "task:assuming_assumption_library_task_times_EndTime",
+      "@type": [
+        "time:Instant",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    },
+    {
+      "@id": "task:assuming_assumption_library_task_times_Duration",
+      "@type": [
+        "time:Duration",
+        "hlo:Fixed",
+        "hlo:Actual"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+# Library entry: container -> libraries/device_library.jsonld
+# A container of the chemical inventory as it was delivered - a bottle, a can, a gas cylinder - with its content
+# (Device Library: the container; Material Library: its content, rule 2.15). Not a container filled in the lab
+# (workflow/inventory_tool.py prepare), not a line.
+#
+# Fill in the fields without '#'. An optional field is commented out: remove its '# ' to use it.
+# More than one entry: copy the block under 'entries' (from '- name:') once per entry.
+# A value (a mass, a time) is a block: value, unit, kind and source. kind: measured (weighed, read off an
+# instrument), observed (written down by someone, e.g. the opening date on the label), literature (printed
+# by the manufacturer: label, certificate, delivery note), assumed (source then says why).
+# Then check it (nothing is written):
+#   python generator/workflow/library_entries/finish_library_entry.py <this file>
+# and write it into the libraries with --write.
+
+format: library-entry-v1
+type: container
+entered_by: Laura Fadler
+source: "The container of the Pd/C catalyst of the RCF runs is not in the Chemotion inventory - a DUMMY (Claude Code, 08.10.2026; placeholders allowed by Laura Fadler on 08.10.2026 so that every substance comes from a container of the libraries (Phase_Time_R7, rule 3.10)): kind, lot and delivery assumed, in cabinet B3 with the wood."
+
+entries:
+  - name: Pd/C catalyst bottle no. 1 (lab of Congjian Lin)
+    id: device:bottle_pd_c_01
+    template: device:glass_bottle_250mL
+    cabinet: lab:NTU_CongjianLin_Lab_Cabinet_B3
+    delivered:
+      value: 2026-04-17T00:00:00Z
+      kind: assumed
+      source: DUMMY - not known; taken as the start of the day of the first RCF experiment LCJ-R5 (17.04.2026) (an upper bound, as for the commissioning times of the other case studies)
+    content:
+      label: Palladium on activated carbon
+      state: solid
+      solid_structure: amorphous
+      lot: not known - DUMMY (Claude Code, 08.10.2026)
+      species:
+        - substance: chem:Palladium
+        - substance: chem:ActivatedCarbon
+    note: Solid structure taken as amorphous (activated carbon carries the palladium) - assumed.
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-08T12:51:21Z'
+    by: person:LauraFadler
+    entries: ['device:bottle_pd_c_01', 'task:assuming_container_20261008_placeholder', 'task:assuming_container_20261008_placeholder_StartTime', 'task:assuming_container_20261008_placeholder_StartTime_Reference_1', 'task:assuming_container_20261008_placeholder_EndTime', 'task:assuming_container_20261008_placeholder_Duration', 'task:receiving_bottle_pd_c_01', 'task:receiving_bottle_pd_c_01_StartTime', 'task:receiving_bottle_pd_c_01_StartTime_Reference_1', 'task:receiving_bottle_pd_c_01_EndTime', 'task:receiving_bottle_pd_c_01_EndTime_Reference_1', 'task:receiving_bottle_pd_c_01_Duration', 'material:bottle_pd_c_01_Content', 'material:bottle_pd_c_01_Content_Mass', 'material:bottle_pd_c_01_Content_Volume', 'material:bottle_pd_c_01_Content_Phase_Palladium', 'material:bottle_pd_c_01_Content_Phase_ActivatedCarbon', 'material:bottle_pd_c_01_Content_Phase', 'material:bottle_pd_c_01_Content_Phase_Occurrence', 'material:bottle_pd_c_01_Content_Phase_Occurrence_Status', 'material:bottle_pd_c_01_Content_Phase_Occurrence_Status_Reference_1',
+      'material:bottle_pd_c_01_Content_Phase_Occurrence_EndTime', 'material:bottle_pd_c_01_Content_Phase_Occurrence_Duration']
+    libraries: [device_library.jsonld, material_library.jsonld]

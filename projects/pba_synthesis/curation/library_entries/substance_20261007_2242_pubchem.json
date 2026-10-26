@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Sulfuric acid",
+    "query_smiles": "OS(=O)(=O)O",
+    "looked_up": "2026-10-07",
+    "found": true,
+    "CID": 1118,
+    "MolecularFormula": "H2O4S",
+    "MolecularWeight": "98.08",
+    "ConnectivitySMILES": "OS(=O)(=O)O",
+    "InChI": "InChI=1S/H2O4S/c1-5(2,3)4/h(H2,1,2,3,4)",
+    "InChIKey": "QAOWNCQODCNURD-UHFFFAOYSA-N",
+    "IUPACName": "sulfuric acid",
+    "Title": "Sulfuric Acid",
+    "cas_candidates": [
+      "7664-93-9",
+      "12772-98-4"
+    ]
+  }
+]

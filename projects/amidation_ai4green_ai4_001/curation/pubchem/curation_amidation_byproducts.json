@@ -1,0 +1,75 @@
+[
+ {
+  "name": "HOAt",
+  "query_smiles": "On1nnc2cccnc21",
+  "looked_up": "2026-09-29",
+  "found": true,
+  "CID": 181649,
+  "MolecularFormula": "C5H4N4O",
+  "MolecularWeight": "136.11",
+  "ConnectivitySMILES": "C1=CC2=C(N=C1)N(N=N2)O",
+  "InChI": "InChI=1S/C5H4N4O/c10-9-5-4(7-8-9)2-1-3-6-5/h1-3,10H",
+  "InChIKey": "FPIRBHDGWMWJEP-UHFFFAOYSA-N",
+  "IUPACName": "3-hydroxytriazolo[4,5-b]pyridine",
+  "Title": "HOAt",
+  "cas_candidates": [
+   "39968-33-7",
+   "57115-46-5"
+  ]
+ },
+ {
+  "name": "Tetramethylurea",
+  "query_smiles": "CN(C)C(=O)N(C)C",
+  "looked_up": "2026-09-29",
+  "found": true,
+  "CID": 12437,
+  "MolecularFormula": "C5H12N2O",
+  "MolecularWeight": "116.16",
+  "ConnectivitySMILES": "CN(C)C(=O)N(C)C",
+  "InChI": "InChI=1S/C5H12N2O/c1-6(2)5(8)7(3)4/h1-4H3",
+  "InChIKey": "AVQQQNCBBIEMEU-UHFFFAOYSA-N",
+  "IUPACName": "1,1,3,3-tetramethylurea",
+  "Title": "Tetramethylurea",
+  "cas_candidates": [
+   "632-22-4"
+  ]
+ },
+ {
+  "name": "Diisopropylammonium hexafluorophosphate",
+  "query_smiles": "CC(C)[NH2+]C(C)C.F[P-](F)(F)(F)(F)F",
+  "looked_up": "2026-09-29",
+  "found": false
+ },
+ {
+  "name": "Diisopropylammonium",
+  "query_smiles": "CC(C)[NH2+]C(C)C",
+  "looked_up": "2026-09-29",
+  "found": true,
+  "CID": 4667801,
+  "MolecularFormula": "C6H16N+",
+  "MolecularWeight": "102.20",
+  "ConnectivitySMILES": "CC(C)[NH2+]C(C)C",
+  "InChI": "InChI=1S/C6H15N/c1-5(2)7-6(3)4/h5-7H,1-4H3/p+1",
+  "InChIKey": "UAOMVDZJSHZZME-UHFFFAOYSA-O",
+  "IUPACName": "di(propan-2-yl)azanium",
+  "Title": "Di(propan-2-yl)azanium",
+  "cas_candidates": []
+ },
+ {
+  "name": "Hexafluorophosphate",
+  "query_smiles": "F[P-](F)(F)(F)(F)F",
+  "looked_up": "2026-09-29",
+  "found": true,
+  "CID": 9886,
+  "MolecularFormula": "F6P-",
+  "MolecularWeight": "144.9641810",
+  "ConnectivitySMILES": "F[P-](F)(F)(F)(F)F",
+  "InChI": "InChI=1S/F6P/c1-7(2,3,4,5)6/q-1",
+  "InChIKey": "LJQLCJWAZJINEB-UHFFFAOYSA-N",
+  "IUPACName": "hexafluorophosphate",
+  "Title": "Hexafluorophosphate",
+  "cas_candidates": [
+   "16919-18-9"
+  ]
+ }
+]

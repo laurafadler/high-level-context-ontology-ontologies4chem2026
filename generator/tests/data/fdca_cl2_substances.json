@@ -1,0 +1,119 @@
+[
+ {
+  "name": "2,5-Furandicarboxylic acid",
+  "query_smiles": "OC(=O)c1ccc(o1)C(=O)O",
+  "looked_up": "2026-10-03",
+  "found": true,
+  "CID": 76720,
+  "MolecularFormula": "C6H4O5",
+  "MolecularWeight": "156.09",
+  "ConnectivitySMILES": "C1=C(OC(=C1)C(=O)O)C(=O)O",
+  "InChI": "InChI=1S/C6H4O5/c7-5(8)3-1-2-4(11-3)6(9)10/h1-2H,(H,7,8)(H,9,10)",
+  "InChIKey": "CHTHALBTIRVDBM-UHFFFAOYSA-N",
+  "IUPACName": "furan-2,5-dicarboxylic acid",
+  "Title": "2,5-Furandicarboxylic acid",
+  "cas_candidates": [
+   "3238-40-2"
+  ]
+ },
+ {
+  "name": "Thionyl chloride",
+  "query_smiles": "O=S(Cl)Cl",
+  "looked_up": "2026-10-03",
+  "found": true,
+  "CID": 24386,
+  "MolecularFormula": "Cl2OS",
+  "MolecularWeight": "118.97",
+  "ConnectivitySMILES": "O=S(Cl)Cl",
+  "InChI": "InChI=1S/Cl2OS/c1-4(2)3",
+  "InChIKey": "FYSNRJHAOHDILO-UHFFFAOYSA-N",
+  "IUPACName": "thionyl dichloride",
+  "Title": "Thionyl Chloride",
+  "cas_candidates": [
+   "7719-09-7"
+  ]
+ },
+ {
+  "name": "2,5-Furandicarbonyl dichloride",
+  "query_smiles": "ClC(=O)c1ccc(o1)C(=O)Cl",
+  "looked_up": "2026-10-03",
+  "found": true,
+  "CID": 11480968,
+  "MolecularFormula": "C6H2Cl2O3",
+  "MolecularWeight": "192.98",
+  "ConnectivitySMILES": "C1=C(OC(=C1)C(=O)Cl)C(=O)Cl",
+  "InChI": "InChI=1S/C6H2Cl2O3/c7-5(9)3-1-2-4(11-3)6(8)10/h1-2H",
+  "InChIKey": "PDSULNVJASBMLP-UHFFFAOYSA-N",
+  "IUPACName": "furan-2,5-dicarbonyl chloride",
+  "Title": "2,5-Furandicarbonyl Dichloride",
+  "cas_candidates": [
+   "10375-34-5"
+  ]
+ },
+ {
+  "name": "Hydrogen chloride",
+  "query_smiles": "Cl",
+  "looked_up": "2026-10-03",
+  "found": true,
+  "CID": 313,
+  "MolecularFormula": "ClH",
+  "MolecularWeight": "36.46",
+  "ConnectivitySMILES": "Cl",
+  "InChI": "InChI=1S/ClH/h1H",
+  "InChIKey": "VEXZGXHMUGYJMC-UHFFFAOYSA-N",
+  "IUPACName": "chlorane",
+  "Title": "Hydrochloric Acid",
+  "cas_candidates": [
+   "7647-01-0",
+   "97089-72-0",
+   "1082661-04-8",
+   "152100-50-0",
+   "15417-85-3",
+   "194292-84-7",
+   "204401-84-3",
+   "9083-24-3",
+   "958236-15-2",
+   "97704-97-7",
+   "99688-46-7",
+   "26099-71-8",
+   "61813-75-0"
+  ]
+ },
+ {
+  "name": "Sulfur dioxide",
+  "query_smiles": "O=S=O",
+  "looked_up": "2026-10-03",
+  "found": true,
+  "CID": 1119,
+  "MolecularFormula": "O2S",
+  "MolecularWeight": "64.07",
+  "ConnectivitySMILES": "O=S=O",
+  "InChI": "InChI=1S/O2S/c1-3-2",
+  "InChIKey": "RAHZWNYVWXNFOC-UHFFFAOYSA-N",
+  "IUPACName": "sulfur dioxide",
+  "Title": "Sulfur Dioxide",
+  "cas_candidates": [
+   "7446-09-5",
+   "67015-63-8"
+  ]
+ },
+ {
+  "name": "Hexane",
+  "query_smiles": "CCCCCC",
+  "looked_up": "2026-10-03",
+  "found": true,
+  "CID": 8058,
+  "MolecularFormula": "C6H14",
+  "MolecularWeight": "86.18",
+  "ConnectivitySMILES": "CCCCCC",
+  "InChI": "InChI=1S/C6H14/c1-3-5-6-4-2/h3-6H2,1-2H3",
+  "InChIKey": "VLKZOEOYAKHREP-UHFFFAOYSA-N",
+  "IUPACName": "hexane",
+  "Title": "Hexane",
+  "cas_candidates": [
+   "110-54-3",
+   "92112-69-1",
+   "50981-41-4"
+  ]
+ }
+]

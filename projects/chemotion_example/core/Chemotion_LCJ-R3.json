@@ -1,0 +1,184 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "Chemotion",
+    "version": null,
+    "file": "d4bbc7cc-bd12-4ff2-85ba-71233b395b31.zip",
+    "record_id": "LCJ-R3",
+    "record_url": null,
+    "record_uuid": "8b84fe27-fa8f-40f5-8ba2-ad8a443c08e4"
+  },
+  "experiment": {
+    "title": "RCF of Spruce Wood Pellets",
+    "status": "done",
+    "completed": true,
+    "entry_created": "2026-04-17T06:22:50.721Z",
+    "entry_modified": "2026-04-17T06:32:40.543Z",
+    "experiment_date": null,
+    "experiment_end": null,
+    "description_text": "Reductive Catalytic Fractionation (RCF) of spruce wood pellets. Pd/C catalyst, MeOH solvent, 50 bar H2, 200°C, 3 h.\n",
+    "keywords": [],
+    "collections": [
+      "Experiment"
+    ],
+    "reaction_type": null
+  },
+  "people": [
+    {
+      "local_id": "bf96e4ac-a80d-4544-89f2-51f67653771f",
+      "given_name": null,
+      "family_name": null,
+      "email": null,
+      "orcid": null,
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": "RCF of Spruce Wood Pellets",
+    "smiles": null,
+    "rinchi": "RInChI=1.00.1S//d+/u1-1-0",
+    "rinchi_long_key": "Long-RInChIKey=SA-FUHFF-MOSFIJXAXDLOML-UHFFFAOYSA-N--MOSFIJXAXDLOML-UHFFFAOYSA-N",
+    "rxno": null
+  },
+  "substances": [
+    {
+      "role": "starting material",
+      "name": "Spruce Wood Pellets — Raw Biomass",
+      "sample_label": "LCJ-28-1",
+      "sample_id": "e7e4c52d-a48c-428e-bd94-06f17c76403d",
+      "split_from": "LCJ-28",
+      "description": "Air-dried, knife-milled Picea abies. Lot SPRUCE-2025-03.",
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": true,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null,
+      "location_text": "Cabinet B3, Shelf 1",
+      "inventory": {
+        "held_by": "LCJ-28",
+        "vendor": "Norske Skog (via SCCB)",
+        "order_number": "SPRUCE-2025-03",
+        "amount": {
+          "value": 500000.0,
+          "unit": "mg"
+        },
+        "volume": null,
+        "status": "available",
+        "stored_at": {
+          "building": "S1",
+          "room": "B1-09",
+          "cabinet": "B3",
+          "group": "SCCB"
+        },
+        "currently_at": null,
+        "ordered_date": null,
+        "expiration_date": "2028-03-01",
+        "storage_temperature": {
+          "value": 25.0,
+          "unit": "°C"
+        },
+        "disposal_info": "Solid biomass waste — standard disposal",
+        "important_notes": "Keep dry. Store in sealed HDPE container.",
+        "price": null,
+        "cas": null,
+        "unmapped": null
+      },
+      "equivalents": {
+        "value": 1.0,
+        "unit": null
+      }
+    },
+    {
+      "role": "product",
+      "name": "LCJ-R3-A",
+      "sample_label": "LCJ-31",
+      "sample_id": "4e8e915c-413e-405b-a7ac-dba47e612a9a",
+      "split_from": null,
+      "description": null,
+      "external_label": null,
+      "with_structure": false,
+      "iupac_name": null,
+      "smiles": null,
+      "inchikey": null,
+      "molecular_formula": null,
+      "molar_mass": null,
+      "reference": false,
+      "coefficient": 1.0,
+      "purity": 1.0,
+      "density": null,
+      "molarity": null
+    }
+  ],
+  "conditions": [
+    {
+      "property": "temperature",
+      "value": {
+        "value": 200.0,
+        "unit": "°C"
+      },
+      "text": "temperature.userText"
+    },
+    {
+      "property": "duration",
+      "value": {
+        "value": 3.0,
+        "unit": null
+      },
+      "text": "duration (no unit in the export)"
+    },
+    {
+      "property": "conditions_text",
+      "value": "50 bar H2, MeOH solvent, Pd/C catalyst",
+      "text": "conditions"
+    }
+  ],
+  "results": [],
+  "procedure": {
+    "text": "Reductive Catalytic Fractionation (RCF) of spruce wood pellets. Pd/C catalyst, MeOH solvent, 50 bar H2, 200°C, 3 h.\n",
+    "steps": []
+  },
+  "notes": [],
+  "files": [],
+  "setup_sheet": null,
+  "unmapped": {
+    "segments": [
+      {
+        "of": "LCJ-R3",
+        "segment": "Reaction Details",
+        "layer": "[Inputs] Workflow Identity",
+        "field": "reaction_role",
+        "label": "Reaction Role in Workflow (Required)",
+        "type": "select",
+        "value": "fractionation",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R3",
+        "segment": "Reaction Details",
+        "layer": "[Setup] Equipment & Apparatus",
+        "field": "reactor_type",
+        "label": "Reactor Type (Required)",
+        "type": "select",
+        "value": "autoclave",
+        "unit": null
+      },
+      {
+        "of": "LCJ-R3",
+        "segment": "Reaction Details",
+        "layer": "[Conditions] Reaction Conditions",
+        "field": "atmosphere",
+        "label": "Reaction Atmosphere (Required)",
+        "type": "select",
+        "value": "H2",
+        "unit": null
+      }
+    ]
+  }
+}

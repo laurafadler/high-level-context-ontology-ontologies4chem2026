@@ -1,0 +1,28 @@
+=== SHACL-Baseline (inference=none, crate=projects/amidation_ai4green_ai4_001/crate_completed/ro-crate-metadata.json) ===
+Loaded files:
+  projects\amidation_ai4green_ai4_001\crate_completed\ro-crate-metadata.json: 13878 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\ontologies\ChemicalProcessOntology.rdf: 2615 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\ontologies\HigherLevelOntology.rdf: 1158 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\assumption_library.jsonld: 77 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\chemical_entity_library.jsonld: 716 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\details\chemical_entity_library_details.jsonld: 974 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\details\device_library_details.jsonld: 20292 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\details\material_library_details.jsonld: 2748 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\details\organization_library_details.jsonld: 1881 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\details\reaction_library_details.jsonld: 562 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\device_library.jsonld: 1796 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\material_library.jsonld: 298 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\ontology_library.jsonld: 16 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\organization_library.jsonld: 158 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\people_library.jsonld: 65 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\reaction_library.jsonld: 2382 triples
+  C:\Users\lf576\OneDrive - University of Cambridge\04_Coding\02_Server\libraries\software_library.jsonld: 3 triples
+  types from other crates: 31 (for 13 nodes the libraries or the crate point at)
+Data graph in total: 49663 triples
+
+Requirement                                               Count  Severity
+hlo:Phase_Time_R2                                             2  Warning
+
+Total: 2
+Not counted: 2 at nodes outside of the crate (libraries: run_shacl.py --libraries)
+Left out: 8 at nodes of other crates (only their type and name are loaded here - their data is checked in their own crate)

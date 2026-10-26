@@ -1,0 +1,298 @@
+{
+  "core_version": 1,
+  "source": {
+    "system": "AI4Green",
+    "version": "1.6.0",
+    "file": "ai4green_export_workbook_2024-08-27.eln",
+    "record_id": "AI4-001",
+    "record_url": null
+  },
+  "experiment": {
+    "title": "Amidation",
+    "status": "complete",
+    "completed": true,
+    "entry_created": "2024-07-18T15:56:12.064123",
+    "entry_modified": "2024-07-18T16:05:51.969524",
+    "experiment_date": null,
+    "description_text": "Benzoic acid, ethylamine, diisopropylamine and HATU were mixed at RT for 2 hours. The reaction mixture was washed with aqueous sodium chloride and extracted in ethyl acetate. The resultant mixture was concentrated under vacuum and purified by silica gel, eluting at 70% ethyl acetate 30% cyclohexane. This yielded an off-white solid (100 mg, 82%).",
+    "keywords": [],
+    "workbook": "Export workbook",
+    "workgroup": "Development-Workgroup"
+  },
+  "people": [
+    {
+      "local_id": "./author/7",
+      "given_name": "Joe",
+      "family_name": "Davies",
+      "email": "joseph.davies@nottingham.ac.uk",
+      "orcid": null,
+      "username": "Joe_Davies",
+      "role": "author"
+    }
+  ],
+  "reaction": {
+    "name": "Amidation",
+    "smiles": "OC(=O)C1=CC=CC=C1.CCN>>CCNC(=O)C1=CC=CC=C1",
+    "rxn_file": "./AI4-001/AI4-001.rxn"
+  },
+  "substances": [
+    {
+      "role": "reactant",
+      "name": "Benzoic Acid",
+      "smiles": "O=C(O)c1ccccc1",
+      "molar_mass": {
+        "value": 122.12,
+        "unit": "g/mol"
+      },
+      "mass": {
+        "value": 100.0,
+        "unit": "mg"
+      },
+      "amount": {
+        "value": 0.82,
+        "unit": "mmol"
+      },
+      "volume": null,
+      "density": null,
+      "equivalents": {
+        "value": 1.0,
+        "unit": null
+      },
+      "delivered_as": "Dense Solid",
+      "hazard_codes": "H315-H318-H372"
+    },
+    {
+      "role": "reactant",
+      "name": "Ethylamine",
+      "smiles": "CCN",
+      "molar_mass": {
+        "value": 45.08,
+        "unit": "g/mol"
+      },
+      "mass": {
+        "value": 73.83,
+        "unit": "mg"
+      },
+      "amount": {
+        "value": 1.64,
+        "unit": "mmol"
+      },
+      "volume": null,
+      "density": null,
+      "equivalents": {
+        "value": 2.0,
+        "unit": null
+      },
+      "delivered_as": "Highly volatile liquid (b.p. < 70 degC)",
+      "hazard_codes": "H220-H319-H335"
+    },
+    {
+      "role": "reagent",
+      "name": "Diisopropylamine",
+      "smiles": "CC(C)NC(C)C",
+      "molar_mass": {
+        "value": 101.19,
+        "unit": "g/mol"
+      },
+      "mass": {
+        "value": 116.01,
+        "unit": "mg"
+      },
+      "amount": {
+        "value": 1.15,
+        "unit": "mmol"
+      },
+      "volume": null,
+      "density": {
+        "value": 0.717,
+        "unit": "g/mL"
+      },
+      "equivalents": {
+        "value": 1.4,
+        "unit": null
+      },
+      "delivered_as": "Volatile liquid (b.p. 70-130 degC)",
+      "hazard_codes": "H225-H302-H314-H332"
+    },
+    {
+      "role": "reagent",
+      "name": "O-(7-Azabenzotriazol-1-yl)-N,N,N',N'-tetramethyluronium hexafluorophosphate",
+      "smiles": "CN(C)C(=[O+]n1nnc2cccnc21)N(C)C.F[P-](F)(F)(F)(F)F",
+      "molar_mass": {
+        "value": 380.23,
+        "unit": "g/mol"
+      },
+      "mass": {
+        "value": 373.63,
+        "unit": "mg"
+      },
+      "amount": {
+        "value": 0.98,
+        "unit": "mmol"
+      },
+      "volume": null,
+      "density": null,
+      "equivalents": {
+        "value": 1.2,
+        "unit": null
+      },
+      "delivered_as": "Dense Solid",
+      "hazard_codes": "H228-H315-H317-H319-H335"
+    },
+    {
+      "role": "solvent",
+      "name": "Dimethylformamide",
+      "smiles": "CN(C)C=O",
+      "molar_mass": null,
+      "mass": null,
+      "amount": null,
+      "volume": {
+        "value": 1.0,
+        "unit": "mL"
+      },
+      "density": null,
+      "equivalents": null,
+      "delivered_as": "Non-volatile liquid (b.p. > 130 degC)",
+      "hazard_codes": "H226-H312 + H332-H319-H360D"
+    },
+    {
+      "role": "product",
+      "name": "N-Ethylbenzamide",
+      "smiles": "CCN=C(O)c1ccccc1",
+      "molar_mass": {
+        "value": 149.19,
+        "unit": "g/mol"
+      },
+      "mass": {
+        "value": 100.0,
+        "unit": "mg"
+      },
+      "volume": null,
+      "delivered_as": "Dense Solid",
+      "hazard_codes": "H302",
+      "theoretical_mass": {
+        "value": 122.17,
+        "unit": "mg"
+      },
+      "theoretical_amount": {
+        "value": 0.82,
+        "unit": "mmol"
+      },
+      "unreacted_limiting_reactant_mass": {
+        "value": 5.0,
+        "unit": "mg"
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "property": "temperature",
+      "value": {
+        "value": 20.0,
+        "unit": null
+      },
+      "text": "temperature (no unit in the export)"
+    },
+    {
+      "property": "mode_of_operation",
+      "value": "Batch",
+      "text": "batch_or_flow"
+    },
+    {
+      "property": "isolation_method",
+      "value": "Column",
+      "text": "isolation_method"
+    }
+  ],
+  "results": [
+    {
+      "property": "yield",
+      "value": {
+        "value": 81.86,
+        "unit": "%"
+      },
+      "of": "N-Ethylbenzamide"
+    },
+    {
+      "property": "conversion",
+      "value": {
+        "value": 95.0,
+        "unit": "%"
+      },
+      "of": null
+    },
+    {
+      "property": "selectivity",
+      "value": {
+        "value": 86.0,
+        "unit": "%"
+      },
+      "of": "N-Ethylbenzamide"
+    }
+  ],
+  "procedure": {
+    "text": "Benzoic acid, ethylamine, diisopropylamine and HATU were mixed at RT for 2 hours. The reaction mixture was washed with aqueous sodium chloride and extracted in ethyl acetate. The resultant mixture was concentrated under vacuum and purified by silica gel, eluting at 70% ethyl acetate 30% cyclohexane. This yielded an off-white solid (100 mg, 82%). ",
+    "steps": []
+  },
+  "notes": [
+    {
+      "text": "Some compound may have been lost in the aqueous phase during the extraction",
+      "time": "2024-07-18T15:08:59.608458",
+      "author": {
+        "username": "Joe_Davies"
+      }
+    },
+    {
+      "text": "Some compound may have been lost in the aqueous phase during the extraction",
+      "time": "2024-07-18T15:08:59.608458",
+      "author": {
+        "local_id": "./author/7",
+        "given_name": "Joe",
+        "family_name": "Davies",
+        "email": "joseph.davies@nottingham.ac.uk",
+        "orcid": null
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "./AI4-001/AI4-001-summary.pdf",
+      "name": "AI4-001-summary.pdf",
+      "encoding_format": "application/pdf",
+      "size": "853054",
+      "sha256": "2d08aa4e44fd2ad86dbb30e48ace404c4b621e0571bc57f36deb6ccf071ed897"
+    }
+  ],
+  "setup_sheet": null,
+  "unmapped": {
+    "standard_protocols_used": [
+      "non_halogenated_solvent",
+      "standard_spill_response",
+      "hazard: slight",
+      "risk: possible",
+      "consequences: local labs"
+    ],
+    "solvent_sustainability": [
+      "Hazardous"
+    ],
+    "safety": "VH",
+    "element_sustainability": "50-500 years",
+    "catalyst_use": "Excess reagents",
+    "catalyst_recovery": null,
+    "atom_economy": "23.0",
+    "mass_efficiency": "15",
+    "sustainability_data": {
+      "temperature_flag": "green",
+      "element_sustainability_flag": "amber",
+      "batch_or_flow_flag": "amber",
+      "isolation_flag": "red",
+      "catalyst_used_flag": "red",
+      "catalyst_recovery_flag": null,
+      "atom_economy_flag": "red",
+      "mass_efficiency_flag": "red",
+      "yield_flag": "amber",
+      "conversion_flag": "green",
+      "selectivity_flag": "amber"
+    }
+  }
+}

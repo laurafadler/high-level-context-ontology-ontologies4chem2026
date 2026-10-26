@@ -1,0 +1,108 @@
+# Library entry: container -> libraries/device_library.jsonld
+# A container of the chemical inventory as it was delivered - a bottle, a can, a gas cylinder - with its content
+# (Device Library: the container; Material Library: its content, rule 2.15). Not a container filled in the lab
+# (workflow/inventory_tool.py prepare), not a line.
+#
+# Fill in the fields without '#'. An optional field is commented out: remove its '# ' to use it.
+# More than one entry: copy the block under 'entries' (from '- name:') once per entry.
+# A value (a mass, a time) is a block: value, unit, kind and source. kind: measured (weighed, read off an
+# instrument), observed (written down by someone, e.g. the opening date on the label), literature (printed
+# by the manufacturer: label, certificate, delivery note), assumed (source then says why).
+# Then check it (nothing is written):
+#   python generator/workflow/library_entries/finish_library_entry.py <this file>
+# and write it into the libraries with --write.
+
+format: library-entry-v1
+type: container
+entered_by: Laura Fadler
+source: "The containers the substances of the AI4Green record AI4-001 came from are not known - DUMMIES (Claude Code, 08.10.2026; placeholders allowed by Laura Fadler on 08.10.2026 so that every substance comes from a container of the libraries (Phase_Time_R7, rule 3.10)): kind, place, lot and delivery assumed, in chemicals cabinet A of Lab 109 where the flask stands."
+
+entries:
+  - name: Benzoic acid bottle no. 1 (Lab 109)
+    id: device:bottle_benzoic_acid_01
+    template: device:glass_bottle_250mL
+    cabinet: lab:L109_Cabinet_A
+    delivered:
+      value: 2024-07-17T23:00:00Z
+      kind: assumed
+      source: DUMMY - not known; taken as the start of the day of the amidation of the AI4Green record AI4-001 (18.07.2024) (an upper bound, as for the commissioning times of the other case studies)
+    content:
+      label: Benzoic acid
+      state: solid
+      solid_structure: crystalline
+      lot: not known - DUMMY (Claude Code, 08.10.2026)
+      species:
+        - substance: chem:Molecule_0014
+
+  - name: Ethylamine bottle no. 1 (Lab 109)
+    id: device:bottle_ethylamine_01
+    template: device:glass_bottle_250mL
+    cabinet: lab:L109_Cabinet_A
+    delivered:
+      value: 2024-07-17T23:00:00Z
+      kind: assumed
+      source: DUMMY - not known; taken as the start of the day of the amidation of the AI4Green record AI4-001 (18.07.2024) (an upper bound, as for the commissioning times of the other case studies)
+    content:
+      label: Ethylamine
+      state: liquid
+      lot: not known - DUMMY (Claude Code, 08.10.2026)
+      species:
+        - substance: chem:Molecule_0015
+    note: Taken as the pure liquid, as the record has it (b.p. below 70 degC); bought ethylamine is often a solution - not known.
+
+  - name: Diisopropylamine bottle no. 1 (Lab 109)
+    id: device:bottle_diisopropylamine_01
+    template: device:glass_bottle_1L
+    cabinet: lab:L109_Cabinet_A
+    delivered:
+      value: 2024-07-17T23:00:00Z
+      kind: assumed
+      source: DUMMY - not known; taken as the start of the day of the amidation of the AI4Green record AI4-001 (18.07.2024) (an upper bound, as for the commissioning times of the other case studies)
+    content:
+      label: Diisopropylamine
+      state: liquid
+      lot: not known - DUMMY (Claude Code, 08.10.2026)
+      species:
+        - substance: chem:Molecule_0016
+
+  - name: HATU bottle no. 1 (Lab 109)
+    id: device:bottle_hatu_01
+    template: device:glass_bottle_250mL
+    cabinet: lab:L109_Cabinet_A
+    delivered:
+      value: 2024-07-17T23:00:00Z
+      kind: assumed
+      source: DUMMY - not known; taken as the start of the day of the amidation of the AI4Green record AI4-001 (18.07.2024) (an upper bound, as for the commissioning times of the other case studies)
+    content:
+      label: HATU
+      state: solid
+      solid_structure: crystalline
+      lot: not known - DUMMY (Claude Code, 08.10.2026)
+      species:
+        - substance: chem:Molecule_0017
+
+  - name: DMF bottle no. 1 (Lab 109)
+    id: device:bottle_dmf_01
+    template: device:glass_bottle_1L
+    cabinet: lab:L109_Cabinet_A
+    delivered:
+      value: 2024-07-17T23:00:00Z
+      kind: assumed
+      source: DUMMY - not known; taken as the start of the day of the amidation of the AI4Green record AI4-001 (18.07.2024) (an upper bound, as for the commissioning times of the other case studies)
+    content:
+      label: N,N-Dimethylformamide
+      state: liquid
+      lot: not known - DUMMY (Claude Code, 08.10.2026)
+      species:
+        - substance: chem:Molecule_0018
+
+# Written into the libraries by finish_library_entry.py - do not write again.
+written:
+  - at: '2026-10-08T12:51:02Z'
+    by: person:LauraFadler
+    entries: ['device:bottle_benzoic_acid_01', 'device:bottle_ethylamine_01', 'device:bottle_diisopropylamine_01', 'device:bottle_hatu_01', 'device:bottle_dmf_01', 'task:assuming_container_20261008_placeholders', 'task:assuming_container_20261008_placeholders_StartTime', 'task:assuming_container_20261008_placeholders_StartTime_Reference_1', 'task:assuming_container_20261008_placeholders_EndTime', 'task:assuming_container_20261008_placeholders_Duration', 'task:receiving_bottle_benzoic_acid_01', 'task:receiving_bottle_benzoic_acid_01_StartTime', 'task:receiving_bottle_benzoic_acid_01_StartTime_Reference_1', 'task:receiving_bottle_benzoic_acid_01_EndTime', 'task:receiving_bottle_benzoic_acid_01_EndTime_Reference_1', 'task:receiving_bottle_benzoic_acid_01_Duration', 'material:bottle_benzoic_acid_01_Content', 'material:bottle_benzoic_acid_01_Content_Mass', 'material:bottle_benzoic_acid_01_Content_Volume', 'material:bottle_benzoic_acid_01_Content_Phase_Molecule_0014', 'material:bottle_benzoic_acid_01_Content_Phase',
+      'material:bottle_benzoic_acid_01_Content_Phase_Occurrence', 'material:bottle_benzoic_acid_01_Content_Phase_Occurrence_Status', 'material:bottle_benzoic_acid_01_Content_Phase_Occurrence_Status_Reference_1', 'material:bottle_benzoic_acid_01_Content_Phase_Occurrence_EndTime', 'material:bottle_benzoic_acid_01_Content_Phase_Occurrence_Duration', 'task:receiving_bottle_ethylamine_01', 'task:receiving_bottle_ethylamine_01_StartTime', 'task:receiving_bottle_ethylamine_01_StartTime_Reference_1', 'task:receiving_bottle_ethylamine_01_EndTime', 'task:receiving_bottle_ethylamine_01_EndTime_Reference_1', 'task:receiving_bottle_ethylamine_01_Duration', 'material:bottle_ethylamine_01_Content', 'material:bottle_ethylamine_01_Content_Mass', 'material:bottle_ethylamine_01_Content_Volume', 'material:bottle_ethylamine_01_Content_Phase_Molecule_0015', 'material:bottle_ethylamine_01_Content_Phase', 'material:bottle_ethylamine_01_Content_Phase_Occurrence', 'material:bottle_ethylamine_01_Content_Phase_Occurrence_Status',
+      'material:bottle_ethylamine_01_Content_Phase_Occurrence_Status_Reference_1', 'material:bottle_ethylamine_01_Content_Phase_Occurrence_EndTime', 'material:bottle_ethylamine_01_Content_Phase_Occurrence_Duration', 'task:receiving_bottle_diisopropylamine_01', 'task:receiving_bottle_diisopropylamine_01_StartTime', 'task:receiving_bottle_diisopropylamine_01_StartTime_Reference_1', 'task:receiving_bottle_diisopropylamine_01_EndTime', 'task:receiving_bottle_diisopropylamine_01_EndTime_Reference_1', 'task:receiving_bottle_diisopropylamine_01_Duration', 'material:bottle_diisopropylamine_01_Content', 'material:bottle_diisopropylamine_01_Content_Mass', 'material:bottle_diisopropylamine_01_Content_Volume', 'material:bottle_diisopropylamine_01_Content_Phase_Molecule_0016', 'material:bottle_diisopropylamine_01_Content_Phase', 'material:bottle_diisopropylamine_01_Content_Phase_Occurrence', 'material:bottle_diisopropylamine_01_Content_Phase_Occurrence_Status', 'material:bottle_diisopropylamine_01_Content_Phase_Occurrence_Status_Reference_1',
+      'material:bottle_diisopropylamine_01_Content_Phase_Occurrence_EndTime', 'material:bottle_diisopropylamine_01_Content_Phase_Occurrence_Duration', 'task:receiving_bottle_hatu_01', 'task:receiving_bottle_hatu_01_StartTime', 'task:receiving_bottle_hatu_01_StartTime_Reference_1', 'task:receiving_bottle_hatu_01_EndTime', 'task:receiving_bottle_hatu_01_EndTime_Reference_1', 'task:receiving_bottle_hatu_01_Duration', 'material:bottle_hatu_01_Content', 'material:bottle_hatu_01_Content_Mass', 'material:bottle_hatu_01_Content_Volume', 'material:bottle_hatu_01_Content_Phase_Molecule_0017', 'material:bottle_hatu_01_Content_Phase', 'material:bottle_hatu_01_Content_Phase_Occurrence', 'material:bottle_hatu_01_Content_Phase_Occurrence_Status', 'material:bottle_hatu_01_Content_Phase_Occurrence_Status_Reference_1', 'material:bottle_hatu_01_Content_Phase_Occurrence_EndTime', 'material:bottle_hatu_01_Content_Phase_Occurrence_Duration', 'task:receiving_bottle_dmf_01', 'task:receiving_bottle_dmf_01_StartTime',
+      'task:receiving_bottle_dmf_01_StartTime_Reference_1', 'task:receiving_bottle_dmf_01_EndTime', 'task:receiving_bottle_dmf_01_EndTime_Reference_1', 'task:receiving_bottle_dmf_01_Duration', 'material:bottle_dmf_01_Content', 'material:bottle_dmf_01_Content_Mass', 'material:bottle_dmf_01_Content_Volume', 'material:bottle_dmf_01_Content_Phase_Molecule_0018', 'material:bottle_dmf_01_Content_Phase', 'material:bottle_dmf_01_Content_Phase_Occurrence', 'material:bottle_dmf_01_Content_Phase_Occurrence_Status', 'material:bottle_dmf_01_Content_Phase_Occurrence_Status_Reference_1', 'material:bottle_dmf_01_Content_Phase_Occurrence_EndTime', 'material:bottle_dmf_01_Content_Phase_Occurrence_Duration']
+    libraries: [device_library.jsonld, material_library.jsonld]

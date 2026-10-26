@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "device": "https://example.org/device/",
+    "lab": "https://example.org/laboratory/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "schema": "http://schema.org/",
+    "software": "https://example.org/software/"
+  },
+
+  "@graph": [
+    {
+      "@id": "software:AMLearn",
+      "@type": 
+        [
+          "schema:SoftwareApplication",
+          "hlo:Fixed"
+        ],
+      "schema:name": "AM Learn"
+    
+    }
+
+    
+
+  ]
+}

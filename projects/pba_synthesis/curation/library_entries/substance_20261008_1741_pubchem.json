@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Manganese(II) nitrate tetrahydrate",
+    "query_smiles": "O.O.O.O.[N+](=O)([O-])[O-].[N+](=O)([O-])[O-].[Mn+2]",
+    "looked_up": "2026-10-08",
+    "found": true,
+    "CID": 182616,
+    "MolecularFormula": "H8MnN2O10",
+    "MolecularWeight": "251.01",
+    "ConnectivitySMILES": "[N+](=O)([O-])[O-].[N+](=O)([O-])[O-].O.O.O.O.[Mn+2]",
+    "InChI": "InChI=1S/Mn.2NO3.4H2O/c;2*2-1(3)4;;;;/h;;;4*1H2/q+2;2*-1;;;;",
+    "InChIKey": "ALIMWUQMDCBYFM-UHFFFAOYSA-N",
+    "IUPACName": "manganese(2+);dinitrate;tetrahydrate",
+    "Title": "Manganese nitrate tetrahydrate",
+    "cas_candidates": [
+      "20694-39-7"
+    ]
+  },
+  {
+    "name": "Nitrate ion",
+    "query_smiles": "[N+](=O)([O-])[O-]",
+    "looked_up": "2026-10-08",
+    "found": true,
+    "CID": 943,
+    "MolecularFormula": "NO3-",
+    "MolecularWeight": "62.005",
+    "ConnectivitySMILES": "[N+](=O)([O-])[O-]",
+    "InChI": "InChI=1S/NO3/c2-1(3)4/q-1",
+    "InChIKey": "NHNBFGGVMKEFGY-UHFFFAOYSA-N",
+    "IUPACName": "nitrate",
+    "Title": "Nitrate",
+    "cas_candidates": [
+      "14797-55-8"
+    ]
+  }
+]

@@ -1,0 +1,777 @@
+{
+  "@context": {
+    "hlo": "http://www.semanticweb.org/lf576/ontologies/2026/7/HigherLevelOntology#",
+    "cpo": "http://www.semanticweb.org/lf576/ontologies/2026/7/ChemicalProcessOntology#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "device": "https://example.org/device/",
+    "crate": "https://example.org/crate/",
+    "port": "https://example.org/port/",
+    "organization": "https://example.org/organization/",
+    "person": "https://example.org/person/",
+    "lab": "https://example.org/laboratory/",
+    "material": "https://example.org/material/",
+    "chebi": "http://purl.obolibrary.org/obo/chebi.owl#",
+    "chem": "https://example.org/chemical_entity/",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "task": "https://example.org/task/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "time": "http://www.w3.org/2006/time#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "quantitykind": "http://qudt.org/vocab/quantitykind/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "document": "https://example.org/document/",
+    "reaction": "https://example.org/reaction/"
+  },
+  "@graph": [
+    {
+      "@id": "material:bottle_adiponitrile_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Adiponitrile 99 %",
+      "rdfs:comment": "The content of the container as delivered. The amount is the one at delivery; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_adiponitrile_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_adiponitrile_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "BCCK4471",
+      "schema:sku": "D-8970-1",
+      "cpo:hasManufacturer": {
+        "@id": "organization:ExampleCorp"
+      },
+      "cpo:hasMass": {
+        "@id": "material:bottle_adiponitrile_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_adiponitrile_01_Content_Volume"
+      },
+      "cpo:hasExpiryTime": {
+        "@id": "material:bottle_adiponitrile_01_Content_ExpiryTime"
+      }
+    },
+    {
+      "@id": "material:bottle_platinum_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Platinum black",
+      "rdfs:comment": "The content of the container as delivered. The amount is the one at delivery; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_platinum_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_platinum_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "MKCR2204",
+      "schema:sku": "P-2400-5",
+      "cpo:hasManufacturer": {
+        "@id": "organization:ExampleCorp"
+      },
+      "cpo:hasMass": {
+        "@id": "material:bottle_platinum_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_platinum_01_Content_Volume"
+      },
+      "cpo:hasRetestTime": {
+        "@id": "material:bottle_platinum_01_Content_RetestTime"
+      }
+    },
+    {
+      "@id": "material:bottle_isopropanol_70_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "2-Propanol 70 % in water",
+      "rdfs:comment": "The content of the container as delivered. The amount is the one at delivery; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_isopropanol_70_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_isopropanol_70_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "SHBN0916",
+      "schema:sku": "I-9030-250",
+      "cpo:hasManufacturer": {
+        "@id": "organization:ExampleCorp"
+      },
+      "cpo:hasMass": {
+        "@id": "material:bottle_isopropanol_70_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_isopropanol_70_01_Content_Volume"
+      },
+      "cpo:hasExpiryTime": {
+        "@id": "material:bottle_isopropanol_70_01_Content_ExpiryTime"
+      }
+    },
+    {
+      "@id": "material:h2_cylinder_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hydrogen 5.0",
+      "rdfs:comment": "The content of the container as delivered. The amount is the one at delivery; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:h2_cylinder_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:gas_cylinder_10L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:h2_cylinder_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "H2-260815-07",
+      "schema:sku": "H2-50-10L",
+      "cpo:hasManufacturer": {
+        "@id": "organization:ExampleCorp"
+      },
+      "cpo:hasMass": {
+        "@id": "material:h2_cylinder_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:h2_cylinder_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:spruce_wood_stock_SPRUCE-2025-03_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Spruce wood pellets, lot SPRUCE-2025-03",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:spruce_wood_stock_SPRUCE-2025-03"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:hdpe_container_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:spruce_wood_stock_SPRUCE-2025-03_Content_Phase"
+      },
+      "cpo:hasMass": {
+        "@id": "material:spruce_wood_stock_SPRUCE-2025-03_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:spruce_wood_stock_SPRUCE-2025-03_Content_Volume"
+      },
+      "cpo:hasLotNumber": "SPRUCE-2025-03",
+      "cpo:hasManufacturer": {
+        "@id": "organization:NorskeSkog"
+      },
+      "cpo:hasExpiryTime": {
+        "@id": "material:spruce_wood_stock_SPRUCE-2025-03_Content_ExpiryTime"
+      }
+    },
+    {
+      "@id": "material:spruce_wood_batch_BM-SPRUCE-NREL-01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Spruce wood pellets, batch BM-SPRUCE-NREL-01",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:spruce_wood_batch_BM-SPRUCE-NREL-01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:hdpe_container_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:spruce_wood_batch_BM-SPRUCE-NREL-01_Content_Phase"
+      },
+      "cpo:hasMass": {
+        "@id": "material:spruce_wood_batch_BM-SPRUCE-NREL-01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:spruce_wood_batch_BM-SPRUCE-NREL-01_Content_Volume"
+      },
+      "cpo:hasLotNumber": "BM-SPRUCE-NREL-01"
+    },
+    {
+      "@id": "material:methanol_bottle_646377_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Methanol (Sigma-Aldrich 646377)",
+      "cpo:hasLotNumber": "not known - the Chemotion export names no lot for this bottle (inventory LCJ-44, LCJ-45: only the order number 646377-1L) (Claude Code, 08.10.2026; allowed by Laura Fadler)",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:methanol_bottle_646377_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:methanol_bottle_646377_01_Content_Phase"
+      },
+      "cpo:hasMass": {
+        "@id": "material:methanol_bottle_646377_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:methanol_bottle_646377_01_Content_Volume"
+      },
+      "schema:sku": "646377-1L",
+      "cpo:hasManufacturer": {
+        "@id": "organization:SigmaAldrich"
+      }
+    },
+    {
+      "@id": "material:L109_DI_water_supply_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Deionised water",
+      "rdfs:comment": "The water standing in the line. It is always there: a stream from the outlet takes from it.",
+      "cpo:materialContainedIn": {
+        "@id": "device:L109_DI_water_supply"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:L109_DI_water_supply_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:L109_DI_water_supply_Content_Phase"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:L109_DI_water_supply_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:L208_compressed_air_supply_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Compressed air",
+      "rdfs:comment": "The air standing in the line. It is always there: a stream from the outlet takes from it.",
+      "cpo:materialContainedIn": {
+        "@id": "device:L208_compressed_air_supply"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:L208_compressed_air_supply_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:L208_compressed_air_supply_Content_Phase"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:L208_compressed_air_supply_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:NTU_CongjianLin_Lab_H2_supply_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hydrogen",
+      "rdfs:comment": "The hydrogen standing in the line. It is always there: a stream from the outlet takes from it. Its grade is not known.",
+      "cpo:materialContainedIn": {
+        "@id": "device:NTU_CongjianLin_Lab_H2_supply"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:NTU_CongjianLin_Lab_H2_supply_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:NTU_CongjianLin_Lab_H2_supply_Content_Phase"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:NTU_CongjianLin_Lab_H2_supply_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_potassium_ferrocyanide_trihydrate_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Potassium ferrocyanide trihydrate (stock)",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_potassium_ferrocyanide_trihydrate_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:hdpe_container_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_potassium_ferrocyanide_trihydrate_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not recorded (Meng Kong, 14.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_potassium_ferrocyanide_trihydrate_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_potassium_ferrocyanide_trihydrate_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_nickel_chloride_hexahydrate_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nickel(II) chloride hexahydrate (stock)",
+      "rdfs:comment": "The content of the container as delivered; what was drawn from it stands in the preparation of the stock solution. Manufacturer and lot from the Reagent preparation record 'NiCl2.6H2O 0.01M Li' (template modular_reagent_preparation, designer and operator cl2114 = Chuyue Li), projects/pba_synthesis/input/lab_data_for_crate/NiCl2.6H2O 0.01M Li.jsonld.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_nickel_chloride_hexahydrate_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:hdpe_container_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_nickel_chloride_hexahydrate_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "0000540605",
+      "cpo:hasMass": {
+        "@id": "material:bottle_nickel_chloride_hexahydrate_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_nickel_chloride_hexahydrate_01_Content_Volume"
+      },
+      "cpo:hasManufacturer": {
+        "@id": "organization:SigmaAldrich"
+      }
+    },
+    {
+      "@id": "material:bottle_manganese_nitrate_tetrahydrate_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Manganese(II) nitrate tetrahydrate (stock)",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates. Manganese(II) nitrate instead of the chloride since 08.10.2026 (projects/pba_synthesis/curation/archive/switch_pba_manganese_to_nitrate.py): the salt of 10 April 2026 is not recorded, the only one the files name is Mn(NO3)2 (run log of 12.03.2026); the tetrahydrate is assumed - Laura Fadler and Meng Kong, 08.10.2026.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_manganese_nitrate_tetrahydrate_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:hdpe_container_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_manganese_nitrate_tetrahydrate_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not recorded (Meng Kong, 14.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_manganese_nitrate_tetrahydrate_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_manganese_nitrate_tetrahydrate_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:L208_DI_water_supply_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Deionised water",
+      "rdfs:comment": "The water standing in the line. It is always there: a stream from the outlet takes from it.",
+      "cpo:materialContainedIn": {
+        "@id": "device:L208_DI_water_supply"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:L208_DI_water_supply_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:L208_DI_water_supply_Content_Phase"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:L208_DI_water_supply_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:stock_solution_nickel_chloride_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nickel(II) chloride stock solution 0.01 M (NiCl2.6H2O 0.01M Li)",
+      "rdfs:comment": "The stock solution as made up in the lab; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:stock_solution_nickel_chloride_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_500mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:stock_solution_nickel_chloride_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "NiCl2.6H2O 0.01M Li (label of the stock bottle)",
+      "cpo:hasMass": {
+        "@id": "material:stock_solution_nickel_chloride_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:stock_solution_nickel_chloride_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:stock_solution_potassium_ferrocyanide_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Potassium ferrocyanide stock solution 0.05 M (Ferrocyanide 0.05M Li)",
+      "rdfs:comment": "The stock solution as made up in the lab; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:stock_solution_potassium_ferrocyanide_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_500mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:stock_solution_potassium_ferrocyanide_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "Ferrocyanide 0.05M Li (the stock reagent ID in Meng Kong's synthesis record template; what the bottle itself says is not recorded - Meng Kong, 14.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:stock_solution_potassium_ferrocyanide_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:stock_solution_potassium_ferrocyanide_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:stock_solution_manganese_nitrate_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Manganese(II) nitrate stock solution",
+      "rdfs:comment": "The stock solution as made up in the lab; what experiments drew from it stands in their crates. Manganese(II) nitrate instead of the chloride since 08.10.2026 (projects/pba_synthesis/curation/archive/switch_pba_manganese_to_nitrate.py): the salt of 10 April 2026 is not recorded, the only one the files name is Mn(NO3)2 (run log of 12.03.2026); the tetrahydrate is assumed - Laura Fadler and Meng Kong, 08.10.2026.",
+      "cpo:materialContainedIn": {
+        "@id": "device:stock_solution_manganese_nitrate_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_500mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:stock_solution_manganese_nitrate_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "label not recorded (Meng Kong, 14.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:stock_solution_manganese_nitrate_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:stock_solution_manganese_nitrate_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_sulfuric_acid_dilute_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Sulfuric acid, dilute (rinsing agent of the K1 Start)",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_sulfuric_acid_dilute_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_500mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_sulfuric_acid_dilute_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not recorded (Laura Fadler, 15.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_sulfuric_acid_dilute_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_sulfuric_acid_dilute_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_benzoic_acid_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Benzoic acid",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_benzoic_acid_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_benzoic_acid_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_benzoic_acid_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_benzoic_acid_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_ethylamine_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Ethylamine",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_ethylamine_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_ethylamine_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_ethylamine_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_ethylamine_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_diisopropylamine_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Diisopropylamine",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_diisopropylamine_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_diisopropylamine_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_diisopropylamine_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_diisopropylamine_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_hatu_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "HATU",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_hatu_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_hatu_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_hatu_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_hatu_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_dmf_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "N,N-Dimethylformamide",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_dmf_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_dmf_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_dmf_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_dmf_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_pd_c_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Palladium on activated carbon",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_pd_c_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_pd_c_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_pd_c_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_pd_c_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_fdca_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "2,5-Furandicarboxylic acid",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_fdca_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_250mL_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_fdca_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_fdca_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_fdca_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_thionyl_chloride_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Thionyl chloride",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_thionyl_chloride_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_thionyl_chloride_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_thionyl_chloride_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_thionyl_chloride_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_dmf_svt_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "N,N-Dimethylformamide",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_dmf_svt_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_dmf_svt_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_dmf_svt_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_dmf_svt_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:bottle_hexane_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Hexane",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:bottle_hexane_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:glass_bottle_1L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:bottle_hexane_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:bottle_hexane_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:bottle_hexane_01_Content_Volume"
+      }
+    },
+    {
+      "@id": "material:n2_cylinder_svt_01_Content",
+      "@type": [
+        "cpo:MaterialVolume",
+        "hlo:Fixed"
+      ],
+      "schema:name": "Nitrogen",
+      "rdfs:comment": "The content of the container as delivered; what experiments drew from it stands in their crates.",
+      "cpo:materialContainedIn": {
+        "@id": "device:n2_cylinder_svt_01"
+      },
+      "cpo:fillsForm": {
+        "@id": "device:gas_cylinder_10L_Cavity"
+      },
+      "dcterms:hasPart": {
+        "@id": "material:n2_cylinder_svt_01_Content_Phase"
+      },
+      "cpo:hasLotNumber": "not known - DUMMY (Claude Code, 08.10.2026)",
+      "cpo:hasMass": {
+        "@id": "material:n2_cylinder_svt_01_Content_Mass"
+      },
+      "cpo:hasVolume": {
+        "@id": "material:n2_cylinder_svt_01_Content_Volume"
+      }
+    }
+  ]
+}

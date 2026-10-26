@@ -1,0 +1,230 @@
+[
+ {
+  "name": "Potassium ion",
+  "query_smiles": "[K+]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 813,
+  "MolecularFormula": "K+",
+  "MolecularWeight": "39.0983",
+  "ConnectivitySMILES": "[K+]",
+  "InChI": "InChI=1S/K/q+1",
+  "InChIKey": "NPYPAHLBTDXSSS-UHFFFAOYSA-N",
+  "IUPACName": "potassium(1+)",
+  "Title": "Potassium Cation",
+  "cas_candidates": [
+   "24203-36-9",
+   "125352-08-1",
+   "138363-30-1"
+  ]
+ },
+ {
+  "name": "Chloride ion",
+  "query_smiles": "[Cl-]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 312,
+  "MolecularFormula": "Cl-",
+  "MolecularWeight": "35.45",
+  "ConnectivitySMILES": "[Cl-]",
+  "InChI": "InChI=1S/ClH/h1H/p-1",
+  "InChIKey": "VEXZGXHMUGYJMC-UHFFFAOYSA-M",
+  "IUPACName": "chloride",
+  "Title": "Chloride",
+  "cas_candidates": [
+   "16887-00-6",
+   "131500-00-0",
+   "139512-37-1",
+   "147258-25-1",
+   "155522-09-1",
+   "435346-28-4",
+   "54071-91-9",
+   "62770-30-3"
+  ]
+ },
+ {
+  "name": "Manganese(II) ion",
+  "query_smiles": "[Mn+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 27854,
+  "MolecularFormula": "Mn+2",
+  "MolecularWeight": "54.93804",
+  "ConnectivitySMILES": "[Mn+2]",
+  "InChI": "InChI=1S/Mn/q+2",
+  "InChIKey": "WAEMQWOKJMHJLA-UHFFFAOYSA-N",
+  "IUPACName": "manganese(2+)",
+  "Title": "Manganese(2+)",
+  "cas_candidates": [
+   "16397-91-4",
+   "15365-82-9"
+  ]
+ },
+ {
+  "name": "Iron(II) ion",
+  "query_smiles": "[Fe+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 27284,
+  "MolecularFormula": "Fe+2",
+  "MolecularWeight": "55.84",
+  "ConnectivitySMILES": "[Fe+2]",
+  "InChI": "InChI=1S/Fe/q+2",
+  "InChIKey": "CWYNVVGOOAEACU-UHFFFAOYSA-N",
+  "IUPACName": "iron(2+)",
+  "Title": "Ferrous cation",
+  "cas_candidates": [
+   "15438-31-0"
+  ]
+ },
+ {
+  "name": "Cobalt(II) ion",
+  "query_smiles": "[Co+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 104729,
+  "MolecularFormula": "Co+2",
+  "MolecularWeight": "58.93319",
+  "ConnectivitySMILES": "[Co+2]",
+  "InChI": "InChI=1S/Co/q+2",
+  "InChIKey": "XLJKHNWPARRRJB-UHFFFAOYSA-N",
+  "IUPACName": "cobalt(2+)",
+  "Title": "Cobalt(2+)",
+  "cas_candidates": [
+   "22541-53-3"
+  ]
+ },
+ {
+  "name": "Nickel(II) ion",
+  "query_smiles": "[Ni+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 934,
+  "MolecularFormula": "Ni+2",
+  "MolecularWeight": "58.693",
+  "ConnectivitySMILES": "[Ni+2]",
+  "InChI": "InChI=1S/Ni/q+2",
+  "InChIKey": "VEQPNABPJHWNSG-UHFFFAOYSA-N",
+  "IUPACName": "nickel(2+)",
+  "Title": "Nickel cation",
+  "cas_candidates": [
+   "14701-22-5"
+  ]
+ },
+ {
+  "name": "Copper(II) ion",
+  "query_smiles": "[Cu+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 27099,
+  "MolecularFormula": "Cu+2",
+  "MolecularWeight": "63.55",
+  "ConnectivitySMILES": "[Cu+2]",
+  "InChI": "InChI=1S/Cu/q+2",
+  "InChIKey": "JPVYNHNXODAKFH-UHFFFAOYSA-N",
+  "IUPACName": "copper(2+)",
+  "Title": "Copper(2+)",
+  "cas_candidates": [
+   "15158-11-9"
+  ]
+ },
+ {
+  "name": "Zinc ion",
+  "query_smiles": "[Zn+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 32051,
+  "MolecularFormula": "Zn+2",
+  "MolecularWeight": "65.4",
+  "ConnectivitySMILES": "[Zn+2]",
+  "InChI": "InChI=1S/Zn/q+2",
+  "InChIKey": "PTFCDOFLOPIGGS-UHFFFAOYSA-N",
+  "IUPACName": "zinc(2+)",
+  "Title": "Zinc(2+)",
+  "cas_candidates": [
+   "23713-49-7",
+   "9025-42-7",
+   "126603-04-1",
+   "1492823-75-2"
+  ]
+ },
+ {
+  "name": "Ferrocyanide ion",
+  "query_smiles": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 25959,
+  "MolecularFormula": "C6FeN6-4",
+  "MolecularWeight": "211.95",
+  "ConnectivitySMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2]",
+  "InChI": "InChI=1S/6CN.Fe/c6*1-2;/q6*-1;+2",
+  "InChIKey": "UETZVSHORCDDTH-UHFFFAOYSA-N",
+  "IUPACName": "iron(2+) hexacyanide",
+  "Title": "Unii-flx0vic39Y",
+  "cas_candidates": []
+ },
+ {
+  "name": "Ferricyanide ion",
+  "query_smiles": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+3]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 6102284,
+  "MolecularFormula": "C6FeN6-3",
+  "MolecularWeight": "211.95",
+  "ConnectivitySMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+3]",
+  "InChI": "InChI=1S/6CN.Fe/c6*1-2;/q6*-1;+3",
+  "InChIKey": "YAGKRVSRTSUGEY-UHFFFAOYSA-N",
+  "IUPACName": "iron(3+) hexacyanide",
+  "Title": "Ferrate(3-), hexakis(cyano-kappaC)-, (OC-6-11)-",
+  "cas_candidates": []
+ },
+ {
+  "name": "Potassium ferrocyanide trihydrate",
+  "query_smiles": "O.O.O.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[K+].[K+].[K+].[K+].[Fe+2]",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 161067,
+  "MolecularFormula": "C6H6FeK4N6O3",
+  "MolecularWeight": "422.39",
+  "ConnectivitySMILES": "[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.O.O.O.[K+].[K+].[K+].[K+].[Fe+2]",
+  "InChI": "InChI=1S/6CN.Fe.4K.3H2O/c6*1-2;;;;;;;;/h;;;;;;;;;;;3*1H2/q6*-1;+2;4*+1;;;",
+  "InChIKey": "UTYXJYFJPBYDKY-UHFFFAOYSA-N",
+  "IUPACName": "tetrapotassium;iron(2+);hexacyanide;trihydrate",
+  "Title": "Potassium ferrocyanide trihydrate",
+  "cas_candidates": [
+   "14459-95-1"
+  ]
+ },
+ {
+  "name": "Nickel(II) chloride hexahydrate",
+  "query_smiles": "O.O.O.O.O.O.Cl[Ni]Cl",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 11791229,
+  "MolecularFormula": "Cl2H12NiO6",
+  "MolecularWeight": "237.69",
+  "ConnectivitySMILES": "O.O.O.O.O.O.Cl[Ni]Cl",
+  "InChI": "InChI=1S/2ClH.Ni.6H2O/h2*1H;;6*1H2/q;;+2;;;;;;/p-2",
+  "InChIKey": "LAIZPRYFQUWUBN-UHFFFAOYSA-L",
+  "IUPACName": "dichloronickel;hexahydrate",
+  "Title": "Dichloronickel;hexahydrate",
+  "cas_candidates": []
+ },
+ {
+  "name": "Manganese(II) chloride tetrahydrate",
+  "query_smiles": "O.O.O.O.Cl[Mn]Cl",
+  "looked_up": "2026-10-06",
+  "found": true,
+  "CID": 643989,
+  "MolecularFormula": "Cl2H8MnO4",
+  "MolecularWeight": "197.90",
+  "ConnectivitySMILES": "O.O.O.O.Cl[Mn]Cl",
+  "InChI": "InChI=1S/2ClH.Mn.4H2O/h2*1H;;4*1H2/q;;+2;;;;/p-2",
+  "InChIKey": "CNFDGXZLMLFIJV-UHFFFAOYSA-L",
+  "IUPACName": "dichloromanganese;tetrahydrate",
+  "Title": "Manganese Chloride Tetrahydrate",
+  "cas_candidates": [
+   "13446-34-9"
+  ]
+ }
+]
