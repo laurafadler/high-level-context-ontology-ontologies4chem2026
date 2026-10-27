@@ -120,12 +120,11 @@
       <span class="legend">
         <span><svg class="glyph" viewBox="0 0 26 8"><line x1="1" y1="4" x2="25" y2="4"/></svg> required</span>
         <span><svg class="glyph" viewBox="0 0 26 8"><line x1="1" y1="4" x2="25" y2="4" stroke-dasharray="6 4"/></svg> recommended</span>
-        <span><svg class="glyph" viewBox="0 0 26 8"><line x1="1" y1="4" x2="25" y2="4" stroke-dasharray="1.5 4" stroke-linecap="round"/></svg> optional</span>
+        <span><svg class="glyph" viewBox="0 0 26 8"><line x1="1" y1="4" x2="25" y2="4" stroke-dasharray="1.5 4" stroke-linecap="round"/></svg> not demanded</span>
       </span>
     </div>
     <div id="map" class="map"></div>
-    <p class="note">Line style: the strongest demand on any level (shapes, library entry schema, setup sheet,
-      library checks); what nothing asks for but the data have counts as optional.
+    <p class="note">Line style: the strongest demand on any level (shapes, library entry schema, setup sheet, library checks). Dotted = nothing demands it: the generator asks for it, or writes it when the data or the library have it.
       <span class="only">only Liquid</span> = holds only for that subclass, by the domain of the property or a shape
       at the subclass. Hover a subclass to highlight what applies to it.
       Bookkeeping properties every entity has (type, scope, comments) are left out; the full tables are in the
