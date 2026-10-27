@@ -139,6 +139,7 @@ const FAMILIES = [{"title":"Devices","classes":["cpo:Device"]},{"title":"Materia
 const START = "cpo:Phase";
 const LEVELS = ["Template", "Fixed", "Series", "Experiment"];
 const RANK = {required: 3, recommended: 2, optional: 1, "": 0};
+const NAME = {optional: "not demanded"};  
 const local = c => c.includes(":") ? c.split(":")[1] : c;
 const short = (sub, cls) => { const l = local(sub), base = local(cls); return l.endsWith(base) && l !== base ? l.slice(0, -base.length) : l; };
 const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[ch]);
@@ -150,11 +151,11 @@ function strongest(levels) {
 }
 const dash = {required: "", recommended: "6 4", optional: "1.5 4"};
 function glyph(st) {
-  return `<svg class="glyph" viewBox="0 0 26 8" aria-label="${st}"><line x1="1" y1="4" x2="25" y2="4"${dash[st] ? ` stroke-dasharray="${dash[st]}"` : ""}${st === "optional" ? ' stroke-linecap="round"' : ""}/></svg>`;
+  return `<svg class="glyph" viewBox="0 0 26 8" aria-label="${NAME[st] || st}"><line x1="1" y1="4" x2="25" y2="4"${dash[st] ? ` stroke-dasharray="${dash[st]}"` : ""}${st === "optional" ? ' stroke-linecap="round"' : ""}/></svg>`;
 }
 function levelBoxes(levels) {
   return `<span class="levels">${LEVELS.map(l => { const s = levels[l];
-    return `<span class="lv ${s}" title="${l}: ${s || "not on this level"}">${l[0]}</span>`; }).join("")}</span>`;
+    return `<span class="lv ${s}" title="${l}: ${NAME[s] || s || "not on this level"}">${l[0]}</span>`; }).join("")}</span>`;
 }
 
 function groups(card) {
