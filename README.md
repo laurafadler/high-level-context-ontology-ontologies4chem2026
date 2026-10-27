@@ -3,13 +3,13 @@
 **A context ontology for chemical experiments, with SHACL shapes and a generator that describes
 experiments as RO-Crates.**
 
-This repository accompanies the talk "A high-level Context ontology". It is a snapshot of an ongoing
-master thesis project (Laura Fadler, University of Cambridge,
+This repository accompanies the talk "A high-level Context ontology" at Ontologies4Chem 2026. It is a
+snapshot of an ongoing master thesis project (Laura Fadler, RWTH Aachen, SVT & University of Cambridge,
 Department of Chemical Engineering and Biotechnology). It is shared so that people can look at the approach
 and **comment on it** - the ontologies, the SHACL shapes, the libraries and the generator are all open for
 feedback.
 
-In short: a generator turns an ELN export (or lab files) plus a short setup sheet into an RO-Crate
+In short: a generator turns an ELN export (or lab files) plus a short setup/answer sheet into an RO-Crate
 (`ro-crate-metadata.json`, JSON-LD). It is built on two ontologies of its own:
 
 - **HLO** (Higher Level Ontology): levels (library entry / series / experiment), evidence and reference,
