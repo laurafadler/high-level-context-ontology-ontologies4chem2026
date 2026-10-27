@@ -86,6 +86,13 @@ class ClassTree:
             for prop in graph.subjects(RDF.type, kind):
                 if isinstance(prop, URIRef):
                     self.properties.add(curie(prop))
+        # rdfs:domain and rdfs:range of the properties (for the class maps): sets of CURIEs, None for a class
+        # expression (owl:unionOf ...) that is not a named class.
+        self.domains, self.ranges = {}, {}
+        for predicate, found in ((RDFS.domain, self.domains), (RDFS.range, self.ranges)):
+            for prop, cls in graph.subject_objects(predicate):
+                if isinstance(prop, URIRef):
+                    found.setdefault(curie(prop), set()).add(curie(cls) if isinstance(cls, URIRef) else None)
 
     def ancestors(self, cls: str) -> set:
         """The class itself and all its superclasses."""

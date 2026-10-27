@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Maps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* One map per class: the class in the middle, its subclasses in brackets underneath, and the
+     properties as branches to the classes they point at. Same palette as the other overviews. */
+  :root {
+    --bg: #f2f4f7; --surface: #ffffff; --ink: #18232e; --muted: #5a6775; --line: #d4dbe3; --head: #e8edf3;
+    --accent: #2f5d8a; --accent-bg: #e3ecf5;
+    --req: #b3261e; --req-bg: #fbe9e7; --rec: #9a6200; --rec-bg: #fdf1dc; --opt: #56636f; --opt-bg: #edf0f3;
+    --font: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12181f; --surface: #1a222b; --ink: #e2e8ee; --muted: #9aa6b2; --line: #2f3b47; --head: #222c37;
+      --accent: #8db8e3; --accent-bg: #1c2d40;
+      --req: #ff8a80; --req-bg: #3a1c1a; --rec: #ffc266; --rec-bg: #36290f; --opt: #a9b4bf; --opt-bg: #242d36;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12181f; --surface: #1a222b; --ink: #e2e8ee; --muted: #9aa6b2; --line: #2f3b47; --head: #222c37;
+    --accent: #8db8e3; --accent-bg: #1c2d40;
+    --req: #ff8a80; --req-bg: #3a1c1a; --rec: #ffc266; --rec-bg: #36290f; --opt: #a9b4bf; --opt-bg: #242d36;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 var(--font); }
+  a { color: var(--accent); }
+  .layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+  nav { background: var(--surface); border-right: 1px solid var(--line); padding: 18px 14px; position: sticky; top: 0;
+        height: 100vh; overflow-y: auto; }
+  nav h1 { font-size: 19px; margin: 0 0 4px; }
+  nav p.sub { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+  nav h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 16px 0 4px; }
+  nav a { display: block; padding: 3px 8px; border-radius: 6px; text-decoration: none; color: var(--ink);
+          font-family: var(--mono); font-size: 13px; }
+  nav a:hover { background: var(--head); }
+  nav a[aria-current="true"] { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+  main { padding: 20px 24px 60px; min-width: 0; }
+  .bar { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin-bottom: 16px; color: var(--muted);
+         font-size: 13px; }
+  .bar label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; color: var(--ink); }
+  .legend { display: inline-flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .legend span { display: inline-flex; gap: 6px; align-items: center; }
+  .glyph { width: 26px; height: 8px; flex: none; }
+  .glyph line { stroke: var(--ink); stroke-width: 2; }
+
+  .map { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 340px) minmax(0, 1fr);
+         gap: 0 70px; align-items: center; }
+  .col { display: flex; flex-direction: column; gap: 14px; }
+  .col.left { align-items: flex-end; }
+  .col.right { align-items: flex-start; }
+  svg.edges { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+  svg.edges path { fill: none; stroke: var(--ink); stroke-width: 1.8; opacity: .55; }
+
+  .center { background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 14px; padding: 14px 16px;
+            position: relative; z-index: 1; }
+  .center h2 { margin: 0; font-family: var(--mono); font-size: 20px; color: var(--accent); overflow-wrap: anywhere; }
+  .center p { margin: 8px 0 0; font-size: 13.5px; }
+  .subs { margin-top: 10px; font-family: var(--mono); font-size: 13px; line-height: 1.9; }
+  .subs .br { color: var(--muted); font-weight: 600; }
+  .subs .chip { display: inline-block; padding: 0 7px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line);
+                cursor: help; }
+  .subs .chip.on { border-color: var(--accent); background: var(--accent); color: var(--surface); }
+
+  .node { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px 9px;
+          width: min(100%, 330px); position: relative; z-index: 1; }
+  .node h3 { margin: 0 0 4px; font-size: 13.5px; font-family: var(--mono); }
+  .node h3 a { text-decoration: none; }
+  .node h3 a:hover { text-decoration: underline; }
+  .node.kind-q h3, .node.kind-a h3 { font-family: var(--font); color: var(--muted); font-weight: 700; }
+  .node ul { list-style: none; margin: 0; padding: 0; }
+  .node li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; align-items: start; gap: 7px;
+             font-family: var(--mono); font-size: 12.5px; padding: 2px 0; }
+  .node li .glyph { margin-top: 5px; }
+  .node li .txt { overflow-wrap: anywhere; }
+  .node li .txt .only { margin-left: 4px; }
+  .node li.dim { opacity: .3; }
+  .only { font-family: var(--font); font-size: 11.5px; padding: 0 6px; border-radius: 999px; background: var(--accent-bg);
+          color: var(--accent); white-space: nowrap; }
+  .levels { display: none; gap: 2px; margin-top: 1px; }
+  .show-levels .levels { display: inline-flex; }
+  .lv { width: 15px; height: 15px; border-radius: 3px; font-size: 9px; line-height: 15px; text-align: center; font-family: var(--font);
+        border: 1px dashed var(--line); color: var(--muted); }
+  .lv.required { background: var(--req); border: 1px solid var(--req); color: var(--surface); }
+  .lv.recommended { background: var(--rec-bg); border: 1px solid var(--rec); color: var(--rec); }
+  .lv.optional { background: var(--opt-bg); border: 1px solid var(--line); color: var(--opt); }
+  .note { color: var(--muted); font-size: 13px; margin: 22px 0 0; max-width: 900px; }
+
+  @media (max-width: 1100px) {
+    .layout { grid-template-columns: 1fr; }
+    nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+    .map { grid-template-columns: 1fr; gap: 14px; }
+    .center { order: -1; }
+    .col.left, .col.right { align-items: stretch; }
+    .node { width: 100%; }
+    svg.edges { display: none; }
+  }
+  @media (max-width: 600px) { main { padding: 16px; } nav { padding: 16px; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav aria-label="Classes">
+    <h1>Class maps</h1>
+    <p class="sub">Each class with the classes it points at - the ontology at a glance.</p>
+    <div id="toc"></div>
+  </nav>
+  <main>
+    <div class="bar">
+      <label><input type="checkbox" id="lv"> Show levels (Template · Fixed · Series · Experiment)</label>
+      <span class="legend">
+        <span><svg class="glyph" viewBox="0 0 26 8"><line x1="1" y1="4" x2="25" y2="4"/></svg> required</span>
+        <span><svg class="glyph" viewBox="0 0 26 8"><line x1="1" y1="4" x2="25" y2="4" stroke-dasharray="6 4"/></svg> recommended</span>
+        <span><svg class="glyph" viewBox="0 0 26 8"><line x1="1" y1="4" x2="25" y2="4" stroke-dasharray="1.5 4" stroke-linecap="round"/></svg> optional</span>
+      </span>
+    </div>
+    <div id="map" class="map"></div>
+    <p class="note">Line style: the strongest demand on any level (shapes, library entry schema, setup sheet,
+      library checks); what nothing asks for but the data have counts as optional.
+      <span class="only">only Liquid</span> = holds only for that subclass, by the domain of the property or a shape
+      at the subclass. Hover a subclass to highlight what applies to it.
+      Bookkeeping properties every entity has (type, scope, comments) are left out; the full tables are in the
+      <a href="property_overview.html">property overview</a>.</p>
+  </main>
+</div>
+<script>
+// Written by generator/workflow/class_maps/build_class_maps.py - change the template or the script, not this page.
+// DATA: class -> {comment, subclasses, sub_comments, props: {property -> {levels, target, quantity, only, only_from}}}
+const DATA = __DATA__;
+const FAMILIES = __FAMILIES__;
+const START = __START__;
+const LEVELS = ["Template", "Fixed", "Series", "Experiment"];
+const RANK = {required: 3, recommended: 2, optional: 1, "": 0};
+const local = c => c.includes(":") ? c.split(":")[1] : c;
+const short = (sub, cls) => { const l = local(sub), base = local(cls); return l.endsWith(base) && l !== base ? l.slice(0, -base.length) : l; };
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[ch]);
+
+function strongest(levels) {
+  let best = "";
+  for (const l of LEVELS) { const s = levels[l]; if (RANK[s] > RANK[best]) best = s; }
+  return best || "optional";
+}
+const dash = {required: "", recommended: "6 4", optional: "1.5 4"};
+function glyph(st) {
+  return `<svg class="glyph" viewBox="0 0 26 8" aria-label="${st}"><line x1="1" y1="4" x2="25" y2="4"${dash[st] ? ` stroke-dasharray="${dash[st]}"` : ""}${st === "optional" ? ' stroke-linecap="round"' : ""}/></svg>`;
+}
+function levelBoxes(levels) {
+  return `<span class="levels">${LEVELS.map(l => { const s = levels[l];
+    return `<span class="lv ${s}" title="${l}: ${s || "not on this level"}">${l[0]}</span>`; }).join("")}</span>`;
+}
+
+function groups(card) {
+  const rel = new Map(), q = [], a = [];
+  for (const [p, e] of Object.entries(card.props)) {
+    const item = {p, ...e, st: strongest(e.levels)};
+    if (e.quantity) q.push(item);
+    else if (!e.target) a.push(item);
+    else { if (!rel.has(e.target)) rel.set(e.target, []); rel.get(e.target).push(item); }
+  }
+  const out = [...rel.entries()].map(([t, items]) => ({kind: "r", title: t, items}));
+  if (q.length) out.push({kind: "q", title: "Quantities (process variables)", items: q});
+  if (a.length) out.push({kind: "a", title: "Attributes (plain values)", items: a});
+  for (const g of out) {
+    g.items.sort((x, y) => RANK[y.st] - RANK[x.st] || x.p.localeCompare(y.p));
+    g.st = g.items.reduce((b, i) => RANK[i.st] > RANK[b] ? i.st : b, "optional");
+  }
+  return out.sort((x, y) => RANK[y.st] - RANK[x.st] || y.items.length - x.items.length);
+}
+
+function nodeHtml(g, cls, i) {
+  const title = g.kind === "r"
+    ? (DATA[g.title] ? `<a href="#${g.title}">${esc(g.title)}</a>` : esc(g.title))
+    : esc(g.title);
+  const items = g.items.map(it => {
+    const why = it.only_from === "domain" ? "the rdfs:domain of the property" : "a shape asks for it only at this subclass";
+    const only = it.only.map(s => `<span class="only" title="${esc(s)}: ${why}">only ${esc(short(s, cls))}</span>`).join(" ");
+    return `<li data-only="${it.only.join(" ")}">${glyph(it.st)}<span class="txt"><span class="name">${esc(it.p)}</span>${only}</span>${levelBoxes(it.levels)}</li>`;
+  }).join("");
+  return `<div class="node kind-${g.kind}" data-i="${i}" data-st="${g.st}"><h3>${title}</h3><ul>${items}</ul></div>`;
+}
+
+function render(cls) {
+  const card = DATA[cls]; if (!card) return;
+  document.title = `${local(cls)} · Class Maps`;
+  document.querySelectorAll("nav a").forEach(a => a.setAttribute("aria-current", a.dataset.c === cls ? "true" : "false"));
+  const gs = groups(card);
+  // Balance the two columns by the number of lines.
+  const left = [], right = []; let hl = 0, hr = 0;
+  gs.forEach((g, i) => { const h = g.items.length + 2; if (hl <= hr) { left.push(i); hl += h; } else { right.push(i); hr += h; } });
+  const subs = card.subclasses.length
+    ? `<div class="subs"><span class="br">[</span> ${card.subclasses.map(s => `<span class="chip" data-s="${s}" title="${esc(card.sub_comments[s] || s)}">${esc(short(s, cls))}</span>`).join(' <span class="br">|</span> ')} <span class="br">]</span></div>` : "";
+  const comment = card.comment ? `<p>${esc(card.comment.replace(/\s+/g, " ").slice(0, 260))}${card.comment.length > 260 ? "…" : ""}</p>` : "";
+  const map = document.getElementById("map");
+  map.innerHTML = `<svg class="edges" aria-hidden="true"></svg>
+    <div class="col left">${left.map(i => nodeHtml(gs[i], cls, i)).join("")}</div>
+    <div class="center" id="center"><h2>${esc(cls)}</h2>${comment}${subs}</div>
+    <div class="col right">${right.map(i => nodeHtml(gs[i], cls, i)).join("")}</div>`;
+  map.querySelectorAll(".chip").forEach(ch => {
+    ch.addEventListener("mouseenter", () => highlight(ch.dataset.s));
+    ch.addEventListener("mouseleave", () => highlight(null));
+    ch.addEventListener("focus", () => highlight(ch.dataset.s)); ch.tabIndex = 0;
+    ch.addEventListener("blur", () => highlight(null));
+  });
+  requestAnimationFrame(drawEdges);
+  window.scrollTo({top: 0});
+}
+
+function highlight(sub) {
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c.dataset.s === sub));
+  document.querySelectorAll(".node li").forEach(li => {
+    const only = li.dataset.only ? li.dataset.only.split(" ") : [];
+    li.classList.toggle("dim", !!sub && only.length > 0 && !only.includes(sub));
+  });
+}
+
+function drawEdges() {
+  const map = document.getElementById("map"), svg = map.querySelector("svg.edges"), c = document.getElementById("center");
+  if (!svg || !c || getComputedStyle(svg).display === "none") return;
+  const mb = map.getBoundingClientRect(), cb = c.getBoundingClientRect();
+  const cy = cb.top + cb.height / 2 - mb.top;
+  let d = "";
+  svg.innerHTML = "";
+  map.querySelectorAll(".node").forEach(n => {
+    const nb = n.getBoundingClientRect(), isLeft = n.parentElement.classList.contains("left");
+    const x1 = (isLeft ? cb.left : cb.right) - mb.left, x2 = (isLeft ? nb.right : nb.left) - mb.left;
+    const y2 = nb.top + 18 - mb.top, mx = (x1 + x2) / 2;
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", `M${x1},${cy} C${mx},${cy} ${mx},${y2} ${x2},${y2}`);
+    const st = n.dataset.st; if (dash[st]) path.setAttribute("stroke-dasharray", dash[st]);
+    if (st === "optional") path.setAttribute("stroke-linecap", "round");
+    svg.appendChild(path);
+  });
+}
+
+// Navigation
+const toc = document.getElementById("toc");
+toc.innerHTML = FAMILIES.map(f => `<h2>${esc(f.title)}</h2>` + f.classes.filter(c => DATA[c]).map(c => `<a href="#${c}" data-c="${c}">${esc(c)}</a>`).join("")).join("");
+document.getElementById("lv").addEventListener("change", e => { document.body.classList.toggle("show-levels", e.target.checked); requestAnimationFrame(drawEdges); });
+window.addEventListener("hashchange", () => render(decodeURIComponent(location.hash.slice(1))));
+window.addEventListener("resize", () => requestAnimationFrame(drawEdges));
+document.fonts && document.fonts.ready.then(() => requestAnimationFrame(drawEdges));
+render(decodeURIComponent(location.hash.slice(1)) in DATA ? decodeURIComponent(location.hash.slice(1)) : START);
+</script>
+</body>
+</html>

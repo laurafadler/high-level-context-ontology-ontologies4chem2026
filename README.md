@@ -47,6 +47,8 @@ Questions I would particularly like opinions on:
 - [`docs/property_overview.html`](docs/property_overview.html) and
   [`docs/property_overview/`](docs/property_overview/README.md): which properties each class has on each
   level (the Markdown version is readable directly on GitHub).
+- [`docs/class_maps.html`](docs/class_maps.html): one map per class - the classes it points at, through
+  which properties, and how strongly they are asked for.
 - [`docs/rules_crate.md`](docs/rules_crate.md): the rules every crate follows; the requirements and shapes
   refer to them by number ("rule 7.16").
 - [`ontologies/`](ontologies/) and [`shapes/`](shapes/): the two ontologies and the SHACL shapes themselves.
@@ -88,7 +90,7 @@ generator/
   interfaces/eln/                ELN reader, profiles (AI4Green, Chemotion, eLabFTW), adapter (see its README)
   interfaces/pubchem/            PubChem lookup
   workflow/                      new project, isolated copy, answer driver, SHACL, reports,
-                                 library checks and entries, the two overviews in docs/
+                                 library checks and entries, the three overviews in docs/
   tests/                         tests of the generator (run_all_tests.py runs every <name>_test.py)
 docs/                        overviews, rules, guide for a new series, how to add library entries
 ```

@@ -424,3 +424,17 @@ checks:
   - {class: hlo:Reference, property: cpo:hasDeterminationTask, kind: required, check: "Rule 4.1", note: "and the task names it back (cpo:determines)"}
   - {class: cpo:StoichiometricReaction, property: cpo:hasParticipant, kind: constraint, check: "Balance of atoms and charge", note: "also in the crates (Series)", levels: [Template, Fixed, Series]}
   - {class: cpo:PhasePairInterface, property: cpo:hasTransfer, kind: required, check: "Interfaces without transfers (rule 3b.2)", note: "unless one phase is inert", levels: [Series]}
+
+# ------------------------------------------------------------------------------------------------------------
+# Class maps (generator/workflow/class_maps/build_class_maps.py -> docs/class_maps.html): one map for every root
+# class of the families above, built from the rows of its table.
+# ------------------------------------------------------------------------------------------------------------
+class_maps:
+  # Bookkeeping that (nearly) every entity has - left off the maps; the tables of the overview still show it.
+  hidden_properties: ["@type", hlo:describesContext, hlo:hasSpecialization, hlo:specializationOf, schema:comment,
+                      rdfs:comment, schema:description, schema:subjectOf]
+  # A property whose values are of one of these classes goes into the box "Quantities" (besides the quantity
+  # properties the overview finds itself).
+  quantity_classes: [cpo:ProcessVariable, hlo:Actual]
+  # The map the page opens with.
+  start: cpo:Phase
